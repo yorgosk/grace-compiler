@@ -2,17 +2,76 @@ Package compiler;
 
 
 Helpers
-  sp = ' ';
-  lf = 0x000a;
-  cr = 0x000d;
-  ff = 0x000c;
-  ht = 0x0009; 
-  line_terminator = lf | cr | cr lf;
-  white_space = (sp | ht | ff | line_terminator)*;
+    all = [0 .. 0xFFFF];
+  	digit = ['0' .. '9'];
+  	nondigit = ['_' + [['a' .. 'z'] + ['A' .. 'Z']]];
+  	digit_sequence = digit+;
+  	sign = '+' | '-';
+  	hexadecimal_digit = [digit + [['a' .. 'f'] + ['A' .. 'F']]];
+  	escape_sequence = '\n' | '\t' | '\r' | '\0' | '\\' | '\' ''' | '\"' | '\x' hexadecimal_digit+ hexadecimal_digit+;
+  	s_char = [all - ['"' + ['\' + [10 + 13]]]] | escape_sequence;
+  	s_char_sequence = s_char+;
+  	nonzero_digit = ['1' .. '9'];
+  	decimal_constant = nonzero_digit digit*;
+  	c_char = [all - [''' + ['\' + [10 + 13]]]] | escape_sequence;
+  	c_char_sequence = c_char+;
+  	cr = 13;
+  	lf = 10;
+  	tab = 9;
+  	not_dollar = [all - '$'];
+  	not_double_dollar = [not_dollar - '$'];
 
 Tokens
-  white_space = white_space;
+    comma = ',';
+  	colon = ':';
+  	semicolon = ';';
+  	assignment = '<-';
+  	l_par = '(';
+  	r_par = ')';
+  	l_bracket = '[';
+  	r_bracket = ']';
+  	l_brace = '{';
+  	r_brace = '}';
+
+  	plus = '+';
+  	minus = '-';
+  	division = '/';
+  	mult = '*';
+  	hashtag = '#';
+  	equal = '=';
+  	unequal = '<>';
+  	lesser = '<';
+  	greater = '>';
+  	lesseq = '<=';
+  	greateq = '>=';
+
+  	and = 'and';
+  	char = 'char';
+  	div = 'div';
+  	do = 'do';
+  	else = 'else';
+  	fun = 'fun';
+  	if = 'if';
+  	int = 'int';
+  	mod = 'mod';
+  	not = 'not';
+  	nothing = 'nothing';
+  	or = 'or';
+  	ref = 'ref';
+  	return = 'return';
+  	then = 'then';
+  	var = 'var';
+  	while = 'while';
+
+  	identifier = nondigit (digit | nondigit)*;
+  	string_litteral = 'L'? '"' s_char_sequence? '"';
+  	character_constant = 'L'? ''' c_char_sequence ''';
+  	blank = (cr | lf | tab | ' ')+;
+  	line_comment = '$' all*;
+  	multiline_comment = '$$' not_dollar* '$'+ (not_double_dollar not_dollar* '$'+)* '$';
 
 Ignored Tokens
-  white_space;
+    blank,
+  	line_comment,
+  	multiline_comment;
 
