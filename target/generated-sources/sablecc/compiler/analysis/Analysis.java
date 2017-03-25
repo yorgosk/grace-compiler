@@ -11,6 +11,9 @@ public interface Analysis extends Switch
     Object getOut(Node node);
     void setOut(Node node, Object o);
 
+    void caseStart(Start node);
+    void caseAStmt(AStmt node);
+
     void caseTAnd(TAnd node);
     void caseTChar(TChar node);
     void caseTDiv(TDiv node);
@@ -28,6 +31,7 @@ public interface Analysis extends Switch
     void caseTThen(TThen node);
     void caseTVar(TVar node);
     void caseTWhile(TWhile node);
+    void caseTId(TId node);
     void caseTPlus(TPlus node);
     void caseTMinus(TMinus node);
     void caseTDivision(TDivision node);

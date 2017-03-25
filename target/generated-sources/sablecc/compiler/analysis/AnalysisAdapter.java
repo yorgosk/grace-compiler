@@ -64,6 +64,16 @@ public class AnalysisAdapter implements Analysis
         }
     }
 
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAStmt(AStmt node)
+    {
+        defaultCase(node);
+    }
+
     public void caseTAnd(TAnd node)
     {
         defaultCase(node);
@@ -145,6 +155,11 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTWhile(TWhile node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTId(TId node)
     {
         defaultCase(node);
     }

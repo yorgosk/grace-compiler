@@ -5,7 +5,8 @@ Helpers
     all = [0 .. 0xFFFF];
   	digit = ['0' .. '9'];
   	nonzero_digit = ['1' .. '9'];
-  	nondigit = ['_' + [['a' .. 'z'] + ['A' .. 'Z']]];
+  	letter = [['a' .. 'z'] + ['A' .. 'Z']];
+  	nondigit = ['_' + letter];
   	digit_sequence = digit+;
   	sign = '+' | '-';
   	hexadecimal_digit = [digit + [['a' .. 'f'] + ['A' .. 'F']]];
@@ -41,6 +42,9 @@ Tokens
     var = 'var';
     while = 'while';
 
+    /* names */
+    id = letter (digit | nondigit)* ;
+
     /* symbolic operators */
     plus = '+';
   	minus = '-';
@@ -73,3 +77,26 @@ Tokens
 Ignored Tokens
     blank,
   	comment;
+
+Productions
+    program = func_def;
+    func_def = header (local_def)* block;
+    header = "fun" id "(" fpar_def (";" fpar_def)* ")" ":" ret_type;
+    fpar_def = ["ref"] id ("," id)* ":" fpar_type;
+    data_type = "int" | "char";
+    type = data_type ("[" int_const "]")* ;
+    ret_type = data_type | "nothing";
+    fpar_type = data_type ["[" "]"] ("[" int_const "]")* ;
+    local_def = func_def | func_decl | var_def;
+    var_def = "var" id ("," id)* ":" type ";" ;
+    func_decl = header ";" ;
+    stmt = ";" | l_value "<-" expr ";" | block | func_call ";"
+         | "if" cond "then" stmt ["else" stmt]
+         | "while" cond "do" stmt | "return" [expr] ";" ;
+    block = "{" (stmt)* "{" ;
+    func_call = id "(" [expr ("," expr)*] ")" ;
+    l_value = id | string_literal | l_value "[" expr "]" ;
+    expr = int_const | char_const | l_value | func_call | "(" expr ")"
+         | ("+" | "-") expr | expr ("+" | "-" | "*" | "div" | "mod") expr
+    cond = "(" cond ")" | "not" cond | cond ("and" | "or") cond
+         | expr ("=" | "#" | "<>" | "<" | ">" | "<=" | ">=") expr ;
