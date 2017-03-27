@@ -5,12 +5,13 @@ Helpers
     all = [0 .. 0xFFFF] ;
   	digit = ['0' .. '9'] ;
   	nonzero_digit = ['1' .. '9'] ;
-  	letter = [['a' .. 'z'] + ['A' .. 'Z']] ;
+  	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
   	nondigit = ['_' + letter] ;
-  	int_const = digit+; /*ex digit_sequence*/
+  	/*ex digit_sequence*/
+  	int_const = digit+;
   	sign = '+' | '-' ;
-  	hexadecimal_digit = [digit + [['a' .. 'f'] + ['A' .. 'F']]] ;
-  	escape_sequence = '\n' | '\t' | '\r' | '\0' | '\\' | '\' ''' | '\"' | '\x' hexadecimal_digit+ hexadecimal_digit+ ;
+  	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
+  	escape_sequence = '\' ('n' | 't' | 'r' | '0' | '\' | ''' | '"' | ('x' hexadecimal_digit+ hexadecimal_digit+)) ;
   	cr = 13 ;
     lf = 10 ;
     tab = 9 ;
