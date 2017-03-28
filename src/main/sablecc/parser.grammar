@@ -17,7 +17,7 @@ Helpers
     tab = 9 ;
     /*ex s_char*/
   	char_const = ''' ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ''' ;
-  	s_char_sequence = s_char+ ;
+  	s_char_sequence = char_const+ ;
   	/*ex s_string*/
   	string_literal = '"' s_char_sequence '"' ;
   	not_dollar = [all - '$'] ;
@@ -83,23 +83,33 @@ Ignored Tokens
 
 Productions
     program = func_def ;
-    func_def = header (local_def)* block ;
-    header = 'fun' id '(' fpar_def ( ';' fpar_def )* ')' ':' ret_type ;
-    fpar_def = ['ref'] id (',' id)* ':' fpar_type ;
-    data_type = 'int' | 'char' ;
-    type = data_type ('[' int_const ']')* ;
-    ret_type = data_type | 'nothing' ;
-    fpar_type = data_type ['[' ']'] ('[' int_const ']')* ;
+    func_def = header local_def* block ;
+    args = semicolon fpar_def;//my code
+    header = fun id l_par fpar_def args* r_par colon ret_type ;
+    vars = comma id;
+    fpar_def = ref id vars* colon fpar_type ;//[ref] instead of ref
+    data_type = int | char ;
+    dt = l_bracket int_const r_bracket;//my code
+    type = data_type dt* ;
+    ret_type = data_type | ;// 'nothing' instead of space after |
+    ft = l_bracket int_const r_bracket;
+    fpar_type = data_type l_bracket r_bracket ft* ; //[l_bracket r_bracket] instead of l_bracket r_bracket
     local_def = func_def | func_decl | var_def ;
-    var_def = 'var' id (',' id)* ':' type ';' ;
-    func_decl = header ';' ;
-    stmt = ';' | l_value '<-' expr ';' | block | func_call ';'
-         | 'if' cond 'then' stmt [ 'else' stmt ]
-         | 'while' cond 'do' stmt | 'return' [ expr ] ';' ;
-    block = '{' stmt* '}' ;
-    func_call = id '(' [ expr ( ',' expr )* ] ')' ;
-    l_value = id | string_literal | l_value '[' expr ']' ;
-    expr = int_const | char_const | l_value | func_call | '(' expr ')'
-         | ('+' | '-') expr | expr ('+' | '-' | '*' | 'div' | 'mod') expr ;
-    cond = '(' cond ')' | 'not' cond | cond ('and' | 'or') cond
-         | expr ('=' | '#' | '<>' | '<' | '>' | '<=' | '>=') expr ;
+    varaible = comma id;
+    var_def = var id variable* colon type semicolon ;
+    func_decl = header semicolon ;
+    stmt = semicolon | l_value assignment expr semicolon | block | func_call semicolon
+         | if cond then stmt  else stmt //[ else stmt ] instead of else stmt
+         | while cond do stmt | return expr semicolon ; //[ expr ] instead of expr
+    block = l_brace stmt* r_brace ;
+    fun_args = comma empr;
+    func_call = id l_par expr fun_args* r_par ;//[ expr fun_args* ] instead of epxr fun_args*
+    l_value = id | string_literal | l_value l_bracket expr r_bracket ;
+    prakseis1 = plus | minus;//my code
+    prakseis2 = plus | minus | mult | div | mod;//my code
+    expr = int_const | char_const | l_value | func_call | l_par expr r_par
+         | prakseis1 expr | expr prakseis2 expr ;
+    cond1 = and | or;
+    cond2 = equal | hashtag | unequal | lesser | greater | lesseq | greateq;
+    cond = l_par cond r_par | not cond | cond cond1 cond
+         | expr cond2 expr ;
