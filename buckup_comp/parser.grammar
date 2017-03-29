@@ -1,0 +1,115 @@
+Package compiler ;
+
+
+Helpers
+    all = [0 .. 0xFFFF] ;
+  	digit = ['0' .. '9'] ;
+  	nonzero_digit = ['1' .. '9'] ;
+  	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
+  	nondigit = ['_' + letter] ;
+  	/*ex digit_sequence*/
+  	int_const = digit+;
+  	sign = '+' | '-' ;
+  	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
+  	escape_sequence = '\' ('n' | 't' | 'r' | '0' | '\' | ''' | '"' | ('x' hexadecimal_digit+ hexadecimal_digit+)) ;
+  	cr = 13 ;
+    lf = 10 ;
+    tab = 9 ;
+    /*ex s_char*/
+  	char_const = ''' ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ''' ;
+  	s_char_sequence = char_const+ ;
+  	/*ex s_string*/
+  	string_literal = '"' s_char_sequence '"' ;
+  	not_dollar = [all - '$'] ;
+  	not_double_dollar = [not_dollar - '$'] ;
+  	line_comment = '$' all* ;
+    multiline_comment = '$$' not_dollar* '$'+ (not_double_dollar not_dollar* '$'+)* '$' ;
+
+Tokens
+    /* keywords */
+    and = 'and' ;
+    char = 'char' ;
+    div = 'div' ;
+    do = 'do' ;
+    else = 'else' ;
+    fun = 'fun' ;
+    if = 'if' ;
+    int = 'int' ;
+    mod = 'mod' ;
+    not = 'not' ;
+    nothing = 'nothing' ;
+    or = 'or' ;
+    ref = 'ref' ;
+    return = 'return' ;
+    then = 'then' ;
+    var = 'var' ;
+    while = 'while' ;
+
+    /* names */
+    id = letter (digit | nondigit)* ;
+
+    /* symbolic operators */
+    plus = '+' ;
+  	minus = '-' ;
+  	division = '/' ;
+  	mult = '*' ;
+  	hashtag = '#' ;
+  	equal = '=' ;
+  	unequal = '<>' ;
+  	lesser = '<' ;
+  	greater = '>' ;
+  	lesseq = '<=' ;
+  	greateq = '>=' ;
+
+    /* separators */
+    comma = ',' ;
+  	colon = ':' ;
+  	semicolon = ';' ;
+  	assignment = '<-' ;
+  	l_par = '(' ;
+  	r_par = ')' ;
+  	l_bracket = '[' ;
+  	r_bracket = ']' ;
+  	l_brace = '{' ;
+  	r_brace = '}' ;
+
+  	identifier = nondigit (digit | nondigit)* ;
+  	blank = (cr | lf | tab | ' ')+ ;
+    comment = line_comment | multiline_comment ;
+
+Ignored Tokens
+    blank,
+  	comment;
+
+Productions
+    program = func_def ;
+    func_def = header local_def* block ;
+    args = semicolon fpar_def;//my code
+    header = fun id l_par fpar_def args* r_par colon ret_type ;
+    vars = comma id;
+    fpar_def = ref id vars* colon fpar_type ;//[ref] instead of ref
+    data_type = int | char ;
+    dt = l_bracket int_const r_bracket;//my code
+    type = data_type dt* ;
+    ret_type = data_type | ;// 'nothing' instead of space after |
+    ft = l_bracket int_const r_bracket;
+    fpar_type = data_type l_bracket r_bracket ft* ; //[l_bracket r_bracket] instead of l_bracket r_bracket
+    local_def = func_def | func_decl | var_def ;
+    varaible = comma id;
+    var_def = var id variable* colon type semicolon ;
+    func_decl = header semicolon ;
+    stmt = semicolon | l_value assignment expr semicolon | block | func_call semicolon
+         | if cond then stmt  else stmt //[ else stmt ] instead of else stmt
+         | while cond do stmt | return expr semicolon ; //[ expr ] instead of expr
+    block = l_brace stmt* r_brace ;
+    fun_args = comma empr;
+    func_call = id l_par expr fun_args* r_par ;//[ expr fun_args* ] instead of epxr fun_args*
+    l_value = id | string_literal | l_value l_bracket expr r_bracket ;
+    prakseis1 = plus | minus;//my code
+    prakseis2 = plus | minus | mult | div | mod;//my code
+    expr = int_const | char_const | l_value | func_call | l_par expr r_par
+         | prakseis1 expr | expr prakseis2 expr ;
+    cond1 = and | or;
+    cond2 = equal | hashtag | unequal | lesser | greater | lesseq | greateq;
+    cond = l_par cond r_par | not cond | cond cond1 cond
+         | expr cond2 expr ;
