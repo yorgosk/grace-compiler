@@ -108,15 +108,17 @@ Productions
     variable = comma id;
     var_def = var id variable* colon type semicolon ;
     func_decl = header semicolon ;
+    else_case = else stmt ;
     stmt =
         {stmtoption0} semicolon |
         {stmtoption1} l_value assignment expr semicolon |
         {stmtoption2} block |
-        {stmtoption3} func_call semicolon
+        {stmtoption3} func_call semicolon |
             /*[ else stmt ] instead of else stmt*/
-         {stmtoption4} | if cond then stmt else stmt
+         {stmtoption4} if cond then stmt elsecase |
             /*[ expr ] instead of expr*/
-         {stmtoption5} | while cond do stmt | return expr semicolon ;
+         {stmtoption5} while cond do stmt |
+         {stmtoption6} return expr semicolon ;
     block = l_brace stmt* r_brace ;
     fun_args = comma empr;
     /*[ expr fun_args* ] instead of epxr fun_args**/
@@ -136,6 +138,7 @@ Productions
         {mult2} mult |
         {div2} div |
         {mod2} mod;
+    next_expr =prakseis2 expr;
     expr =
         {intconst} int_const |
         {charconst} char_const |
@@ -143,7 +146,7 @@ Productions
         {functioncall} func_call |
         {lpar} l_par expr r_par |
         {pr1expr} prakseis1 expr |
-        {exprpr2expr} expr prakseis2 expr ;
+        {exprpr2expr} expr next_expr ;
     cond1 =
         {and1} and |
         {or1} or;
@@ -155,8 +158,10 @@ Productions
         {greater2} greater |
         {lesseq2} lesseq |
         {greateq2} greateq;
+    next_cond = cond1 cond;
+    next_exp = cond2 expr;
     cond =
         {condition1} l_par cond r_par |
         {condition2} not cond |
-        {condition3} cond cond1 cond |
-        {condition4} expr cond2 expr ;
+        {condition3} cond next_cond |
+        {condition4} expr next_exp ;
