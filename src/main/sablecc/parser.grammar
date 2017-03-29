@@ -5,7 +5,7 @@ Helpers
   	digit = ['0' .. '9'] ;
   	nonzero_digit = ['1' .. '9'] ;
   	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
-  	nondigit = ['_' + letter] ;
+  	nondigit = '_' | letter ;
   	/*ex digit_sequence*/
   	sign = '+' | '-' ;
   	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
@@ -140,7 +140,7 @@ Productions
         {mult2} mult |
         {div2} div |
         {mod2} mod;
-    next_expr =prakseis2 expr;
+    next_expr = prakseis2 expr ;
     expr =
         {intconst} int_const |
         {charconst} char_const |
