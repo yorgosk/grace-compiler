@@ -7,7 +7,6 @@ Helpers
   	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
   	nondigit = ['_' + letter] ;
   	/*ex digit_sequence*/
-  	int_const = digit+;
   	sign = '+' | '-' ;
   	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
   	escape_sequence = '\' ('n' | 't' | 'r' | '0' | '\' | ''' | '"' | ('x' hexadecimal_digit+ hexadecimal_digit+)) ;
@@ -15,16 +14,19 @@ Helpers
     lf = 10 ;
     tab = 9 ;
     /*ex s_char*/
-  	char_const = ''' ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ''' ;
-  	s_char_sequence = char_const+ ;
+    s_char = ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ;
   	/*ex s_string*/
-  	string_literal = '"' s_char_sequence '"' ;
   	not_dollar = [all - '$'] ;
   	not_double_dollar = [not_dollar - '$'] ;
   	line_comment = '$' all* ;
     multiline_comment = '$$' not_dollar* '$'+ (not_double_dollar not_dollar* '$'+)* '$' ;
 
 Tokens
+  	int_const = digit+;
+  	char_const = ''' s_char ''' ;
+  	s_char_sequence = (''' s_char ''')+ ;
+  	string_literal = '"' ((''' s_char ''')+) '"' ;
+
     /* keywords */
     and = 'and' ;
     char = 'char' ;
@@ -115,13 +117,13 @@ Productions
         {stmtoption2} block |
         {stmtoption3} func_call semicolon |
             /*[ else stmt ] instead of else stmt*/
-         {stmtoption4} if cond then stmt elsecase |
+         {stmtoption4} if cond then stmt else_case |
             /*[ expr ] instead of expr*/
          {stmtoption5} while cond do stmt |
          {stmtoption6} return expr semicolon ;
     block = l_brace stmt* r_brace ;
-    fun_args = comma empr;
-    /*[ expr fun_args* ] instead of epxr fun_args**/
+    fun_args = comma expr;
+    /*[ expr fun_args* ] instead of expr fun_args**/
     func_call = id l_par expr fun_args* r_par ;
     l_value =
         {opt0} id |
