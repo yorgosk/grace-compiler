@@ -1,11 +1,13 @@
 Package compiler ;
 
+
 Helpers
+
     all = [0 .. 0xFFFF] ;
   	digit = ['0' .. '9'] ;
   	nonzero_digit = ['1' .. '9'] ;
   	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
-  	nondigit = ['_' + letter] ;
+  	nondigit = '_' | letter ;
   	/*ex digit_sequence*/
   	sign = '+' | '-' ;
   	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
@@ -21,7 +23,9 @@ Helpers
   	line_comment = '$' all* ;
     multiline_comment = '$$' not_dollar* '$'+ (not_double_dollar not_dollar* '$'+)* '$' ;
 
+
 Tokens
+
   	int_const = digit+;
   	char_const = ''' s_char ''' ;
   	s_char_sequence = (''' s_char ''')+ ;
@@ -78,77 +82,88 @@ Tokens
   	blank = (cr | lf | tab | ' ')+ ;
     comment = line_comment | multiline_comment ;
 
+
 Ignored Tokens
+
     blank,
   	comment;
 
+
 Productions
+
     program = func_def ;
+
     func_def = header local_def* block ;
-    /*yiannis's code*/
-    args = semicolon fpar_def;
-    header = fun id l_par fpar_def args* r_par colon ret_type ;
-    vars = comma id;
-    /*[ref] instead of ref*/
-    fpar_def = ref id vars* colon fpar_type ;
+
+    header_next_arg = semicolon fpar_def ;
+    header = fun id l_par fpar_def header_next_arg* r_par colon ret_type ;
+
+    fpar_def_next_var = comma id ;
+    fpar_def = ref id fpar_def_next_var* colon fpar_type ;
+
     data_type =
-        {integer} int |
-        {character} char ;
-    /*yiannis's code*/
-    dt = l_bracket int_const r_bracket ;
-    type = data_type dt* ;
+        {int} int |
+        {char} char ;
+
+    dimension = l_bracket int_const r_bracket ;
+    type = data_type dimension* ;
+
     ret_type =
-        {datatype} data_type |
-        {nuffin} nothing ;
-    ft = l_bracket int_const r_bracket;
-    /*[l_bracket r_bracket] instead of l_bracket r_bracket*/
-    fpar_type = data_type l_bracket r_bracket ft* ;
+        {data_type} data_type |
+        {nothing} nothing ;
+
+    next_dimension = l_bracket int_const r_bracket ;
+    fpar_type = data_type l_bracket r_bracket next_dimension* ;
+
     local_def =
-        {functiondefinition} func_def |
-        {functiondeclaration} func_decl |
-        {variabledefinition} var_def ;
-    variable = comma id;
-    var_def = var id variable* colon type semicolon ;
+        {func_def} func_def |
+        {func_decl} func_decl |
+        {var_def} var_def ;
+
+    var_def_next_var = comma id ;
+    var_def = var id var_def_next_var* colon type semicolon ;
+
     func_decl = header semicolon ;
+
     else_case = else stmt ;
     stmt =
-        {stmtoption0} semicolon |
-        {stmtoption1} l_value assignment expr semicolon |
-        {stmtoption2} block |
-        {stmtoption3} func_call semicolon |
-            /*[ else stmt ] instead of else stmt*/
-         {stmtoption4} if cond then stmt else_case |
-            /*[ expr ] instead of expr*/
-         {stmtoption5} while cond do stmt |
-         {stmtoption6} return expr semicolon ;
+        {stmt1} semicolon |
+        {stmt2} l_value assignment expr semicolon |
+        {stmt3} block |
+        {stmt4} func_call semicolon |
+        {stmt5} if cond then stmt else_case |
+        {stmt6} while cond do stmt |
+        {stmt7} return expr semicolon ;
+
     block = l_brace stmt* r_brace ;
-    fun_args = comma expr;
-    /*[ expr fun_args* ] instead of expr fun_args**/
-    func_call = id l_par expr fun_args* r_par ;
+
+    func_call_next_arg = comma expr;
+    func_call = id l_par expr func_call_next_arg* r_par ;
+
     l_value =
-        {opt0} id |
-        {opt1} string_literal |
-        {opt2} l_value l_bracket expr r_bracket ;
-    /*yiannis's code*/
-    prakseis1 =
+        {l_value1} id |
+        {l_value2} string_literal |
+        {l_value3} l_value l_bracket expr r_bracket ;
+
+    ops1 =
         {plus1} plus |
         {minus1} minus;
-    /*yiannis's code*/
-    prakseis2 =
+    ops2 =
         {plus2} plus |
         {minus2} minus |
         {mult2} mult |
         {div2} div |
         {mod2} mod;
-    next_expr =prakseis2 expr;
+    next_expr = ops2 expr ;
     expr =
-        {intconst} int_const |
-        {charconst} char_const |
-        {lval} l_value |
-        {functioncall} func_call |
-        {lpar} l_par expr r_par |
-        {pr1expr} prakseis1 expr |
-        {exprpr2expr} expr next_expr ;
+        {int_const} int_const |
+        {char_const} char_const |
+        {l_value} l_value |
+        {func_call} func_call |
+        {expr_in_pars} l_par expr r_par |
+        {ops1_expr} ops1 expr |
+        {expr_next_expr} expr next_expr ;
+
     cond1 =
         {and1} and |
         {or1} or;
@@ -163,7 +178,7 @@ Productions
     next_cond = cond1 cond;
     next_exp = cond2 expr;
     cond =
-        {condition1} l_par cond r_par |
-        {condition2} not cond |
-        {condition3} cond next_cond |
-        {condition4} expr next_exp ;
+        {cond1} l_par cond r_par |
+        {cond2} not cond |
+        {cond3} cond next_cond |
+        {cond4} expr next_exp ;
