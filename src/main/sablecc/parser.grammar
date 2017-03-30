@@ -95,11 +95,11 @@ Productions
 
     func_def = header local_def* block ;
 
-    header_next_arg = semicolon fpar_def ;
-    header = fun id l_par fpar_def header_next_arg* r_par colon ret_type ;
+    header_next_arg = semicolon [next_fpar_def]:fpar_def ;
+    header = fun id l_par [init_fpar_def]:fpar_def header_next_arg* r_par colon ret_type ;
 
-    fpar_def_next_var = comma id ;
-    fpar_def = ref id fpar_def_next_var* colon fpar_type ;
+    fpar_def_next_id = comma [next_fpar_def_id]:id ;
+    fpar_def = ref? [init_fpar_def_id]:id fpar_def_next_id* colon fpar_type ;
 
     data_type =
         {int} int |
@@ -113,42 +113,34 @@ Productions
         {nothing} nothing ;
 
     next_dimension = l_bracket int_const r_bracket ;
-    fpar_type = data_type l_bracket r_bracket next_dimension* ;
+    l_r_brackets = l_bracket r_bracket ;
+    fpar_type = data_type l_r_brackets? next_dimension* ;
 
     local_def =
         {func_def} func_def |
         {func_decl} func_decl |
         {var_def} var_def ;
 
-    var_def_next_var = comma id ;
-    var_def = var id var_def_next_var* colon type semicolon ;
+    var_def_next_id = comma [next_var_def_id]:id ;
+    var_def = var [init_var_def_id]:id var_def_next_id* colon type semicolon ;
 
     func_decl = header semicolon ;
 
+    else_stmt = else [else_stmt]:stmt;
     stmt =
-        {stmt1} semicolon |
-        {stmt2} l_value assignment expr semicolon |
-        {stmt3} block |
-        {stmt4} func_call semicolon |
-        {stmt5} if cond then [then_stmt]:stmt else [else_stmt]:stmt |
-        {stmt6} while cond do stmt |
-        {stmt7} return expr semicolon ;
-
-    /*
-    unmatched =
-        {if_c_s} if cond stmt |
-        {if_c_m_e_u} if cond matched else unmatched ;
-    else_m = else matched;
-    matched =
-        {if_c_m_e_m} if cond matched else_m |
-        {s1} s1 |
-        {s2} s2 ;
-    */
+        {noop} semicolon |
+        {assignment} l_value assignment expr semicolon |
+        {block} block |
+        {func_call} func_call semicolon |
+        {if} if cond then [then_stmt]:stmt else_stmt? |
+        {while} while cond do [do_stmt]:stmt |
+        {return_expr} return expr? semicolon ;
 
     block = l_brace stmt* r_brace ;
 
-    func_call_next_arg = comma expr;
-    func_call = id l_par expr func_call_next_arg* r_par ;
+    func_call_next_arg = comma [next_func_call_expr]:expr;
+    func_args = [init_func_call_expr]:expr func_call_next_arg* ;
+    func_call = id l_par func_args? r_par ;
 
     l_value =
         {l_value1} id |
@@ -157,7 +149,7 @@ Productions
 
     ops1 =
         {plus1} plus |
-        {minus1} minus;
+        {minus1} minus ;
     ops2 =
         {plus2} plus |
         {minus2} minus |
