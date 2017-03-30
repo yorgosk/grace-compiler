@@ -147,7 +147,7 @@ Productions
         {l_value2} string_literal |
         {l_value3} l_value l_bracket expr r_bracket ;
 
-    ops1 =
+    sign =
         {plus1} plus |
         {minus1} minus ;
     ops2 =
@@ -163,12 +163,12 @@ Productions
         {l_value} l_value |
         {func_call} func_call |
         {expr_in_pars} l_par expr r_par |
-        {ops1_expr} ops1 expr |
+        {sign} sign expr |
         {expr_next_expr} expr next_expr ;
 
     boolop =
         {and1} and |
-        {or1} or;
+        {or1} or ;
     numop =
         {equal2} equal |
         {hashtag2} hashtag |
@@ -176,11 +176,17 @@ Productions
         {lesser2} lesser |
         {greater2} greater |
         {lesseq2} lesseq |
-        {greateq2} greateq;
-    /*next_cond = cond1 [next_cond_cond]:cond;*/
-    /*next_exp = cond2 expr;*/
+        {greateq2} greateq ;
+
+    not_cond =
+        {not_pars} not l_par cond r_par |
+        {not_not} not not_cond |
+        {not_boolop} not expr numop_expr boolop cond |
+        {not_numop} not expr numop_expr  ;
+    boolop_cond = boolop cond ;
+    numop_expr = numop expr ;
     cond =
         {condition1} l_par cond r_par |
-        {condition2} not [not_cond]:cond |
-        {condition3} [init_cond]:cond boolop [next_cond]:cond |
-        {condition4} [init_expr]:expr numop [next_expr]:expr ;
+        {condition2} not_cond |
+        {condition3} cond boolop_cond |
+        {condition4} expr numop_expr ;
