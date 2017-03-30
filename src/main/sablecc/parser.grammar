@@ -1,4 +1,4 @@
-Package compiler ;
+Package compiler;
 
 
 Helpers
@@ -125,15 +125,25 @@ Productions
 
     func_decl = header semicolon ;
 
-    else_case = else stmt ;
     stmt =
         {stmt1} semicolon |
         {stmt2} l_value assignment expr semicolon |
         {stmt3} block |
         {stmt4} func_call semicolon |
-        {stmt5} if cond then stmt else_case |
+        {stmt5} if cond then [then_stmt]:stmt else [else_stmt]:stmt |
         {stmt6} while cond do stmt |
         {stmt7} return expr semicolon ;
+
+    /*
+    unmatched =
+        {if_c_s} if cond stmt |
+        {if_c_m_e_u} if cond matched else unmatched ;
+    else_m = else matched;
+    matched =
+        {if_c_m_e_m} if cond matched else_m |
+        {s1} s1 |
+        {s2} s2 ;
+    */
 
     block = l_brace stmt* r_brace ;
 
@@ -164,10 +174,10 @@ Productions
         {ops1_expr} ops1 expr |
         {expr_next_expr} expr next_expr ;
 
-    cond1 =
+    boolop =
         {and1} and |
         {or1} or;
-    cond2 =
+    numop =
         {equal2} equal |
         {hashtag2} hashtag |
         {unequal2} unequal |
@@ -175,10 +185,10 @@ Productions
         {greater2} greater |
         {lesseq2} lesseq |
         {greateq2} greateq;
-    next_cond = cond1 cond;
-    next_exp = cond2 expr;
+    /*next_cond = cond1 [next_cond_cond]:cond;*/
+    /*next_exp = cond2 expr;*/
     cond =
-        {cond1} l_par cond r_par |
-        {cond2} not cond |
-        {cond3} cond next_cond |
-        {cond4} expr next_exp ;
+        {condition1} l_par cond r_par |
+        {condition2} not [not_cond]:cond |
+        {condition3} [init_cond]:cond boolop [next_cond]:cond |
+        {condition4} [init_expr]:expr numop [next_expr]:expr ;
