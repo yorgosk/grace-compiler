@@ -147,6 +147,9 @@ Productions
 
     stmt =
         {terminal_statement} term_stmt |
+        {if_stmt} if_stmt |
+        {while} while cond do stmt ;
+    if_stmt =
         {if} if cond then stmt |
         {if_else} if cond then with_else else stmt ;
     with_else =
