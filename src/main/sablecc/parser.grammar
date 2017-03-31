@@ -126,15 +126,38 @@ Productions
 
     func_decl = header semicolon ;
 
-    else_stmt = else [else_stmt]:stmt;
-    stmt =
+    /*stmt =
+        {if} if cond then stmt |
+        {if_else} if cond then with_else else stmt |
         {noop} semicolon |
         {assignment} l_value assignment expr semicolon |
         {block} block |
         {func_call} func_call semicolon |
-        {if} if cond then [then_stmt]:stmt else_stmt? |
         {while} while cond do [do_stmt]:stmt |
         {return_expr} return expr? semicolon ;
+    with_else =
+        {if_else} if cond then with_else else_with_else |
+        {noop} semicolon |
+        {assignment} l_value assignment expr semicolon |
+        {block} block |
+        {func_call} func_call semicolon |
+        {while} while cond do [do_stmt]:stmt |
+        {return_expr} return expr? semicolon ;
+    else_with_else = else with_else ;*/
+
+    stmt =
+        {terminal_statement} term_stmt |
+        {if} if cond then stmt |
+        {if_else} if cond then with_else else stmt ;
+    with_else =
+        {nested_if_else} if cond then with_else else_with_else |
+        {terminal_statement} term_stmt ;
+    else_with_else = else with_else ;
+    term_stmt =
+        {semicolon} semicolon |
+        {assignment} l_value assignment expr semicolon |
+        {block} block |
+        {function} func_call semicolon ;
 
     block = l_brace stmt* r_brace ;
 
