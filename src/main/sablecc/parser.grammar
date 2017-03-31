@@ -195,7 +195,6 @@ Productions
     not_cond =
         {not_not_cond} not not_cond |
         {not_termcond} not termcond ;
-
     cond =
         {not_cond} not_cond |
         {cond_and_termcond} cond and termcond |
