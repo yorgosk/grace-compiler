@@ -3,21 +3,18 @@ Package compiler;
 
 Helpers
 
-    all = [0 .. 0xFFFF] ;
+    all = [0 .. 255] ;
   	digit = ['0' .. '9'] ;
   	nonzero_digit = ['1' .. '9'] ;
   	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
   	nondigit = '_' | letter ;
-  	/*ex digit_sequence*/
   	sign = '+' | '-' ;
   	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
   	escape_sequence = '\' ('n' | 't' | 'r' | '0' | '\' | ''' | '"' | ('x' hexadecimal_digit+ hexadecimal_digit+)) ;
   	cr = 13 ;
     lf = 10 ;
     tab = 9 ;
-    /*ex s_char*/
     s_char = ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ;
-  	/*ex s_string*/
   	not_dollar = [all - '$'] ;
   	not_double_dollar = [not_dollar - '$'] ;
   	line_comment = '$' all* ;
@@ -26,10 +23,11 @@ Helpers
 
 Tokens
 
+    /*int and character constants, strings*/
   	int_const = digit+;
   	char_const = ''' s_char ''' ;
   	s_char_sequence = (''' s_char ''')+ ;
-  	string_literal = '"' ((''' s_char ''')+) '"' ;
+  	string_literal = '"' (s_char+) '"' ;
 
     /* keywords */
     and = 'and' ;
@@ -125,25 +123,6 @@ Productions
     var_def = var [init_var_def_id]:id var_def_next_id* colon type semicolon ;
 
     func_decl = header semicolon ;
-
-    /*stmt =
-        {if} if cond then stmt |
-        {if_else} if cond then with_else else stmt |
-        {noop} semicolon |
-        {assignment} l_value assignment expr semicolon |
-        {block} block |
-        {func_call} func_call semicolon |
-        {while} while cond do [do_stmt]:stmt |
-        {return_expr} return expr? semicolon ;
-    with_else =
-        {if_else} if cond then with_else else_with_else |
-        {noop} semicolon |
-        {assignment} l_value assignment expr semicolon |
-        {block} block |
-        {func_call} func_call semicolon |
-        {while} while cond do [do_stmt]:stmt |
-        {return_expr} return expr? semicolon ;
-    else_with_else = else with_else ;*/
 
     stmt =
         {terminal_statement} term_stmt |
