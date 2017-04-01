@@ -177,6 +177,7 @@ Productions
     term =
         {term_mult_factor} term mult factor |
         {term_div_factor} term div factor |
+        {term_mod_factor} term mod factor |                                                /*yiannis code*/
         {factor} factor ;
     factor =
         {int_const} int_const |

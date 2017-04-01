@@ -1,0 +1,214 @@
+Package compiler;
+
+
+Helpers
+
+    all = [0 .. 255] ;
+  	digit = ['0' .. '9'] ;
+  	nonzero_digit = ['1' .. '9'] ;
+  	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
+  	nondigit = '_' | letter ;
+  	sign = '+' | '-' ;
+  	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
+  	escape_sequence = '\' ('n' | 't' | 'r' | '0' | '\' | ''' | '"' | ('x' hexadecimal_digit+ hexadecimal_digit+)) ;
+  	cr = 13 ;
+    lf = 10 ;
+    tab = 9 ;
+    s_char = ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ;
+  	not_dollar = [all - '$'] ;
+  	not_double_dollar = [not_dollar - '$'] ;
+  	line_comment = '$' all* ;
+    multiline_comment = '$$' not_dollar* '$'+ (not_double_dollar not_dollar* '$'+)* '$' ;
+
+
+Tokens
+
+    /*int and character constants, strings*/
+  	int_const = digit+;
+  	char_const = ''' s_char ''' ;
+  	s_char_sequence = (''' s_char ''')+ ;
+  	string_literal = '"' (s_char+) '"' ;
+
+    /* keywords */
+    and = 'and' ;
+    char = 'char' ;
+    div = 'div' ;
+    do = 'do' ;
+    else = 'else' ;
+    fun = 'fun' ;
+    if = 'if' ;
+    int = 'int' ;
+    mod = 'mod' ;
+    not = 'not' ;
+    nothing = 'nothing' ;
+    or = 'or' ;
+    ref = 'ref' ;
+    return = 'return' ;
+    then = 'then' ;
+    var = 'var' ;
+    while = 'while' ;
+
+    /* names */
+    id = letter (digit | nondigit)* ;
+
+    /* symbolic operators */
+    plus = '+' ;
+  	minus = '-' ;
+  	division = '/' ;
+  	mult = '*' ;
+  	hashtag = '#' ;
+  	equal = '=' ;
+  	unequal = '<>' ;
+  	lesser = '<' ;
+  	greater = '>' ;
+  	lesseq = '<=' ;
+  	greateq = '>=' ;
+
+    /* separators */
+    comma = ',' ;
+  	colon = ':' ;
+  	semicolon = ';' ;
+  	assignment = '<-' ;
+  	l_par = '(' ;
+  	r_par = ')' ;
+  	l_bracket = '[' ;
+  	r_bracket = ']' ;
+  	l_brace = '{' ;
+  	r_brace = '}' ;
+
+  	identifier = nondigit (digit | nondigit)* ;
+  	blank = (cr | lf | tab | ' ')+ ;
+    comment = line_comment | multiline_comment ;
+
+
+Ignored Tokens
+
+    blank,
+  	comment;
+
+
+Productions
+
+    program = func_def ;
+
+    func_def = header local_def* block ;
+
+    header_next_arg = semicolon fpar_def ;
+    fun_pars = fpar_def header_next_arg* ;
+    header = fun id l_par fun_pars? r_par colon ret_type ; /*because, we may have no pars at all e.g. hello example*/
+
+    fpar_def_next_id = comma id ;
+    fpar_def = ref? id fpar_def_next_id* colon fpar_type ;
+
+    data_type =
+        {int} int |
+        {char} char ;
+
+    dimension = l_bracket int_const r_bracket ;
+    type = data_type dimension* ;
+
+    ret_type =
+        {data_type} data_type |
+        {nothing} nothing ;
+
+    next_dimension = l_bracket int_const r_bracket ;
+    l_r_brackets = l_bracket r_bracket ;
+    fpar_type = data_type l_r_brackets? next_dimension* ;
+
+    local_def =
+        {func_def} func_def |
+        {func_decl} func_decl |
+        {var_def} var_def ;
+
+    var_def_next_id = comma [next_var_def_id]:id ;
+    var_def = var [init_var_def_id]:id var_def_next_id* colon type semicolon ;
+
+    func_decl = header semicolon ;
+
+    stmt =
+        {terminal_statement} term_stmt |
+        {if_stmt} if_stmt |
+        {while} while cond do stmt ;
+    if_stmt =
+        {if} if cond then stmt |
+        {if_else} if cond then with_else else stmt ;
+    with_else =
+        {nested_if_else} if cond then with_else else_with_else |
+        {terminal_statement} term_stmt ;
+    else_with_else = else with_else ;
+    term_stmt =
+        {semicolon} semicolon |
+        {assignment} l_value assignment expr semicolon |
+        {block} block |
+        {function} func_call semicolon ;
+
+    block = l_brace stmt* r_brace ;
+
+    func_call_next_arg = comma [next_func_call_expr]:expr;
+    func_args = [init_func_call_expr]:expr func_call_next_arg* ;
+    func_call = id l_par func_args? r_par ;
+
+    l_value =
+        {l_value1} id |
+        {l_value2} string_literal |
+        {l_value3} l_value l_bracket expr r_bracket ;
+
+    sign =
+        {plus_sign} plus |
+        {minus_sign} minus ;
+    op =
+        {plus_op} plus |
+        {minus_op} minus |
+        {mult_op} mult |
+        {div_op} div |
+        {mod_op} mod;
+    signed_expr =
+        {sign_int_const} sign int_const |
+        {sign_char_const} sign char_const |
+        {sign_l_value} sign l_value |
+        {sign_func_call} sign func_call |
+        {sign_expr_in_pars} sign expr_in_pars ;
+
+    expr =
+        {signed_expr} signed_expr |
+        {expr_plus_term} expr plus term |
+        {expr_minus_term} expr minus term |
+        {term} term ;
+    term =
+        {term_mult_factor} term mult factor |
+        {term_div_factor} term div factor |
+        {term_mod_factor} term mod factor | /*yiannis code*/
+        {factor} factor ;
+    factor =
+        {int_const} int_const |
+        {char_const} char_const |
+        {l_value} l_value |
+        {func_call} func_call |
+        {expr_in_pars} expr_in_pars;
+    expr_in_pars = l_par expr r_par ;
+
+    boolop =
+        {and1} and |
+        {or1} or ;
+    numop =
+        {equal2} equal |
+        {hashtag2} hashtag |
+        {unequal2} unequal |
+        {lesser2} lesser |
+        {greater2} greater |
+        {lesseq2} lesseq |
+        {greateq2} greateq ;
+
+    not_cond =
+        {not_not_cond} not not_cond |
+        {not_termcond} not termcond ;
+    cond =
+        {not_cond} not_cond |
+        {cond_and_termcond} cond and termcond |
+        {cond_or_termcond} cond or termcond |
+        {termcond} termcond ;
+    termcond =
+        {cond_in_pars} cond_in_pars |
+        {expr_numop_expr} expr numop_expr ;
+    numop_expr = numop expr ;
+    cond_in_pars = l_par cond r_par ;
