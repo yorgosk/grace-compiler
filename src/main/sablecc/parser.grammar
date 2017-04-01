@@ -93,11 +93,12 @@ Productions
 
     func_def = header local_def* block ;
 
-    header_next_arg = semicolon [next_fpar_def]:fpar_def ;
-    header = fun id l_par [init_fpar_def]:fpar_def header_next_arg* r_par colon ret_type ;
+    header_next_arg = semicolon fpar_def ;
+    fun_pars = fpar_def header_next_arg* ;
+    header = fun id l_par fun_pars? r_par colon ret_type ; /*because, we may have no pars at all e.g. hello example*/
 
-    fpar_def_next_id = comma [next_fpar_def_id]:id ;
-    fpar_def = ref? [init_fpar_def_id]:id fpar_def_next_id* colon fpar_type ;
+    fpar_def_next_id = comma id ;
+    fpar_def = ref? id fpar_def_next_id* colon fpar_type ;
 
     data_type =
         {int} int |
