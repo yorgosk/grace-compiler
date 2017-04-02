@@ -10,7 +10,7 @@ public final class AHeader extends PHeader
     private TFun _fun_;
     private TId _id_;
     private TLPar _lPar_;
-    private PFunPars _funPars_;
+    private PHeaderParams _headerParams_;
     private TRPar _rPar_;
     private TColon _colon_;
     private PRetType _retType_;
@@ -24,7 +24,7 @@ public final class AHeader extends PHeader
         @SuppressWarnings("hiding") TFun _fun_,
         @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") TLPar _lPar_,
-        @SuppressWarnings("hiding") PFunPars _funPars_,
+        @SuppressWarnings("hiding") PHeaderParams _headerParams_,
         @SuppressWarnings("hiding") TRPar _rPar_,
         @SuppressWarnings("hiding") TColon _colon_,
         @SuppressWarnings("hiding") PRetType _retType_)
@@ -36,7 +36,7 @@ public final class AHeader extends PHeader
 
         setLPar(_lPar_);
 
-        setFunPars(_funPars_);
+        setHeaderParams(_headerParams_);
 
         setRPar(_rPar_);
 
@@ -53,7 +53,7 @@ public final class AHeader extends PHeader
             cloneNode(this._fun_),
             cloneNode(this._id_),
             cloneNode(this._lPar_),
-            cloneNode(this._funPars_),
+            cloneNode(this._headerParams_),
             cloneNode(this._rPar_),
             cloneNode(this._colon_),
             cloneNode(this._retType_));
@@ -139,16 +139,16 @@ public final class AHeader extends PHeader
         this._lPar_ = node;
     }
 
-    public PFunPars getFunPars()
+    public PHeaderParams getHeaderParams()
     {
-        return this._funPars_;
+        return this._headerParams_;
     }
 
-    public void setFunPars(PFunPars node)
+    public void setHeaderParams(PHeaderParams node)
     {
-        if(this._funPars_ != null)
+        if(this._headerParams_ != null)
         {
-            this._funPars_.parent(null);
+            this._headerParams_.parent(null);
         }
 
         if(node != null)
@@ -161,7 +161,7 @@ public final class AHeader extends PHeader
             node.parent(this);
         }
 
-        this._funPars_ = node;
+        this._headerParams_ = node;
     }
 
     public TRPar getRPar()
@@ -246,7 +246,7 @@ public final class AHeader extends PHeader
             + toString(this._fun_)
             + toString(this._id_)
             + toString(this._lPar_)
-            + toString(this._funPars_)
+            + toString(this._headerParams_)
             + toString(this._rPar_)
             + toString(this._colon_)
             + toString(this._retType_);
@@ -274,9 +274,9 @@ public final class AHeader extends PHeader
             return;
         }
 
-        if(this._funPars_ == child)
+        if(this._headerParams_ == child)
         {
-            this._funPars_ = null;
+            this._headerParams_ = null;
             return;
         }
 
@@ -323,9 +323,9 @@ public final class AHeader extends PHeader
             return;
         }
 
-        if(this._funPars_ == oldChild)
+        if(this._headerParams_ == oldChild)
         {
-            setFunPars((PFunPars) newChild);
+            setHeaderParams((PHeaderParams) newChild);
             return;
         }
 

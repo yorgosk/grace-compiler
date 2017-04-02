@@ -84,7 +84,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAFunPars(AFunPars node)
+    public void caseAHeaderParams(AHeaderParams node)
     {
         defaultCase(node);
     }

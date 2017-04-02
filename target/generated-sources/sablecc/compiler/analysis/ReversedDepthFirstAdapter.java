@@ -116,9 +116,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getRPar().apply(this);
         }
-        if(node.getFunPars() != null)
+        if(node.getHeaderParams() != null)
         {
-            node.getFunPars().apply(this);
+            node.getHeaderParams().apply(this);
         }
         if(node.getLPar() != null)
         {
@@ -135,20 +135,20 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAHeader(node);
     }
 
-    public void inAFunPars(AFunPars node)
+    public void inAHeaderParams(AHeaderParams node)
     {
         defaultIn(node);
     }
 
-    public void outAFunPars(AFunPars node)
+    public void outAHeaderParams(AHeaderParams node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFunPars(AFunPars node)
+    public void caseAHeaderParams(AHeaderParams node)
     {
-        inAFunPars(node);
+        inAHeaderParams(node);
         {
             List<PHeaderNextArg> copy = new ArrayList<PHeaderNextArg>(node.getHeaderNextArg());
             Collections.reverse(copy);
@@ -161,7 +161,7 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getFparDef().apply(this);
         }
-        outAFunPars(node);
+        outAHeaderParams(node);
     }
 
     public void inAHeaderNextArg(AHeaderNextArg node)

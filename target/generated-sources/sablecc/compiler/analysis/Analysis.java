@@ -15,7 +15,7 @@ public interface Analysis extends Switch
     void caseAProgram(AProgram node);
     void caseAFuncDef(AFuncDef node);
     void caseAHeader(AHeader node);
-    void caseAFunPars(AFunPars node);
+    void caseAHeaderParams(AHeaderParams node);
     void caseAHeaderNextArg(AHeaderNextArg node);
     void caseAFparDef(AFparDef node);
     void caseAFparDefNextId(AFparDefNextId node);

@@ -94,8 +94,8 @@ Productions
 
     func_def = header local_def* block ;
 
-    header = fun id l_par fun_pars? r_par colon ret_type ; /*because, we may have no pars at all e.g. hello example*/
-    fun_pars = fpar_def header_next_arg* ;
+    header = fun id l_par header_params? r_par colon ret_type ; /*because, we may have no pars at all e.g. hello example*/
+    header_params = fpar_def header_next_arg* ;
     header_next_arg = semicolon fpar_def ;
 
     fpar_def = ref? id fpar_def_next_id* colon fpar_type ;

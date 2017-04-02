@@ -205,13 +205,13 @@ public class Parser
 			push(goTo(2), list, false);
 		    }
 		    break;
-                    case 5: /* reduce AAfunpars1FunPars */
+                    case 5: /* reduce AAheaderparams1HeaderParams */
 		    {
 			ArrayList list = new5();
 			push(goTo(3), list, false);
 		    }
 		    break;
-                    case 6: /* reduce AAfunpars2FunPars */
+                    case 6: /* reduce AAheaderparams2HeaderParams */
 		    {
 			ArrayList list = new6();
 			push(goTo(3), list, false);
@@ -989,19 +989,19 @@ public class Parser
         TFun tfunNode2;
         TId tidNode3;
         TLPar tlparNode4;
-        PFunPars pfunparsNode5;
+        PHeaderParams pheaderparamsNode5;
         TRPar trparNode6;
         TColon tcolonNode7;
         PRetType prettypeNode8;
         tfunNode2 = (TFun)nodeArrayList1.get(0);
         tidNode3 = (TId)nodeArrayList2.get(0);
         tlparNode4 = (TLPar)nodeArrayList3.get(0);
-        pfunparsNode5 = (PFunPars)nodeArrayList4.get(0);
+        pheaderparamsNode5 = (PHeaderParams)nodeArrayList4.get(0);
         trparNode6 = (TRPar)nodeArrayList5.get(0);
         tcolonNode7 = (TColon)nodeArrayList6.get(0);
         prettypeNode8 = (PRetType)nodeArrayList7.get(0);
 
-        pheaderNode1 = new AHeader(tfunNode2, tidNode3, tlparNode4, pfunparsNode5, trparNode6, tcolonNode7, prettypeNode8);
+        pheaderNode1 = new AHeader(tfunNode2, tidNode3, tlparNode4, pheaderparamsNode5, trparNode6, tcolonNode7, prettypeNode8);
         }
 	nodeList.add(pheaderNode1);
         return nodeList;
@@ -1010,12 +1010,12 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new5() /* reduce AAfunpars1FunPars */
+    ArrayList new5() /* reduce AAheaderparams1HeaderParams */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
         @SuppressWarnings("unused") ArrayList nodeArrayList1 = pop();
-        PFunPars pfunparsNode1;
+        PHeaderParams pheaderparamsNode1;
         {
             // Block
         PFparDef pfpardefNode2;
@@ -1025,22 +1025,22 @@ public class Parser
             // Block
         }
 
-        pfunparsNode1 = new AFunPars(pfpardefNode2, listNode3);
+        pheaderparamsNode1 = new AHeaderParams(pfpardefNode2, listNode3);
         }
-	nodeList.add(pfunparsNode1);
+	nodeList.add(pheaderparamsNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new6() /* reduce AAfunpars2FunPars */
+    ArrayList new6() /* reduce AAheaderparams2HeaderParams */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
         @SuppressWarnings("unused") ArrayList nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList nodeArrayList1 = pop();
-        PFunPars pfunparsNode1;
+        PHeaderParams pheaderparamsNode1;
         {
             // Block
         PFparDef pfpardefNode2;
@@ -1056,9 +1056,9 @@ public class Parser
 	}
         }
 
-        pfunparsNode1 = new AFunPars(pfpardefNode2, listNode4);
+        pheaderparamsNode1 = new AHeaderParams(pfpardefNode2, listNode4);
         }
-	nodeList.add(pfunparsNode1);
+	nodeList.add(pheaderparamsNode1);
         return nodeList;
     }
 

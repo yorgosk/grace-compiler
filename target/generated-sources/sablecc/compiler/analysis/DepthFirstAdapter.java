@@ -115,9 +115,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getLPar().apply(this);
         }
-        if(node.getFunPars() != null)
+        if(node.getHeaderParams() != null)
         {
-            node.getFunPars().apply(this);
+            node.getHeaderParams().apply(this);
         }
         if(node.getRPar() != null)
         {
@@ -134,20 +134,20 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAHeader(node);
     }
 
-    public void inAFunPars(AFunPars node)
+    public void inAHeaderParams(AHeaderParams node)
     {
         defaultIn(node);
     }
 
-    public void outAFunPars(AFunPars node)
+    public void outAHeaderParams(AHeaderParams node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFunPars(AFunPars node)
+    public void caseAHeaderParams(AHeaderParams node)
     {
-        inAFunPars(node);
+        inAHeaderParams(node);
         if(node.getFparDef() != null)
         {
             node.getFparDef().apply(this);
@@ -159,7 +159,7 @@ public class DepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
-        outAFunPars(node);
+        outAHeaderParams(node);
     }
 
     public void inAHeaderNextArg(AHeaderNextArg node)

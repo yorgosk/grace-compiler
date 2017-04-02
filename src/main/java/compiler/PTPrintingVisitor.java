@@ -2,7 +2,6 @@ package compiler;
 
 import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class PTPrintingVisitor extends DepthFirstAdapter {
 
@@ -18,12 +17,30 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
 
     @Override
     public void inAHeader(AHeader node) {
-        System.out.printf("inAHeader\n");
+        System.out.printf("inAHeader with id: %s\n",
+                node.getId().toString());
+    }
+
+    @Override
+    public void inAHeaderParams(AHeaderParams node) {
+        System.out.printf("inAFuncParams\n");
+    }
+
+    @Override
+    public void inAHeaderNextArg(AHeaderNextArg node) {
+        System.out.printf("inAHeaderNextArg\n");
     }
 
     @Override
     public void inAFparDef(AFparDef node) {
-        System.out.printf("inAFparDef\n");
+        System.out.printf("inAFparDef with id: %s\n",
+                node.getId().toString());
+    }
+
+    @Override
+    public void inAFparDefNextId(AFparDefNextId node) {
+        System.out.printf("inAFparDefNextId with id: %s\n",
+                node.getId().toString());
     }
 
     @Override
@@ -42,6 +59,12 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     }
 
     @Override
+    public void inADimension(ADimension node) {
+        System.out.printf("inADimension with int-const: %s\n",
+                node.getIntConst().toString());
+    }
+
+    @Override
     public void inADataTypeRetType(ADataTypeRetType node) {
         System.out.printf("inADataTypeRetType\n");
     }
@@ -54,6 +77,12 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void inAFparType(AFparType node) {
         System.out.printf("inAFparType\n");
+    }
+
+    @Override
+    public void inANextDimension(ANextDimension node) {
+        System.out.printf("inANextDimension with int-const: %s\n",
+                node.getIntConst().toString());
     }
 
     @Override
