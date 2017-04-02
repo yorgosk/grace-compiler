@@ -434,37 +434,37 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAEqual2Numop(AEqual2Numop node)
+    public void caseAEqualNumop(AEqualNumop node)
     {
         defaultCase(node);
     }
 
-    public void caseAHashtag2Numop(AHashtag2Numop node)
+    public void caseAHashtagNumop(AHashtagNumop node)
     {
         defaultCase(node);
     }
 
-    public void caseAUnequal2Numop(AUnequal2Numop node)
+    public void caseAUnequalNumop(AUnequalNumop node)
     {
         defaultCase(node);
     }
 
-    public void caseALesser2Numop(ALesser2Numop node)
+    public void caseALesserNumop(ALesserNumop node)
     {
         defaultCase(node);
     }
 
-    public void caseAGreater2Numop(AGreater2Numop node)
+    public void caseAGreaterNumop(AGreaterNumop node)
     {
         defaultCase(node);
     }
 
-    public void caseALesseq2Numop(ALesseq2Numop node)
+    public void caseALesseqNumop(ALesseqNumop node)
     {
         defaultCase(node);
     }
 
-    public void caseAGreateq2Numop(AGreateq2Numop node)
+    public void caseAGreateqNumop(AGreateqNumop node)
     {
         defaultCase(node);
     }

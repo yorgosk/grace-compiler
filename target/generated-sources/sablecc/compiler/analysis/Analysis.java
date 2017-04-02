@@ -85,13 +85,13 @@ public interface Analysis extends Switch
     void caseAExprNumopExprTermcond(AExprNumopExprTermcond node);
     void caseACondInPars(ACondInPars node);
     void caseANumopExpr(ANumopExpr node);
-    void caseAEqual2Numop(AEqual2Numop node);
-    void caseAHashtag2Numop(AHashtag2Numop node);
-    void caseAUnequal2Numop(AUnequal2Numop node);
-    void caseALesser2Numop(ALesser2Numop node);
-    void caseAGreater2Numop(AGreater2Numop node);
-    void caseALesseq2Numop(ALesseq2Numop node);
-    void caseAGreateq2Numop(AGreateq2Numop node);
+    void caseAEqualNumop(AEqualNumop node);
+    void caseAHashtagNumop(AHashtagNumop node);
+    void caseAUnequalNumop(AUnequalNumop node);
+    void caseALesserNumop(ALesserNumop node);
+    void caseAGreaterNumop(AGreaterNumop node);
+    void caseALesseqNumop(ALesseqNumop node);
+    void caseAGreateqNumop(AGreateqNumop node);
 
     void caseTAnd(TAnd node);
     void caseTChar(TChar node);

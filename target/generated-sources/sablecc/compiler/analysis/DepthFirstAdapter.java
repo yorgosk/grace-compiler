@@ -1945,150 +1945,150 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outANumopExpr(node);
     }
 
-    public void inAEqual2Numop(AEqual2Numop node)
+    public void inAEqualNumop(AEqualNumop node)
     {
         defaultIn(node);
     }
 
-    public void outAEqual2Numop(AEqual2Numop node)
+    public void outAEqualNumop(AEqualNumop node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAEqual2Numop(AEqual2Numop node)
+    public void caseAEqualNumop(AEqualNumop node)
     {
-        inAEqual2Numop(node);
+        inAEqualNumop(node);
         if(node.getEqual() != null)
         {
             node.getEqual().apply(this);
         }
-        outAEqual2Numop(node);
+        outAEqualNumop(node);
     }
 
-    public void inAHashtag2Numop(AHashtag2Numop node)
+    public void inAHashtagNumop(AHashtagNumop node)
     {
         defaultIn(node);
     }
 
-    public void outAHashtag2Numop(AHashtag2Numop node)
+    public void outAHashtagNumop(AHashtagNumop node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAHashtag2Numop(AHashtag2Numop node)
+    public void caseAHashtagNumop(AHashtagNumop node)
     {
-        inAHashtag2Numop(node);
+        inAHashtagNumop(node);
         if(node.getHashtag() != null)
         {
             node.getHashtag().apply(this);
         }
-        outAHashtag2Numop(node);
+        outAHashtagNumop(node);
     }
 
-    public void inAUnequal2Numop(AUnequal2Numop node)
+    public void inAUnequalNumop(AUnequalNumop node)
     {
         defaultIn(node);
     }
 
-    public void outAUnequal2Numop(AUnequal2Numop node)
+    public void outAUnequalNumop(AUnequalNumop node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAUnequal2Numop(AUnequal2Numop node)
+    public void caseAUnequalNumop(AUnequalNumop node)
     {
-        inAUnequal2Numop(node);
+        inAUnequalNumop(node);
         if(node.getUnequal() != null)
         {
             node.getUnequal().apply(this);
         }
-        outAUnequal2Numop(node);
+        outAUnequalNumop(node);
     }
 
-    public void inALesser2Numop(ALesser2Numop node)
+    public void inALesserNumop(ALesserNumop node)
     {
         defaultIn(node);
     }
 
-    public void outALesser2Numop(ALesser2Numop node)
+    public void outALesserNumop(ALesserNumop node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALesser2Numop(ALesser2Numop node)
+    public void caseALesserNumop(ALesserNumop node)
     {
-        inALesser2Numop(node);
+        inALesserNumop(node);
         if(node.getLesser() != null)
         {
             node.getLesser().apply(this);
         }
-        outALesser2Numop(node);
+        outALesserNumop(node);
     }
 
-    public void inAGreater2Numop(AGreater2Numop node)
+    public void inAGreaterNumop(AGreaterNumop node)
     {
         defaultIn(node);
     }
 
-    public void outAGreater2Numop(AGreater2Numop node)
+    public void outAGreaterNumop(AGreaterNumop node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAGreater2Numop(AGreater2Numop node)
+    public void caseAGreaterNumop(AGreaterNumop node)
     {
-        inAGreater2Numop(node);
+        inAGreaterNumop(node);
         if(node.getGreater() != null)
         {
             node.getGreater().apply(this);
         }
-        outAGreater2Numop(node);
+        outAGreaterNumop(node);
     }
 
-    public void inALesseq2Numop(ALesseq2Numop node)
+    public void inALesseqNumop(ALesseqNumop node)
     {
         defaultIn(node);
     }
 
-    public void outALesseq2Numop(ALesseq2Numop node)
+    public void outALesseqNumop(ALesseqNumop node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALesseq2Numop(ALesseq2Numop node)
+    public void caseALesseqNumop(ALesseqNumop node)
     {
-        inALesseq2Numop(node);
+        inALesseqNumop(node);
         if(node.getLesseq() != null)
         {
             node.getLesseq().apply(this);
         }
-        outALesseq2Numop(node);
+        outALesseqNumop(node);
     }
 
-    public void inAGreateq2Numop(AGreateq2Numop node)
+    public void inAGreateqNumop(AGreateqNumop node)
     {
         defaultIn(node);
     }
 
-    public void outAGreateq2Numop(AGreateq2Numop node)
+    public void outAGreateqNumop(AGreateqNumop node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAGreateq2Numop(AGreateq2Numop node)
+    public void caseAGreateqNumop(AGreateqNumop node)
     {
-        inAGreateq2Numop(node);
+        inAGreateqNumop(node);
         if(node.getGreateq() != null)
         {
             node.getGreateq().apply(this);
         }
-        outAGreateq2Numop(node);
+        outAGreateqNumop(node);
     }
 }

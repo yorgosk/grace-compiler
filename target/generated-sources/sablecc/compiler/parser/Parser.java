@@ -697,43 +697,43 @@ public class Parser
 			push(goTo(38), list, false);
 		    }
 		    break;
-                    case 87: /* reduce AEqual2Numop */
+                    case 87: /* reduce AEqualNumop */
 		    {
 			ArrayList list = new87();
 			push(goTo(39), list, false);
 		    }
 		    break;
-                    case 88: /* reduce AHashtag2Numop */
+                    case 88: /* reduce AHashtagNumop */
 		    {
 			ArrayList list = new88();
 			push(goTo(39), list, false);
 		    }
 		    break;
-                    case 89: /* reduce AUnequal2Numop */
+                    case 89: /* reduce AUnequalNumop */
 		    {
 			ArrayList list = new89();
 			push(goTo(39), list, false);
 		    }
 		    break;
-                    case 90: /* reduce ALesser2Numop */
+                    case 90: /* reduce ALesserNumop */
 		    {
 			ArrayList list = new90();
 			push(goTo(39), list, false);
 		    }
 		    break;
-                    case 91: /* reduce AGreater2Numop */
+                    case 91: /* reduce AGreaterNumop */
 		    {
 			ArrayList list = new91();
 			push(goTo(39), list, false);
 		    }
 		    break;
-                    case 92: /* reduce ALesseq2Numop */
+                    case 92: /* reduce ALesseqNumop */
 		    {
 			ArrayList list = new92();
 			push(goTo(39), list, false);
 		    }
 		    break;
-                    case 93: /* reduce AGreateq2Numop */
+                    case 93: /* reduce AGreateqNumop */
 		    {
 			ArrayList list = new93();
 			push(goTo(39), list, false);
@@ -3054,7 +3054,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new87() /* reduce AEqual2Numop */
+    ArrayList new87() /* reduce AEqualNumop */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -3065,7 +3065,7 @@ public class Parser
         TEqual tequalNode2;
         tequalNode2 = (TEqual)nodeArrayList1.get(0);
 
-        pnumopNode1 = new AEqual2Numop(tequalNode2);
+        pnumopNode1 = new AEqualNumop(tequalNode2);
         }
 	nodeList.add(pnumopNode1);
         return nodeList;
@@ -3074,7 +3074,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new88() /* reduce AHashtag2Numop */
+    ArrayList new88() /* reduce AHashtagNumop */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -3085,7 +3085,7 @@ public class Parser
         THashtag thashtagNode2;
         thashtagNode2 = (THashtag)nodeArrayList1.get(0);
 
-        pnumopNode1 = new AHashtag2Numop(thashtagNode2);
+        pnumopNode1 = new AHashtagNumop(thashtagNode2);
         }
 	nodeList.add(pnumopNode1);
         return nodeList;
@@ -3094,7 +3094,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new89() /* reduce AUnequal2Numop */
+    ArrayList new89() /* reduce AUnequalNumop */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -3105,7 +3105,7 @@ public class Parser
         TUnequal tunequalNode2;
         tunequalNode2 = (TUnequal)nodeArrayList1.get(0);
 
-        pnumopNode1 = new AUnequal2Numop(tunequalNode2);
+        pnumopNode1 = new AUnequalNumop(tunequalNode2);
         }
 	nodeList.add(pnumopNode1);
         return nodeList;
@@ -3114,7 +3114,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new90() /* reduce ALesser2Numop */
+    ArrayList new90() /* reduce ALesserNumop */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -3125,7 +3125,7 @@ public class Parser
         TLesser tlesserNode2;
         tlesserNode2 = (TLesser)nodeArrayList1.get(0);
 
-        pnumopNode1 = new ALesser2Numop(tlesserNode2);
+        pnumopNode1 = new ALesserNumop(tlesserNode2);
         }
 	nodeList.add(pnumopNode1);
         return nodeList;
@@ -3134,7 +3134,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new91() /* reduce AGreater2Numop */
+    ArrayList new91() /* reduce AGreaterNumop */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -3145,7 +3145,7 @@ public class Parser
         TGreater tgreaterNode2;
         tgreaterNode2 = (TGreater)nodeArrayList1.get(0);
 
-        pnumopNode1 = new AGreater2Numop(tgreaterNode2);
+        pnumopNode1 = new AGreaterNumop(tgreaterNode2);
         }
 	nodeList.add(pnumopNode1);
         return nodeList;
@@ -3154,7 +3154,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new92() /* reduce ALesseq2Numop */
+    ArrayList new92() /* reduce ALesseqNumop */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -3165,7 +3165,7 @@ public class Parser
         TLesseq tlesseqNode2;
         tlesseqNode2 = (TLesseq)nodeArrayList1.get(0);
 
-        pnumopNode1 = new ALesseq2Numop(tlesseqNode2);
+        pnumopNode1 = new ALesseqNumop(tlesseqNode2);
         }
 	nodeList.add(pnumopNode1);
         return nodeList;
@@ -3174,7 +3174,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new93() /* reduce AGreateq2Numop */
+    ArrayList new93() /* reduce AGreateqNumop */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -3185,7 +3185,7 @@ public class Parser
         TGreateq tgreateqNode2;
         tgreateqNode2 = (TGreateq)nodeArrayList1.get(0);
 
-        pnumopNode1 = new AGreateq2Numop(tgreateqNode2);
+        pnumopNode1 = new AGreateqNumop(tgreateqNode2);
         }
 	nodeList.add(pnumopNode1);
         return nodeList;

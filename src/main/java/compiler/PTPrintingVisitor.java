@@ -7,23 +7,31 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     //------------------------------------------------------------
     @Override
     public void inAProgram(AProgram node) {
-        System.out.printf("inAProgram\n");
+        System.out.printf("\nentering a program...\n[\n");
+    }
+    @Override
+    public void outAProgram(AProgram node) {
+        System.out.printf("]\nexiting a program...\n");
     }
     //------------------------------------------------------------
     @Override
     public void inAFuncDef(AFuncDef node) {
-        System.out.printf("inAFuncDef\n");
+        System.out.printf("{\n");
+    }
+    @Override
+    public void outAFuncDef(AFuncDef node) {
+        System.out.printf("}\n");
     }
     //------------------------------------------------------------
     @Override
     public void inAHeader(AHeader node) {
-        System.out.printf("inAHeader with id: %s\n",
-                node.getId().toString());
+        System.out.printf("\"type\":\"function\",\n\"name\":\"%s\",\n\"returnType\":\"%s\"\n",
+                node.getId().toString(), node.getRetType().toString());
     }
 
     @Override
     public void inAHeaderParams(AHeaderParams node) {
-        System.out.printf("inAFuncParams\n");
+        System.out.printf("\"params\":");
     }
 
     @Override
