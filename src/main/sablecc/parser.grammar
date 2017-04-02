@@ -155,13 +155,6 @@ Productions
         {string} string_literal |
         {expression} l_value l_bracket expr r_bracket ;
 
-    /*op =
-        {plus_op} plus |
-        {minus_op} minus |
-        {mult_op} mult |
-        {div_op} div |
-        {mod_op} mod;*/
-
     expr =
         {signed} signed_expr |
         {expr_plus_term} expr plus term |
