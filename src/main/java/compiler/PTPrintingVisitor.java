@@ -4,17 +4,17 @@ import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
 public class PTPrintingVisitor extends DepthFirstAdapter {
-
+    //------------------------------------------------------------
     @Override
     public void inAProgram(AProgram node) {
         System.out.printf("inAProgram\n");
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAFuncDef(AFuncDef node) {
         System.out.printf("inAFuncDef\n");
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAHeader(AHeader node) {
         System.out.printf("inAHeader with id: %s\n",
@@ -30,7 +30,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inAHeaderNextArg(AHeaderNextArg node) {
         System.out.printf("inAHeaderNextArg\n");
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAFparDef(AFparDef node) {
         System.out.printf("inAFparDef with id: %s\n",
@@ -42,7 +42,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("inAFparDefNextId with id: %s\n",
                 node.getId().toString());
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAIntDataType(AIntDataType node) {
         System.out.printf("inAIntDataType\n");
@@ -52,7 +52,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inACharDataType(ACharDataType node) {
         System.out.printf("inACharDataType\n");
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAType(AType node) {
         System.out.printf("inAType\n");
@@ -63,7 +63,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("inADimension with int-const: %s\n",
                 node.getIntConst().toString());
     }
-
+    //------------------------------------------------------------
     @Override
     public void inADataTypeRetType(ADataTypeRetType node) {
         System.out.printf("inADataTypeRetType\n");
@@ -73,10 +73,15 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inANothingRetType(ANothingRetType node) {
         System.out.printf("inANothingRetType\n");
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAFparType(AFparType node) {
         System.out.printf("inAFparType\n");
+    }
+
+    @Override
+    public void inALRBrackets(ALRBrackets node) {
+        System.out.printf("inALRBrackets\n");
     }
 
     @Override
@@ -84,7 +89,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("inANextDimension with int-const: %s\n",
                 node.getIntConst().toString());
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAFuncDefLocalDef(AFuncDefLocalDef node) {
         System.out.printf("inAFuncDefLocalDef\n");
@@ -99,7 +104,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inAVarDefLocalDef(AVarDefLocalDef node) {
         System.out.printf("inAVarDefLocalDef\n");
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAVarDef(AVarDef node) {
         System.out.printf("inAVarDef with id: %s\n",
@@ -111,7 +116,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("inAVarDefNextId with id: %s\n",
                 node.getId().toString());
     }
-
+    //------------------------------------------------------------
     @Override
     public void inAFuncDecl(AFuncDecl node) {
         System.out.printf("inAFuncDecl\n");
@@ -351,4 +356,69 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("inATermcondCond\n");
     }
 
+    @Override
+    public void inANotNotCondNotCond(ANotNotCondNotCond node) {
+        System.out.printf("inANotNotCondNotCond\n");
+    }
+
+    @Override
+    public void inANotTermcondNotCond(ANotTermcondNotCond node) {
+        System.out.printf("inANotTermcondNotCond\n");
+    }
+
+    @Override
+    public void inACondInParsTermcond(ACondInParsTermcond node) {
+        System.out.printf("inACondInParsTermcond\n");
+    }
+
+    @Override
+    public void inAExprNumopExprTermcond(AExprNumopExprTermcond node) {
+        System.out.printf("inAExprNumopExprTermcond\n");
+    }
+
+    @Override
+    public void inACondInPars(ACondInPars node) {
+        System.out.printf("inACondInPars\n");
+    }
+
+    @Override
+    public void inANumopExpr(ANumopExpr node) {
+        System.out.printf("inANumopExpr\n");
+    }
+
+    @Override
+    public void inAEqualNumop(AEqualNumop node) {
+        System.out.printf("inAEqualNumop\n");
+    }
+
+    @Override
+    public void inAHashtagNumop(AHashtagNumop node) {
+        System.out.printf("inAHashtagNumop\n");
+    }
+
+    @Override
+    public void inAUnequalNumop(AUnequalNumop node) {
+        System.out.printf("inAUnequalNumop\n");
+    }
+
+    @Override
+    public void inALesserNumop(ALesserNumop node) {
+        System.out.printf("inALesserNumop\n");
+    }
+
+    @Override
+    public void inAGreaterNumop(AGreaterNumop node) {
+        System.out.printf("inAGreaterNumop\n");
+    }
+
+    @Override
+    public void inALesseqNumop(ALesseqNumop node) {
+        System.out.printf("inALesseqNumop\n");
+    }
+
+    @Override
+    public void inAGreateqNumop(AGreateqNumop node) {
+        System.out.printf("inAGreateqNumop\n");
+    }
+    //------------------------------------------------------------
 }

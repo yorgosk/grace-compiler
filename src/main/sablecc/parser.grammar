@@ -182,10 +182,6 @@ Productions
         {expr_in_pars} expr_in_pars;
     expr_in_pars = l_par expr r_par ;
 
-    /*boolop =
-        {and1} and |
-        {or1} or ;*/
-
     cond =
         {not} not_cond |
         {cond_and_termcond} cond and termcond |
@@ -200,10 +196,10 @@ Productions
     cond_in_pars = l_par cond r_par ;
     numop_expr = numop expr ;
     numop =
-        {equal2} equal |
-        {hashtag2} hashtag |
-        {unequal2} unequal |
-        {lesser2} lesser |
-        {greater2} greater |
-        {lesseq2} lesseq |
-        {greateq2} greateq ;
+        {equal} equal |
+        {hashtag} hashtag |
+        {unequal} unequal |
+        {lesser} lesser |
+        {greater} greater |
+        {lesseq} lesseq |
+        {greateq} greateq ;
