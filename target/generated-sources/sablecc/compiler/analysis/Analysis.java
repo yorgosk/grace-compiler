@@ -34,8 +34,8 @@ public interface Analysis extends Switch
     void caseAVarDef(AVarDef node);
     void caseAVarDefNextId(AVarDefNextId node);
     void caseAFuncDecl(AFuncDecl node);
-    void caseATerminalStatementStmt(ATerminalStatementStmt node);
-    void caseAIfStmtStmt(AIfStmtStmt node);
+    void caseATerminalStmt(ATerminalStmt node);
+    void caseAIfStmt(AIfStmt node);
     void caseAWhileStmt(AWhileStmt node);
     void caseAIfIfStmt(AIfIfStmt node);
     void caseAIfElseIfStmt(AIfElseIfStmt node);
@@ -51,10 +51,10 @@ public interface Analysis extends Switch
     void caseAFuncCall(AFuncCall node);
     void caseAFuncArgs(AFuncArgs node);
     void caseAFuncCallNextArg(AFuncCallNextArg node);
-    void caseALValue1LValue(ALValue1LValue node);
-    void caseALValue2LValue(ALValue2LValue node);
-    void caseALValue3LValue(ALValue3LValue node);
-    void caseASignedExprExpr(ASignedExprExpr node);
+    void caseAIdLValue(AIdLValue node);
+    void caseAStringLValue(AStringLValue node);
+    void caseAExpressionLValue(AExpressionLValue node);
+    void caseASignedExpr(ASignedExpr node);
     void caseAExprPlusTermExpr(AExprPlusTermExpr node);
     void caseAExprMinusTermExpr(AExprMinusTermExpr node);
     void caseATermExpr(ATermExpr node);
@@ -75,7 +75,7 @@ public interface Analysis extends Switch
     void caseAFuncCallFactor(AFuncCallFactor node);
     void caseAExprInParsFactor(AExprInParsFactor node);
     void caseAExprInPars(AExprInPars node);
-    void caseANotCondCond(ANotCondCond node);
+    void caseANotCond(ANotCond node);
     void caseACondAndTermcondCond(ACondAndTermcondCond node);
     void caseACondOrTermcondCond(ACondOrTermcondCond node);
     void caseATermcondCond(ATermcondCond node);

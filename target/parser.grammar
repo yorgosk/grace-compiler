@@ -127,8 +127,8 @@ Productions
     func_decl = header semicolon ;
 
     stmt =
-        {terminal_statement} term_stmt |
-        {if_stmt} if_stmt |
+        {terminal} term_stmt |
+        {if} if_stmt |
         {while} while cond do stmt ;
     if_stmt =
         {if} if cond then stmt |
@@ -151,9 +151,9 @@ Productions
     func_call_next_arg = comma expr;
 
     l_value =
-        {l_value1} id |
-        {l_value2} string_literal |
-        {l_value3} l_value l_bracket expr r_bracket ;
+        {id} id |
+        {string} string_literal |
+        {expression} l_value l_bracket expr r_bracket ;
 
     /*op =
         {plus_op} plus |
@@ -163,7 +163,7 @@ Productions
         {mod_op} mod;*/
 
     expr =
-        {signed_expr} signed_expr |
+        {signed} signed_expr |
         {expr_plus_term} expr plus term |
         {expr_minus_term} expr minus term |
         {term} term ;
@@ -194,7 +194,7 @@ Productions
         {or1} or ;*/
 
     cond =
-        {not_cond} not_cond |
+        {not} not_cond |
         {cond_and_termcond} cond and termcond |
         {cond_or_termcond} cond or termcond |
         {termcond} termcond ;

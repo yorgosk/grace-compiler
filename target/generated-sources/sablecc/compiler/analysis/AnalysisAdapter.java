@@ -179,12 +179,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseATerminalStatementStmt(ATerminalStatementStmt node)
+    public void caseATerminalStmt(ATerminalStmt node)
     {
         defaultCase(node);
     }
 
-    public void caseAIfStmtStmt(AIfStmtStmt node)
+    public void caseAIfStmt(AIfStmt node)
     {
         defaultCase(node);
     }
@@ -264,22 +264,22 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseALValue1LValue(ALValue1LValue node)
+    public void caseAIdLValue(AIdLValue node)
     {
         defaultCase(node);
     }
 
-    public void caseALValue2LValue(ALValue2LValue node)
+    public void caseAStringLValue(AStringLValue node)
     {
         defaultCase(node);
     }
 
-    public void caseALValue3LValue(ALValue3LValue node)
+    public void caseAExpressionLValue(AExpressionLValue node)
     {
         defaultCase(node);
     }
 
-    public void caseASignedExprExpr(ASignedExprExpr node)
+    public void caseASignedExpr(ASignedExpr node)
     {
         defaultCase(node);
     }
@@ -384,7 +384,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseANotCondCond(ANotCondCond node)
+    public void caseANotCond(ANotCond node)
     {
         defaultCase(node);
     }

@@ -373,13 +373,13 @@ public class Parser
 			push(goTo(17), list, false);
 		    }
 		    break;
-                    case 33: /* reduce ATerminalStatementStmt */
+                    case 33: /* reduce ATerminalStmt */
 		    {
 			ArrayList list = new33();
 			push(goTo(18), list, false);
 		    }
 		    break;
-                    case 34: /* reduce AIfStmtStmt */
+                    case 34: /* reduce AIfStmt */
 		    {
 			ArrayList list = new34();
 			push(goTo(18), list, false);
@@ -493,25 +493,25 @@ public class Parser
 			push(goTo(26), list, false);
 		    }
 		    break;
-                    case 53: /* reduce ALValue1LValue */
+                    case 53: /* reduce AIdLValue */
 		    {
 			ArrayList list = new53();
 			push(goTo(27), list, false);
 		    }
 		    break;
-                    case 54: /* reduce ALValue2LValue */
+                    case 54: /* reduce AStringLValue */
 		    {
 			ArrayList list = new54();
 			push(goTo(27), list, false);
 		    }
 		    break;
-                    case 55: /* reduce ALValue3LValue */
+                    case 55: /* reduce AExpressionLValue */
 		    {
 			ArrayList list = new55();
 			push(goTo(27), list, false);
 		    }
 		    break;
-                    case 56: /* reduce ASignedExprExpr */
+                    case 56: /* reduce ASignedExpr */
 		    {
 			ArrayList list = new56();
 			push(goTo(28), list, false);
@@ -637,7 +637,7 @@ public class Parser
 			push(goTo(33), list, false);
 		    }
 		    break;
-                    case 77: /* reduce ANotCondCond */
+                    case 77: /* reduce ANotCond */
 		    {
 			ArrayList list = new77();
 			push(goTo(34), list, false);
@@ -1766,7 +1766,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new33() /* reduce ATerminalStatementStmt */
+    ArrayList new33() /* reduce ATerminalStmt */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -1777,7 +1777,7 @@ public class Parser
         PTermStmt ptermstmtNode2;
         ptermstmtNode2 = (PTermStmt)nodeArrayList1.get(0);
 
-        pstmtNode1 = new ATerminalStatementStmt(ptermstmtNode2);
+        pstmtNode1 = new ATerminalStmt(ptermstmtNode2);
         }
 	nodeList.add(pstmtNode1);
         return nodeList;
@@ -1786,7 +1786,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new34() /* reduce AIfStmtStmt */
+    ArrayList new34() /* reduce AIfStmt */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -1797,7 +1797,7 @@ public class Parser
         PIfStmt pifstmtNode2;
         pifstmtNode2 = (PIfStmt)nodeArrayList1.get(0);
 
-        pstmtNode1 = new AIfStmtStmt(pifstmtNode2);
+        pstmtNode1 = new AIfStmt(pifstmtNode2);
         }
 	nodeList.add(pstmtNode1);
         return nodeList;
@@ -2284,7 +2284,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new53() /* reduce ALValue1LValue */
+    ArrayList new53() /* reduce AIdLValue */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -2295,7 +2295,7 @@ public class Parser
         TId tidNode2;
         tidNode2 = (TId)nodeArrayList1.get(0);
 
-        plvalueNode1 = new ALValue1LValue(tidNode2);
+        plvalueNode1 = new AIdLValue(tidNode2);
         }
 	nodeList.add(plvalueNode1);
         return nodeList;
@@ -2304,7 +2304,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new54() /* reduce ALValue2LValue */
+    ArrayList new54() /* reduce AStringLValue */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -2315,7 +2315,7 @@ public class Parser
         TStringLiteral tstringliteralNode2;
         tstringliteralNode2 = (TStringLiteral)nodeArrayList1.get(0);
 
-        plvalueNode1 = new ALValue2LValue(tstringliteralNode2);
+        plvalueNode1 = new AStringLValue(tstringliteralNode2);
         }
 	nodeList.add(plvalueNode1);
         return nodeList;
@@ -2324,7 +2324,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new55() /* reduce ALValue3LValue */
+    ArrayList new55() /* reduce AExpressionLValue */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -2344,7 +2344,7 @@ public class Parser
         pexprNode4 = (PExpr)nodeArrayList3.get(0);
         trbracketNode5 = (TRBracket)nodeArrayList4.get(0);
 
-        plvalueNode1 = new ALValue3LValue(plvalueNode2, tlbracketNode3, pexprNode4, trbracketNode5);
+        plvalueNode1 = new AExpressionLValue(plvalueNode2, tlbracketNode3, pexprNode4, trbracketNode5);
         }
 	nodeList.add(plvalueNode1);
         return nodeList;
@@ -2353,7 +2353,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new56() /* reduce ASignedExprExpr */
+    ArrayList new56() /* reduce ASignedExpr */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -2364,7 +2364,7 @@ public class Parser
         PSignedExpr psignedexprNode2;
         psignedexprNode2 = (PSignedExpr)nodeArrayList1.get(0);
 
-        pexprNode1 = new ASignedExprExpr(psignedexprNode2);
+        pexprNode1 = new ASignedExpr(psignedexprNode2);
         }
 	nodeList.add(pexprNode1);
         return nodeList;
@@ -2824,7 +2824,7 @@ public class Parser
 
 
     @SuppressWarnings("unchecked")
-    ArrayList new77() /* reduce ANotCondCond */
+    ArrayList new77() /* reduce ANotCond */
     {
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
@@ -2835,7 +2835,7 @@ public class Parser
         PNotCond pnotcondNode2;
         pnotcondNode2 = (PNotCond)nodeArrayList1.get(0);
 
-        pcondNode1 = new ANotCondCond(pnotcondNode2);
+        pcondNode1 = new ANotCond(pnotcondNode2);
         }
 	nodeList.add(pcondNode1);
         return nodeList;

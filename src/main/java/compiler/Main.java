@@ -29,6 +29,12 @@ class Main {
 			System.err.printf("Parsing error: %s\n", e.getMessage());
 		}
 
+		try {
+			tree.apply(new PTPrintingVisitor());
+		} catch (NullPointerException e) {
+			System.err.printf("Null pointer Exception: %s\n", e.getMessage());
+		}
+
 		System.exit(0);
 	}
 

@@ -636,46 +636,46 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAFuncDecl(node);
     }
 
-    public void inATerminalStatementStmt(ATerminalStatementStmt node)
+    public void inATerminalStmt(ATerminalStmt node)
     {
         defaultIn(node);
     }
 
-    public void outATerminalStatementStmt(ATerminalStatementStmt node)
+    public void outATerminalStmt(ATerminalStmt node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseATerminalStatementStmt(ATerminalStatementStmt node)
+    public void caseATerminalStmt(ATerminalStmt node)
     {
-        inATerminalStatementStmt(node);
+        inATerminalStmt(node);
         if(node.getTermStmt() != null)
         {
             node.getTermStmt().apply(this);
         }
-        outATerminalStatementStmt(node);
+        outATerminalStmt(node);
     }
 
-    public void inAIfStmtStmt(AIfStmtStmt node)
+    public void inAIfStmt(AIfStmt node)
     {
         defaultIn(node);
     }
 
-    public void outAIfStmtStmt(AIfStmtStmt node)
+    public void outAIfStmt(AIfStmt node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAIfStmtStmt(AIfStmtStmt node)
+    public void caseAIfStmt(AIfStmt node)
     {
-        inAIfStmtStmt(node);
+        inAIfStmt(node);
         if(node.getIfStmt() != null)
         {
             node.getIfStmt().apply(this);
         }
-        outAIfStmtStmt(node);
+        outAIfStmt(node);
     }
 
     public void inAWhileStmt(AWhileStmt node)
@@ -1111,62 +1111,62 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAFuncCallNextArg(node);
     }
 
-    public void inALValue1LValue(ALValue1LValue node)
+    public void inAIdLValue(AIdLValue node)
     {
         defaultIn(node);
     }
 
-    public void outALValue1LValue(ALValue1LValue node)
+    public void outAIdLValue(AIdLValue node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALValue1LValue(ALValue1LValue node)
+    public void caseAIdLValue(AIdLValue node)
     {
-        inALValue1LValue(node);
+        inAIdLValue(node);
         if(node.getId() != null)
         {
             node.getId().apply(this);
         }
-        outALValue1LValue(node);
+        outAIdLValue(node);
     }
 
-    public void inALValue2LValue(ALValue2LValue node)
+    public void inAStringLValue(AStringLValue node)
     {
         defaultIn(node);
     }
 
-    public void outALValue2LValue(ALValue2LValue node)
+    public void outAStringLValue(AStringLValue node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALValue2LValue(ALValue2LValue node)
+    public void caseAStringLValue(AStringLValue node)
     {
-        inALValue2LValue(node);
+        inAStringLValue(node);
         if(node.getStringLiteral() != null)
         {
             node.getStringLiteral().apply(this);
         }
-        outALValue2LValue(node);
+        outAStringLValue(node);
     }
 
-    public void inALValue3LValue(ALValue3LValue node)
+    public void inAExpressionLValue(AExpressionLValue node)
     {
         defaultIn(node);
     }
 
-    public void outALValue3LValue(ALValue3LValue node)
+    public void outAExpressionLValue(AExpressionLValue node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALValue3LValue(ALValue3LValue node)
+    public void caseAExpressionLValue(AExpressionLValue node)
     {
-        inALValue3LValue(node);
+        inAExpressionLValue(node);
         if(node.getLValue() != null)
         {
             node.getLValue().apply(this);
@@ -1183,28 +1183,28 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getRBracket().apply(this);
         }
-        outALValue3LValue(node);
+        outAExpressionLValue(node);
     }
 
-    public void inASignedExprExpr(ASignedExprExpr node)
+    public void inASignedExpr(ASignedExpr node)
     {
         defaultIn(node);
     }
 
-    public void outASignedExprExpr(ASignedExprExpr node)
+    public void outASignedExpr(ASignedExpr node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASignedExprExpr(ASignedExprExpr node)
+    public void caseASignedExpr(ASignedExpr node)
     {
-        inASignedExprExpr(node);
+        inASignedExpr(node);
         if(node.getSignedExpr() != null)
         {
             node.getSignedExpr().apply(this);
         }
-        outASignedExprExpr(node);
+        outASignedExpr(node);
     }
 
     public void inAExprPlusTermExpr(AExprPlusTermExpr node)
@@ -1695,25 +1695,25 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAExprInPars(node);
     }
 
-    public void inANotCondCond(ANotCondCond node)
+    public void inANotCond(ANotCond node)
     {
         defaultIn(node);
     }
 
-    public void outANotCondCond(ANotCondCond node)
+    public void outANotCond(ANotCond node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseANotCondCond(ANotCondCond node)
+    public void caseANotCond(ANotCond node)
     {
-        inANotCondCond(node);
+        inANotCond(node);
         if(node.getNotCond() != null)
         {
             node.getNotCond().apply(this);
         }
-        outANotCondCond(node);
+        outANotCond(node);
     }
 
     public void inACondAndTermcondCond(ACondAndTermcondCond node)
