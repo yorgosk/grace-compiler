@@ -8,7 +8,7 @@ import compiler.analysis.*;
 public final class AFuncCallNextArg extends PFuncCallNextArg
 {
     private TComma _comma_;
-    private PExpr _nextFuncCallExpr_;
+    private PExpr _expr_;
 
     public AFuncCallNextArg()
     {
@@ -17,12 +17,12 @@ public final class AFuncCallNextArg extends PFuncCallNextArg
 
     public AFuncCallNextArg(
         @SuppressWarnings("hiding") TComma _comma_,
-        @SuppressWarnings("hiding") PExpr _nextFuncCallExpr_)
+        @SuppressWarnings("hiding") PExpr _expr_)
     {
         // Constructor
         setComma(_comma_);
 
-        setNextFuncCallExpr(_nextFuncCallExpr_);
+        setExpr(_expr_);
 
     }
 
@@ -31,7 +31,7 @@ public final class AFuncCallNextArg extends PFuncCallNextArg
     {
         return new AFuncCallNextArg(
             cloneNode(this._comma_),
-            cloneNode(this._nextFuncCallExpr_));
+            cloneNode(this._expr_));
     }
 
     public void apply(Switch sw)
@@ -64,16 +64,16 @@ public final class AFuncCallNextArg extends PFuncCallNextArg
         this._comma_ = node;
     }
 
-    public PExpr getNextFuncCallExpr()
+    public PExpr getExpr()
     {
-        return this._nextFuncCallExpr_;
+        return this._expr_;
     }
 
-    public void setNextFuncCallExpr(PExpr node)
+    public void setExpr(PExpr node)
     {
-        if(this._nextFuncCallExpr_ != null)
+        if(this._expr_ != null)
         {
-            this._nextFuncCallExpr_.parent(null);
+            this._expr_.parent(null);
         }
 
         if(node != null)
@@ -86,7 +86,7 @@ public final class AFuncCallNextArg extends PFuncCallNextArg
             node.parent(this);
         }
 
-        this._nextFuncCallExpr_ = node;
+        this._expr_ = node;
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class AFuncCallNextArg extends PFuncCallNextArg
     {
         return ""
             + toString(this._comma_)
-            + toString(this._nextFuncCallExpr_);
+            + toString(this._expr_);
     }
 
     @Override
@@ -107,9 +107,9 @@ public final class AFuncCallNextArg extends PFuncCallNextArg
             return;
         }
 
-        if(this._nextFuncCallExpr_ == child)
+        if(this._expr_ == child)
         {
-            this._nextFuncCallExpr_ = null;
+            this._expr_ = null;
             return;
         }
 
@@ -126,9 +126,9 @@ public final class AFuncCallNextArg extends PFuncCallNextArg
             return;
         }
 
-        if(this._nextFuncCallExpr_ == oldChild)
+        if(this._expr_ == oldChild)
         {
-            setNextFuncCallExpr((PExpr) newChild);
+            setExpr((PExpr) newChild);
             return;
         }
 

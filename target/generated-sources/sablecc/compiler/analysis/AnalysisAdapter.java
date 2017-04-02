@@ -239,6 +239,16 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseAReturnNumTermStmt(AReturnNumTermStmt node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAReturnFunTermStmt(AReturnFunTermStmt node)
+    {
+        defaultCase(node);
+    }
+
     public void caseABlock(ABlock node)
     {
         defaultCase(node);

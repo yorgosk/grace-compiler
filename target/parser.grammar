@@ -1,4 +1,4 @@
-Package compiler ;
+Package compiler;
 
 
 Helpers
@@ -120,8 +120,8 @@ Productions
         {func_decl} func_decl |
         {var_def} var_def ;
 
-    var_def_next_id = comma [next_var_def_id]:id ;
-    var_def = var [init_var_def_id]:id var_def_next_id* colon type semicolon ;
+    var_def_next_id = comma id ;
+    var_def = var id var_def_next_id* colon type semicolon ;
 
     func_decl = header semicolon ;
 
@@ -131,7 +131,7 @@ Productions
         {while} while cond do stmt ;
     if_stmt =
         {if} if cond then stmt |
-        {if_else} if cond then with_else else stmt ;
+        {if_else} if cond then with_else else stmt ;    /*original line*/
     with_else =
         {nested_if_else} if cond then with_else else_with_else |
         {terminal_statement} term_stmt ;
@@ -140,12 +140,14 @@ Productions
         {semicolon} semicolon |
         {assignment} l_value assignment expr semicolon |
         {block} block |
-        {function} func_call semicolon ;
+        {function} func_call semicolon |
+        {return_num} return int_const semicolon |   /*added by yiannis*/
+        {return_fun} return func_call semicolon ;   /*added by yiannis*/
 
     block = l_brace stmt* r_brace ;
 
-    func_call_next_arg = comma [next_func_call_expr]:expr;
-    func_args = [init_func_call_expr]:expr func_call_next_arg* ;
+    func_call_next_arg = comma expr;
+    func_args = expr func_call_next_arg* ;
     func_call = id l_par func_args? r_par ;
 
     l_value =

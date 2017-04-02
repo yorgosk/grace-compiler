@@ -8,7 +8,7 @@ import compiler.analysis.*;
 public final class AVarDefNextId extends PVarDefNextId
 {
     private TComma _comma_;
-    private TId _nextVarDefId_;
+    private TId _id_;
 
     public AVarDefNextId()
     {
@@ -17,12 +17,12 @@ public final class AVarDefNextId extends PVarDefNextId
 
     public AVarDefNextId(
         @SuppressWarnings("hiding") TComma _comma_,
-        @SuppressWarnings("hiding") TId _nextVarDefId_)
+        @SuppressWarnings("hiding") TId _id_)
     {
         // Constructor
         setComma(_comma_);
 
-        setNextVarDefId(_nextVarDefId_);
+        setId(_id_);
 
     }
 
@@ -31,7 +31,7 @@ public final class AVarDefNextId extends PVarDefNextId
     {
         return new AVarDefNextId(
             cloneNode(this._comma_),
-            cloneNode(this._nextVarDefId_));
+            cloneNode(this._id_));
     }
 
     public void apply(Switch sw)
@@ -64,16 +64,16 @@ public final class AVarDefNextId extends PVarDefNextId
         this._comma_ = node;
     }
 
-    public TId getNextVarDefId()
+    public TId getId()
     {
-        return this._nextVarDefId_;
+        return this._id_;
     }
 
-    public void setNextVarDefId(TId node)
+    public void setId(TId node)
     {
-        if(this._nextVarDefId_ != null)
+        if(this._id_ != null)
         {
-            this._nextVarDefId_.parent(null);
+            this._id_.parent(null);
         }
 
         if(node != null)
@@ -86,7 +86,7 @@ public final class AVarDefNextId extends PVarDefNextId
             node.parent(this);
         }
 
-        this._nextVarDefId_ = node;
+        this._id_ = node;
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class AVarDefNextId extends PVarDefNextId
     {
         return ""
             + toString(this._comma_)
-            + toString(this._nextVarDefId_);
+            + toString(this._id_);
     }
 
     @Override
@@ -107,9 +107,9 @@ public final class AVarDefNextId extends PVarDefNextId
             return;
         }
 
-        if(this._nextVarDefId_ == child)
+        if(this._id_ == child)
         {
-            this._nextVarDefId_ = null;
+            this._id_ = null;
             return;
         }
 
@@ -126,9 +126,9 @@ public final class AVarDefNextId extends PVarDefNextId
             return;
         }
 
-        if(this._nextVarDefId_ == oldChild)
+        if(this._id_ == oldChild)
         {
-            setNextVarDefId((TId) newChild);
+            setId((TId) newChild);
             return;
         }
 

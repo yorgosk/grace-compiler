@@ -9,7 +9,7 @@ import compiler.analysis.*;
 public final class AVarDef extends PVarDef
 {
     private TVar _var_;
-    private TId _initVarDefId_;
+    private TId _id_;
     private final LinkedList<PVarDefNextId> _varDefNextId_ = new LinkedList<PVarDefNextId>();
     private TColon _colon_;
     private PType _type_;
@@ -22,7 +22,7 @@ public final class AVarDef extends PVarDef
 
     public AVarDef(
         @SuppressWarnings("hiding") TVar _var_,
-        @SuppressWarnings("hiding") TId _initVarDefId_,
+        @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") List<PVarDefNextId> _varDefNextId_,
         @SuppressWarnings("hiding") TColon _colon_,
         @SuppressWarnings("hiding") PType _type_,
@@ -31,7 +31,7 @@ public final class AVarDef extends PVarDef
         // Constructor
         setVar(_var_);
 
-        setInitVarDefId(_initVarDefId_);
+        setId(_id_);
 
         setVarDefNextId(_varDefNextId_);
 
@@ -48,7 +48,7 @@ public final class AVarDef extends PVarDef
     {
         return new AVarDef(
             cloneNode(this._var_),
-            cloneNode(this._initVarDefId_),
+            cloneNode(this._id_),
             cloneList(this._varDefNextId_),
             cloneNode(this._colon_),
             cloneNode(this._type_),
@@ -85,16 +85,16 @@ public final class AVarDef extends PVarDef
         this._var_ = node;
     }
 
-    public TId getInitVarDefId()
+    public TId getId()
     {
-        return this._initVarDefId_;
+        return this._id_;
     }
 
-    public void setInitVarDefId(TId node)
+    public void setId(TId node)
     {
-        if(this._initVarDefId_ != null)
+        if(this._id_ != null)
         {
-            this._initVarDefId_.parent(null);
+            this._id_.parent(null);
         }
 
         if(node != null)
@@ -107,7 +107,7 @@ public final class AVarDef extends PVarDef
             node.parent(this);
         }
 
-        this._initVarDefId_ = node;
+        this._id_ = node;
     }
 
     public LinkedList<PVarDefNextId> getVarDefNextId()
@@ -210,7 +210,7 @@ public final class AVarDef extends PVarDef
     {
         return ""
             + toString(this._var_)
-            + toString(this._initVarDefId_)
+            + toString(this._id_)
             + toString(this._varDefNextId_)
             + toString(this._colon_)
             + toString(this._type_)
@@ -227,9 +227,9 @@ public final class AVarDef extends PVarDef
             return;
         }
 
-        if(this._initVarDefId_ == child)
+        if(this._id_ == child)
         {
-            this._initVarDefId_ = null;
+            this._id_ = null;
             return;
         }
 
@@ -269,9 +269,9 @@ public final class AVarDef extends PVarDef
             return;
         }
 
-        if(this._initVarDefId_ == oldChild)
+        if(this._id_ == oldChild)
         {
-            setInitVarDefId((TId) newChild);
+            setId((TId) newChild);
             return;
         }
 

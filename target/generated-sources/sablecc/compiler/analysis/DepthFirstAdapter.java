@@ -560,9 +560,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getComma().apply(this);
         }
-        if(node.getNextVarDefId() != null)
+        if(node.getId() != null)
         {
-            node.getNextVarDefId().apply(this);
+            node.getId().apply(this);
         }
         outAVarDefNextId(node);
     }
@@ -585,9 +585,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getVar().apply(this);
         }
-        if(node.getInitVarDefId() != null)
+        if(node.getId() != null)
         {
-            node.getInitVarDefId().apply(this);
+            node.getId().apply(this);
         }
         {
             List<PVarDefNextId> copy = new ArrayList<PVarDefNextId>(node.getVarDefNextId());
@@ -968,6 +968,64 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAFunctionTermStmt(node);
     }
 
+    public void inAReturnNumTermStmt(AReturnNumTermStmt node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAReturnNumTermStmt(AReturnNumTermStmt node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAReturnNumTermStmt(AReturnNumTermStmt node)
+    {
+        inAReturnNumTermStmt(node);
+        if(node.getReturn() != null)
+        {
+            node.getReturn().apply(this);
+        }
+        if(node.getIntConst() != null)
+        {
+            node.getIntConst().apply(this);
+        }
+        if(node.getSemicolon() != null)
+        {
+            node.getSemicolon().apply(this);
+        }
+        outAReturnNumTermStmt(node);
+    }
+
+    public void inAReturnFunTermStmt(AReturnFunTermStmt node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAReturnFunTermStmt(AReturnFunTermStmt node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAReturnFunTermStmt(AReturnFunTermStmt node)
+    {
+        inAReturnFunTermStmt(node);
+        if(node.getReturn() != null)
+        {
+            node.getReturn().apply(this);
+        }
+        if(node.getFuncCall() != null)
+        {
+            node.getFuncCall().apply(this);
+        }
+        if(node.getSemicolon() != null)
+        {
+            node.getSemicolon().apply(this);
+        }
+        outAReturnFunTermStmt(node);
+    }
+
     public void inABlock(ABlock node)
     {
         defaultIn(node);
@@ -1018,9 +1076,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getComma().apply(this);
         }
-        if(node.getNextFuncCallExpr() != null)
+        if(node.getExpr() != null)
         {
-            node.getNextFuncCallExpr().apply(this);
+            node.getExpr().apply(this);
         }
         outAFuncCallNextArg(node);
     }
@@ -1039,9 +1097,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAFuncArgs(AFuncArgs node)
     {
         inAFuncArgs(node);
-        if(node.getInitFuncCallExpr() != null)
+        if(node.getExpr() != null)
         {
-            node.getInitFuncCallExpr().apply(this);
+            node.getExpr().apply(this);
         }
         {
             List<PFuncCallNextArg> copy = new ArrayList<PFuncCallNextArg>(node.getFuncCallNextArg());

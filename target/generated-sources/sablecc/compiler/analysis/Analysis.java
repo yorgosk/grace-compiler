@@ -46,6 +46,8 @@ public interface Analysis extends Switch
     void caseAAssignmentTermStmt(AAssignmentTermStmt node);
     void caseABlockTermStmt(ABlockTermStmt node);
     void caseAFunctionTermStmt(AFunctionTermStmt node);
+    void caseAReturnNumTermStmt(AReturnNumTermStmt node);
+    void caseAReturnFunTermStmt(AReturnFunTermStmt node);
     void caseABlock(ABlock node);
     void caseAFuncCallNextArg(AFuncCallNextArg node);
     void caseAFuncArgs(AFuncArgs node);

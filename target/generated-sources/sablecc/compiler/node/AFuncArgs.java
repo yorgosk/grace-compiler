@@ -8,7 +8,7 @@ import compiler.analysis.*;
 @SuppressWarnings("nls")
 public final class AFuncArgs extends PFuncArgs
 {
-    private PExpr _initFuncCallExpr_;
+    private PExpr _expr_;
     private final LinkedList<PFuncCallNextArg> _funcCallNextArg_ = new LinkedList<PFuncCallNextArg>();
 
     public AFuncArgs()
@@ -17,11 +17,11 @@ public final class AFuncArgs extends PFuncArgs
     }
 
     public AFuncArgs(
-        @SuppressWarnings("hiding") PExpr _initFuncCallExpr_,
+        @SuppressWarnings("hiding") PExpr _expr_,
         @SuppressWarnings("hiding") List<PFuncCallNextArg> _funcCallNextArg_)
     {
         // Constructor
-        setInitFuncCallExpr(_initFuncCallExpr_);
+        setExpr(_expr_);
 
         setFuncCallNextArg(_funcCallNextArg_);
 
@@ -31,7 +31,7 @@ public final class AFuncArgs extends PFuncArgs
     public Object clone()
     {
         return new AFuncArgs(
-            cloneNode(this._initFuncCallExpr_),
+            cloneNode(this._expr_),
             cloneList(this._funcCallNextArg_));
     }
 
@@ -40,16 +40,16 @@ public final class AFuncArgs extends PFuncArgs
         ((Analysis) sw).caseAFuncArgs(this);
     }
 
-    public PExpr getInitFuncCallExpr()
+    public PExpr getExpr()
     {
-        return this._initFuncCallExpr_;
+        return this._expr_;
     }
 
-    public void setInitFuncCallExpr(PExpr node)
+    public void setExpr(PExpr node)
     {
-        if(this._initFuncCallExpr_ != null)
+        if(this._expr_ != null)
         {
-            this._initFuncCallExpr_.parent(null);
+            this._expr_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class AFuncArgs extends PFuncArgs
             node.parent(this);
         }
 
-        this._initFuncCallExpr_ = node;
+        this._expr_ = node;
     }
 
     public LinkedList<PFuncCallNextArg> getFuncCallNextArg()
@@ -89,7 +89,7 @@ public final class AFuncArgs extends PFuncArgs
     public String toString()
     {
         return ""
-            + toString(this._initFuncCallExpr_)
+            + toString(this._expr_)
             + toString(this._funcCallNextArg_);
     }
 
@@ -97,9 +97,9 @@ public final class AFuncArgs extends PFuncArgs
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._initFuncCallExpr_ == child)
+        if(this._expr_ == child)
         {
-            this._initFuncCallExpr_ = null;
+            this._expr_ = null;
             return;
         }
 
@@ -115,9 +115,9 @@ public final class AFuncArgs extends PFuncArgs
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._initFuncCallExpr_ == oldChild)
+        if(this._expr_ == oldChild)
         {
-            setInitFuncCallExpr((PExpr) newChild);
+            setExpr((PExpr) newChild);
             return;
         }
 
