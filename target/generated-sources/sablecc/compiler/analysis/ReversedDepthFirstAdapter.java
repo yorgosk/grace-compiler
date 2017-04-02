@@ -90,60 +90,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAFuncDef(node);
     }
 
-    public void inAHeaderNextArg(AHeaderNextArg node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAHeaderNextArg(AHeaderNextArg node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAHeaderNextArg(AHeaderNextArg node)
-    {
-        inAHeaderNextArg(node);
-        if(node.getFparDef() != null)
-        {
-            node.getFparDef().apply(this);
-        }
-        if(node.getSemicolon() != null)
-        {
-            node.getSemicolon().apply(this);
-        }
-        outAHeaderNextArg(node);
-    }
-
-    public void inAFunPars(AFunPars node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAFunPars(AFunPars node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAFunPars(AFunPars node)
-    {
-        inAFunPars(node);
-        {
-            List<PHeaderNextArg> copy = new ArrayList<PHeaderNextArg>(node.getHeaderNextArg());
-            Collections.reverse(copy);
-            for(PHeaderNextArg e : copy)
-            {
-                e.apply(this);
-            }
-        }
-        if(node.getFparDef() != null)
-        {
-            node.getFparDef().apply(this);
-        }
-        outAFunPars(node);
-    }
-
     public void inAHeader(AHeader node)
     {
         defaultIn(node);
@@ -189,29 +135,58 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAHeader(node);
     }
 
-    public void inAFparDefNextId(AFparDefNextId node)
+    public void inAFunPars(AFunPars node)
     {
         defaultIn(node);
     }
 
-    public void outAFparDefNextId(AFparDefNextId node)
+    public void outAFunPars(AFunPars node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFparDefNextId(AFparDefNextId node)
+    public void caseAFunPars(AFunPars node)
     {
-        inAFparDefNextId(node);
-        if(node.getId() != null)
+        inAFunPars(node);
         {
-            node.getId().apply(this);
+            List<PHeaderNextArg> copy = new ArrayList<PHeaderNextArg>(node.getHeaderNextArg());
+            Collections.reverse(copy);
+            for(PHeaderNextArg e : copy)
+            {
+                e.apply(this);
+            }
         }
-        if(node.getComma() != null)
+        if(node.getFparDef() != null)
         {
-            node.getComma().apply(this);
+            node.getFparDef().apply(this);
         }
-        outAFparDefNextId(node);
+        outAFunPars(node);
+    }
+
+    public void inAHeaderNextArg(AHeaderNextArg node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAHeaderNextArg(AHeaderNextArg node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAHeaderNextArg(AHeaderNextArg node)
+    {
+        inAHeaderNextArg(node);
+        if(node.getFparDef() != null)
+        {
+            node.getFparDef().apply(this);
+        }
+        if(node.getSemicolon() != null)
+        {
+            node.getSemicolon().apply(this);
+        }
+        outAHeaderNextArg(node);
     }
 
     public void inAFparDef(AFparDef node)
@@ -253,6 +228,31 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getRef().apply(this);
         }
         outAFparDef(node);
+    }
+
+    public void inAFparDefNextId(AFparDefNextId node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFparDefNextId(AFparDefNextId node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFparDefNextId(AFparDefNextId node)
+    {
+        inAFparDefNextId(node);
+        if(node.getId() != null)
+        {
+            node.getId().apply(this);
+        }
+        if(node.getComma() != null)
+        {
+            node.getComma().apply(this);
+        }
+        outAFparDefNextId(node);
     }
 
     public void inAIntDataType(AIntDataType node)
@@ -297,35 +297,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outACharDataType(node);
     }
 
-    public void inADimension(ADimension node)
-    {
-        defaultIn(node);
-    }
-
-    public void outADimension(ADimension node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseADimension(ADimension node)
-    {
-        inADimension(node);
-        if(node.getRBracket() != null)
-        {
-            node.getRBracket().apply(this);
-        }
-        if(node.getIntConst() != null)
-        {
-            node.getIntConst().apply(this);
-        }
-        if(node.getLBracket() != null)
-        {
-            node.getLBracket().apply(this);
-        }
-        outADimension(node);
-    }
-
     public void inAType(AType node)
     {
         defaultIn(node);
@@ -353,6 +324,35 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getDataType().apply(this);
         }
         outAType(node);
+    }
+
+    public void inADimension(ADimension node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADimension(ADimension node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADimension(ADimension node)
+    {
+        inADimension(node);
+        if(node.getRBracket() != null)
+        {
+            node.getRBracket().apply(this);
+        }
+        if(node.getIntConst() != null)
+        {
+            node.getIntConst().apply(this);
+        }
+        if(node.getLBracket() != null)
+        {
+            node.getLBracket().apply(this);
+        }
+        outADimension(node);
     }
 
     public void inADataTypeRetType(ADataTypeRetType node)
@@ -397,60 +397,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outANothingRetType(node);
     }
 
-    public void inANextDimension(ANextDimension node)
-    {
-        defaultIn(node);
-    }
-
-    public void outANextDimension(ANextDimension node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseANextDimension(ANextDimension node)
-    {
-        inANextDimension(node);
-        if(node.getRBracket() != null)
-        {
-            node.getRBracket().apply(this);
-        }
-        if(node.getIntConst() != null)
-        {
-            node.getIntConst().apply(this);
-        }
-        if(node.getLBracket() != null)
-        {
-            node.getLBracket().apply(this);
-        }
-        outANextDimension(node);
-    }
-
-    public void inALRBrackets(ALRBrackets node)
-    {
-        defaultIn(node);
-    }
-
-    public void outALRBrackets(ALRBrackets node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseALRBrackets(ALRBrackets node)
-    {
-        inALRBrackets(node);
-        if(node.getRBracket() != null)
-        {
-            node.getRBracket().apply(this);
-        }
-        if(node.getLBracket() != null)
-        {
-            node.getLBracket().apply(this);
-        }
-        outALRBrackets(node);
-    }
-
     public void inAFparType(AFparType node)
     {
         defaultIn(node);
@@ -482,6 +428,60 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getDataType().apply(this);
         }
         outAFparType(node);
+    }
+
+    public void inALRBrackets(ALRBrackets node)
+    {
+        defaultIn(node);
+    }
+
+    public void outALRBrackets(ALRBrackets node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseALRBrackets(ALRBrackets node)
+    {
+        inALRBrackets(node);
+        if(node.getRBracket() != null)
+        {
+            node.getRBracket().apply(this);
+        }
+        if(node.getLBracket() != null)
+        {
+            node.getLBracket().apply(this);
+        }
+        outALRBrackets(node);
+    }
+
+    public void inANextDimension(ANextDimension node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANextDimension(ANextDimension node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANextDimension(ANextDimension node)
+    {
+        inANextDimension(node);
+        if(node.getRBracket() != null)
+        {
+            node.getRBracket().apply(this);
+        }
+        if(node.getIntConst() != null)
+        {
+            node.getIntConst().apply(this);
+        }
+        if(node.getLBracket() != null)
+        {
+            node.getLBracket().apply(this);
+        }
+        outANextDimension(node);
     }
 
     public void inAFuncDefLocalDef(AFuncDefLocalDef node)
@@ -547,31 +547,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAVarDefLocalDef(node);
     }
 
-    public void inAVarDefNextId(AVarDefNextId node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVarDefNextId(AVarDefNextId node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVarDefNextId(AVarDefNextId node)
-    {
-        inAVarDefNextId(node);
-        if(node.getId() != null)
-        {
-            node.getId().apply(this);
-        }
-        if(node.getComma() != null)
-        {
-            node.getComma().apply(this);
-        }
-        outAVarDefNextId(node);
-    }
-
     public void inAVarDef(AVarDef node)
     {
         defaultIn(node);
@@ -615,6 +590,31 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getVar().apply(this);
         }
         outAVarDef(node);
+    }
+
+    public void inAVarDefNextId(AVarDefNextId node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVarDefNextId(AVarDefNextId node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVarDefNextId(AVarDefNextId node)
+    {
+        inAVarDefNextId(node);
+        if(node.getId() != null)
+        {
+            node.getId().apply(this);
+        }
+        if(node.getComma() != null)
+        {
+            node.getComma().apply(this);
+        }
+        outAVarDefNextId(node);
     }
 
     public void inAFuncDecl(AFuncDecl node)
@@ -974,62 +974,29 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAFunctionTermStmt(node);
     }
 
-    public void inAReturnNumTermStmt(AReturnNumTermStmt node)
+    public void inAReturnExprTermStmt(AReturnExprTermStmt node)
     {
         defaultIn(node);
     }
 
-    public void outAReturnNumTermStmt(AReturnNumTermStmt node)
+    public void outAReturnExprTermStmt(AReturnExprTermStmt node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAReturnNumTermStmt(AReturnNumTermStmt node)
+    public void caseAReturnExprTermStmt(AReturnExprTermStmt node)
     {
-        inAReturnNumTermStmt(node);
-        if(node.getSemicolon() != null)
+        inAReturnExprTermStmt(node);
+        if(node.getExpr() != null)
         {
-            node.getSemicolon().apply(this);
-        }
-        if(node.getIntConst() != null)
-        {
-            node.getIntConst().apply(this);
+            node.getExpr().apply(this);
         }
         if(node.getReturn() != null)
         {
             node.getReturn().apply(this);
         }
-        outAReturnNumTermStmt(node);
-    }
-
-    public void inAReturnFunTermStmt(AReturnFunTermStmt node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAReturnFunTermStmt(AReturnFunTermStmt node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAReturnFunTermStmt(AReturnFunTermStmt node)
-    {
-        inAReturnFunTermStmt(node);
-        if(node.getSemicolon() != null)
-        {
-            node.getSemicolon().apply(this);
-        }
-        if(node.getFuncCall() != null)
-        {
-            node.getFuncCall().apply(this);
-        }
-        if(node.getReturn() != null)
-        {
-            node.getReturn().apply(this);
-        }
-        outAReturnFunTermStmt(node);
+        outAReturnExprTermStmt(node);
     }
 
     public void inABlock(ABlock node)
@@ -1065,60 +1032,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outABlock(node);
     }
 
-    public void inAFuncCallNextArg(AFuncCallNextArg node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAFuncCallNextArg(AFuncCallNextArg node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAFuncCallNextArg(AFuncCallNextArg node)
-    {
-        inAFuncCallNextArg(node);
-        if(node.getExpr() != null)
-        {
-            node.getExpr().apply(this);
-        }
-        if(node.getComma() != null)
-        {
-            node.getComma().apply(this);
-        }
-        outAFuncCallNextArg(node);
-    }
-
-    public void inAFuncArgs(AFuncArgs node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAFuncArgs(AFuncArgs node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAFuncArgs(AFuncArgs node)
-    {
-        inAFuncArgs(node);
-        {
-            List<PFuncCallNextArg> copy = new ArrayList<PFuncCallNextArg>(node.getFuncCallNextArg());
-            Collections.reverse(copy);
-            for(PFuncCallNextArg e : copy)
-            {
-                e.apply(this);
-            }
-        }
-        if(node.getExpr() != null)
-        {
-            node.getExpr().apply(this);
-        }
-        outAFuncArgs(node);
-    }
-
     public void inAFuncCall(AFuncCall node)
     {
         defaultIn(node);
@@ -1150,6 +1063,60 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getId().apply(this);
         }
         outAFuncCall(node);
+    }
+
+    public void inAFuncArgs(AFuncArgs node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFuncArgs(AFuncArgs node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFuncArgs(AFuncArgs node)
+    {
+        inAFuncArgs(node);
+        {
+            List<PFuncCallNextArg> copy = new ArrayList<PFuncCallNextArg>(node.getFuncCallNextArg());
+            Collections.reverse(copy);
+            for(PFuncCallNextArg e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        outAFuncArgs(node);
+    }
+
+    public void inAFuncCallNextArg(AFuncCallNextArg node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFuncCallNextArg(AFuncCallNextArg node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFuncCallNextArg(AFuncCallNextArg node)
+    {
+        inAFuncCallNextArg(node);
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        if(node.getComma() != null)
+        {
+            node.getComma().apply(this);
+        }
+        outAFuncCallNextArg(node);
     }
 
     public void inALValue1LValue(ALValue1LValue node)
@@ -1227,151 +1194,104 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outALValue3LValue(node);
     }
 
-    public void inAPlusSignSign(APlusSignSign node)
+    public void inASignedExprExpr(ASignedExprExpr node)
     {
         defaultIn(node);
     }
 
-    public void outAPlusSignSign(APlusSignSign node)
+    public void outASignedExprExpr(ASignedExprExpr node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAPlusSignSign(APlusSignSign node)
+    public void caseASignedExprExpr(ASignedExprExpr node)
     {
-        inAPlusSignSign(node);
+        inASignedExprExpr(node);
+        if(node.getSignedExpr() != null)
+        {
+            node.getSignedExpr().apply(this);
+        }
+        outASignedExprExpr(node);
+    }
+
+    public void inAExprPlusTermExpr(AExprPlusTermExpr node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExprPlusTermExpr(AExprPlusTermExpr node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAExprPlusTermExpr(AExprPlusTermExpr node)
+    {
+        inAExprPlusTermExpr(node);
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
         if(node.getPlus() != null)
         {
             node.getPlus().apply(this);
         }
-        outAPlusSignSign(node);
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        outAExprPlusTermExpr(node);
     }
 
-    public void inAMinusSignSign(AMinusSignSign node)
+    public void inAExprMinusTermExpr(AExprMinusTermExpr node)
     {
         defaultIn(node);
     }
 
-    public void outAMinusSignSign(AMinusSignSign node)
+    public void outAExprMinusTermExpr(AExprMinusTermExpr node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMinusSignSign(AMinusSignSign node)
+    public void caseAExprMinusTermExpr(AExprMinusTermExpr node)
     {
-        inAMinusSignSign(node);
+        inAExprMinusTermExpr(node);
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
         if(node.getMinus() != null)
         {
             node.getMinus().apply(this);
         }
-        outAMinusSignSign(node);
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        outAExprMinusTermExpr(node);
     }
 
-    public void inAPlusOpOp(APlusOpOp node)
+    public void inATermExpr(ATermExpr node)
     {
         defaultIn(node);
     }
 
-    public void outAPlusOpOp(APlusOpOp node)
+    public void outATermExpr(ATermExpr node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAPlusOpOp(APlusOpOp node)
+    public void caseATermExpr(ATermExpr node)
     {
-        inAPlusOpOp(node);
-        if(node.getPlus() != null)
+        inATermExpr(node);
+        if(node.getTerm() != null)
         {
-            node.getPlus().apply(this);
+            node.getTerm().apply(this);
         }
-        outAPlusOpOp(node);
-    }
-
-    public void inAMinusOpOp(AMinusOpOp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMinusOpOp(AMinusOpOp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAMinusOpOp(AMinusOpOp node)
-    {
-        inAMinusOpOp(node);
-        if(node.getMinus() != null)
-        {
-            node.getMinus().apply(this);
-        }
-        outAMinusOpOp(node);
-    }
-
-    public void inAMultOpOp(AMultOpOp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMultOpOp(AMultOpOp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAMultOpOp(AMultOpOp node)
-    {
-        inAMultOpOp(node);
-        if(node.getMult() != null)
-        {
-            node.getMult().apply(this);
-        }
-        outAMultOpOp(node);
-    }
-
-    public void inADivOpOp(ADivOpOp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outADivOpOp(ADivOpOp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseADivOpOp(ADivOpOp node)
-    {
-        inADivOpOp(node);
-        if(node.getDiv() != null)
-        {
-            node.getDiv().apply(this);
-        }
-        outADivOpOp(node);
-    }
-
-    public void inAModOpOp(AModOpOp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAModOpOp(AModOpOp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAModOpOp(AModOpOp node)
-    {
-        inAModOpOp(node);
-        if(node.getMod() != null)
-        {
-            node.getMod().apply(this);
-        }
-        outAModOpOp(node);
+        outATermExpr(node);
     }
 
     public void inASignIntConstSignedExpr(ASignIntConstSignedExpr node)
@@ -1499,104 +1419,46 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outASignExprInParsSignedExpr(node);
     }
 
-    public void inASignedExprExpr(ASignedExprExpr node)
+    public void inAPlusSignSign(APlusSignSign node)
     {
         defaultIn(node);
     }
 
-    public void outASignedExprExpr(ASignedExprExpr node)
+    public void outAPlusSignSign(APlusSignSign node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASignedExprExpr(ASignedExprExpr node)
+    public void caseAPlusSignSign(APlusSignSign node)
     {
-        inASignedExprExpr(node);
-        if(node.getSignedExpr() != null)
-        {
-            node.getSignedExpr().apply(this);
-        }
-        outASignedExprExpr(node);
-    }
-
-    public void inAExprPlusTermExpr(AExprPlusTermExpr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExprPlusTermExpr(AExprPlusTermExpr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExprPlusTermExpr(AExprPlusTermExpr node)
-    {
-        inAExprPlusTermExpr(node);
-        if(node.getTerm() != null)
-        {
-            node.getTerm().apply(this);
-        }
+        inAPlusSignSign(node);
         if(node.getPlus() != null)
         {
             node.getPlus().apply(this);
         }
-        if(node.getExpr() != null)
-        {
-            node.getExpr().apply(this);
-        }
-        outAExprPlusTermExpr(node);
+        outAPlusSignSign(node);
     }
 
-    public void inAExprMinusTermExpr(AExprMinusTermExpr node)
+    public void inAMinusSignSign(AMinusSignSign node)
     {
         defaultIn(node);
     }
 
-    public void outAExprMinusTermExpr(AExprMinusTermExpr node)
+    public void outAMinusSignSign(AMinusSignSign node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAExprMinusTermExpr(AExprMinusTermExpr node)
+    public void caseAMinusSignSign(AMinusSignSign node)
     {
-        inAExprMinusTermExpr(node);
-        if(node.getTerm() != null)
-        {
-            node.getTerm().apply(this);
-        }
+        inAMinusSignSign(node);
         if(node.getMinus() != null)
         {
             node.getMinus().apply(this);
         }
-        if(node.getExpr() != null)
-        {
-            node.getExpr().apply(this);
-        }
-        outAExprMinusTermExpr(node);
-    }
-
-    public void inATermExpr(ATermExpr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outATermExpr(ATermExpr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseATermExpr(ATermExpr node)
-    {
-        inATermExpr(node);
-        if(node.getTerm() != null)
-        {
-            node.getTerm().apply(this);
-        }
-        outATermExpr(node);
+        outAMinusSignSign(node);
     }
 
     public void inATermMultFactorTerm(ATermMultFactorTerm node)
@@ -1841,46 +1703,254 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAExprInPars(node);
     }
 
-    public void inAAnd1Boolop(AAnd1Boolop node)
+    public void inANotCondCond(ANotCondCond node)
     {
         defaultIn(node);
     }
 
-    public void outAAnd1Boolop(AAnd1Boolop node)
+    public void outANotCondCond(ANotCondCond node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAAnd1Boolop(AAnd1Boolop node)
+    public void caseANotCondCond(ANotCondCond node)
     {
-        inAAnd1Boolop(node);
+        inANotCondCond(node);
+        if(node.getNotCond() != null)
+        {
+            node.getNotCond().apply(this);
+        }
+        outANotCondCond(node);
+    }
+
+    public void inACondAndTermcondCond(ACondAndTermcondCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACondAndTermcondCond(ACondAndTermcondCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACondAndTermcondCond(ACondAndTermcondCond node)
+    {
+        inACondAndTermcondCond(node);
+        if(node.getTermcond() != null)
+        {
+            node.getTermcond().apply(this);
+        }
         if(node.getAnd() != null)
         {
             node.getAnd().apply(this);
         }
-        outAAnd1Boolop(node);
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+        outACondAndTermcondCond(node);
     }
 
-    public void inAOr1Boolop(AOr1Boolop node)
+    public void inACondOrTermcondCond(ACondOrTermcondCond node)
     {
         defaultIn(node);
     }
 
-    public void outAOr1Boolop(AOr1Boolop node)
+    public void outACondOrTermcondCond(ACondOrTermcondCond node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAOr1Boolop(AOr1Boolop node)
+    public void caseACondOrTermcondCond(ACondOrTermcondCond node)
     {
-        inAOr1Boolop(node);
+        inACondOrTermcondCond(node);
+        if(node.getTermcond() != null)
+        {
+            node.getTermcond().apply(this);
+        }
         if(node.getOr() != null)
         {
             node.getOr().apply(this);
         }
-        outAOr1Boolop(node);
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+        outACondOrTermcondCond(node);
+    }
+
+    public void inATermcondCond(ATermcondCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATermcondCond(ATermcondCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATermcondCond(ATermcondCond node)
+    {
+        inATermcondCond(node);
+        if(node.getTermcond() != null)
+        {
+            node.getTermcond().apply(this);
+        }
+        outATermcondCond(node);
+    }
+
+    public void inANotNotCondNotCond(ANotNotCondNotCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANotNotCondNotCond(ANotNotCondNotCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANotNotCondNotCond(ANotNotCondNotCond node)
+    {
+        inANotNotCondNotCond(node);
+        if(node.getNotCond() != null)
+        {
+            node.getNotCond().apply(this);
+        }
+        if(node.getNot() != null)
+        {
+            node.getNot().apply(this);
+        }
+        outANotNotCondNotCond(node);
+    }
+
+    public void inANotTermcondNotCond(ANotTermcondNotCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANotTermcondNotCond(ANotTermcondNotCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANotTermcondNotCond(ANotTermcondNotCond node)
+    {
+        inANotTermcondNotCond(node);
+        if(node.getTermcond() != null)
+        {
+            node.getTermcond().apply(this);
+        }
+        if(node.getNot() != null)
+        {
+            node.getNot().apply(this);
+        }
+        outANotTermcondNotCond(node);
+    }
+
+    public void inACondInParsTermcond(ACondInParsTermcond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACondInParsTermcond(ACondInParsTermcond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACondInParsTermcond(ACondInParsTermcond node)
+    {
+        inACondInParsTermcond(node);
+        if(node.getCondInPars() != null)
+        {
+            node.getCondInPars().apply(this);
+        }
+        outACondInParsTermcond(node);
+    }
+
+    public void inAExprNumopExprTermcond(AExprNumopExprTermcond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExprNumopExprTermcond(AExprNumopExprTermcond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAExprNumopExprTermcond(AExprNumopExprTermcond node)
+    {
+        inAExprNumopExprTermcond(node);
+        if(node.getNumopExpr() != null)
+        {
+            node.getNumopExpr().apply(this);
+        }
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        outAExprNumopExprTermcond(node);
+    }
+
+    public void inACondInPars(ACondInPars node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACondInPars(ACondInPars node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACondInPars(ACondInPars node)
+    {
+        inACondInPars(node);
+        if(node.getRPar() != null)
+        {
+            node.getRPar().apply(this);
+        }
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+        if(node.getLPar() != null)
+        {
+            node.getLPar().apply(this);
+        }
+        outACondInPars(node);
+    }
+
+    public void inANumopExpr(ANumopExpr node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANumopExpr(ANumopExpr node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANumopExpr(ANumopExpr node)
+    {
+        inANumopExpr(node);
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        if(node.getNumop() != null)
+        {
+            node.getNumop().apply(this);
+        }
+        outANumopExpr(node);
     }
 
     public void inAEqual2Numop(AEqual2Numop node)
@@ -2028,255 +2098,5 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getGreateq().apply(this);
         }
         outAGreateq2Numop(node);
-    }
-
-    public void inANotNotCondNotCond(ANotNotCondNotCond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outANotNotCondNotCond(ANotNotCondNotCond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseANotNotCondNotCond(ANotNotCondNotCond node)
-    {
-        inANotNotCondNotCond(node);
-        if(node.getNotCond() != null)
-        {
-            node.getNotCond().apply(this);
-        }
-        if(node.getNot() != null)
-        {
-            node.getNot().apply(this);
-        }
-        outANotNotCondNotCond(node);
-    }
-
-    public void inANotTermcondNotCond(ANotTermcondNotCond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outANotTermcondNotCond(ANotTermcondNotCond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseANotTermcondNotCond(ANotTermcondNotCond node)
-    {
-        inANotTermcondNotCond(node);
-        if(node.getTermcond() != null)
-        {
-            node.getTermcond().apply(this);
-        }
-        if(node.getNot() != null)
-        {
-            node.getNot().apply(this);
-        }
-        outANotTermcondNotCond(node);
-    }
-
-    public void inANotCondCond(ANotCondCond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outANotCondCond(ANotCondCond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseANotCondCond(ANotCondCond node)
-    {
-        inANotCondCond(node);
-        if(node.getNotCond() != null)
-        {
-            node.getNotCond().apply(this);
-        }
-        outANotCondCond(node);
-    }
-
-    public void inACondAndTermcondCond(ACondAndTermcondCond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outACondAndTermcondCond(ACondAndTermcondCond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseACondAndTermcondCond(ACondAndTermcondCond node)
-    {
-        inACondAndTermcondCond(node);
-        if(node.getTermcond() != null)
-        {
-            node.getTermcond().apply(this);
-        }
-        if(node.getAnd() != null)
-        {
-            node.getAnd().apply(this);
-        }
-        if(node.getCond() != null)
-        {
-            node.getCond().apply(this);
-        }
-        outACondAndTermcondCond(node);
-    }
-
-    public void inACondOrTermcondCond(ACondOrTermcondCond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outACondOrTermcondCond(ACondOrTermcondCond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseACondOrTermcondCond(ACondOrTermcondCond node)
-    {
-        inACondOrTermcondCond(node);
-        if(node.getTermcond() != null)
-        {
-            node.getTermcond().apply(this);
-        }
-        if(node.getOr() != null)
-        {
-            node.getOr().apply(this);
-        }
-        if(node.getCond() != null)
-        {
-            node.getCond().apply(this);
-        }
-        outACondOrTermcondCond(node);
-    }
-
-    public void inATermcondCond(ATermcondCond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outATermcondCond(ATermcondCond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseATermcondCond(ATermcondCond node)
-    {
-        inATermcondCond(node);
-        if(node.getTermcond() != null)
-        {
-            node.getTermcond().apply(this);
-        }
-        outATermcondCond(node);
-    }
-
-    public void inACondInParsTermcond(ACondInParsTermcond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outACondInParsTermcond(ACondInParsTermcond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseACondInParsTermcond(ACondInParsTermcond node)
-    {
-        inACondInParsTermcond(node);
-        if(node.getCondInPars() != null)
-        {
-            node.getCondInPars().apply(this);
-        }
-        outACondInParsTermcond(node);
-    }
-
-    public void inAExprNumopExprTermcond(AExprNumopExprTermcond node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExprNumopExprTermcond(AExprNumopExprTermcond node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExprNumopExprTermcond(AExprNumopExprTermcond node)
-    {
-        inAExprNumopExprTermcond(node);
-        if(node.getNumopExpr() != null)
-        {
-            node.getNumopExpr().apply(this);
-        }
-        if(node.getExpr() != null)
-        {
-            node.getExpr().apply(this);
-        }
-        outAExprNumopExprTermcond(node);
-    }
-
-    public void inANumopExpr(ANumopExpr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outANumopExpr(ANumopExpr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseANumopExpr(ANumopExpr node)
-    {
-        inANumopExpr(node);
-        if(node.getExpr() != null)
-        {
-            node.getExpr().apply(this);
-        }
-        if(node.getNumop() != null)
-        {
-            node.getNumop().apply(this);
-        }
-        outANumopExpr(node);
-    }
-
-    public void inACondInPars(ACondInPars node)
-    {
-        defaultIn(node);
-    }
-
-    public void outACondInPars(ACondInPars node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseACondInPars(ACondInPars node)
-    {
-        inACondInPars(node);
-        if(node.getRPar() != null)
-        {
-            node.getRPar().apply(this);
-        }
-        if(node.getCond() != null)
-        {
-            node.getCond().apply(this);
-        }
-        if(node.getLPar() != null)
-        {
-            node.getLPar().apply(this);
-        }
-        outACondInPars(node);
     }
 }

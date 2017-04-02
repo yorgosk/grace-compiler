@@ -79,7 +79,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAHeaderNextArg(AHeaderNextArg node)
+    public void caseAHeader(AHeader node)
     {
         defaultCase(node);
     }
@@ -89,17 +89,17 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAHeader(AHeader node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAFparDefNextId(AFparDefNextId node)
+    public void caseAHeaderNextArg(AHeaderNextArg node)
     {
         defaultCase(node);
     }
 
     public void caseAFparDef(AFparDef node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFparDefNextId(AFparDefNextId node)
     {
         defaultCase(node);
     }
@@ -114,12 +114,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseADimension(ADimension node)
+    public void caseAType(AType node)
     {
         defaultCase(node);
     }
 
-    public void caseAType(AType node)
+    public void caseADimension(ADimension node)
     {
         defaultCase(node);
     }
@@ -134,7 +134,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseANextDimension(ANextDimension node)
+    public void caseAFparType(AFparType node)
     {
         defaultCase(node);
     }
@@ -144,7 +144,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAFparType(AFparType node)
+    public void caseANextDimension(ANextDimension node)
     {
         defaultCase(node);
     }
@@ -164,12 +164,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAVarDefNextId(AVarDefNextId node)
+    public void caseAVarDef(AVarDef node)
     {
         defaultCase(node);
     }
 
-    public void caseAVarDef(AVarDef node)
+    public void caseAVarDefNextId(AVarDefNextId node)
     {
         defaultCase(node);
     }
@@ -239,12 +239,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAReturnNumTermStmt(AReturnNumTermStmt node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAReturnFunTermStmt(AReturnFunTermStmt node)
+    public void caseAReturnExprTermStmt(AReturnExprTermStmt node)
     {
         defaultCase(node);
     }
@@ -254,7 +249,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAFuncCallNextArg(AFuncCallNextArg node)
+    public void caseAFuncCall(AFuncCall node)
     {
         defaultCase(node);
     }
@@ -264,7 +259,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAFuncCall(AFuncCall node)
+    public void caseAFuncCallNextArg(AFuncCallNextArg node)
     {
         defaultCase(node);
     }
@@ -284,37 +279,22 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAPlusSignSign(APlusSignSign node)
+    public void caseASignedExprExpr(ASignedExprExpr node)
     {
         defaultCase(node);
     }
 
-    public void caseAMinusSignSign(AMinusSignSign node)
+    public void caseAExprPlusTermExpr(AExprPlusTermExpr node)
     {
         defaultCase(node);
     }
 
-    public void caseAPlusOpOp(APlusOpOp node)
+    public void caseAExprMinusTermExpr(AExprMinusTermExpr node)
     {
         defaultCase(node);
     }
 
-    public void caseAMinusOpOp(AMinusOpOp node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAMultOpOp(AMultOpOp node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseADivOpOp(ADivOpOp node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAModOpOp(AModOpOp node)
+    public void caseATermExpr(ATermExpr node)
     {
         defaultCase(node);
     }
@@ -344,22 +324,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseASignedExprExpr(ASignedExprExpr node)
+    public void caseAPlusSignSign(APlusSignSign node)
     {
         defaultCase(node);
     }
 
-    public void caseAExprPlusTermExpr(AExprPlusTermExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAExprMinusTermExpr(AExprMinusTermExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseATermExpr(ATermExpr node)
+    public void caseAMinusSignSign(AMinusSignSign node)
     {
         defaultCase(node);
     }
@@ -414,12 +384,52 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAAnd1Boolop(AAnd1Boolop node)
+    public void caseANotCondCond(ANotCondCond node)
     {
         defaultCase(node);
     }
 
-    public void caseAOr1Boolop(AOr1Boolop node)
+    public void caseACondAndTermcondCond(ACondAndTermcondCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACondOrTermcondCond(ACondOrTermcondCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseATermcondCond(ATermcondCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANotNotCondNotCond(ANotNotCondNotCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANotTermcondNotCond(ANotTermcondNotCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACondInParsTermcond(ACondInParsTermcond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAExprNumopExprTermcond(AExprNumopExprTermcond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACondInPars(ACondInPars node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANumopExpr(ANumopExpr node)
     {
         defaultCase(node);
     }
@@ -455,76 +465,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseAGreateq2Numop(AGreateq2Numop node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseANotNotCondNotCond(ANotNotCondNotCond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseANotTermcondNotCond(ANotTermcondNotCond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseANotCondCond(ANotCondCond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseACondAndTermcondCond(ACondAndTermcondCond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseACondOrTermcondCond(ACondOrTermcondCond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseATermcondCond(ATermcondCond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseACondInParsTermcond(ACondInParsTermcond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAExprNumopExprTermcond(AExprNumopExprTermcond node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseANumopExpr(ANumopExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseACondInPars(ACondInPars node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTIntConst(TIntConst node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTCharConst(TCharConst node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTSCharSequence(TSCharSequence node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTStringLiteral(TStringLiteral node)
     {
         defaultCase(node);
     }
@@ -619,6 +559,26 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseTIntConst(TIntConst node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTCharConst(TCharConst node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTSCharSequence(TSCharSequence node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTStringLiteral(TStringLiteral node)
+    {
+        defaultCase(node);
+    }
+
     public void caseTPlus(TPlus node)
     {
         defaultCase(node);
@@ -629,12 +589,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseTDivision(TDivision node)
+    public void caseTMult(TMult node)
     {
         defaultCase(node);
     }
 
-    public void caseTMult(TMult node)
+    public void caseTDivision(TDivision node)
     {
         defaultCase(node);
     }
@@ -645,11 +605,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTEqual(TEqual node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTUnequal(TUnequal node)
     {
         defaultCase(node);
     }
@@ -674,22 +629,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseTComma(TComma node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTColon(TColon node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTSemicolon(TSemicolon node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseTAssignment(TAssignment node)
+    public void caseTUnequal(TUnequal node)
     {
         defaultCase(node);
     }
@@ -720,6 +660,26 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTRBrace(TRBrace node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTComma(TComma node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTSemicolon(TSemicolon node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTColon(TColon node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTAssignment(TAssignment node)
     {
         defaultCase(node);
     }
