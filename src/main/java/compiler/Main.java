@@ -7,16 +7,22 @@ import compiler.node.*;
 import compiler.parser.Parser;
 import compiler.parser.ParserException;
 
-import java.io.IOException;
-import java.io.PushbackReader;
-import java.io.InputStreamReader;
+import java.io.*;
 
 class Main {
 
 	public static void main(String args[]) {
+		String filename = args[0];
+
 		Start tree = null;
 
-		PushbackReader reader = new PushbackReader(new InputStreamReader(System.in), 1024);
+		PushbackReader reader = null;
+		try {
+			reader = new PushbackReader(new FileReader(filename), 1024);
+		} catch (FileNotFoundException e) {
+			System.err.printf("File Not Found error: %s\n", e.getMessage());
+			e.printStackTrace();
+		}
 		try {
 			Parser p = new Parser(new Lexer(reader));
 			tree = p.parse();
@@ -34,6 +40,7 @@ class Main {
 			tree.apply(new PTPrintingVisitor());
 		} catch (NullPointerException e) {
 			System.err.printf("Null pointer Exception: %s\n", e.getMessage());
+			e.printStackTrace();
 		}
 
 		System.exit(0);

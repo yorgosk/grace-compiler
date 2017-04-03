@@ -18,3 +18,4 @@ buildNumber.properties
 .idea/inspectionProfiles/
 .idea/workspace.xml
 src/test/
+/examples/
