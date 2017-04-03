@@ -4,7 +4,7 @@ import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
 public class PTPrintingVisitor extends DepthFirstAdapter {
-    //------------------------------------------------------------
+    // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
     public void inAProgram(AProgram node) {
         System.out.printf("\nentering a program...\n[\n");
@@ -13,7 +13,8 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void outAProgram(AProgram node) {
         System.out.printf("]\nexiting a program...\n");
     }
-    //------------------------------------------------------------
+
+    // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
     public void inAFuncDef(AFuncDef node) {
         System.out.printf("{\n");
@@ -22,200 +23,256 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void outAFuncDef(AFuncDef node) {
         System.out.printf("}\n");
     }
-    //------------------------------------------------------------
+
+    // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
     public void inAHeader(AHeader node) {
         System.out.printf("\"type\":\"function\",\n\"name\":\"%s\",\n\"returnType\":\"%s\"\n",
                 node.getId().toString(), node.getRetType().toString());
     }
-
+    @Override
+    public void outAHeader(AHeader node) {
+        System.out.printf("\n]\n");
+    }
     @Override
     public void inAHeaderParams(AHeaderParams node) {
-        System.out.printf("\"params\":");
+        System.out.printf("\"params\":[\n");
     }
+//    @Override
+//    public void inAHeaderNextArg(AHeaderNextArg node) {
+//        System.out.printf("inAHeaderNextArg\n");
+//    }
 
-    @Override
-    public void inAHeaderNextArg(AHeaderNextArg node) {
-        System.out.printf("inAHeaderNextArg\n");
-    }
-    //------------------------------------------------------------
+    // IN A FUNCTION PARAMETERS DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
     public void inAFparDef(AFparDef node) {
-        System.out.printf("inAFparDef with id: %s\n",
-                node.getId().toString());
+        System.out.printf("[\"%s\",", node.getId().toString());
     }
-
     @Override
     public void inAFparDefNextId(AFparDefNextId node) {
-        System.out.printf("inAFparDefNextId with id: %s\n",
-                node.getId().toString());
+        System.out.printf(",\"%s\"", node.getId().toString());
     }
-    //------------------------------------------------------------
+
+    // IN A DATA TYPE------------------------------------------------------------
     @Override
     public void inAIntDataType(AIntDataType node) {
-        System.out.printf("inAIntDataType\n");
+        System.out.printf("\"int\"");
     }
-
     @Override
     public void inACharDataType(ACharDataType node) {
-        System.out.printf("inACharDataType\n");
+        System.out.printf("\"char\"");
     }
-    //------------------------------------------------------------
+
+    // IN AND OUT A TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
     public void inAType(AType node) {
-        System.out.printf("inAType\n");
+        System.out.printf("\"type\":(");
     }
-
+    @Override
+    public void outAType(AType node) {
+        System.out.printf(")\n");
+    }
     @Override
     public void inADimension(ADimension node) {
-        System.out.printf("inADimension with int-const: %s\n",
-                node.getIntConst().toString());
+        System.out.printf("[%s]", node.getIntConst().toString());
     }
-    //------------------------------------------------------------
+
+    // IN AND OUT A RETURN TYPE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inADataTypeRetType(ADataTypeRetType node) {
-        System.out.printf("inADataTypeRetType\n");
+        System.out.printf("\"retType\":(");
     }
-
+    @Override
+    public void outADataTypeRetType(ADataTypeRetType node) {
+        System.out.printf(")\n");
+    }
     @Override
     public void inANothingRetType(ANothingRetType node) {
-        System.out.printf("inANothingRetType\n");
+        System.out.printf("\"retType\":\"nothing\"");
     }
-    //------------------------------------------------------------
+    @Override
+    public void outANothingRetType(ANothingRetType node) {
+        System.out.printf("\n");
+    }
+
+    // IN AND OUT A FUNCTION PARAMETER TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
     public void inAFparType(AFparType node) {
-        System.out.printf("inAFparType\n");
+        System.out.printf("\"fparType\":(");
     }
-
+    @Override
+    public void outAFparType(AFparType node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inALRBrackets(ALRBrackets node) {
-        System.out.printf("inALRBrackets\n");
+        System.out.printf("[]");
     }
-
     @Override
     public void inANextDimension(ANextDimension node) {
-        System.out.printf("inANextDimension with int-const: %s\n",
-                node.getIntConst().toString());
+        System.out.printf("[%s]", node.getIntConst().toString());
     }
-    //------------------------------------------------------------
+
+    // IN AND OUT A LOCAL DEFINITION------------------------------------------------------------
     @Override
     public void inAFuncDefLocalDef(AFuncDefLocalDef node) {
-        System.out.printf("inAFuncDefLocalDef\n");
+        System.out.printf("\"funcDefLocalDef\":");
     }
-
+    @Override
+    public void outAFuncDefLocalDef(AFuncDefLocalDef node) {
+        System.out.printf("\n");
+    }
     @Override
     public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) {
-        System.out.printf("inAFuncDeclLocalDef\n");
+        System.out.printf("\"funcDeclLocalDef\":");
     }
-
+    @Override
+    public void outAFuncDeclLocalDef(AFuncDeclLocalDef node) {
+        System.out.printf("\n");
+    }
     @Override
     public void inAVarDefLocalDef(AVarDefLocalDef node) {
         System.out.printf("inAVarDefLocalDef\n");
     }
-    //------------------------------------------------------------
+    @Override
+    public void outAVarDefLocalDef(AVarDefLocalDef node) {
+        System.out.printf("\n");
+    }
+
+    // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
     public void inAVarDef(AVarDef node) {
-        System.out.printf("inAVarDef with id: %s\n",
-                node.getId().toString());
+        System.out.printf("\"var\":[\n\"%s\"", node.getId().toString());
     }
-
+    @Override
+    public void outAVarDef(AVarDef node) {
+        System.out.printf("\n] with ");
+    }
     @Override
     public void inAVarDefNextId(AVarDefNextId node) {
-        System.out.printf("inAVarDefNextId with id: %s\n",
-                node.getId().toString());
+        System.out.printf(",\"%s\"", node.getId().toString());
     }
-    //------------------------------------------------------------
+
+    // IN AND OUT A FUNCTION DECLARATION------------------------------------------------------------
     @Override
     public void inAFuncDecl(AFuncDecl node) {
-        System.out.printf("inAFuncDecl\n");
+        System.out.printf("\"funcDecl\":(");
     }
-    //------------------------------------------------------------
+    @Override
+    public void outAFuncDecl(AFuncDecl node) {
+        System.out.printf("),\n");
+    }
+
+    // IN A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inATerminalStmt(ATerminalStmt node) {
-        System.out.printf("inATerminalStatementStmt\n");
+        System.out.printf("\"terminalStmt\":(");
     }
-
+    @Override
+    public void outATerminalStmt(ATerminalStmt node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAIfStmt(AIfStmt node) {
-        System.out.printf("inAIfStatementStmt\n");
+        System.out.printf("\"ifStmt\":(");
     }
-
+    @Override
+    public void outAIfStmt(AIfStmt node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAIfIfStmt(AIfIfStmt node) {
-        System.out.printf("inAIfIfStmt\n");
+        System.out.printf("\"ifIfStmt\":(");
     }
-
+    @Override
+    public void outAIfIfStmt(AIfIfStmt node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAIfElseIfStmt(AIfElseIfStmt node) {
-        System.out.printf("inAIfElseIfStmt\n");
+        System.out.printf("\"ifElseIfStmt\":(");
     }
-
+    @Override
+    public void outAIfElseIfStmt(AIfElseIfStmt node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAElseWithElse(AElseWithElse node) {
-        System.out.printf("inAElseWithElse\n");
+        System.out.printf("\"elseWithElse\"");
     }
-
     @Override
     public void inANestedIfElseWithElse(ANestedIfElseWithElse node) {
-        System.out.printf("inANestedIfElseWithElse\n");
+        System.out.printf("\"nestedIfElseWithElse\"");
     }
-
     @Override
     public void inATerminalStatementWithElse(ATerminalStatementWithElse node) {
-        System.out.printf("inATerminalStatementWithElse\n");
+        System.out.printf("\"terminalStatementWithElse\"");
     }
-
     @Override
     public void inAWhileStmt(AWhileStmt node) {
-        System.out.printf("inAWhileStmt\n");
+        System.out.printf("\"whileStmt\"");
     }
-
     @Override
     public void inASemicolonTermStmt(ASemicolonTermStmt node) {
-        System.out.printf("inASemicolonTermStmt\n");
+        System.out.printf("\";\"");
     }
-
     @Override
     public void inAAssignmentTermStmt(AAssignmentTermStmt node) {
-        System.out.printf("inAAssignmentTermStmt with l_value: %s\n",
-                node.getLValue().toString());
+        System.out.printf("\"%s\"<-", node.getLValue().toString());
     }
-
     @Override
     public void inABlockTermStmt(ABlockTermStmt node) {
-        System.out.printf("inABlockTermStmt\n");
+        System.out.printf("\"blockTermStmt\":(");
     }
-
+    @Override
+    public void outABlockTermStmt(ABlockTermStmt node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAFunctionTermStmt(AFunctionTermStmt node) {
-        System.out.printf("inAFunctionTermStmt\n");
+        System.out.printf("\"functionTermStmt\":(");
     }
-
+    @Override
+    public void outAFunctionTermStmt(AFunctionTermStmt node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAReturnExprTermStmt(AReturnExprTermStmt node) {
-        System.out.printf("inAReturnExprTermStmt");
+        System.out.printf("\"returnExprTermStmt\":(");
     }
-    //------------------------------------------------------------
+    @Override
+    public void outAReturnExprTermStmt(AReturnExprTermStmt node) {
+        System.out.printf("),\n");
+    }
+
+    // IN AND OUT A CODE BLOCK------------------------------------------------------------
     @Override
     public void inABlock(ABlock node) {
-        System.out.printf("inABlock\n");
+        System.out.printf("\"body\":[\n");
     }
-    //------------------------------------------------------------
+    @Override
+    public void outABlock(ABlock node) {
+        System.out.printf("],\n");
+    }
+
+    // IN A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inAFuncCall(AFuncCall node) {
-        System.out.printf("inAFuncCall with id: %s\n",
-                node.getId().toString());
+        System.out.printf("\"funcId\":\"%s\"", node.getId().toString());
     }
-
     @Override
     public void inAFuncArgs(AFuncArgs node) {
-        System.out.printf("inAFuncArgs\n");
+        System.out.printf("\"funcArgs\":[\n");
     }
-
+    @Override
+    public void outAFuncArgs(AFuncArgs node) {
+        System.out.printf("\n],\n");
+    }
     @Override
     public void inAFuncCallNextArg(AFuncCallNextArg node) {
-        System.out.printf("AFuncCallNextArg\n");
+        System.out.printf(",");
     }
+
     //------------------------------------------------------------
     @Override
     public void inAIdLValue(AIdLValue node) {
