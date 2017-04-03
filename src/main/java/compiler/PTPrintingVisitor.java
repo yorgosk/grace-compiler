@@ -273,54 +273,64 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf(",");
     }
 
-    //------------------------------------------------------------
+    // IN A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inAIdLValue(AIdLValue node) {
-        System.out.printf("inAIdLValue with id: %s\n",
-                node.getId().toString());
+        System.out.printf("\"%s\"", node.getId().toString());
     }
-
     @Override
     public void inAStringLValue(AStringLValue node) {
-        System.out.printf("inAStringLValue with string: %s\n",
-                node.getStringLiteral().toString());
+        System.out.printf("\"%s\"", node.getStringLiteral().toString());
     }
-
     @Override
     public void inAExpressionLValue(AExpressionLValue node) {
-        System.out.printf("inAExpressionLValue\n");
+        System.out.printf("\"expressionLValue\":(");
     }
-    //------------------------------------------------------------
+    @Override
+    public void outAExpressionLValue(AExpressionLValue node) {
+        System.out.printf("),\n");
+    }
+
+    // IN AN EXPRESSION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
     public void inASignedExpr(ASignedExpr node) {
-        System.out.printf("inASignedExpr\n");
+        System.out.printf("\"signedExpr\":(");
     }
-
+    @Override
+    public void outASignedExpr(ASignedExpr node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAExprPlusTermExpr(AExprPlusTermExpr node) {
-        System.out.printf("inAExprPlusTermExpr\n");
+        System.out.printf("\"exprPlusTermExpr\":(");
     }
-
+    @Override
+    public void outAExprPlusTermExpr(AExprPlusTermExpr node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAExprMinusTermExpr(AExprMinusTermExpr node) {
-        System.out.printf("inAExprMinusTermExpr\n");
+        System.out.printf("\"exprMinusTermExpr\":(");
     }
-
+    @Override
+    public void outAExprMinusTermExpr(AExprMinusTermExpr node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inATermExpr(ATermExpr node) {
-        System.out.printf("inATermExpr\n");
+        System.out.printf("\"termExpr\":(");
     }
-
     @Override
-    public void inASignIntConstSignedExpr(ASignIntConstSignedExpr node) {
-        System.out.printf("inASignIntConstSignedExpr with int-const: %s\n",
-                node.getIntConst().toString());
+    public void outATermExpr(ATermExpr node) {
+        System.out.printf("),\n");
     }
-
+    @Override
+    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) {
+        System.out.printf("\"%s\"\n", node.getIntConst().toString());
+    }
     @Override
     public void inASignCharConstSignedExpr(ASignCharConstSignedExpr node) {
-        System.out.printf("inASignCharConstSignedExpr with char-const: %s\n",
-                node.getCharConst().toString());
+        System.out.printf("\"%s\"\n", node.getCharConst().toString());
     }
 
     @Override
@@ -341,14 +351,11 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
 
     @Override
     public void inAPlusSignSign(APlusSignSign node) {
-        System.out.printf("inAPlusSignSign: %s\n",
-                node.getPlus().toString());
+        System.out.printf("\"+\"+");
     }
-
     @Override
     public void inAMinusSignSign(AMinusSignSign node) {
-        System.out.printf("inAMinusSignSign: %s\n",
-                node.getMinus().toString());
+        System.out.printf("\"-\"+");
     }
 
     @Override
@@ -401,7 +408,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("inAExprInPars\n");
     }
 
-    //IN A CONDITION AND ASSISTANT STATEMENTS------------------------------------------------------------
+    // IN A CONDITION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
     public void inANotCond(ANotCond node) {
         System.out.printf("\"notCond\":(");
