@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/Main.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,18 +31,18 @@
       <file leaf-file-name="parser.grammar" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
+            <state relative-caret-position="46">
               <caret line="92" column="8" lean-forward="false" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+            <state relative-caret-position="440">
+              <caret line="32" column="57" lean-forward="false" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,28 +50,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PTPrintingVisitor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PTPrintingVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="247">
+              <caret line="282" column="59" lean-forward="false" selection-start-line="282" selection-start-column="59" selection-end-line="282" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DepthFirstAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding>
-                <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-                <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-                <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-                <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -92,6 +79,7 @@
       <find>boolop</find>
       <find>fun_pars</find>
       <find>REtType</find>
+      <find>lValueFactor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -106,8 +94,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/target/parser.grammar" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/Main.java" />
         <option value="$PROJECT_DIR$/src/main/sablecc/parser.grammar" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java" />
       </list>
     </option>
@@ -837,7 +825,8 @@
       <workItem from="1491220313127" duration="1000" />
       <workItem from="1491220319208" duration="2775000" />
       <workItem from="1491223115050" duration="25000" />
-      <workItem from="1491223186798" duration="3000" />
+      <workItem from="1491223186798" duration="57000" />
+      <workItem from="1491241437688" duration="5347000" />
     </task>
     <task id="LOCAL-00001" summary="fixing ignored files">
       <created>1491132544888</created>
@@ -944,11 +933,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491223126058</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="trying to format parse-tree printing (continued)">
+      <created>1491223196845</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1491223196845</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31747000" />
+    <option name="totallyTimeSpent" value="37148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="24" width="1305" height="744" extended-state="6" />
@@ -957,13 +953,14 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32198143" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35913312" sideWeight="0.50913423" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16600476" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37461302" sideWeight="0.49086577" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37461302" sideWeight="0.49086577" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -980,7 +977,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32198143" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1005,7 +1001,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1014,6 +1010,47 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="92" column="8" lean-forward="false" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1380">
@@ -1047,10 +1084,10 @@
         <state relative-caret-position="105">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1088,10 +1125,10 @@
         <state relative-caret-position="105">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1129,10 +1166,10 @@
         <state relative-caret-position="90">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1170,10 +1207,10 @@
         <state relative-caret-position="90">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1211,10 +1248,10 @@
         <state relative-caret-position="90">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1252,10 +1289,10 @@
         <state relative-caret-position="105">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1293,10 +1330,10 @@
         <state relative-caret-position="90">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1415,41 +1452,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <marker date="1491222301813" expanded="true" signature="25329:25348" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="25748:25765" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="36910:36927" ph="{...}" />
-            <marker date="1491222301813" expanded="true" signature="44921:44939" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
+        <state relative-caret-position="46">
           <caret line="92" column="8" lean-forward="false" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        <state relative-caret-position="90">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1491245160280" expanded="true" signature="25329:25348" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="25748:25765" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="36910:36927" ph="{...}" />
+            <marker date="1491245160280" expanded="true" signature="44921:44939" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="247">
+          <caret line="282" column="59" lean-forward="false" selection-start-line="282" selection-start-column="59" selection-end-line="282" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="32" column="57" lean-forward="false" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

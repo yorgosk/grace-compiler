@@ -10,311 +10,193 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
-    public void inAProgram(AProgram node) {
-        System.out.printf("\nentering a program[");
-    }
+    public void inAProgram(AProgram node) { makeIndent(); System.out.printf("entering a program[\n"); indent++; }
     @Override
-    public void outAProgram(AProgram node) {
-        System.out.printf("]exiting a program...\n");
-    }
+    public void outAProgram(AProgram node) { indent--; makeIndent(); System.out.printf("]exiting a program...\n"); }
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
-    public void inAFuncDef(AFuncDef node) {
-        System.out.printf("\nentering a function{");
-    }
+    public void inAFuncDef(AFuncDef node) { makeIndent(); System.out.printf("entering a function{\n"); indent++; }
     @Override
-    public void outAFuncDef(AFuncDef node) {
-        System.out.printf("}exiting a function,\n");
-    }
+    public void outAFuncDef(AFuncDef node) { indent--; makeIndent(); System.out.printf("}exiting a function\n"); }
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
-    public void inAHeader(AHeader node) {
-        System.out.printf("\n\"type\":\"function\",\n\"name\":\"%s\",", node.getId().toString());
-    }
+    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header of \"%s\"(\n", node.getId().toString()); indent++; }
     @Override
-    public void outAHeader(AHeader node) {
-        System.out.printf("\n],");
-    }
+    public void outAHeader(AHeader node) { indent--; makeIndent(); System.out.printf(")end of header\n"); }
     @Override
-    public void inAHeaderParams(AHeaderParams node) {
-        System.out.printf("\n\"params\":[");
-    }
+    public void inAHeaderParams(AHeaderParams node) { makeIndent(); System.out.printf("function parameters[\n"); indent++; }
     @Override
-    public void outAHeaderParams(AHeaderParams node) {
-        System.out.printf("],\n");
-    }
+    public void outAHeaderParams(AHeaderParams node) { indent--; makeIndent(); System.out.printf("]end of parameters\n"); }
 
     // IN A FUNCTION PARAMETERS DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAFparDef(AFparDef node) {
-        System.out.printf("[\"%s\",", node.getId().toString());
-    }
+    public void inAFparDef(AFparDef node) { System.out.printf("\"%s\"", node.getId().toString()); }
     @Override
-    public void inAFparDefNextId(AFparDefNextId node) {
-        System.out.printf(",\"%s\"", node.getId().toString());
-    }
+    public void inAFparDefNextId(AFparDefNextId node) { System.out.printf(",\"%s\"", node.getId().toString()); }
 
     // IN A DATA TYPE------------------------------------------------------------
     @Override
-    public void inAIntDataType(AIntDataType node) {
-        System.out.printf("\"int\"");
-    }
+    public void inAIntDataType(AIntDataType node) { System.out.printf("\"int\"");  }
     @Override
-    public void inACharDataType(ACharDataType node) {
-        System.out.printf("\"char\"");
-    }
+    public void inACharDataType(ACharDataType node) { System.out.printf("\"char\""); }
 
     // IN AND OUT A TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAType(AType node) {
-        System.out.printf("\"type\":(");
-    }
+    public void inAType(AType node) { makeIndent(); System.out.printf("type(\n"); indent++; }
     @Override
-    public void outAType(AType node) {
-        System.out.printf(")\n");
-    }
+    public void outAType(AType node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inADimension(ADimension node) {
-        System.out.printf("[%s]", node.getIntConst().toString());
-    }
+    public void inADimension(ADimension node) { System.out.printf("[%s]", node.getIntConst().toString()); }
 
     // IN AND OUT A RETURN TYPE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inADataTypeRetType(ADataTypeRetType node) {
-        System.out.printf("\"retType\":(");
-    }
+    public void inADataTypeRetType(ADataTypeRetType node) { makeIndent(); System.out.printf("returnedType(\n"); indent++; }
     @Override
-    public void outADataTypeRetType(ADataTypeRetType node) {
-        System.out.printf(")\n");
-    }
+    public void outADataTypeRetType(ADataTypeRetType node) {  indent--; makeIndent(); System.out.printf(")\n");}
     @Override
-    public void inANothingRetType(ANothingRetType node) {
-        System.out.printf("\"retType\":\"nothing\"");
-    }
+    public void inANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf("returnedType(\"nothing\""); }
     @Override
-    public void outANothingRetType(ANothingRetType node) {
-        System.out.printf("\n");
-    }
+    public void outANothingRetType(ANothingRetType node) { System.out.printf(")\n"); }
 
     // IN AND OUT A FUNCTION PARAMETER TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAFparType(AFparType node) {
-        System.out.printf("\"fparType\":(");
-    }
+    public void inAFparType(AFparType node) { makeIndent(); System.out.printf("functionParameterType(\n"); indent++; }
     @Override
-    public void outAFparType(AFparType node) {
-        System.out.printf("),\n");
-    }
+    public void outAFparType(AFparType node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inALRBrackets(ALRBrackets node) {
-        System.out.printf("[]");
-    }
+    public void inALRBrackets(ALRBrackets node) { System.out.printf("[]"); }
     @Override
-    public void inANextDimension(ANextDimension node) {
-        System.out.printf("[%s]", node.getIntConst().toString());
-    }
+    public void inANextDimension(ANextDimension node) { System.out.printf("[%s]", node.getIntConst().toString()); }
 
     // IN AND OUT A LOCAL DEFINITION------------------------------------------------------------
     @Override
-    public void inAFuncDefLocalDef(AFuncDefLocalDef node) {
-        System.out.printf("\"funcDefLocalDef\":");
-    }
+    public void inAFuncDefLocalDef(AFuncDefLocalDef node) { makeIndent(); System.out.printf("functionDefinitionLocalDefinition(\n"); indent++; }
     @Override
-    public void outAFuncDefLocalDef(AFuncDefLocalDef node) {
-        System.out.printf("\n");
-    }
+    public void outAFuncDefLocalDef(AFuncDefLocalDef node) { indent--; makeIndent(); System.out.printf(")out of functionDefinitionLocalDefinition\n"); }
     @Override
-    public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) {
-        System.out.printf("\"funcDeclLocalDef\":");
-    }
+    public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) { makeIndent(); System.out.printf("functionDeclarationLocalDefinition(\n"); indent++; }
     @Override
-    public void outAFuncDeclLocalDef(AFuncDeclLocalDef node) {
-        System.out.printf("\n");
-    }
+    public void outAFuncDeclLocalDef(AFuncDeclLocalDef node) { indent--; makeIndent(); System.out.printf(")out of functionDeclarationLocalDefinition\n"); }
     @Override
-    public void inAVarDefLocalDef(AVarDefLocalDef node) {
-        System.out.printf("inAVarDefLocalDef\n");
-    }
+    public void inAVarDefLocalDef(AVarDefLocalDef node) { makeIndent(); System.out.printf("variableDefinitionLocalDefinition(\n"); indent++; }
     @Override
-    public void outAVarDefLocalDef(AVarDefLocalDef node) {
-        System.out.printf("\n");
-    }
+    public void outAVarDefLocalDef(AVarDefLocalDef node) { indent--; makeIndent(); System.out.printf(")out of variableDefinitionLocalDefinition\n"); }
 
     // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAVarDef(AVarDef node) {
-        System.out.printf("\"var\":[\n\"%s\"", node.getId().toString());
-    }
+    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("variable[\"%s\"", node.getId().toString()); indent++;}
     @Override
-    public void outAVarDef(AVarDef node) {
-        System.out.printf("\n] with ");
-    }
+    public void outAVarDef(AVarDef node) { indent--; makeIndent(); System.out.printf("]"); }
     @Override
-    public void inAVarDefNextId(AVarDefNextId node) {
-        System.out.printf(",\"%s\"", node.getId().toString());
-    }
+    public void inAVarDefNextId(AVarDefNextId node) { System.out.printf(",\"%s\"", node.getId().toString()); }
 
     // IN AND OUT A FUNCTION DECLARATION------------------------------------------------------------
     @Override
-    public void inAFuncDecl(AFuncDecl node) {
-        System.out.printf("\"funcDecl\":(");
-    }
+    public void inAFuncDecl(AFuncDecl node) { makeIndent(); System.out.printf("functionDeclaration(\n"); indent++; }
     @Override
-    public void outAFuncDecl(AFuncDecl node) {
-        System.out.printf("),\n");
-    }
+    public void outAFuncDecl(AFuncDecl node) { indent--; makeIndent(); System.out.printf(")out of functionDeclaration\n"); }
 
     // IN A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inATerminalStmt(ATerminalStmt node) {
-        System.out.printf("\"terminalStmt\":(");
-    }
+    public void inATerminalStmt(ATerminalStmt node) { makeIndent(); System.out.printf("terminalStatement(\n"); indent++; }
     @Override
-    public void outATerminalStmt(ATerminalStmt node) {
-        System.out.printf("),\n");
-    }
+    public void outATerminalStmt(ATerminalStmt node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAIfStmt(AIfStmt node) {
-        System.out.printf("\"ifStmt\":(");
-    }
+    public void inAIfStmt(AIfStmt node) { makeIndent(); System.out.printf("ifStatement(\n"); indent++;}
     @Override
-    public void outAIfStmt(AIfStmt node) {
-        System.out.printf("),\n");
-    }
+    public void outAIfStmt(AIfStmt node) { indent--; makeIndent(); System.out.printf(")out of ifStatement\n"); }
     @Override
-    public void inAIfIfStmt(AIfIfStmt node) {
-        System.out.printf("\"ifIfStmt\":(");
-    }
+    public void inAIfIfStmt(AIfIfStmt node) { makeIndent(); System.out.printf("ifIfStatement(\n"); indent++; }
     @Override
-    public void outAIfIfStmt(AIfIfStmt node) {
-        System.out.printf("),\n");
-    }
+    public void outAIfIfStmt(AIfIfStmt node) { indent--; makeIndent(); System.out.printf(")out of ifIfStatement\n"); }
     @Override
-    public void inAIfElseIfStmt(AIfElseIfStmt node) {
-        System.out.printf("\"ifElseIfStmt\":(");
-    }
+    public void inAIfElseIfStmt(AIfElseIfStmt node) { makeIndent(); System.out.printf("ifElseIfStatement(\n"); indent++; }
     @Override
-    public void outAIfElseIfStmt(AIfElseIfStmt node) {
-        System.out.printf("),\n");
-    }
+    public void outAIfElseIfStmt(AIfElseIfStmt node) { indent--; makeIndent(); System.out.printf(")out of ifElseIfStatement\n"); }
     @Override
-    public void inAElseWithElse(AElseWithElse node) {
-        System.out.printf("\"elseWithElse\"");
-    }
+    public void inAElseWithElse(AElseWithElse node) { makeIndent(); System.out.printf("elseWithElse(\n"); indent++; }
     @Override
-    public void inANestedIfElseWithElse(ANestedIfElseWithElse node) {
-        System.out.printf("\"nestedIfElseWithElse\"");
-    }
+    public void outAElseWithElse(AElseWithElse node) { indent--; makeIndent(); System.out.printf(")out of elseWithElse\n"); }
     @Override
-    public void inATerminalStatementWithElse(ATerminalStatementWithElse node) {
-        System.out.printf("\"terminalStatementWithElse\"");
-    }
+    public void inANestedIfElseWithElse(ANestedIfElseWithElse node) { makeIndent(); System.out.printf("nestedIfElseWithElse(\n"); indent++; }
     @Override
-    public void inAWhileStmt(AWhileStmt node) {
-        System.out.printf("\"whileStmt\"");
-    }
+    public void outANestedIfElseWithElse(ANestedIfElseWithElse node) { indent--; makeIndent(); System.out.printf(")out of nestedIfElseWithElse\n"); }
     @Override
-    public void inASemicolonTermStmt(ASemicolonTermStmt node) {
-        System.out.printf("\";\"");
-    }
+    public void inATerminalStatementWithElse(ATerminalStatementWithElse node) { makeIndent(); System.out.printf("terminalStatementWithElse(\n"); indent++; }
     @Override
-    public void inAAssignmentTermStmt(AAssignmentTermStmt node) {
-        System.out.printf("\"%s\"<-", node.getLValue().toString());
-    }
+    public void outATerminalStatementWithElse(ATerminalStatementWithElse node) { indent--; makeIndent(); System.out.printf(")out of terminalStatementWithElse\n"); }
     @Override
-    public void inABlockTermStmt(ABlockTermStmt node) {
-        System.out.printf("\"blockTermStmt\":(");
-    }
+    public void inAWhileStmt(AWhileStmt node) { makeIndent(); System.out.printf("whileStatement(\n"); indent++; }
     @Override
-    public void outABlockTermStmt(ABlockTermStmt node) {
-        System.out.printf("),\n");
-    }
+    public void outAWhileStmt(AWhileStmt node) { indent--; makeIndent(); System.out.printf(")out of whileStatement\n"); }
     @Override
-    public void inAFunctionTermStmt(AFunctionTermStmt node) {
-        System.out.printf("\"functionTermStmt\":(");
-    }
+    public void inASemicolonTermStmt(ASemicolonTermStmt node) { System.out.printf("\";\""); }
     @Override
-    public void outAFunctionTermStmt(AFunctionTermStmt node) {
-        System.out.printf("),\n");
-    }
+    public void inAAssignmentTermStmt(AAssignmentTermStmt node) { System.out.printf("\"%s\"<-", node.getLValue().toString()); }
     @Override
-    public void inAReturnExprTermStmt(AReturnExprTermStmt node) {
-        System.out.printf("\"returnExprTermStmt\":(");
-    }
+    public void inABlockTermStmt(ABlockTermStmt node) { makeIndent(); System.out.printf("blockTerminalStatement(\n"); indent++; }
     @Override
-    public void outAReturnExprTermStmt(AReturnExprTermStmt node) {
-        System.out.printf("),\n");
-    }
+    public void outABlockTermStmt(ABlockTermStmt node) { indent--; makeIndent(); System.out.printf(")out of blockTerminalStatement\n"); }
+    @Override
+    public void inAFunctionTermStmt(AFunctionTermStmt node) { makeIndent(); System.out.printf("functionTerminalStatement(\n"); indent++; }
+    @Override
+    public void outAFunctionTermStmt(AFunctionTermStmt node) { indent--;makeIndent(); System.out.printf(")out of functionTerminalStatement\n"); }
+    @Override
+    public void inAReturnExprTermStmt(AReturnExprTermStmt node) { makeIndent(); System.out.printf("returnExpressionTerminalStatement(\n"); indent++; }
+    @Override
+    public void outAReturnExprTermStmt(AReturnExprTermStmt node) { indent--; makeIndent(); System.out.printf(")out of returnExpressionTerminalStatement\n"); }
 
     // IN AND OUT A CODE BLOCK------------------------------------------------------------
     @Override
-    public void inABlock(ABlock node) {
-        System.out.printf("\"body\":[\n");
-    }
+    public void inABlock(ABlock node) { makeIndent(); System.out.printf("code block body[\n"); indent++;}
     @Override
-    public void outABlock(ABlock node) {
-        System.out.printf("],\n");
-    }
+    public void outABlock(ABlock node) { indent--; makeIndent(); System.out.printf("]end of code block body\n"); }
 
     // IN A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inAFuncCall(AFuncCall node) {
-        System.out.printf("\"funcId\":\"%s\"", node.getId().toString());
-    }
+    public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("calling function \"%s\"(\n", node.getId().toString()); indent++; }
     @Override
-    public void inAFuncArgs(AFuncArgs node) {
-        System.out.printf("\"funcArgs\":[\n");
-    }
+    public void outAFuncCall(AFuncCall node) { indent--; makeIndent(); System.out.printf(")end of funtion call\n"); }
     @Override
-    public void outAFuncArgs(AFuncArgs node) {
-        System.out.printf("\n],\n");
-    }
+    public void inAFuncArgs(AFuncArgs node) { makeIndent(); System.out.printf("function arguments[\n"); indent++;}
     @Override
-    public void inAFuncCallNextArg(AFuncCallNextArg node) {
-        System.out.printf(",");
-    }
+    public void outAFuncArgs(AFuncArgs node) { indent--; makeIndent(); System.out.printf("]out of function arguments\n"); }
+    @Override
+    public void inAFuncCallNextArg(AFuncCallNextArg node) { System.out.printf(","); }
 
     // IN A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inAIdLValue(AIdLValue node) {
-        System.out.printf("\"%s\"", node.getId().toString());
-    }
+    public void inAIdLValue(AIdLValue node) { System.out.printf("\"%s\"", node.getId().toString()); }
     @Override
-    public void inAStringLValue(AStringLValue node) {
-        System.out.printf("\"%s\"", node.getStringLiteral().toString());
-    }
+    public void inAStringLValue(AStringLValue node) { System.out.printf("\"%s\"", node.getStringLiteral().toString()); }
     @Override
-    public void inAExpressionLValue(AExpressionLValue node) { System.out.printf("expressionLValue("); }
+    public void inAExpressionLValue(AExpressionLValue node) { System.out.printf("expressionLValue(\n"); }
     @Override
-    public void outAExpressionLValue(AExpressionLValue node) { System.out.printf("),\n"); }
+    public void outAExpressionLValue(AExpressionLValue node) { System.out.printf(")\n"); }
 
     // IN AN EXPRESSION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
-    public void inASignedExpr(ASignedExpr node) { System.out.printf("signedExpr("); }
+    public void inASignedExpr(ASignedExpr node) { makeIndent(); System.out.printf("signedExpr(\n"); indent++; }
     @Override
-    public void outASignedExpr(ASignedExpr node) { System.out.printf("),\n"); }
+    public void outASignedExpr(ASignedExpr node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAExprPlusTermExpr(AExprPlusTermExpr node) { System.out.printf("exprPlusTermExpr("); }
+    public void inAExprPlusTermExpr(AExprPlusTermExpr node) { makeIndent(); System.out.printf("exprPlusTermExpr(\n"); indent++; }
     @Override
-    public void outAExprPlusTermExpr(AExprPlusTermExpr node) { System.out.printf("),\n"); }
+    public void outAExprPlusTermExpr(AExprPlusTermExpr node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAExprMinusTermExpr(AExprMinusTermExpr node) { System.out.printf("exprMinusTermExpr("); }
+    public void inAExprMinusTermExpr(AExprMinusTermExpr node) { makeIndent(); System.out.printf("exprMinusTermExpr(\n"); indent++; }
     @Override
-    public void outAExprMinusTermExpr(AExprMinusTermExpr node) { System.out.printf("),\n"); }
+    public void outAExprMinusTermExpr(AExprMinusTermExpr node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inATermExpr(ATermExpr node) { System.out.printf("termExpr("); }
+    public void inATermExpr(ATermExpr node) { makeIndent(); System.out.printf("termExpr(\n"); indent++; }
     @Override
-    public void outATermExpr(ATermExpr node) { System.out.printf("),\n"); }
+    public void outATermExpr(ATermExpr node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) {
-        System.out.printf("\"%s\"\n", node.getIntConst().toString());
-    }
+    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) { System.out.printf("\"%s\"", node.getIntConst().toString()); }
     @Override
-    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node) {
-        System.out.printf("\"%s\"\n", node.getCharConst().toString());
-    }
+    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node) { System.out.printf("\"%s\"", node.getCharConst().toString()); }
     @Override
     public void inASignLValueSignedExpr(ASignLValueSignedExpr node) { System.out.printf(""); }
     @Override
@@ -326,41 +208,37 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void inAMinusSignSign(AMinusSignSign node) { System.out.printf("\"-\","); }
     @Override
-    public void inATermMultFactorTerm(ATermMultFactorTerm node) { System.out.printf("termMultFactorTerm("); }
+    public void inATermMultFactorTerm(ATermMultFactorTerm node) { makeIndent(); System.out.printf("termMultFactorTerm(\n"); indent++; }
     @Override
-    public void outATermMultFactorTerm(ATermMultFactorTerm node) { System.out.printf("),\n"); }
+    public void outATermMultFactorTerm(ATermMultFactorTerm node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inATermDivFactorTerm(ATermDivFactorTerm node) { System.out.printf("termDivFactorTerm("); }
+    public void inATermDivFactorTerm(ATermDivFactorTerm node) { makeIndent(); System.out.printf("termDivFactorTerm(\n"); indent++; }
     @Override
-    public void outATermDivFactorTerm(ATermDivFactorTerm node) { System.out.printf("),\n"); }
+    public void outATermDivFactorTerm(ATermDivFactorTerm node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inATermModFactorTerm(ATermModFactorTerm node) { System.out.printf("termModFactorTerm("); }
+    public void inATermModFactorTerm(ATermModFactorTerm node) { makeIndent(); System.out.printf("termModFactorTerm(\n"); indent++; }
     @Override
-    public void outATermModFactorTerm(ATermModFactorTerm node) { System.out.printf("),\n"); }
+    public void outATermModFactorTerm(ATermModFactorTerm node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAFactorTerm(AFactorTerm node) { System.out.printf("factorTerm("); }
+    public void inAFactorTerm(AFactorTerm node) { makeIndent(); System.out.printf("factorTerm(\n");  indent++; }
     @Override
-    public void outAFactorTerm(AFactorTerm node) { System.out.printf("),\n"); }
+    public void outAFactorTerm(AFactorTerm node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAIntConstFactor(AIntConstFactor node) {
-        System.out.printf("\"%s\"", node.getIntConst().toString());
-    }
+    public void inAIntConstFactor(AIntConstFactor node) { System.out.printf("\"%s\"", node.getIntConst().toString()); }
     @Override
-    public void inACharConstFactor(ACharConstFactor node) {
-        System.out.printf("\"%s\"", node.getCharConst().toString());
-    }
+    public void inACharConstFactor(ACharConstFactor node) { System.out.printf("\"%s\"", node.getCharConst().toString()); }
     @Override
-    public void inALValueFactor(ALValueFactor node) { System.out.printf("lValueFactor("); }
+    public void inALValueFactor(ALValueFactor node) { makeIndent(); System.out.printf("lValueFactor("); }
     @Override
-    public void outALValueFactor(ALValueFactor node) { System.out.printf("),\n"); }
+    public void outALValueFactor(ALValueFactor node) { System.out.printf(")\n"); }
     @Override
-    public void inAFuncCallFactor(AFuncCallFactor node) { System.out.printf("funcCallFactor("); }
+    public void inAFuncCallFactor(AFuncCallFactor node) { makeIndent(); System.out.printf("funcCallFactor(\n"); indent++; }
     @Override
-    public void outAFuncCallFactor(AFuncCallFactor node) { System.out.printf("),\n"); }
+    public void outAFuncCallFactor(AFuncCallFactor node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAExprInParsFactor(AExprInParsFactor node) { System.out.printf("exprInParsFactor("); }
+    public void inAExprInParsFactor(AExprInParsFactor node) { makeIndent(); System.out.printf("exprInParsFactor(\n"); indent++; }
     @Override
-    public void outAExprInParsFactor(AExprInParsFactor node) { System.out.printf("),\n"); }
+    public void outAExprInParsFactor(AExprInParsFactor node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
     public void inAExprInPars(AExprInPars node) { System.out.printf("("); }
     @Override
@@ -368,41 +246,41 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
 
     // IN A CONDITION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
-    public void inANotCond(ANotCond node) { System.out.printf("notCond("); }
+    public void inANotCond(ANotCond node) { makeIndent(); System.out.printf("notCond(\n"); indent++; }
     @Override
-    public void outANotCond(ANotCond node) { System.out.printf("),\n"); }
+    public void outANotCond(ANotCond node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inACondAndTermcondCond(ACondAndTermcondCond node) { System.out.printf("termAndTermCond("); }
+    public void inACondAndTermcondCond(ACondAndTermcondCond node) { makeIndent(); System.out.printf("termAndTermCond(\n"); indent++; }
     @Override
-    public void outACondAndTermcondCond(ACondAndTermcondCond node) { System.out.printf("),\n"); }
+    public void outACondAndTermcondCond(ACondAndTermcondCond node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inACondOrTermcondCond(ACondOrTermcondCond node) { System.out.printf("condOrTermcondCond("); }
+    public void inACondOrTermcondCond(ACondOrTermcondCond node) { makeIndent(); System.out.printf("condOrTermcondCond(\n"); indent++; }
     @Override
-    public void outACondOrTermcondCond(ACondOrTermcondCond node) { System.out.printf("),\n"); }
+    public void outACondOrTermcondCond(ACondOrTermcondCond node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inATermcondCond(ATermcondCond node) { System.out.printf("termcondCond("); }
+    public void inATermcondCond(ATermcondCond node) { makeIndent(); System.out.printf("termcondCond(\n"); indent++; }
     @Override
-    public void outATermcondCond(ATermcondCond node) { System.out.printf("),\n"); }
+    public void outATermcondCond(ATermcondCond node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
     public void inANotNotCondNotCond(ANotNotCondNotCond node) { System.out.printf("\"not\","); }
     @Override
     public void inANotTermcondNotCond(ANotTermcondNotCond node) { System.out.printf("\"not\","); }
     @Override
-    public void inACondInParsTermcond(ACondInParsTermcond node) { System.out.printf("condInParsTermcond("); }
+    public void inACondInParsTermcond(ACondInParsTermcond node) { makeIndent(); System.out.printf("condInParsTermcond(\n"); indent++; }
     @Override
-    public void outACondInParsTermcond(ACondInParsTermcond node) { System.out.printf("),\n"); }
+    public void outACondInParsTermcond(ACondInParsTermcond node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAExprNumopExprTermcond(AExprNumopExprTermcond node) { System.out.printf("exprNumopExprTermcond("); }
+    public void inAExprNumopExprTermcond(AExprNumopExprTermcond node) { makeIndent(); System.out.printf("exprNumopExprTermcond(\n"); indent++; }
     @Override
-    public void outAExprNumopExprTermcond(AExprNumopExprTermcond node) { System.out.printf("),\n"); }
+    public void outAExprNumopExprTermcond(AExprNumopExprTermcond node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inACondInPars(ACondInPars node) { System.out.printf("condInPars("); }
+    public void inACondInPars(ACondInPars node) { makeIndent(); System.out.printf("condInPars(\n"); indent++; }
     @Override
-    public void outACondInPars(ACondInPars node) { System.out.printf("),\n"); }
+    public void outACondInPars(ACondInPars node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inANumopExpr(ANumopExpr node) { System.out.printf("numopExpr("); }
+    public void inANumopExpr(ANumopExpr node) { makeIndent(); System.out.printf("numopExpr(\n"); indent++; }
     @Override
-    public void outANumopExpr(ANumopExpr node) { System.out.printf("),\n"); }
+    public void outANumopExpr(ANumopExpr node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
     public void inAEqualNumop(AEqualNumop node) { System.out.printf("\"=\","); }
     @Override
