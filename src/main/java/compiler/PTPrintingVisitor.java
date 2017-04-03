@@ -32,15 +32,19 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
 
     // IN A FUNCTION PARAMETERS DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAFparDef(AFparDef node) { System.out.printf("\"%s\"", node.getId().toString()); }
+    public void inAFparDef(AFparDef node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString()); }
     @Override
-    public void inAFparDefNextId(AFparDefNextId node) { System.out.printf(",\"%s\"", node.getId().toString()); }
+    public void inAFparDefNextId(AFparDefNextId node) { makeIndent(); System.out.printf(",\"%s\"\n", node.getId().toString()); }
 
     // IN A DATA TYPE------------------------------------------------------------
     @Override
-    public void inAIntDataType(AIntDataType node) { System.out.printf("\"int\"");  }
+    public void inAIntDataType(AIntDataType node) { makeIndent(); System.out.printf("\"int\"");  }
     @Override
-    public void inACharDataType(ACharDataType node) { System.out.printf("\"char\""); }
+    public void outAIntDataType(AIntDataType node) { System.out.printf("\n"); }
+    @Override
+    public void inACharDataType(ACharDataType node) { makeIndent(); System.out.printf("\"char\""); }
+    @Override
+    public void outACharDataType(ACharDataType node) { System.out.printf("\n"); }
 
     // IN AND OUT A TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
@@ -48,7 +52,7 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAType(AType node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inADimension(ADimension node) { System.out.printf("[%s]", node.getIntConst().toString()); }
+    public void inADimension(ADimension node) { makeIndent(); System.out.printf("[%s]\n", node.getIntConst().toString()); }
 
     // IN AND OUT A RETURN TYPE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
@@ -56,9 +60,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outADataTypeRetType(ADataTypeRetType node) {  indent--; makeIndent(); System.out.printf(")\n");}
     @Override
-    public void inANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf("returnedType(\"nothing\""); }
+    public void inANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf("returnedType(\"nothing\"\n"); }
     @Override
-    public void outANothingRetType(ANothingRetType node) { System.out.printf(")\n"); }
+    public void outANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf(")\n"); }
 
     // IN AND OUT A FUNCTION PARAMETER TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
@@ -66,9 +70,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFparType(AFparType node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inALRBrackets(ALRBrackets node) { System.out.printf("[]"); }
+    public void inALRBrackets(ALRBrackets node) { makeIndent(); System.out.printf("[]\n"); }
     @Override
-    public void inANextDimension(ANextDimension node) { System.out.printf("[%s]", node.getIntConst().toString()); }
+    public void inANextDimension(ANextDimension node) { makeIndent(); System.out.printf("[%s]\n", node.getIntConst().toString()); }
 
     // IN AND OUT A LOCAL DEFINITION------------------------------------------------------------
     @Override
@@ -86,11 +90,11 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("variable[\"%s\"", node.getId().toString()); indent++;}
+    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("variable [\"%s\"\n", node.getId().toString()); indent++;}
     @Override
-    public void outAVarDef(AVarDef node) { indent--; makeIndent(); System.out.printf("]"); }
+    public void outAVarDef(AVarDef node) { indent--; makeIndent(); System.out.printf("]\n"); }
     @Override
-    public void inAVarDefNextId(AVarDefNextId node) { System.out.printf(",\"%s\"", node.getId().toString()); }
+    public void inAVarDefNextId(AVarDefNextId node) { makeIndent(); System.out.printf(",\"%s\"\n", node.getId().toString()); }
 
     // IN AND OUT A FUNCTION DECLARATION------------------------------------------------------------
     @Override
@@ -132,9 +136,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAWhileStmt(AWhileStmt node) { indent--; makeIndent(); System.out.printf(")out of whileStatement\n"); }
     @Override
-    public void inASemicolonTermStmt(ASemicolonTermStmt node) { System.out.printf("\";\""); }
+    public void inASemicolonTermStmt(ASemicolonTermStmt node) { makeIndent(); System.out.printf("\";\"\n"); }
     @Override
-    public void inAAssignmentTermStmt(AAssignmentTermStmt node) { System.out.printf("\"%s\"<-", node.getLValue().toString()); }
+    public void inAAssignmentTermStmt(AAssignmentTermStmt node) { makeIndent(); System.out.printf("\"%s\"<-\n", node.getLValue().toString()); }
     @Override
     public void inABlockTermStmt(ABlockTermStmt node) { makeIndent(); System.out.printf("blockTerminalStatement(\n"); indent++; }
     @Override
@@ -164,17 +168,17 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFuncArgs(AFuncArgs node) { indent--; makeIndent(); System.out.printf("]out of function arguments\n"); }
     @Override
-    public void inAFuncCallNextArg(AFuncCallNextArg node) { System.out.printf(","); }
+    public void inAFuncCallNextArg(AFuncCallNextArg node) { makeIndent(); System.out.printf(",\n"); }
 
     // IN A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inAIdLValue(AIdLValue node) { System.out.printf("\"%s\"", node.getId().toString()); }
+    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString()); }
     @Override
-    public void inAStringLValue(AStringLValue node) { System.out.printf("\"%s\"", node.getStringLiteral().toString()); }
+    public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString()); }
     @Override
-    public void inAExpressionLValue(AExpressionLValue node) { System.out.printf("expressionLValue(\n"); }
+    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("expressionLValue(\n"); }
     @Override
-    public void outAExpressionLValue(AExpressionLValue node) { System.out.printf(")\n"); }
+    public void outAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf(")\n"); }
 
     // IN AN EXPRESSION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
@@ -194,9 +198,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outATermExpr(ATermExpr node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) { System.out.printf("\"%s\"", node.getIntConst().toString()); }
+    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) { makeIndent(); System.out.printf("\"%s\"\n", node.getIntConst().toString()); }
     @Override
-    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node) { System.out.printf("\"%s\"", node.getCharConst().toString()); }
+    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node) { makeIndent(); System.out.printf("\"%s\"\n", node.getCharConst().toString()); }
     @Override
     public void inASignLValueSignedExpr(ASignLValueSignedExpr node) { System.out.printf(""); }
     @Override
@@ -204,9 +208,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void inASignExprInParsSignedExpr(ASignExprInParsSignedExpr node) { System.out.printf(""); }
     @Override
-    public void inAPlusSignSign(APlusSignSign node) { System.out.printf("\"+\","); }
+    public void inAPlusSignSign(APlusSignSign node) { makeIndent(); System.out.printf("\"+\",\n"); }
     @Override
-    public void inAMinusSignSign(AMinusSignSign node) { System.out.printf("\"-\","); }
+    public void inAMinusSignSign(AMinusSignSign node) { makeIndent(); System.out.printf("\"-\",\n"); }
     @Override
     public void inATermMultFactorTerm(ATermMultFactorTerm node) { makeIndent(); System.out.printf("termMultFactorTerm(\n"); indent++; }
     @Override
@@ -224,13 +228,13 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFactorTerm(AFactorTerm node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAIntConstFactor(AIntConstFactor node) { System.out.printf("\"%s\"", node.getIntConst().toString()); }
+    public void inAIntConstFactor(AIntConstFactor node) { makeIndent(); System.out.printf("\"%s\"\n", node.getIntConst().toString()); }
     @Override
-    public void inACharConstFactor(ACharConstFactor node) { System.out.printf("\"%s\"", node.getCharConst().toString()); }
+    public void inACharConstFactor(ACharConstFactor node) { makeIndent(); System.out.printf("\"%s\"\n", node.getCharConst().toString()); }
     @Override
-    public void inALValueFactor(ALValueFactor node) { makeIndent(); System.out.printf("lValueFactor("); }
+    public void inALValueFactor(ALValueFactor node) { makeIndent(); System.out.printf("lValueFactor(\n"); }
     @Override
-    public void outALValueFactor(ALValueFactor node) { System.out.printf(")\n"); }
+    public void outALValueFactor(ALValueFactor node) { makeIndent(); System.out.printf(")\n"); }
     @Override
     public void inAFuncCallFactor(AFuncCallFactor node) { makeIndent(); System.out.printf("funcCallFactor(\n"); indent++; }
     @Override
@@ -240,9 +244,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAExprInParsFactor(AExprInParsFactor node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAExprInPars(AExprInPars node) { System.out.printf("("); }
+    public void inAExprInPars(AExprInPars node) { makeIndent(); System.out.printf("(\n"); }
     @Override
-    public void outAExprInPars(AExprInPars node) { System.out.printf(")"); }
+    public void outAExprInPars(AExprInPars node) { makeIndent(); System.out.printf(")\n"); }
 
     // IN A CONDITION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
@@ -262,9 +266,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outATermcondCond(ATermcondCond node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inANotNotCondNotCond(ANotNotCondNotCond node) { System.out.printf("\"not\","); }
+    public void inANotNotCondNotCond(ANotNotCondNotCond node) { makeIndent(); System.out.printf("\"not\",\n"); }
     @Override
-    public void inANotTermcondNotCond(ANotTermcondNotCond node) { System.out.printf("\"not\","); }
+    public void inANotTermcondNotCond(ANotTermcondNotCond node) { makeIndent(); System.out.printf("\"not\",\n"); }
     @Override
     public void inACondInParsTermcond(ACondInParsTermcond node) { makeIndent(); System.out.printf("condInParsTermcond(\n"); indent++; }
     @Override
@@ -282,18 +286,18 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outANumopExpr(ANumopExpr node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
-    public void inAEqualNumop(AEqualNumop node) { System.out.printf("\"=\","); }
+    public void inAEqualNumop(AEqualNumop node) { makeIndent(); System.out.printf("\"=\",\n"); }
     @Override
-    public void inAHashtagNumop(AHashtagNumop node) { System.out.printf("\"#\","); }
+    public void inAHashtagNumop(AHashtagNumop node) { makeIndent(); System.out.printf("\"#\",\n"); }
     @Override
-    public void inAUnequalNumop(AUnequalNumop node) { System.out.printf("\"<>\","); }
+    public void inAUnequalNumop(AUnequalNumop node) { makeIndent(); System.out.printf("\"<>\",\n"); }
     @Override
-    public void inALesserNumop(ALesserNumop node) {  System.out.printf("\"<\","); }
+    public void inALesserNumop(ALesserNumop node) { makeIndent(); System.out.printf("\"<\",\n"); }
     @Override
-    public void inAGreaterNumop(AGreaterNumop node) { System.out.printf("\">\","); }
+    public void inAGreaterNumop(AGreaterNumop node) { makeIndent(); System.out.printf("\">\",\n"); }
     @Override
-    public void inALesseqNumop(ALesseqNumop node) { System.out.printf("\"<=\","); }
+    public void inALesseqNumop(ALesseqNumop node) { makeIndent(); System.out.printf("\"<=\",\n"); }
     @Override
-    public void inAGreateqNumop(AGreateqNumop node) { System.out.printf("\">=\","); }
+    public void inAGreateqNumop(AGreateqNumop node) { makeIndent(); System.out.printf("\">=\",\n"); }
     //------------------------------------------------------------
 }
