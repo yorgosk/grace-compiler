@@ -4,44 +4,47 @@ import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
 public class PTPrintingVisitor extends DepthFirstAdapter {
+    // for indentation
+    private int indent = 0;
+    private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("\t"); }
+
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
     public void inAProgram(AProgram node) {
-        System.out.printf("\nentering a program...\n[\n");
+        System.out.printf("\nentering a program[");
     }
     @Override
     public void outAProgram(AProgram node) {
-        System.out.printf("]\nexiting a program...\n");
+        System.out.printf("]exiting a program...\n");
     }
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
     public void inAFuncDef(AFuncDef node) {
-        System.out.printf("{\n");
+        System.out.printf("\nentering a function{");
     }
     @Override
     public void outAFuncDef(AFuncDef node) {
-        System.out.printf("}\n");
+        System.out.printf("}exiting a function,\n");
     }
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
     public void inAHeader(AHeader node) {
-        System.out.printf("\"type\":\"function\",\n\"name\":\"%s\",\n\"returnType\":\"%s\"\n",
-                node.getId().toString(), node.getRetType().toString());
+        System.out.printf("\n\"type\":\"function\",\n\"name\":\"%s\",", node.getId().toString());
     }
     @Override
     public void outAHeader(AHeader node) {
-        System.out.printf("\n]\n");
+        System.out.printf("\n],");
     }
     @Override
     public void inAHeaderParams(AHeaderParams node) {
-        System.out.printf("\"params\":[\n");
+        System.out.printf("\n\"params\":[");
     }
-//    @Override
-//    public void inAHeaderNextArg(AHeaderNextArg node) {
-//        System.out.printf("inAHeaderNextArg\n");
-//    }
+    @Override
+    public void outAHeaderParams(AHeaderParams node) {
+        System.out.printf("],\n");
+    }
 
     // IN A FUNCTION PARAMETERS DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
@@ -283,47 +286,27 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("\"%s\"", node.getStringLiteral().toString());
     }
     @Override
-    public void inAExpressionLValue(AExpressionLValue node) {
-        System.out.printf("\"expressionLValue\":(");
-    }
+    public void inAExpressionLValue(AExpressionLValue node) { System.out.printf("expressionLValue("); }
     @Override
-    public void outAExpressionLValue(AExpressionLValue node) {
-        System.out.printf("),\n");
-    }
+    public void outAExpressionLValue(AExpressionLValue node) { System.out.printf("),\n"); }
 
     // IN AN EXPRESSION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
-    public void inASignedExpr(ASignedExpr node) {
-        System.out.printf("\"signedExpr\":(");
-    }
+    public void inASignedExpr(ASignedExpr node) { System.out.printf("signedExpr("); }
     @Override
-    public void outASignedExpr(ASignedExpr node) {
-        System.out.printf("),\n");
-    }
+    public void outASignedExpr(ASignedExpr node) { System.out.printf("),\n"); }
     @Override
-    public void inAExprPlusTermExpr(AExprPlusTermExpr node) {
-        System.out.printf("\"exprPlusTermExpr\":(");
-    }
+    public void inAExprPlusTermExpr(AExprPlusTermExpr node) { System.out.printf("exprPlusTermExpr("); }
     @Override
-    public void outAExprPlusTermExpr(AExprPlusTermExpr node) {
-        System.out.printf("),\n");
-    }
+    public void outAExprPlusTermExpr(AExprPlusTermExpr node) { System.out.printf("),\n"); }
     @Override
-    public void inAExprMinusTermExpr(AExprMinusTermExpr node) {
-        System.out.printf("\"exprMinusTermExpr\":(");
-    }
+    public void inAExprMinusTermExpr(AExprMinusTermExpr node) { System.out.printf("exprMinusTermExpr("); }
     @Override
-    public void outAExprMinusTermExpr(AExprMinusTermExpr node) {
-        System.out.printf("),\n");
-    }
+    public void outAExprMinusTermExpr(AExprMinusTermExpr node) { System.out.printf("),\n"); }
     @Override
-    public void inATermExpr(ATermExpr node) {
-        System.out.printf("\"termExpr\":(");
-    }
+    public void inATermExpr(ATermExpr node) { System.out.printf("termExpr("); }
     @Override
-    public void outATermExpr(ATermExpr node) {
-        System.out.printf("),\n");
-    }
+    public void outATermExpr(ATermExpr node) { System.out.printf("),\n"); }
     @Override
     public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) {
         System.out.printf("\"%s\"\n", node.getIntConst().toString());
@@ -333,57 +316,31 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("\"%s\"\n", node.getCharConst().toString());
     }
     @Override
-    public void inASignLValueSignedExpr(ASignLValueSignedExpr node) {
-        System.out.printf("");
-    }
+    public void inASignLValueSignedExpr(ASignLValueSignedExpr node) { System.out.printf(""); }
     @Override
-    public void inASignFuncCallSignedExpr(ASignFuncCallSignedExpr node) {
-        System.out.printf("");
-    }
+    public void inASignFuncCallSignedExpr(ASignFuncCallSignedExpr node) { System.out.printf(""); }
     @Override
-    public void inASignExprInParsSignedExpr(ASignExprInParsSignedExpr node) {
-        System.out.printf("");
-    }
+    public void inASignExprInParsSignedExpr(ASignExprInParsSignedExpr node) { System.out.printf(""); }
     @Override
-    public void inAPlusSignSign(APlusSignSign node) {
-        System.out.printf("\"+\"+");
-    }
+    public void inAPlusSignSign(APlusSignSign node) { System.out.printf("\"+\","); }
     @Override
-    public void inAMinusSignSign(AMinusSignSign node) {
-        System.out.printf("\"-\"+");
-    }
+    public void inAMinusSignSign(AMinusSignSign node) { System.out.printf("\"-\","); }
     @Override
-    public void inATermMultFactorTerm(ATermMultFactorTerm node) {
-        System.out.printf("\"termMultFactorTerm\":(");
-    }
+    public void inATermMultFactorTerm(ATermMultFactorTerm node) { System.out.printf("termMultFactorTerm("); }
     @Override
-    public void outATermMultFactorTerm(ATermMultFactorTerm node) {
-        System.out.printf("),\n");
-    }
+    public void outATermMultFactorTerm(ATermMultFactorTerm node) { System.out.printf("),\n"); }
     @Override
-    public void inATermDivFactorTerm(ATermDivFactorTerm node) {
-        System.out.printf("\"termDivFactorTerm\":(");
-    }
+    public void inATermDivFactorTerm(ATermDivFactorTerm node) { System.out.printf("termDivFactorTerm("); }
     @Override
-    public void outATermDivFactorTerm(ATermDivFactorTerm node) {
-        System.out.printf("),\n");
-    }
+    public void outATermDivFactorTerm(ATermDivFactorTerm node) { System.out.printf("),\n"); }
     @Override
-    public void inATermModFactorTerm(ATermModFactorTerm node) {
-        System.out.printf("\"termModFactorTerm\":(");
-    }
+    public void inATermModFactorTerm(ATermModFactorTerm node) { System.out.printf("termModFactorTerm("); }
     @Override
-    public void outATermModFactorTerm(ATermModFactorTerm node) {
-        System.out.printf("),\n");
-    }
+    public void outATermModFactorTerm(ATermModFactorTerm node) { System.out.printf("),\n"); }
     @Override
-    public void inAFactorTerm(AFactorTerm node) {
-        System.out.printf("\"factorTerm\":(");
-    }
+    public void inAFactorTerm(AFactorTerm node) { System.out.printf("factorTerm("); }
     @Override
-    public void outAFactorTerm(AFactorTerm node) {
-        System.out.printf("),\n");
-    }
+    public void outAFactorTerm(AFactorTerm node) { System.out.printf("),\n"); }
     @Override
     public void inAIntConstFactor(AIntConstFactor node) {
         System.out.printf("\"%s\"", node.getIntConst().toString());
@@ -393,138 +350,72 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("\"%s\"", node.getCharConst().toString());
     }
     @Override
-    public void inALValueFactor(ALValueFactor node) {
-        System.out.printf("\"lValueFactor\":(");
-    }
+    public void inALValueFactor(ALValueFactor node) { System.out.printf("lValueFactor("); }
     @Override
-    public void outALValueFactor(ALValueFactor node) {
-        System.out.printf("),\n");
-    }
+    public void outALValueFactor(ALValueFactor node) { System.out.printf("),\n"); }
     @Override
-    public void inAFuncCallFactor(AFuncCallFactor node) {
-        System.out.printf("\"funcCallFactor\":(");
-    }
+    public void inAFuncCallFactor(AFuncCallFactor node) { System.out.printf("funcCallFactor("); }
     @Override
-    public void outAFuncCallFactor(AFuncCallFactor node) {
-        System.out.printf("),\n");
-    }
+    public void outAFuncCallFactor(AFuncCallFactor node) { System.out.printf("),\n"); }
     @Override
-    public void inAExprInParsFactor(AExprInParsFactor node) {
-        System.out.printf("\"exprInParsFactor\":(");
-    }
+    public void inAExprInParsFactor(AExprInParsFactor node) { System.out.printf("exprInParsFactor("); }
     @Override
-    public void outAExprInParsFactor(AExprInParsFactor node) {
-        System.out.printf("),\n");
-    }
+    public void outAExprInParsFactor(AExprInParsFactor node) { System.out.printf("),\n"); }
     @Override
-    public void inAExprInPars(AExprInPars node) {
-        System.out.printf("(");
-    }
+    public void inAExprInPars(AExprInPars node) { System.out.printf("("); }
     @Override
-    public void outAExprInPars(AExprInPars node) {
-        System.out.printf(")");
-    }
+    public void outAExprInPars(AExprInPars node) { System.out.printf(")"); }
 
     // IN A CONDITION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
-    public void inANotCond(ANotCond node) {
-        System.out.printf("\"notCond\":(");
-    }
+    public void inANotCond(ANotCond node) { System.out.printf("notCond("); }
     @Override
-    public void outANotCond(ANotCond node) {
-        System.out.printf("),\n");
-    }
+    public void outANotCond(ANotCond node) { System.out.printf("),\n"); }
     @Override
-    public void inACondAndTermcondCond(ACondAndTermcondCond node) {
-        System.out.printf("\"termAndTermCond\":(");
-    }
+    public void inACondAndTermcondCond(ACondAndTermcondCond node) { System.out.printf("termAndTermCond("); }
     @Override
-    public void outACondAndTermcondCond(ACondAndTermcondCond node) {
-        System.out.printf("),\n");
-    }
+    public void outACondAndTermcondCond(ACondAndTermcondCond node) { System.out.printf("),\n"); }
     @Override
-    public void inACondOrTermcondCond(ACondOrTermcondCond node) {
-        System.out.printf("\"condOrTermcondCond\":(");
-    }
+    public void inACondOrTermcondCond(ACondOrTermcondCond node) { System.out.printf("condOrTermcondCond("); }
     @Override
-    public void outACondOrTermcondCond(ACondOrTermcondCond node) {
-        System.out.printf("),\n");
-    }
+    public void outACondOrTermcondCond(ACondOrTermcondCond node) { System.out.printf("),\n"); }
     @Override
-    public void inATermcondCond(ATermcondCond node) {
-        System.out.printf("\"termcondCond\":(");
-    }
+    public void inATermcondCond(ATermcondCond node) { System.out.printf("termcondCond("); }
     @Override
-    public void outATermcondCond(ATermcondCond node) {
-        System.out.printf("),\n");
-    }
+    public void outATermcondCond(ATermcondCond node) { System.out.printf("),\n"); }
     @Override
-    public void inANotNotCondNotCond(ANotNotCondNotCond node) {
-        System.out.printf("\"not\"+");
-    }
+    public void inANotNotCondNotCond(ANotNotCondNotCond node) { System.out.printf("\"not\","); }
     @Override
-    public void inANotTermcondNotCond(ANotTermcondNotCond node) {
-        System.out.printf("\"not\"+");
-    }
+    public void inANotTermcondNotCond(ANotTermcondNotCond node) { System.out.printf("\"not\","); }
     @Override
-    public void inACondInParsTermcond(ACondInParsTermcond node) {
-        System.out.printf("\"condInParsTermcond\":(");
-    }
+    public void inACondInParsTermcond(ACondInParsTermcond node) { System.out.printf("condInParsTermcond("); }
     @Override
-    public void outACondInParsTermcond(ACondInParsTermcond node) {
-        System.out.printf("),\n");
-    }
+    public void outACondInParsTermcond(ACondInParsTermcond node) { System.out.printf("),\n"); }
     @Override
-    public void inAExprNumopExprTermcond(AExprNumopExprTermcond node) {
-        System.out.printf("\"exprNumopExprTermcond\":(");
-    }
+    public void inAExprNumopExprTermcond(AExprNumopExprTermcond node) { System.out.printf("exprNumopExprTermcond("); }
     @Override
-    public void outAExprNumopExprTermcond(AExprNumopExprTermcond node) {
-        System.out.printf("),\n");
-    }
+    public void outAExprNumopExprTermcond(AExprNumopExprTermcond node) { System.out.printf("),\n"); }
     @Override
-    public void inACondInPars(ACondInPars node) {
-        System.out.printf("\"condInPars\":(");
-    }
+    public void inACondInPars(ACondInPars node) { System.out.printf("condInPars("); }
     @Override
-    public void outACondInPars(ACondInPars node) {
-        System.out.printf("),\n");
-    }
+    public void outACondInPars(ACondInPars node) { System.out.printf("),\n"); }
     @Override
-    public void inANumopExpr(ANumopExpr node) {
-        System.out.printf("\"numopExpr\":(");
-    }
+    public void inANumopExpr(ANumopExpr node) { System.out.printf("numopExpr("); }
     @Override
-    public void outANumopExpr(ANumopExpr node) {
-        System.out.printf("),\n");
-    }
+    public void outANumopExpr(ANumopExpr node) { System.out.printf("),\n"); }
     @Override
-    public void inAEqualNumop(AEqualNumop node) {
-        System.out.printf("\"=\"+");
-    }
+    public void inAEqualNumop(AEqualNumop node) { System.out.printf("\"=\","); }
     @Override
-    public void inAHashtagNumop(AHashtagNumop node) {
-        System.out.printf("\"#\"+");
-    }
+    public void inAHashtagNumop(AHashtagNumop node) { System.out.printf("\"#\","); }
     @Override
-    public void inAUnequalNumop(AUnequalNumop node) {
-        System.out.printf("\"<>\"+");
-    }
+    public void inAUnequalNumop(AUnequalNumop node) { System.out.printf("\"<>\","); }
     @Override
-    public void inALesserNumop(ALesserNumop node) {
-        System.out.printf("\"<\"+");
-    }
+    public void inALesserNumop(ALesserNumop node) {  System.out.printf("\"<\","); }
     @Override
-    public void inAGreaterNumop(AGreaterNumop node) {
-        System.out.printf("\">\"+");
-    }
+    public void inAGreaterNumop(AGreaterNumop node) { System.out.printf("\">\","); }
     @Override
-    public void inALesseqNumop(ALesseqNumop node) {
-        System.out.printf("\"<=\"+");
-    }
+    public void inALesseqNumop(ALesseqNumop node) { System.out.printf("\"<=\","); }
     @Override
-    public void inAGreateqNumop(AGreateqNumop node) {
-        System.out.printf("\">=\"+");
-    }
+    public void inAGreateqNumop(AGreateqNumop node) { System.out.printf("\">=\","); }
     //------------------------------------------------------------
 }
