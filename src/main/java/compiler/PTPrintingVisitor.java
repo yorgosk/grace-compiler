@@ -329,26 +329,21 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("\"%s\"\n", node.getIntConst().toString());
     }
     @Override
-    public void inASignCharConstSignedExpr(ASignCharConstSignedExpr node) {
+    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node) {
         System.out.printf("\"%s\"\n", node.getCharConst().toString());
     }
-
     @Override
     public void inASignLValueSignedExpr(ASignLValueSignedExpr node) {
-        System.out.printf("inASignLValueSignedExpr with l_value: %s\n",
-                node.getLValue().toString());
+        System.out.printf("");
     }
-
     @Override
     public void inASignFuncCallSignedExpr(ASignFuncCallSignedExpr node) {
-        System.out.printf("inASignFuncCallSignedExpr\n");
+        System.out.printf("");
     }
-
     @Override
     public void inASignExprInParsSignedExpr(ASignExprInParsSignedExpr node) {
-        System.out.printf("inASignExprInParsSignedExpr\n");
+        System.out.printf("");
     }
-
     @Override
     public void inAPlusSignSign(APlusSignSign node) {
         System.out.printf("\"+\"+");
@@ -357,55 +352,77 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inAMinusSignSign(AMinusSignSign node) {
         System.out.printf("\"-\"+");
     }
-
     @Override
     public void inATermMultFactorTerm(ATermMultFactorTerm node) {
-        System.out.printf("inATermMultFactorTerm\n");
+        System.out.printf("\"termMultFactorTerm\":(");
     }
-
+    @Override
+    public void outATermMultFactorTerm(ATermMultFactorTerm node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inATermDivFactorTerm(ATermDivFactorTerm node) {
-        System.out.printf("inATermDivFactorTerm\n");
+        System.out.printf("\"termDivFactorTerm\":(");
     }
-
+    @Override
+    public void outATermDivFactorTerm(ATermDivFactorTerm node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inATermModFactorTerm(ATermModFactorTerm node) {
-        System.out.printf("inATermModFactorTerm\n");
+        System.out.printf("\"termModFactorTerm\":(");
     }
-
+    @Override
+    public void outATermModFactorTerm(ATermModFactorTerm node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAFactorTerm(AFactorTerm node) {
-        System.out.printf("inAFactorTerm\n");
+        System.out.printf("\"factorTerm\":(");
     }
-
+    @Override
+    public void outAFactorTerm(AFactorTerm node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAIntConstFactor(AIntConstFactor node) {
-        System.out.printf("inAIntConstFactor\n");
+        System.out.printf("\"%s\"", node.getIntConst().toString());
     }
-
     @Override
     public void inACharConstFactor(ACharConstFactor node) {
-        System.out.printf("inACharConstFactor\n");
+        System.out.printf("\"%s\"", node.getCharConst().toString());
     }
-
     @Override
     public void inALValueFactor(ALValueFactor node) {
-        System.out.printf("inALValueFactor\n");
+        System.out.printf("\"lValueFactor\":(");
     }
-
+    @Override
+    public void outALValueFactor(ALValueFactor node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAFuncCallFactor(AFuncCallFactor node) {
-        System.out.printf("inAFuncCallFactor\n");
+        System.out.printf("\"funcCallFactor\":(");
     }
-
+    @Override
+    public void outAFuncCallFactor(AFuncCallFactor node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAExprInParsFactor(AExprInParsFactor node) {
-        System.out.printf("inAExprInParsFactor\n");
+        System.out.printf("\"exprInParsFactor\":(");
     }
-
+    @Override
+    public void outAExprInParsFactor(AExprInParsFactor node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAExprInPars(AExprInPars node) {
-        System.out.printf("inAExprInPars\n");
+        System.out.printf("(");
+    }
+    @Override
+    public void outAExprInPars(AExprInPars node) {
+        System.out.printf(")");
     }
 
     // IN A CONDITION AND ASSISTANT STATEMENTS------------------------------------------------------------
