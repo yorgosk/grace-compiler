@@ -400,90 +400,107 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inAExprInPars(AExprInPars node) {
         System.out.printf("inAExprInPars\n");
     }
-    //------------------------------------------------------------
+
+    //IN A CONDITION AND ASSISTANT STATEMENTS------------------------------------------------------------
     @Override
     public void inANotCond(ANotCond node) {
-        System.out.printf("inANotCond\n");
+        System.out.printf("\"notCond\":(");
     }
-
+    @Override
+    public void outANotCond(ANotCond node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inACondAndTermcondCond(ACondAndTermcondCond node) {
-        System.out.printf("inACondAndTermcondCond");
+        System.out.printf("\"termAndTermCond\":(");
     }
-
+    @Override
+    public void outACondAndTermcondCond(ACondAndTermcondCond node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inACondOrTermcondCond(ACondOrTermcondCond node) {
-        System.out.printf("inACondOrTermcondCond\n");
+        System.out.printf("\"condOrTermcondCond\":(");
     }
-
+    @Override
+    public void outACondOrTermcondCond(ACondOrTermcondCond node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inATermcondCond(ATermcondCond node) {
-        System.out.printf("inATermcondCond\n");
+        System.out.printf("\"termcondCond\":(");
     }
-
+    @Override
+    public void outATermcondCond(ATermcondCond node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inANotNotCondNotCond(ANotNotCondNotCond node) {
-        System.out.printf("inANotNotCondNotCond\n");
+        System.out.printf("\"not\"+");
     }
-
     @Override
     public void inANotTermcondNotCond(ANotTermcondNotCond node) {
-        System.out.printf("inANotTermcondNotCond\n");
+        System.out.printf("\"not\"+");
     }
-
     @Override
     public void inACondInParsTermcond(ACondInParsTermcond node) {
-        System.out.printf("inACondInParsTermcond\n");
+        System.out.printf("\"condInParsTermcond\":(");
     }
-
+    @Override
+    public void outACondInParsTermcond(ACondInParsTermcond node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAExprNumopExprTermcond(AExprNumopExprTermcond node) {
-        System.out.printf("inAExprNumopExprTermcond\n");
+        System.out.printf("\"exprNumopExprTermcond\":(");
     }
-
+    @Override
+    public void outAExprNumopExprTermcond(AExprNumopExprTermcond node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inACondInPars(ACondInPars node) {
-        System.out.printf("inACondInPars\n");
+        System.out.printf("\"condInPars\":(");
     }
-
+    @Override
+    public void outACondInPars(ACondInPars node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inANumopExpr(ANumopExpr node) {
-        System.out.printf("inANumopExpr\n");
+        System.out.printf("\"numopExpr\":(");
     }
-
+    @Override
+    public void outANumopExpr(ANumopExpr node) {
+        System.out.printf("),\n");
+    }
     @Override
     public void inAEqualNumop(AEqualNumop node) {
-        System.out.printf("inAEqualNumop\n");
+        System.out.printf("\"=\"+");
     }
-
     @Override
     public void inAHashtagNumop(AHashtagNumop node) {
-        System.out.printf("inAHashtagNumop\n");
+        System.out.printf("\"#\"+");
     }
-
     @Override
     public void inAUnequalNumop(AUnequalNumop node) {
-        System.out.printf("inAUnequalNumop\n");
+        System.out.printf("\"<>\"+");
     }
-
     @Override
     public void inALesserNumop(ALesserNumop node) {
-        System.out.printf("inALesserNumop\n");
+        System.out.printf("\"<\"+");
     }
-
     @Override
     public void inAGreaterNumop(AGreaterNumop node) {
-        System.out.printf("inAGreaterNumop\n");
+        System.out.printf("\">\"+");
     }
-
     @Override
     public void inALesseqNumop(ALesseqNumop node) {
-        System.out.printf("inALesseqNumop\n");
+        System.out.printf("\"<=\"+");
     }
-
     @Override
     public void inAGreateqNumop(AGreateqNumop node) {
-        System.out.printf("inAGreateqNumop\n");
+        System.out.printf("\">=\"+");
     }
     //------------------------------------------------------------
 }
