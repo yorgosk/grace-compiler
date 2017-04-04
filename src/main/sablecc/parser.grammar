@@ -159,13 +159,10 @@ Productions
         {terminal} term_stmt |
         {if} if_stmt |
         {while} while cond do stmt ;
-    /*while_stmt =
-        {terminal} while cond do term_stmt |
-        {if_stmt} while cond do if_stmt |
-        {if_stmt_else} while cond do if_stmt else stmt ;*/
     if_stmt =
         {if} if cond then stmt |
-        {if_else} if cond then with_else else stmt ;
+        {if_else} if cond then with_else else stmt ; /*|
+        {if_while_else} if [if_cond]:cond then while [while_cond]:cond do [while_stmt]:stmt else [else_stmt]:stmt */
     with_else =
         {nested_if_else} if cond then with_else else_with_else |
         {terminal} term_stmt ;
@@ -175,7 +172,8 @@ Productions
         {assignment} l_value assignment expr semicolon |
         {block} block |
         {function} func_call semicolon |
-        {return_expr} return expr semicolon ;
+        {return_expr} return expr semicolon ; /*|
+        {while} while cond do stmt */
 
     block = l_brace stmt* r_brace ;
 
