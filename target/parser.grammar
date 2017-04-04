@@ -132,29 +132,6 @@ Productions
 
     func_decl = header semicolon ;
 
-    /*stmt =
-        {terminal} term_stmt |
-        {if} if_header if_trail ;
-    term_stmt =
-        {semicolon} semicolon |
-        {assignment} l_value assignment expr semicolon |
-        {block} block |
-        {function} func_call semicolon |
-        {return_expr} return expr ;
-    if_header = if cond then ;
-    if_trail =
-        {no_else} stmt |
-        {with_else} stmt_with_else else stmt ;
-    stmt_with_else =
-        {if} if_else |
-        {semicolon} semicolon |
-        {assignment} l_value assignment expr semicolon |
-        {block} block |
-        {function} func_call semicolon |
-        {return_expr} return expr ;
-    if_else = if_header stmt_with_else else_stmt_with_else ;
-    else_stmt_with_else = else stmt_with_else ;*/
-
     stmt =
         {terminal} term_stmt |
         {if} if_stmt |
