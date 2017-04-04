@@ -214,6 +214,11 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseAWhileWithElse(AWhileWithElse node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAElseWithElse(AElseWithElse node)
     {
         defaultCase(node);

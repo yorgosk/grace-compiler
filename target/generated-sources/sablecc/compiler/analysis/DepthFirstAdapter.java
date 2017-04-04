@@ -843,6 +843,39 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outATerminalWithElse(node);
     }
 
+    public void inAWhileWithElse(AWhileWithElse node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAWhileWithElse(AWhileWithElse node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAWhileWithElse(AWhileWithElse node)
+    {
+        inAWhileWithElse(node);
+        if(node.getWhile() != null)
+        {
+            node.getWhile().apply(this);
+        }
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+        if(node.getDo() != null)
+        {
+            node.getDo().apply(this);
+        }
+        if(node.getTermStmt() != null)
+        {
+            node.getTermStmt().apply(this);
+        }
+        outAWhileWithElse(node);
+    }
+
     public void inAElseWithElse(AElseWithElse node)
     {
         defaultIn(node);

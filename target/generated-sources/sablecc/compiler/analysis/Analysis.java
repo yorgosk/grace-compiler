@@ -41,6 +41,7 @@ public interface Analysis extends Switch
     void caseAIfElseIfStmt(AIfElseIfStmt node);
     void caseANestedIfElseWithElse(ANestedIfElseWithElse node);
     void caseATerminalWithElse(ATerminalWithElse node);
+    void caseAWhileWithElse(AWhileWithElse node);
     void caseAElseWithElse(AElseWithElse node);
     void caseASemicolonTermStmt(ASemicolonTermStmt node);
     void caseAAssignmentTermStmt(AAssignmentTermStmt node);

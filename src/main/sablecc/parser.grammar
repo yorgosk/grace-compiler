@@ -158,14 +158,16 @@ Productions
     stmt =
         {terminal} term_stmt |
         {if} if_stmt |
-        {while} while cond do stmt ;
+        {while} while cond do stmt ; /*|
+        {if_while} if [if_cond]:cond then while [while_cond]: do [while_stmt]:stmt else [else_stmt]:stmt ;*/
     if_stmt =
         {if} if cond then stmt |
         {if_else} if cond then with_else else stmt ; /*|
         {if_while_else} if [if_cond]:cond then while [while_cond]:cond do [while_stmt]:stmt else [else_stmt]:stmt */
     with_else =
         {nested_if_else} if cond then with_else else_with_else |
-        {terminal} term_stmt ;
+        {terminal} term_stmt |
+        {while} while cond do term_stmt ;
     else_with_else = else with_else ;
     term_stmt =
         {semicolon} semicolon |
