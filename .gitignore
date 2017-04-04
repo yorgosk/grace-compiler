@@ -19,6 +19,3 @@ buildNumber.properties
 .idea/workspace.xml
 src/test/
 /examples/
-!/target/classes/
-!/target/maven-archiver/
-!/target/maven-status/
