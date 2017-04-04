@@ -822,25 +822,25 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outANestedIfElseWithElse(node);
     }
 
-    public void inATerminalStatementWithElse(ATerminalStatementWithElse node)
+    public void inATerminalWithElse(ATerminalWithElse node)
     {
         defaultIn(node);
     }
 
-    public void outATerminalStatementWithElse(ATerminalStatementWithElse node)
+    public void outATerminalWithElse(ATerminalWithElse node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseATerminalStatementWithElse(ATerminalStatementWithElse node)
+    public void caseATerminalWithElse(ATerminalWithElse node)
     {
-        inATerminalStatementWithElse(node);
+        inATerminalWithElse(node);
         if(node.getTermStmt() != null)
         {
             node.getTermStmt().apply(this);
         }
-        outATerminalStatementWithElse(node);
+        outATerminalWithElse(node);
     }
 
     public void inAElseWithElse(AElseWithElse node)
@@ -989,6 +989,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
         if(node.getExpr() != null)
         {
             node.getExpr().apply(this);
+        }
+        if(node.getSemicolon() != null)
+        {
+            node.getSemicolon().apply(this);
         }
         outAReturnExprTermStmt(node);
     }
@@ -1509,6 +1513,35 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getFactor().apply(this);
         }
         outATermDivFactorTerm(node);
+    }
+
+    public void inATermDivisionFactorTerm(ATermDivisionFactorTerm node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATermDivisionFactorTerm(ATermDivisionFactorTerm node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATermDivisionFactorTerm(ATermDivisionFactorTerm node)
+    {
+        inATermDivisionFactorTerm(node);
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
+        if(node.getDivision() != null)
+        {
+            node.getDivision().apply(this);
+        }
+        if(node.getFactor() != null)
+        {
+            node.getFactor().apply(this);
+        }
+        outATermDivisionFactorTerm(node);
     }
 
     public void inATermModFactorTerm(ATermModFactorTerm node)

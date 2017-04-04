@@ -40,7 +40,7 @@ public interface Analysis extends Switch
     void caseAIfIfStmt(AIfIfStmt node);
     void caseAIfElseIfStmt(AIfElseIfStmt node);
     void caseANestedIfElseWithElse(ANestedIfElseWithElse node);
-    void caseATerminalStatementWithElse(ATerminalStatementWithElse node);
+    void caseATerminalWithElse(ATerminalWithElse node);
     void caseAElseWithElse(AElseWithElse node);
     void caseASemicolonTermStmt(ASemicolonTermStmt node);
     void caseAAssignmentTermStmt(AAssignmentTermStmt node);
@@ -67,6 +67,7 @@ public interface Analysis extends Switch
     void caseAMinusSignSign(AMinusSignSign node);
     void caseATermMultFactorTerm(ATermMultFactorTerm node);
     void caseATermDivFactorTerm(ATermDivFactorTerm node);
+    void caseATermDivisionFactorTerm(ATermDivisionFactorTerm node);
     void caseATermModFactorTerm(ATermModFactorTerm node);
     void caseAFactorTerm(AFactorTerm node);
     void caseAIntConstFactor(AIntConstFactor node);

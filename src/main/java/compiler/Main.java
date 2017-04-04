@@ -12,7 +12,12 @@ import java.io.*;
 class Main {
 
 	public static void main(String args[]) {
-		String filename = args[0];
+		String filename = null;
+		try {
+			filename = args[0];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.printf("No argument error: %s\n", e.getMessage());
+		}
 
 		Start tree = null;
 

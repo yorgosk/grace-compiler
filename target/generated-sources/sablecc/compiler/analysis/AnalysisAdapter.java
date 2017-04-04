@@ -209,7 +209,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseATerminalStatementWithElse(ATerminalStatementWithElse node)
+    public void caseATerminalWithElse(ATerminalWithElse node)
     {
         defaultCase(node);
     }
@@ -340,6 +340,11 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseATermDivFactorTerm(ATermDivFactorTerm node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseATermDivisionFactorTerm(ATermDivisionFactorTerm node)
     {
         defaultCase(node);
     }

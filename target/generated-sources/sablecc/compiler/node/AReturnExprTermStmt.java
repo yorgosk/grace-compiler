@@ -9,6 +9,7 @@ public final class AReturnExprTermStmt extends PTermStmt
 {
     private TReturn _return_;
     private PExpr _expr_;
+    private TSemicolon _semicolon_;
 
     public AReturnExprTermStmt()
     {
@@ -17,12 +18,15 @@ public final class AReturnExprTermStmt extends PTermStmt
 
     public AReturnExprTermStmt(
         @SuppressWarnings("hiding") TReturn _return_,
-        @SuppressWarnings("hiding") PExpr _expr_)
+        @SuppressWarnings("hiding") PExpr _expr_,
+        @SuppressWarnings("hiding") TSemicolon _semicolon_)
     {
         // Constructor
         setReturn(_return_);
 
         setExpr(_expr_);
+
+        setSemicolon(_semicolon_);
 
     }
 
@@ -31,7 +35,8 @@ public final class AReturnExprTermStmt extends PTermStmt
     {
         return new AReturnExprTermStmt(
             cloneNode(this._return_),
-            cloneNode(this._expr_));
+            cloneNode(this._expr_),
+            cloneNode(this._semicolon_));
     }
 
     public void apply(Switch sw)
@@ -89,12 +94,38 @@ public final class AReturnExprTermStmt extends PTermStmt
         this._expr_ = node;
     }
 
+    public TSemicolon getSemicolon()
+    {
+        return this._semicolon_;
+    }
+
+    public void setSemicolon(TSemicolon node)
+    {
+        if(this._semicolon_ != null)
+        {
+            this._semicolon_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._semicolon_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
             + toString(this._return_)
-            + toString(this._expr_);
+            + toString(this._expr_)
+            + toString(this._semicolon_);
     }
 
     @Override
@@ -110,6 +141,12 @@ public final class AReturnExprTermStmt extends PTermStmt
         if(this._expr_ == child)
         {
             this._expr_ = null;
+            return;
+        }
+
+        if(this._semicolon_ == child)
+        {
+            this._semicolon_ = null;
             return;
         }
 
@@ -129,6 +166,12 @@ public final class AReturnExprTermStmt extends PTermStmt
         if(this._expr_ == oldChild)
         {
             setExpr((PExpr) newChild);
+            return;
+        }
+
+        if(this._semicolon_ == oldChild)
+        {
+            setSemicolon((TSemicolon) newChild);
             return;
         }
 
