@@ -138,6 +138,7 @@ public interface Analysis extends Switch
     void caseTAssignment(TAssignment node);
     void caseTIdentifier(TIdentifier node);
     void caseTBlank(TBlank node);
-    void caseTComment(TComment node);
+    void caseTLineComment(TLineComment node);
+    void caseTMultilineComment(TMultilineComment node);
     void caseEOF(EOF node);
 }
