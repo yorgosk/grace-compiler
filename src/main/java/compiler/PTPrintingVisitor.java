@@ -104,53 +104,49 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
 
     // IN A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inATerminalStmt(ATerminalStmt node) { makeIndent(); System.out.printf("terminalStmt :\n"); indent++; }
+    public void inAMatchedStmt(AMatchedStmt node) { makeIndent(); System.out.printf("matchedStmt :\n"); indent++; }
     @Override
-    public void outATerminalStmt(ATerminalStmt node) { indent--; }
+    public void outAMatchedStmt(AMatchedStmt node) { indent--; }
     @Override
-    public void inAIfStmt(AIfStmt node) { makeIndent(); System.out.printf("ifStmt :\n"); indent++;}
+    public void inAUnmatchedStmt(AUnmatchedStmt node) { makeIndent(); System.out.printf("unmatchedStmt :\n"); indent++; }
     @Override
-    public void outAIfStmt(AIfStmt node) { indent--; }
+    public void outAUnmatchedStmt(AUnmatchedStmt node) { indent--; }
     @Override
-    public void inAIfIfStmt(AIfIfStmt node) { makeIndent(); System.out.printf("ifIfStmt :\n"); indent++; }
+    public void inAIfMatchedElseMatchedMatched(AIfMatchedElseMatchedMatched node) { makeIndent(); System.out.printf("ifMatchedElseMatched :\n"); indent++; }
     @Override
-    public void outAIfIfStmt(AIfIfStmt node) { indent--; }
+    public void outAIfMatchedElseMatchedMatched(AIfMatchedElseMatchedMatched node) { indent--; }
     @Override
-    public void inAIfElseIfStmt(AIfElseIfStmt node) { makeIndent(); System.out.printf("ifElseIfStmt :\n"); indent++; }
+    public void inAWhileMatchedMatched(AWhileMatchedMatched node) { makeIndent(); System.out.printf("whileMatched :\n"); indent++; }
     @Override
-    public void outAIfElseIfStmt(AIfElseIfStmt node) { indent--; }
+    public void outAWhileMatchedMatched(AWhileMatchedMatched node) { indent--; }
     @Override
-    public void inAElseWithElse(AElseWithElse node) { makeIndent(); System.out.printf("elseWithElse :\n"); indent++; }
+    public void inAOtherMatched(AOtherMatched node) { makeIndent(); System.out.printf("otherMatched :\n"); indent++; }
     @Override
-    public void outAElseWithElse(AElseWithElse node) { indent--; }
+    public void outAOtherMatched(AOtherMatched node) { indent--; }
     @Override
-    public void inANestedIfElseWithElse(ANestedIfElseWithElse node) { makeIndent(); System.out.printf("nestedIfElseWithElse :\n"); indent++; }
+    public void inAIfUnmatched(AIfUnmatched node) { makeIndent(); System.out.printf("ifUnmatched :\n"); indent++; }
     @Override
-    public void outANestedIfElseWithElse(ANestedIfElseWithElse node) { indent--; }
+    public void outAIfUnmatched(AIfUnmatched node) { indent--; }
     @Override
-    public void inATerminalWithElse(ATerminalWithElse node) { makeIndent(); System.out.printf("terminalStmtWithElse :\n"); indent++; }
+    public void inAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node) { makeIndent(); System.out.printf("ifMatchedElseUnmatched :\n"); indent++; }
     @Override
-    public void outATerminalWithElse(ATerminalWithElse node) { indent--; }
+    public void outAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node) { indent--; }
     @Override
-    public void inAWhileStmt(AWhileStmt node) { makeIndent(); System.out.printf("whileStmt :\n"); indent++; }
+    public void inASemicolonOtherStmt(ASemicolonOtherStmt node) { makeIndent(); System.out.printf("\";\"\n"); }
     @Override
-    public void outAWhileStmt(AWhileStmt node) { indent--; }
+    public void inAAssignmentOtherStmt(AAssignmentOtherStmt node) { makeIndent(); System.out.printf("\"%s\"<-\n", node.getLValue().toString()); }
     @Override
-    public void inASemicolonTermStmt(ASemicolonTermStmt node) { makeIndent(); System.out.printf("\";\"\n"); }
+    public void inABlockOtherStmt(ABlockOtherStmt node) { makeIndent(); System.out.printf("blockOtherStmt :\n"); indent++; }
     @Override
-    public void inAAssignmentTermStmt(AAssignmentTermStmt node) { makeIndent(); System.out.printf("\"%s\"<-\n", node.getLValue().toString()); }
+    public void outABlockOtherStmt(ABlockOtherStmt node) { indent--; }
     @Override
-    public void inABlockTermStmt(ABlockTermStmt node) { makeIndent(); System.out.printf("blockTerminalStmt :\n"); indent++; }
+    public void inAFunctionOtherStmt(AFunctionOtherStmt node) { makeIndent(); System.out.printf("funcOtherStmt :\n"); indent++; }
     @Override
-    public void outABlockTermStmt(ABlockTermStmt node) { indent--; }
+    public void outAFunctionOtherStmt(AFunctionOtherStmt node) { indent--; }
     @Override
-    public void inAFunctionTermStmt(AFunctionTermStmt node) { makeIndent(); System.out.printf("funcTerminalStmt :\n"); indent++; }
+    public void inAReturnExprOtherStmt(AReturnExprOtherStmt node) { makeIndent(); System.out.printf("retExprOtherStmt :\n"); indent++; }
     @Override
-    public void outAFunctionTermStmt(AFunctionTermStmt node) { indent--; }
-    @Override
-    public void inAReturnExprTermStmt(AReturnExprTermStmt node) { makeIndent(); System.out.printf("returnExprTerminalStmt :\n"); indent++; }
-    @Override
-    public void outAReturnExprTermStmt(AReturnExprTermStmt node) { indent--; }
+    public void outAReturnExprOtherStmt(AReturnExprOtherStmt node) { indent--; }
 
     // IN AND OUT A CODE BLOCK------------------------------------------------------------
     @Override

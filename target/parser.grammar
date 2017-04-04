@@ -133,14 +133,32 @@ Productions
     func_decl = header semicolon ;
 
     stmt =
+        {matched} matched |
+        {unmatched} unmatched ;
+    matched =
+        {if_matched_else_matched} if cond then [then_m]:matched else [else_m]:matched |
+        {while_matched} while cond do matched |
+        {other} other_stmt ;
+    unmatched =
+        {if} if cond then stmt |
+        {if_matched_else_unmatched} if cond then matched else unmatched ;
+    other_stmt =
+        {semicolon} semicolon |
+        {assignment} l_value assignment expr semicolon |
+        {block} block |
+        {function} func_call semicolon |
+        {return_expr} return expr semicolon ;
+
+    /*stmt =
         {terminal} term_stmt |
         {if} if_stmt |
-        {while} while cond do stmt ; /*|
-        {if_while} if [if_cond]:cond then while [while_cond]: do [while_stmt]:stmt else [else_stmt]:stmt ;*/
+        {while} while_stmt ;
+    while_stmt =
+        {while} while cond do stmt |
+        {while_if_else} while [while_cond]:cond do if [if_cond]:cond then with_else else stmt ;
     if_stmt =
         {if} if cond then stmt |
-        {if_else} if cond then with_else else stmt ; /*|
-        {if_while_else} if [if_cond]:cond then while [while_cond]:cond do [while_stmt]:stmt else [else_stmt]:stmt */
+        {if_else} if cond then with_else else stmt ;
     with_else =
         {nested_if_else} if cond then with_else else_with_else |
         {terminal} term_stmt |
@@ -151,8 +169,7 @@ Productions
         {assignment} l_value assignment expr semicolon |
         {block} block |
         {function} func_call semicolon |
-        {return_expr} return expr semicolon ; /*|
-        {while} while cond do stmt */
+        {return_expr} return expr semicolon ;*/
 
     block = l_brace stmt* r_brace ;
 

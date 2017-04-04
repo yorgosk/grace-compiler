@@ -179,72 +179,62 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseATerminalStmt(ATerminalStmt node)
+    public void caseAMatchedStmt(AMatchedStmt node)
     {
         defaultCase(node);
     }
 
-    public void caseAIfStmt(AIfStmt node)
+    public void caseAUnmatchedStmt(AUnmatchedStmt node)
     {
         defaultCase(node);
     }
 
-    public void caseAWhileStmt(AWhileStmt node)
+    public void caseAIfMatchedElseMatchedMatched(AIfMatchedElseMatchedMatched node)
     {
         defaultCase(node);
     }
 
-    public void caseAIfIfStmt(AIfIfStmt node)
+    public void caseAWhileMatchedMatched(AWhileMatchedMatched node)
     {
         defaultCase(node);
     }
 
-    public void caseAIfElseIfStmt(AIfElseIfStmt node)
+    public void caseAOtherMatched(AOtherMatched node)
     {
         defaultCase(node);
     }
 
-    public void caseANestedIfElseWithElse(ANestedIfElseWithElse node)
+    public void caseAIfUnmatched(AIfUnmatched node)
     {
         defaultCase(node);
     }
 
-    public void caseATerminalWithElse(ATerminalWithElse node)
+    public void caseAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node)
     {
         defaultCase(node);
     }
 
-    public void caseAWhileWithElse(AWhileWithElse node)
+    public void caseASemicolonOtherStmt(ASemicolonOtherStmt node)
     {
         defaultCase(node);
     }
 
-    public void caseAElseWithElse(AElseWithElse node)
+    public void caseAAssignmentOtherStmt(AAssignmentOtherStmt node)
     {
         defaultCase(node);
     }
 
-    public void caseASemicolonTermStmt(ASemicolonTermStmt node)
+    public void caseABlockOtherStmt(ABlockOtherStmt node)
     {
         defaultCase(node);
     }
 
-    public void caseAAssignmentTermStmt(AAssignmentTermStmt node)
+    public void caseAFunctionOtherStmt(AFunctionOtherStmt node)
     {
         defaultCase(node);
     }
 
-    public void caseABlockTermStmt(ABlockTermStmt node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAFunctionTermStmt(AFunctionTermStmt node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAReturnExprTermStmt(AReturnExprTermStmt node)
+    public void caseAReturnExprOtherStmt(AReturnExprOtherStmt node)
     {
         defaultCase(node);
     }
