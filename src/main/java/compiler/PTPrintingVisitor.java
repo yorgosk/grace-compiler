@@ -128,9 +128,9 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outANestedIfElseWithElse(ANestedIfElseWithElse node) { indent--; makeIndent(); System.out.printf(")out of nestedIfElseWithElse\n"); }
     @Override
-    public void inATerminalStatementWithElse(ATerminalStatementWithElse node) { makeIndent(); System.out.printf("terminalStatementWithElse(\n"); indent++; }
+    public void inATerminalWithElse(ATerminalWithElse node) { makeIndent(); System.out.printf("terminalStatementWithElse(\n"); indent++; }
     @Override
-    public void outATerminalStatementWithElse(ATerminalStatementWithElse node) { indent--; makeIndent(); System.out.printf(")out of terminalStatementWithElse\n"); }
+    public void outATerminalWithElse(ATerminalWithElse node) { indent--; makeIndent(); System.out.printf(")out of terminalStatementWithElse\n"); }
     @Override
     public void inAWhileStmt(AWhileStmt node) { makeIndent(); System.out.printf("whileStatement(\n"); indent++; }
     @Override
@@ -219,6 +219,10 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inATermDivFactorTerm(ATermDivFactorTerm node) { makeIndent(); System.out.printf("termDivFactorTerm(\n"); indent++; }
     @Override
     public void outATermDivFactorTerm(ATermDivFactorTerm node) { indent--; makeIndent(); System.out.printf(")\n"); }
+    @Override
+    public void inATermDivisionFactorTerm(ATermDivisionFactorTerm node) { makeIndent(); System.out.printf("termDivisionFactorTerm(\n"); indent++; }
+    @Override
+    public void outATermDivisionFactorTerm(ATermDivisionFactorTerm node) { indent--; makeIndent(); System.out.printf(")\n"); }
     @Override
     public void inATermModFactorTerm(ATermModFactorTerm node) { makeIndent(); System.out.printf("termModFactorTerm(\n"); indent++; }
     @Override

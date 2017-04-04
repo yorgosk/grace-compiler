@@ -20,9 +20,6 @@ Helpers
     s_char = ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ;
   	not_dollar = [all - '$'] ;
     /*comments*/
-    /*line_comment = '$' all* ;*/                                  /*commented by yiannis*/
-    /*multiline_comment = '$$' not_dollar* '$'+ (not_dollar* '$'+)* '$' ;*/      /*commented by yiannis*/
-    /*ta evala se sxolia giati nomizw eprepe na einai tokens, ousiastika prin mallon den angnorizei kan ta sxolia*/
     conatins_one_dollar = not_dollar+ '$' not_dollar+ ;                 /*added by yiannis*/
 
 
@@ -84,18 +81,16 @@ Tokens
   	identifier = nondigit (digit | nondigit)* ;
 
   	blank = (cr | lf | tab | ' ')+ ;
-   /* comment = line_comment | multiline_comment ; */               /*commented by yiannis*/
-   /*epeidi pleon einai tokens de ginetai na xrismopoi8oun gia na dilwsoun allo token*/
-        line_comment = '$' not_dollar no_lf* lf ;                      /*added by yiannis*/
-        multiline_comment = '$$' not_dollar* '$$' | '$$' conatins_one_dollar* '$$' ;  /*added by yiannis*/
+    /*epeidi pleon einai tokens de ginetai na xrismopoi8oun gia na dilwsoun allo token*/
+    line_comment = '$' not_dollar no_lf* lf ;                      /*added by yiannis*/
+    multiline_comment = '$$' not_dollar* '$$' | '$$' conatins_one_dollar* '$$' ;  /*added by yiannis*/
     /*ousiastika i deuteri grammi kaluptei pragmata tis morfis $$ fwef $ fwefew $ .. $ e $$*/
 
 
 Ignored Tokens
 
     blank,
-  	/*comment;*/                               /*commented by yiannis*/
-        line_comment,                                    /*added by yiannis*/
+    line_comment,                                    /*added by yiannis*/
   	multiline_comment;                                 /*added by yiannis*/
 
 
@@ -146,7 +141,7 @@ Productions
         {if_else} if cond then with_else else stmt ;    /*original line*/
     with_else =
         {nested_if_else} if cond then with_else else_with_else |
-        {terminal_statement} term_stmt ;
+        {terminal} term_stmt ;
     else_with_else = else with_else ;
     term_stmt =
         {semicolon} semicolon |
@@ -183,6 +178,7 @@ Productions
     term =
         {term_mult_factor} term mult factor |
         {term_div_factor} term div factor |
+        {term_division_factor} term division factor |
         {term_mod_factor} term mod factor |                                                /*yiannis code*/
         {factor} factor ;
     factor =

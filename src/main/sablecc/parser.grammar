@@ -141,7 +141,7 @@ Productions
         {if_else} if cond then with_else else stmt ;    /*original line*/
     with_else =
         {nested_if_else} if cond then with_else else_with_else |
-        {terminal_statement} term_stmt ;
+        {terminal} term_stmt ;
     else_with_else = else with_else ;
     term_stmt =
         {semicolon} semicolon |
@@ -178,6 +178,7 @@ Productions
     term =
         {term_mult_factor} term mult factor |
         {term_div_factor} term div factor |
+        {term_division_factor} term division factor |
         {term_mod_factor} term mod factor |                                                /*yiannis code*/
         {factor} factor ;
     factor =
