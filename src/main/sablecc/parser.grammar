@@ -95,7 +95,7 @@ Ignored Tokens
 
     blank,
   	/*comment;*/                               /*commented by yiannis*/
-        line_comment,                                    /*added by yiannis*/
+    line_comment,                                    /*added by yiannis*/
   	multiline_comment;                                 /*added by yiannis*/
 
 
