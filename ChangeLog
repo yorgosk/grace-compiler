@@ -1,0 +1,13 @@
+PROJECT'S CHANGELOG -- Last update 6/04/2017
+Here we list our most important changes and all of our stable-version releases up to this date.
+
+------------------------------------------------------------------------------------------------------------------------
+6/04/2017 -- version 1.0
+
+***Stable Version for Parts I and II of the project***
+
+>   Our compiler is currently on the first stage of it's development. For now, it has Lexer and Parser capabilities. It
+    processes the argument's program and, after it decides that it is correct (meaning that it conforms with our
+    grammar's specifications), it prints it's Parsing Tree. If it decides that the program is not correct, it produces
+    some basic error messages to help the user-programmer find what's wrong and correct it.
+------------------------------------------------------------------------------------------------------------------------
