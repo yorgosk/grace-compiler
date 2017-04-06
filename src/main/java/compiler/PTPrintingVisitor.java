@@ -6,7 +6,7 @@ import compiler.node.*;
 public class PTPrintingVisitor extends DepthFirstAdapter {
     // for indentation
     private int indent = 0;
-    private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("\t"); }
+    private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("    "); }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
