@@ -1,7 +1,7 @@
 # About
 
-  This is a compiler for the Grace programming language, developed at Spring of 2017 by
-  Chrysinas Ioannis and Kamaras Georgios as a semester-long project for Compilers course.
+  This project is a **Grace programming language Compiler**, developed at **Spring of 2017** by
+  **Chrysinas Ioannis** and **Kamaras Georgios** as a semester-long group-project for Compilers course.
 
 # Instructions
 
