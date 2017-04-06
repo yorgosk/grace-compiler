@@ -3,7 +3,7 @@
   This project is a **Grace programming language Compiler**, developed at **Spring of 2017** by
   **Chrysinas Ioannis** and **Kamaras Georgios** as a semester-long group-project for Compilers course.
 
-## Current Version
+## Current Version (version 1.0)
 
   ***Stable Version for Parts I and II of the project***
   >Our compiler is currently on the *first stage* of it's development. For now, it has *Lexer and Parser capabilities*.
