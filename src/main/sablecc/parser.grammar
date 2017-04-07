@@ -14,13 +14,12 @@ Helpers
   	cr = 13 ;
     lf = 10 ;
     tab = 9 ;
-    no_lf = [all - lf] ;                                       /*added by yiannis*/
-    /*xrisimopoitai sta sxolia mias grammis (einai xaraktires xwris allagi grammis kai mia */
-    /* allagi grammis */
+    /*used in one line comments, they are the character without the line-feed, which will be followed by a line feed*/
+    no_lf = [all - lf] ;
     s_char = ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ;
   	not_dollar = [all - '$'] ;
     /*comments*/
-    conatins_one_dollar = not_dollar+ '$' not_dollar+ ;                 /*added by yiannis*/
+    conatins_one_dollar = not_dollar+ '$' not_dollar+ ;
 
 
 Tokens
@@ -81,17 +80,17 @@ Tokens
   	identifier = nondigit (digit | nondigit)* ;
 
   	blank = (cr | lf | tab | ' ')+ ;
-    /*epeidi pleon einai tokens de ginetai na xrismopoi8oun gia na dilwsoun allo token*/
-    line_comment = '$' not_dollar no_lf* lf ;                      /*added by yiannis*/
-    multiline_comment = '$$' not_dollar* '$$' | '$$' conatins_one_dollar* '$$' ;  /*added by yiannis*/
-    /*ousiastika i deuteri grammi kaluptei pragmata tis morfis $$ fwef $ fwefew $ .. $ e $$*/
+    /*they are tokens, so they cannot be used to declare another token*/
+    line_comment = '$' not_dollar no_lf* lf ;
+    multiline_comment = '$$' not_dollar* '$$' | '$$' conatins_one_dollar* '$$' ;
+    /*the second line, covers things like $$ fwef $ fwefew $ .. $ e $$*/
 
 
 Ignored Tokens
 
     blank,
-    line_comment,                                    /*added by yiannis*/
-  	multiline_comment;                                 /*added by yiannis*/
+    line_comment,
+  	multiline_comment;
 
 
 Productions
@@ -149,28 +148,6 @@ Productions
         {function} func_call semicolon |
         {return_expr} return expr semicolon ;
 
-    /*stmt =
-        {terminal} term_stmt |
-        {if} if_stmt |
-        {while} while_stmt ;
-    while_stmt =
-        {while} while cond do stmt |
-        {while_if_else} while [while_cond]:cond do if [if_cond]:cond then with_else else stmt ;
-    if_stmt =
-        {if} if cond then stmt |
-        {if_else} if cond then with_else else stmt ;
-    with_else =
-        {nested_if_else} if cond then with_else else_with_else |
-        {terminal} term_stmt |
-        {while} while cond do term_stmt ;
-    else_with_else = else with_else ;
-    term_stmt =
-        {semicolon} semicolon |
-        {assignment} l_value assignment expr semicolon |
-        {block} block |
-        {function} func_call semicolon |
-        {return_expr} return expr semicolon ;*/
-
     block = l_brace stmt* r_brace ;
 
     func_call = id l_par func_args? r_par ;
@@ -200,7 +177,7 @@ Productions
         {term_mult_factor} term mult factor |
         {term_div_factor} term div factor |
         {term_division_factor} term division factor |
-        {term_mod_factor} term mod factor |                                                /*yiannis code*/
+        {term_mod_factor} term mod factor |
         {factor} factor ;
     factor =
         {int_const} int_const |
