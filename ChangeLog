@@ -10,4 +10,14 @@ Here we list our most important changes and all of our stable-version releases u
     processes the argument's program and, after it decides that it is correct (meaning that it conforms with our
     grammar's specifications), it prints it's Parsing Tree. If it decides that the program is not correct, it produces
     some basic error messages to help the user-programmer find what's wrong and correct it.
+
+------------------------------------------------------------------------------------------------------------------------
+23/03/2017 -- version 0.5
+
+***Stable Version for Part I of the project***
+
+>   Our compiler is currently halfway through the first stage of it's development. For now, it only has Lexer
+    capabilities. It processes a program, given to it manually, through the terminal, and it isolates it's lexical
+    components.
+
 ------------------------------------------------------------------------------------------------------------------------

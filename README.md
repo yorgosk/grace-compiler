@@ -2,6 +2,10 @@
 
   This project is a **Grace programming language Compiler**, developed at **Spring of 2017** by
   **Chrysinas Ioannis** and **Kamaras Georgios** as a semester-long group-project for Compilers course.
+  The project's development is going to progress in four stages. The first stage _(current stage)_ involves
+  the creation of the compiler's Lexical and Syntactical Analyser. The second stage involves creating the
+  compiler's Semantical Analyser and generating Intermediate Code. The third, and final, stage is about
+  Optimization and Program Execution.
 
 ## Current Version (version 1.0)
 
@@ -11,6 +15,14 @@
   specifications), it prints it's Parsing Tree. If it decides that the program is not correct, it produces some
   basic error messages to help the user-programmer find what's wrong and correct it.
   
+  **Important Files**
+  * at ```src/main/java/compiler/Main.java``` we have our **Main class** from which we read the Grace code from a
+  *.grace* file passed as an argument in the execution command, we process it to spot Lexer, Parser or IO Exceptions
+  that it may create and we load it's Syntactical components in a Parsing Tree, which we print in the end.
+  * at ```src/main/java/compiler/PTPrintingVisitor``` we have our **PTPrintingVisitor** class, in which
+  we use the *Visitor Pattern* to traverse and print our Parsing Tree (PT) in an efficient and easily maintainable way.
+  * at ```src/main/sablecc/parser.grammar``` we have our **Grammar's** file, created using the *SableCC Framework*.
+
 # Specifications
 
   Grace is a simple imperative programming language. Her main attributes, in short, are the following:
