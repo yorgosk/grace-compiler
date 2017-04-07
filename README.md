@@ -2,23 +2,24 @@
 
   This project is a **Grace programming language Compiler**, developed at **Spring of 2017** by
   **Chrysinas Ioannis** and **Kamaras Georgios** as a semester-long group-project for Compilers course.
-  The project's development is going to progress in four stages. The first stage _(current stage)_ involves
-  the creation of the compiler's Lexical and Syntactical Analyser. The second stage involves creating the
-  compiler's Semantical Analyser and generating Intermediate Code. The third, and final, stage is about
-  Optimization and Program Execution.
+  The project's development is going to progress in four stages, during the course of the semester:
+  1. The first stage _(current stage)_ involves the creation of the compiler's Lexical and Syntactical Analyser.
+  2. The second stage involves creating the compiler's Semantical Analyser and generating Intermediate Code.
+  3. The third, and final, stage is about Optimization and Program Execution.
 
 ## Current Version (version 1.0)
 
   ***Stable Version for Parts I and II of the project***
   >Our compiler is currently on the *first stage* of it's development. For now, it has *Lexer and Parser capabilities*.
-  It processes the argument's program and, after it decides that it is correct (meaning that it conforms with our grammar's
+  It processes the input's program and, after it decides that it is correct (meaning that it conforms with our grammar's
   specifications), it prints it's Parsing Tree. If it decides that the program is not correct, it produces some
   basic error messages to help the user-programmer find what's wrong and correct it.
   
   **Important Files**
   * at ```src/main/java/compiler/Main.java``` we have our **Main class** from which we read the Grace code from a
-  *.grace* file passed as an argument in the execution command, we process it to spot Lexer, Parser or IO Exceptions
-  that it may create and we load it's Syntactical components in a Parsing Tree, which we print in the end.
+  *text file* (*.grace*, *.txt*, etc) passed as an argument in the execution command *or* from the *stdin*, if no
+  argument was given, we process it to spot Lexer, Parser or IO Exceptions that it may create and we load it's
+  Syntactical components in a Parsing Tree, which we print in the end.
   * at ```src/main/java/compiler/PTPrintingVisitor``` we have our **PTPrintingVisitor** class, in which
   we use the *Visitor Pattern* to traverse and print our Parsing Tree (PT) in an efficient and easily maintainable way.
   * at ```src/main/sablecc/parser.grammar``` we have our **Grammar's** file, created using the *SableCC Framework*.
@@ -62,16 +63,26 @@
 
 ### Commands Example
 
-   *Build:*
+   **Build:**
    
    ```>mvn clean package```
    
-   *Execute:*
+   **Execute:**
+   
+   * If compiler takes input from a file:
    
    ```>java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main examples/hello.grace```
+   
+   * or, if compiler takes input from stdin *(not recommended for large programs, for practical reasons)*:
+   
+   ```java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main```
     
-   **Important Note**
-   >The name (or the path, if not in the same directory) of the file of grace code that we want to compile, must be included in the execution's command, like we do in other compilers, e.g. the gcc. In our example, the grace-code file can be found in the path ```examples/hello.grace```.
+   **Important Notes**
+   >For the first execution option, the name (or the path, if not in the same directory) of the file of grace code that
+   we want to compile, must be included in the execution's command, like we do in other compilers, e.g. the gcc. In our
+   example, the grace-code file can be found in the path ```examples/hello.grace```.
+   >For the second execution option, the compiler expects to receive a Ctrl^D signal to start processing the input. This
+   signal should be received **in a line below the last line of the Grace code**.
    
 ### Output Example
 
