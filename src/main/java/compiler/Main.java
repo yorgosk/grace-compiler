@@ -12,22 +12,27 @@ import java.io.*;
 class Main {
 
 	public static void main(String args[]) {
-		String filename = null;
-		try {
+		int argsCount = args.length;
+		String filename;
+		PushbackReader reader = null;
+
+		if (argsCount == 0) {
+			reader = new PushbackReader(new InputStreamReader(System.in), 1024);
+		} else if (argsCount == 1) {
 			filename = args[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.err.printf("No argument error: %s\n", e.getMessage());
+			try {
+				reader = new PushbackReader(new FileReader(filename), 1024);
+			} catch (FileNotFoundException e) {
+				System.err.printf("File Not Found error: %s\n", e.getMessage());
+				e.printStackTrace();
+			}
+		} else {
+			System.err.printf("Can't compile more than one files at once.");
+			System.exit(-1);
 		}
 
 		Start tree = null;
 
-		PushbackReader reader = null;
-		try {
-			reader = new PushbackReader(new FileReader(filename), 1024);
-		} catch (FileNotFoundException e) {
-			System.err.printf("File Not Found error: %s\n", e.getMessage());
-			e.printStackTrace();
-		}
 		try {
 			Parser p = new Parser(new Lexer(reader));
 			tree = p.parse();
