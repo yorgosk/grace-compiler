@@ -27,7 +27,7 @@ class Main {
 				e.printStackTrace();
 			}
 		} else {
-			System.err.printf("Can't compile more than one files at once.");
+			System.err.printf("Can't compile more than one files at once.\n");
 			System.exit(-1);
 		}
 
