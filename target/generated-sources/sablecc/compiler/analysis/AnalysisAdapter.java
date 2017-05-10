@@ -274,11 +274,6 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseASignedExpr(ASignedExpr node)
-    {
-        defaultCase(node);
-    }
-
     public void caseAExprPlusTermExpr(AExprPlusTermExpr node)
     {
         defaultCase(node);
@@ -290,26 +285,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseATermExpr(ATermExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseASignSignExprSignedExpr(ASignSignExprSignedExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseASignFactorSignedExpr(ASignFactorSignedExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAPlusSignSign(APlusSignSign node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAMinusSignSign(AMinusSignSign node)
     {
         defaultCase(node);
     }
@@ -364,7 +339,32 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseASignedExprFactor(ASignedExprFactor node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAExprInPars(AExprInPars node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseASignSignedExprSignedExpr(ASignSignedExprSignedExpr node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseASignFactorSignedExpr(ASignFactorSignedExpr node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAPlusSignSign(APlusSignSign node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMinusSignSign(AMinusSignSign node)
     {
         defaultCase(node);
     }

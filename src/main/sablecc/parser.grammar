@@ -160,21 +160,10 @@ Productions
         {string} string_literal |
         {expression} l_value l_bracket expr r_bracket ;
 
-    /*
     expr =
-        {signed} signed_expr |
         {expr_plus_term} expr plus term |
         {expr_minus_term} expr minus term |
         {term} term ;
-    signed_expr =
-        {sign_int_const} sign int_const |
-        {sign_char_const} sign char_const |
-        {sign_l_value} sign l_value |
-        {sign_func_call} sign func_call |
-        {sign_expr_in_pars} sign expr_in_pars ;
-    sign =
-        {plus_sign} plus |
-        {minus_sign} minus ;
     term =
         {term_mult_factor} term mult factor |
         {term_div_factor} term div factor |
@@ -186,34 +175,15 @@ Productions
         {char_const} char_const |
         {l_value} l_value |
         {func_call} func_call |
-        {expr_in_pars} expr_in_pars;
+        {expr_in_pars} expr_in_pars |
+        {signed_expr} signed_expr ;
     expr_in_pars = l_par expr r_par ;
-    */
-
-    expr =
-        {signed} signed_expr |
-        {expr_plus_term} expr plus term |
-        {expr_minus_term} expr minus term |
-        {term} term ;
     signed_expr =
-        {sign_sign_expr} sign signed_expr |
+        {sign_signed_expr} sign signed_expr |
         {sign_factor} sign factor ;
     sign =
         {plus_sign} plus |
         {minus_sign} minus ;
-    term =
-        {term_mult_factor} term mult factor |
-        {term_div_factor} term div factor |
-        {term_division_factor} term division factor |
-        {term_mod_factor} term mod factor |
-        {factor} factor ;
-    factor =
-        {int_const} int_const |
-        {char_const} char_const |
-        {l_value} l_value |
-        {func_call} func_call |
-        {expr_in_pars} expr_in_pars;
-    expr_in_pars = l_par expr r_par ;
 
     cond =
         {not} not_cond |

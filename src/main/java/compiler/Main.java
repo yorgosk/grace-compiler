@@ -31,11 +31,17 @@ class Main {
 			System.exit(-1);
 		}
 
-		Start tree = null;
-
 		try {
 			Parser p = new Parser(new Lexer(reader));
-			tree = p.parse();
+			Start tree = p.parse();
+
+			try {
+				System.out.printf("\nPrinting Parsing Tree:\n\n");
+				tree.apply(new PTPrintingVisitor());
+			} catch (NullPointerException e) {
+				System.err.printf("Null pointer Exception: %s\n", e.getMessage());
+				e.printStackTrace();
+			}
 		} catch (LexerException e) {
 			System.err.printf("Lexing error: %s\n", e.getMessage());
 		} catch (IOException e) {
@@ -43,14 +49,6 @@ class Main {
 			e.printStackTrace();
 		} catch (ParserException e) {
 			System.err.printf("Parsing error: %s\n", e.getMessage());
-		}
-
-		try {
-			System.out.printf("\nPrinting Parsing Tree:\n\n");
-			tree.apply(new PTPrintingVisitor());
-		} catch (NullPointerException e) {
-			System.err.printf("Null pointer Exception: %s\n", e.getMessage());
-			e.printStackTrace();
 		}
 
 		System.exit(0);

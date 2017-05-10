@@ -53,14 +53,9 @@ public interface Analysis extends Switch
     void caseAIdLValue(AIdLValue node);
     void caseAStringLValue(AStringLValue node);
     void caseAExpressionLValue(AExpressionLValue node);
-    void caseASignedExpr(ASignedExpr node);
     void caseAExprPlusTermExpr(AExprPlusTermExpr node);
     void caseAExprMinusTermExpr(AExprMinusTermExpr node);
     void caseATermExpr(ATermExpr node);
-    void caseASignSignExprSignedExpr(ASignSignExprSignedExpr node);
-    void caseASignFactorSignedExpr(ASignFactorSignedExpr node);
-    void caseAPlusSignSign(APlusSignSign node);
-    void caseAMinusSignSign(AMinusSignSign node);
     void caseATermMultFactorTerm(ATermMultFactorTerm node);
     void caseATermDivFactorTerm(ATermDivFactorTerm node);
     void caseATermDivisionFactorTerm(ATermDivisionFactorTerm node);
@@ -71,7 +66,12 @@ public interface Analysis extends Switch
     void caseALValueFactor(ALValueFactor node);
     void caseAFuncCallFactor(AFuncCallFactor node);
     void caseAExprInParsFactor(AExprInParsFactor node);
+    void caseASignedExprFactor(ASignedExprFactor node);
     void caseAExprInPars(AExprInPars node);
+    void caseASignSignedExprSignedExpr(ASignSignedExprSignedExpr node);
+    void caseASignFactorSignedExpr(ASignFactorSignedExpr node);
+    void caseAPlusSignSign(APlusSignSign node);
+    void caseAMinusSignSign(AMinusSignSign node);
     void caseANotCond(ANotCond node);
     void caseACondAndTermcondCond(ACondAndTermcondCond node);
     void caseACondOrTermcondCond(ACondOrTermcondCond node);
