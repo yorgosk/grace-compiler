@@ -1277,129 +1277,54 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outATermExpr(node);
     }
 
-    public void inASignIntConstSignedExpr(ASignIntConstSignedExpr node)
+    public void inASignSignExprSignedExpr(ASignSignExprSignedExpr node)
     {
         defaultIn(node);
     }
 
-    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node)
+    public void outASignSignExprSignedExpr(ASignSignExprSignedExpr node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASignIntConstSignedExpr(ASignIntConstSignedExpr node)
+    public void caseASignSignExprSignedExpr(ASignSignExprSignedExpr node)
     {
-        inASignIntConstSignedExpr(node);
-        if(node.getIntConst() != null)
+        inASignSignExprSignedExpr(node);
+        if(node.getSignedExpr() != null)
         {
-            node.getIntConst().apply(this);
+            node.getSignedExpr().apply(this);
         }
         if(node.getSign() != null)
         {
             node.getSign().apply(this);
         }
-        outASignIntConstSignedExpr(node);
+        outASignSignExprSignedExpr(node);
     }
 
-    public void inASignCharConstSignedExpr(ASignCharConstSignedExpr node)
+    public void inASignFactorSignedExpr(ASignFactorSignedExpr node)
     {
         defaultIn(node);
     }
 
-    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node)
+    public void outASignFactorSignedExpr(ASignFactorSignedExpr node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASignCharConstSignedExpr(ASignCharConstSignedExpr node)
+    public void caseASignFactorSignedExpr(ASignFactorSignedExpr node)
     {
-        inASignCharConstSignedExpr(node);
-        if(node.getCharConst() != null)
+        inASignFactorSignedExpr(node);
+        if(node.getFactor() != null)
         {
-            node.getCharConst().apply(this);
+            node.getFactor().apply(this);
         }
         if(node.getSign() != null)
         {
             node.getSign().apply(this);
         }
-        outASignCharConstSignedExpr(node);
-    }
-
-    public void inASignLValueSignedExpr(ASignLValueSignedExpr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outASignLValueSignedExpr(ASignLValueSignedExpr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseASignLValueSignedExpr(ASignLValueSignedExpr node)
-    {
-        inASignLValueSignedExpr(node);
-        if(node.getLValue() != null)
-        {
-            node.getLValue().apply(this);
-        }
-        if(node.getSign() != null)
-        {
-            node.getSign().apply(this);
-        }
-        outASignLValueSignedExpr(node);
-    }
-
-    public void inASignFuncCallSignedExpr(ASignFuncCallSignedExpr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outASignFuncCallSignedExpr(ASignFuncCallSignedExpr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseASignFuncCallSignedExpr(ASignFuncCallSignedExpr node)
-    {
-        inASignFuncCallSignedExpr(node);
-        if(node.getFuncCall() != null)
-        {
-            node.getFuncCall().apply(this);
-        }
-        if(node.getSign() != null)
-        {
-            node.getSign().apply(this);
-        }
-        outASignFuncCallSignedExpr(node);
-    }
-
-    public void inASignExprInParsSignedExpr(ASignExprInParsSignedExpr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outASignExprInParsSignedExpr(ASignExprInParsSignedExpr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseASignExprInParsSignedExpr(ASignExprInParsSignedExpr node)
-    {
-        inASignExprInParsSignedExpr(node);
-        if(node.getExprInPars() != null)
-        {
-            node.getExprInPars().apply(this);
-        }
-        if(node.getSign() != null)
-        {
-            node.getSign().apply(this);
-        }
-        outASignExprInParsSignedExpr(node);
+        outASignFactorSignedExpr(node);
     }
 
     public void inAPlusSignSign(APlusSignSign node)

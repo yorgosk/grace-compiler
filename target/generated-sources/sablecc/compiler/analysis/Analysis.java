@@ -57,11 +57,8 @@ public interface Analysis extends Switch
     void caseAExprPlusTermExpr(AExprPlusTermExpr node);
     void caseAExprMinusTermExpr(AExprMinusTermExpr node);
     void caseATermExpr(ATermExpr node);
-    void caseASignIntConstSignedExpr(ASignIntConstSignedExpr node);
-    void caseASignCharConstSignedExpr(ASignCharConstSignedExpr node);
-    void caseASignLValueSignedExpr(ASignLValueSignedExpr node);
-    void caseASignFuncCallSignedExpr(ASignFuncCallSignedExpr node);
-    void caseASignExprInParsSignedExpr(ASignExprInParsSignedExpr node);
+    void caseASignSignExprSignedExpr(ASignSignExprSignedExpr node);
+    void caseASignFactorSignedExpr(ASignFactorSignedExpr node);
     void caseAPlusSignSign(APlusSignSign node);
     void caseAMinusSignSign(AMinusSignSign node);
     void caseATermMultFactorTerm(ATermMultFactorTerm node);
@@ -115,6 +112,7 @@ public interface Analysis extends Switch
     void caseTCharConst(TCharConst node);
     void caseTSCharSequence(TSCharSequence node);
     void caseTStringLiteral(TStringLiteral node);
+    void caseTErroneousNumber(TErroneousNumber node);
     void caseTPlus(TPlus node);
     void caseTMinus(TMinus node);
     void caseTMult(TMult node);

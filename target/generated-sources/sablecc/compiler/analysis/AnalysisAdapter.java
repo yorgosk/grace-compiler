@@ -294,27 +294,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseASignIntConstSignedExpr(ASignIntConstSignedExpr node)
+    public void caseASignSignExprSignedExpr(ASignSignExprSignedExpr node)
     {
         defaultCase(node);
     }
 
-    public void caseASignCharConstSignedExpr(ASignCharConstSignedExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseASignLValueSignedExpr(ASignLValueSignedExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseASignFuncCallSignedExpr(ASignFuncCallSignedExpr node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseASignExprInParsSignedExpr(ASignExprInParsSignedExpr node)
+    public void caseASignFactorSignedExpr(ASignFactorSignedExpr node)
     {
         defaultCase(node);
     }
@@ -575,6 +560,11 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTStringLiteral(TStringLiteral node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTErroneousNumber(TErroneousNumber node)
     {
         defaultCase(node);
     }

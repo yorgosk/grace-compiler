@@ -51,6 +51,7 @@ Tokens
     char_const = ''' s_char ''' ;
     s_char_sequence = (''' s_char ''')+ ;
     string_literal = '"' (s_char+) '"' ;
+    erroneous_number = (digit)+ (letter|'_')+;
 
     /* symbolic operators */
     plus = '+' ;
@@ -146,7 +147,7 @@ Productions
         {assignment} l_value assignment expr semicolon |
         {block} block |
         {function} func_call semicolon |
-        {return_expr} return expr semicolon ;
+        {return_expr} return expr? semicolon ;
 
     block = l_brace stmt* r_brace ;
 
@@ -159,6 +160,7 @@ Productions
         {string} string_literal |
         {expression} l_value l_bracket expr r_bracket ;
 
+    /*
     expr =
         {signed} signed_expr |
         {expr_plus_term} expr plus term |
@@ -170,6 +172,32 @@ Productions
         {sign_l_value} sign l_value |
         {sign_func_call} sign func_call |
         {sign_expr_in_pars} sign expr_in_pars ;
+    sign =
+        {plus_sign} plus |
+        {minus_sign} minus ;
+    term =
+        {term_mult_factor} term mult factor |
+        {term_div_factor} term div factor |
+        {term_division_factor} term division factor |
+        {term_mod_factor} term mod factor |
+        {factor} factor ;
+    factor =
+        {int_const} int_const |
+        {char_const} char_const |
+        {l_value} l_value |
+        {func_call} func_call |
+        {expr_in_pars} expr_in_pars;
+    expr_in_pars = l_par expr r_par ;
+    */
+
+    expr =
+        {signed} signed_expr |
+        {expr_plus_term} expr plus term |
+        {expr_minus_term} expr minus term |
+        {term} term ;
+    signed_expr =
+        {sign_sign_expr} sign signed_expr |
+        {sign_factor} sign factor ;
     sign =
         {plus_sign} plus |
         {minus_sign} minus ;

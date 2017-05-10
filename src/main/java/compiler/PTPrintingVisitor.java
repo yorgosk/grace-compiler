@@ -193,16 +193,20 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     public void inATermExpr(ATermExpr node) { makeIndent(); System.out.printf("termExpr :\n"); indent++; }
     @Override
     public void outATermExpr(ATermExpr node) { indent--; }
+//    @Override
+//    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) { makeIndent(); System.out.printf("\"%s\"\n", node.getIntConst().toString()); }
+//    @Override
+//    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node) { makeIndent(); System.out.printf("\"%s\"\n", node.getCharConst().toString()); }
+//    @Override
+//    public void inASignLValueSignedExpr(ASignLValueSignedExpr node) { System.out.printf(""); }
+//    @Override
+//    public void inASignFuncCallSignedExpr(ASignFuncCallSignedExpr node) { System.out.printf(""); }
+//    @Override
+//    public void inASignExprInParsSignedExpr(ASignExprInParsSignedExpr node) { System.out.printf(""); }
     @Override
-    public void outASignIntConstSignedExpr(ASignIntConstSignedExpr node) { makeIndent(); System.out.printf("\"%s\"\n", node.getIntConst().toString()); }
+    public void inASignFactorSignedExpr(ASignFactorSignedExpr node) { System.out.printf(""); }
     @Override
-    public void outASignCharConstSignedExpr(ASignCharConstSignedExpr node) { makeIndent(); System.out.printf("\"%s\"\n", node.getCharConst().toString()); }
-    @Override
-    public void inASignLValueSignedExpr(ASignLValueSignedExpr node) { System.out.printf(""); }
-    @Override
-    public void inASignFuncCallSignedExpr(ASignFuncCallSignedExpr node) { System.out.printf(""); }
-    @Override
-    public void inASignExprInParsSignedExpr(ASignExprInParsSignedExpr node) { System.out.printf(""); }
+    public void inASignSignExprSignedExpr (ASignSignExprSignedExpr node) { System.out.printf(""); }
     @Override
     public void inAPlusSignSign(APlusSignSign node) { makeIndent(); System.out.printf("\"+\",\n"); }
     @Override
