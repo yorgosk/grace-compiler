@@ -141,6 +141,7 @@ Productions
         {other} other_stmt ;
     unmatched =
         {if} if cond then stmt |
+        {while_unmatched} while cond do unmatched |
         {if_matched_else_unmatched} if cond then matched else unmatched ;
     other_stmt =
         {semicolon} semicolon |

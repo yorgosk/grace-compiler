@@ -806,6 +806,39 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAIfUnmatched(node);
     }
 
+    public void inAWhileUnmatchedUnmatched(AWhileUnmatchedUnmatched node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAWhileUnmatchedUnmatched(AWhileUnmatchedUnmatched node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAWhileUnmatchedUnmatched(AWhileUnmatchedUnmatched node)
+    {
+        inAWhileUnmatchedUnmatched(node);
+        if(node.getWhile() != null)
+        {
+            node.getWhile().apply(this);
+        }
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+        if(node.getDo() != null)
+        {
+            node.getDo().apply(this);
+        }
+        if(node.getUnmatched() != null)
+        {
+            node.getUnmatched().apply(this);
+        }
+        outAWhileUnmatchedUnmatched(node);
+    }
+
     public void inAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node)
     {
         defaultIn(node);

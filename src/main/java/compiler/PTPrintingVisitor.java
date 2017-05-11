@@ -126,6 +126,10 @@ public class PTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAIfUnmatched(AIfUnmatched node) { indent--; }
     @Override
+    public void inAWhileUnmatchedUnmatched(AWhileUnmatchedUnmatched node) { makeIndent(); System.out.printf("whileUnmatched :\n"); indent++; }
+    @Override
+    public void outAWhileUnmatchedUnmatched(AWhileUnmatchedUnmatched node) { indent--; }
+    @Override
     public void inAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node) { makeIndent(); System.out.printf("ifMatchedElseUnmatched :\n"); indent++; }
     @Override
     public void outAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node) { indent--; }

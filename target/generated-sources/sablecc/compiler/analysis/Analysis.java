@@ -40,6 +40,7 @@ public interface Analysis extends Switch
     void caseAWhileMatchedMatched(AWhileMatchedMatched node);
     void caseAOtherMatched(AOtherMatched node);
     void caseAIfUnmatched(AIfUnmatched node);
+    void caseAWhileUnmatchedUnmatched(AWhileUnmatchedUnmatched node);
     void caseAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node);
     void caseASemicolonOtherStmt(ASemicolonOtherStmt node);
     void caseAAssignmentOtherStmt(AAssignmentOtherStmt node);

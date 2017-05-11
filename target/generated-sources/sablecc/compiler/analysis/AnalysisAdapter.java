@@ -209,6 +209,11 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseAWhileUnmatchedUnmatched(AWhileUnmatchedUnmatched node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAIfMatchedElseUnmatchedUnmatched(AIfMatchedElseUnmatchedUnmatched node)
     {
         defaultCase(node);
