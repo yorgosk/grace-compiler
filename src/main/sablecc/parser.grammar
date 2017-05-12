@@ -20,6 +20,7 @@ Helpers
   	not_dollar = [all - '$'] ;
     /*comments*/
     conatins_one_dollar = not_dollar+ '$' not_dollar+ ;
+    conatins_two_dollars = not_dollar+ '$' not_dollar+ '$' not_dollar+ ;
 
 
 Tokens
@@ -83,7 +84,7 @@ Tokens
   	blank = (cr | lf | tab | ' ')+ ;
     /*they are tokens, so they cannot be used to declare another token*/
     line_comment = '$' not_dollar no_lf* lf ;
-    multiline_comment = '$$' not_dollar* '$$' | '$$' conatins_one_dollar* '$$' ;
+    multiline_comment = '$$' not_dollar* '$$' | '$$' conatins_one_dollar* '$$' | '$$' conatins_two_dollars* '$$' ;
     /*the second line, covers things like $$ fwef $ fwefew $ .. $ e $$*/
 
 
