@@ -97,41 +97,41 @@ Ignored Tokens
 
 Productions
 
-    program {-> program} = func_def {-> New func_def(func_def)};
+    program = func_def {-> func_def};
 
-    func_def {-> func_def}= header local_def* block {-> header};
+    func_def = header local_def* block {-> New func_def(header, [local_def], block)};
 
-    header {-> header} = fun id l_par header_params? r_par colon ret_type ; /*because, we may have no pars at all e.g. hello example*/
-    header_params = fpar_def header_next_arg* ;
-    header_next_arg = semicolon fpar_def ;
+    header = fun id l_par header_params? r_par colon ret_type {-> New header(id, [header_params.fpar_def])} ; /*because, we may have no pars at all e.g. hello example*/
+    header_params {-> fpar_def*} = fpar_def header_next_arg* {-> [fpar_def, header_next_arg.fpar_def]} ;
+    header_next_arg {-> fpar_def} = semicolon fpar_def {-> fpar_def} ;
 
-    fpar_def {-> fpar_def} = ref? id fpar_def_next_id* colon fpar_type ;
-    fpar_def_next_id = comma id ;
+    fpar_def = ref? id fpar_def_next_id* colon fpar_type {-> New fpar_def(id, [fpar_def_next_id.id], fpar_type)} ;
+    fpar_def_next_id {-> id} = comma id {-> id} ;
 
     data_type {-> } =
         {int} int {-> } |
         {char} char {-> } ;
 
-    type {-> type} = data_type dimension* ;
-    dimension = l_bracket int_const r_bracket ;
+    type = data_type dimension* {-> New type([dimension.int_const])} ;
+    dimension {-> int_const} = l_bracket int_const r_bracket {-> int_const} ;
 
-    ret_type {-> ret_type} =
-        {data_type} data_type |
-        {nothing} nothing ;
+    ret_type {-> } =
+        {data_type} data_type {-> } |
+        {nothing} nothing {-> } ;
 
-    fpar_type {-> fpar_type} = data_type l_r_brackets? next_dimension* ;
+    fpar_type = data_type l_r_brackets? next_dimension* {-> New fpar_type([next_dimension.int_const])} ;
     l_r_brackets = l_bracket r_bracket ;
-    next_dimension = l_bracket int_const r_bracket ;
+    next_dimension {-> int_const} = l_bracket int_const r_bracket {-> New int_const(int_const)} ;
 
-    local_def {-> local_def} =
-        {func_def} func_def |
-        {func_decl} func_decl |
-        {var_def} var_def ;
+    local_def =
+        {func_def} func_def {-> New local_def.func_def(func_def)} |
+        {func_decl} func_decl {-> New local_def.func_decl(func_decl)} |
+        {var_def} var_def {-> New local_def.var_def(var_def)} ;
 
-    var_def {-> var_def} = var id var_def_next_id* colon type semicolon ;
-    var_def_next_id = comma id ;
+    var_def = var id var_def_next_id* colon type semicolon {-> New var_def(id, [id], type)} ;
+    var_def_next_id {-> id} = comma id {-> id} ;
 
-    func_decl {-> func_decl} = header semicolon ;
+    func_decl = header semicolon {-> New func_decl(header)} ;
 
     stmt =
         {matched} matched {-> matched.stmt} |
@@ -215,9 +215,9 @@ Abstract Syntax Tree
 
     func_def = header local_def* block ;
 
-    header = id fpar_def* ret_type ;
+    header = id fpar_def* ;
 
-    fpar_def = id? fpar_type ;
+    fpar_def = [first]:id [next]:id* fpar_type ;
 
     type = int_const* ;
 
@@ -228,7 +228,7 @@ Abstract Syntax Tree
         {func_decl} func_decl |
         {var_def} var_def ;
 
-    var_def = id? type ;
+    var_def = id [next]:id* type ;
 
     func_decl = header ;
 

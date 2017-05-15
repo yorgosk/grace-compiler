@@ -30,8 +30,8 @@
       <file leaf-file-name="parser.grammar" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="151" column="73" lean-forward="false" selection-start-line="151" selection-start-column="73" selection-end-line="151" selection-end-column="73" />
+            <state relative-caret-position="124">
+              <caret line="104" column="32" lean-forward="false" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -1218,14 +1218,7 @@
       <workItem from="1494529625565" duration="2273000" />
       <workItem from="1494602342862" duration="1455000" />
       <workItem from="1494838196501" duration="2314000" />
-      <workItem from="1494871039254" duration="4944000" />
-    </task>
-    <task id="LOCAL-00009" summary="trying to format parse-tree printing as a JSON file">
-      <created>1491159106807</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1491159106807</updated>
+      <workItem from="1494871039254" duration="8311000" />
     </task>
     <task id="LOCAL-00010" summary="trying to format parse-tree printing as a JSON file (continued)">
       <created>1491213597904</created>
@@ -1563,11 +1556,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494871509964</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="continued with AST">
+      <created>1494876000662</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1494876000662</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99977000" />
+    <option name="totallyTimeSpent" value="103344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="713" y="52" width="653" height="716" extended-state="4" />
@@ -1611,7 +1611,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added visitors patern to use in parse-tree printing (continued)" />
     <MESSAGE value="trying to format parse-tree printing as a JSON file" />
     <MESSAGE value="trying to format parse-tree printing as a JSON file (continued)" />
     <MESSAGE value="trying to format parse-tree printing (continued)" />
@@ -1636,7 +1635,8 @@
     <MESSAGE value="if-inside-while issue possibly fixed..." />
     <MESSAGE value="not accepting '$ $' inside multiline comment issue fixed" />
     <MESSAGE value="trying to fix merging conflicts" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to fix merging conflicts" />
+    <MESSAGE value="continued with AST" />
+    <option name="LAST_COMMIT_MESSAGE" value="continued with AST" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1997,8 +1997,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="151" column="73" lean-forward="false" selection-start-line="151" selection-start-column="73" selection-end-line="151" selection-end-column="73" />
+        <state relative-caret-position="124">
+          <caret line="104" column="32" lean-forward="false" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
           <folding />
         </state>
       </provider>
