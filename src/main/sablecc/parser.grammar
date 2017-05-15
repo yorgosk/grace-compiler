@@ -208,3 +208,69 @@ Productions
         {greater} greater |
         {lesseq} lesseq |
         {greateq} greateq ;
+
+Abstract Syntax Tree
+
+    program = func_def ;
+
+    func_def = header local_def* block ;
+
+    header = id fpar_def* ret_type ;
+
+    fpar_def = id? fpar_type ;
+
+    type = int_const* ;
+
+    fpar_type = int_const* ;
+
+    local_def =
+        {func_def} func_def |
+        {func_decl} func_decl |
+        {var_def} var_def ;
+
+    var_def = id? type ;
+
+    func_decl = header ;
+
+    stmt =
+        {assignment} l_value expr |
+        {block} block |
+        {function} func_call |
+        {if} cond stmt? |
+        {while} cond stmt |
+        {return} expr ;
+
+    block = stmt* ;
+
+    func_call = id expr* ;
+
+    l_value =
+        {id} id |
+        {string} string_literal |
+        {l_value} l_value |
+        {expr} expr ;
+
+    expr =
+        {int_const} int_const |
+        {char_const} char_const |
+        {l_value} l_value |
+        {func_call} func_call |
+        {expr} expr |
+        {plus} [left]:expr [right]:expr |
+        {minus} [left]:expr [right]:expr |
+        {mult} [left]:expr [right]:expr |
+        {div} [left]:expr [right]:expr |
+        {division} [left]:expr [right]:expr |
+        {mod} [left]:expr [right]:expr ;
+
+    cond =
+        {cond} cond |
+        {and} [left]:cond [right]:cond |
+        {or} [left]:cond [right]:cond |
+        {equal} [left]:expr [right]:expr |
+        {hashtag} [left]:expr [right]:expr |
+        {unequal} [left]:expr [right]:expr |
+        {lesser} [left]:expr [right]:expr |
+        {greater} [left]:expr [right]:expr |
+        {lesseq} [left]:expr [right]:expr |
+        {greateq} [left]:expr [right]:expr ;
