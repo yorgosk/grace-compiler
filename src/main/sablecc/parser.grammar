@@ -97,9 +97,9 @@ Ignored Tokens
 
 Productions
 
-    program = func_def ;
+    program {->  program } = func_def {-> New func_def(func_def)};
 
-    func_def = header local_def* block ;
+    func_def {-> func_def }= header local_def* block { -> header};
 
     header = fun id l_par header_params? r_par colon ret_type ; /*because, we may have no pars at all e.g. hello example*/
     header_params = fpar_def header_next_arg* ;
@@ -162,17 +162,17 @@ Productions
         {string} string_literal |
         {expression} l_value l_bracket expr r_bracket ;
 
-    expr =
-        {expr_plus_term} expr plus term |
-        {expr_minus_term} expr minus term |
-        {term} term ;
-    term =
+    expr {->expr} =
+        {expr_plus_term} expr plus term { -> expr.plus} |
+        {expr_minus_term} expr minus term { -> expr.minus} |
+        {term} term { -> expr.expr} ;
+    term {->expr} =
         {term_mult_factor} term mult factor |
         {term_div_factor} term div factor |
         {term_division_factor} term division factor |
         {term_mod_factor} term mod factor |
         {factor} factor ;
-    factor =
+    factor {->expr} =
         {int_const} int_const |
         {char_const} char_const |
         {l_value} l_value |
