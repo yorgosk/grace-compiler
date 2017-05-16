@@ -1,5 +1,3 @@
-/* *******************OUTDATED******************* */
-
 package compiler;
 
 import compiler.analysis.DepthFirstAdapter;

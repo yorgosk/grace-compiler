@@ -36,9 +36,6 @@ class Main {
 			Start tree = p.parse();
 
 			try {
-				System.out.printf("\n(OUTDATED) Printing Parsing Tree:\n\n");
-				tree.apply(new PTPrintingVisitor());
-
 				System.out.printf("\nPrinting Abstract Syntax Tree:\n\n");
 				tree.apply(new ASTPrintingVisitor());
 			} catch (NullPointerException e) {
