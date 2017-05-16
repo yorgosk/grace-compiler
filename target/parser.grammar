@@ -1,0 +1,270 @@
+Package compiler;
+
+
+Helpers
+
+    all = [0 .. 255] ;
+  	digit = ['0' .. '9'] ;
+  	nonzero_digit = ['1' .. '9'] ;
+  	letter = ['a' .. 'z'] | ['A' .. 'Z'] ;
+  	nondigit = '_' | letter ;
+  	sign = '+' | '-' ;
+  	hexadecimal_digit = digit | ['a' .. 'f'] | ['A' .. 'F'] ;
+  	escape_sequence = '\' ('n' | 't' | 'r' | '0' | '\' | ''' | '"' | ('x' hexadecimal_digit+ hexadecimal_digit+)) ;
+  	cr = 13 ;
+    lf = 10 ;
+    tab = 9 ;
+    /*used in one line comments, they are the character without the line-feed, which will be followed by a line feed*/
+    no_lf = [all - lf] ;
+    s_char = ([all - [''' + ['"' + ['\' + [lf + cr]]]]] | escape_sequence) ;
+  	not_dollar = [all - '$'] ;
+    /*comments*/
+    conatins_one_dollar = not_dollar+ '$' not_dollar+ ;
+    conatins_two_dollars = not_dollar+ '$' not_dollar+ '$' not_dollar+ ;
+
+
+Tokens
+
+    /* keywords */
+    and = 'and' ;
+    char = 'char' ;
+    div = 'div' ;
+    do = 'do' ;
+    else = 'else' ;
+    fun = 'fun' ;
+    if = 'if' ;
+    int = 'int' ;
+    mod = 'mod' ;
+    not = 'not' ;
+    nothing = 'nothing' ;
+    or = 'or' ;
+    ref = 'ref' ;
+    return = 'return' ;
+    then = 'then' ;
+    var = 'var' ;
+    while = 'while' ;
+
+    /* names */
+    id = letter (digit | nondigit)* ;
+
+    /*int and character constants, strings*/
+    int_const = digit+ ;
+    char_const = ''' s_char ''' ;
+    s_char_sequence = (''' s_char ''')+ ;
+    string_literal = '"' (s_char+) '"' ;
+    erroneous_number = (digit)+ (letter|'_')+;
+
+    /* symbolic operators */
+    plus = '+' ;
+  	minus = '-' ;
+  	mult = '*' ;
+  	division = '/' ;
+  	hashtag = '#' ;
+  	equal = '=' ;
+  	lesser = '<' ;
+  	greater = '>' ;
+  	lesseq = '<=' ;
+  	greateq = '>=' ;
+  	unequal = '<>' ;
+
+    /* separators */
+  	l_par = '(' ;
+  	r_par = ')' ;
+  	l_bracket = '[' ;
+  	r_bracket = ']' ;
+  	l_brace = '{' ;
+  	r_brace = '}' ;
+    comma = ',' ;
+  	semicolon = ';' ;
+  	colon = ':' ;
+  	assignment = '<-' ;
+
+  	identifier = nondigit (digit | nondigit)* ;
+
+  	blank = (cr | lf | tab | ' ')+ ;
+    /*they are tokens, so they cannot be used to declare another token*/
+    line_comment = '$' not_dollar no_lf* lf ;
+    multiline_comment = '$$' not_dollar* '$$' | '$$' conatins_one_dollar* '$$' | '$$' conatins_two_dollars* '$$' ;
+    /*the second line, covers things like $$ fwef $ fwefew $ .. $ e $$*/
+
+
+Ignored Tokens
+
+    blank,
+    line_comment,
+  	multiline_comment;
+
+
+Productions
+
+    program = func_def {-> New program(func_def)};
+
+    func_def = header local_def* block {-> New func_def(header, [local_def], block)};
+
+    header = fun id l_par header_params? r_par colon ret_type {-> New header(id, [header_params.fpar_def])} ; /*because, we may have no pars at all e.g. hello example*/
+    header_params {-> fpar_def*} = fpar_def header_next_arg* {-> [fpar_def, header_next_arg.fpar_def]} ;
+    header_next_arg {-> fpar_def} = semicolon fpar_def {-> fpar_def} ;
+
+    fpar_def = ref? id fpar_def_next_id* colon fpar_type {-> New fpar_def(id, [fpar_def_next_id.id], fpar_type)} ;
+    fpar_def_next_id {-> id} = comma id {-> id} ;
+
+    data_type {-> } =
+        {int} int {-> } |
+        {char} char {-> } ;
+
+    type = data_type dimension* {-> New type([dimension.int_const])} ;
+    dimension {-> int_const} = l_bracket int_const r_bracket {-> int_const} ;
+
+    ret_type {-> } =
+        {data_type} data_type {-> } |
+        {nothing} nothing {-> } ;
+
+    fpar_type = data_type l_r_brackets? next_dimension* {-> New fpar_type([next_dimension.int_const])} ;
+    l_r_brackets = l_bracket r_bracket ;
+    next_dimension {-> int_const} = l_bracket int_const r_bracket {-> int_const} ;
+
+    local_def =
+        {func_def} func_def {-> New local_def.func_def(func_def)} |
+        {func_decl} func_decl {-> New local_def.func_decl(func_decl)} |
+        {var_def} var_def {-> New local_def.var_def(var_def)} ;
+
+    var_def = var id var_def_next_id* colon type semicolon {-> New var_def(id, [var_def_next_id.id], type)} ;
+    var_def_next_id {-> id} = comma id {-> id} ;
+
+    func_decl = header semicolon {-> New func_decl(header)} ;
+
+    stmt =
+        {matched} matched {-> matched.stmt} |
+        {unmatched} unmatched {-> unmatched.stmt} ;
+    matched {-> stmt} =
+        {if_matched_else_matched} if cond then [then_m]:matched else [else_m]:matched {-> New stmt.if(cond, then_m.stmt, [else_m.stmt])} |
+        {while_matched} while cond do matched {-> New stmt.while(cond, matched.stmt)} |
+        {other} other_stmt {-> other_stmt.stmt} ;
+    unmatched {-> stmt} =
+        {if} if cond then stmt {-> New stmt.if(cond, stmt, [])} |
+        {while_unmatched} while cond do unmatched {-> New stmt.while(cond, unmatched.stmt)} |
+        {if_matched_else_unmatched} if cond then matched else unmatched {-> New stmt.if(cond, matched.stmt, [unmatched.stmt])} ;
+    other_stmt {-> stmt} =
+        {semicolon} semicolon {-> New stmt.semicolon()} |
+        {assignment} l_value assignment expr semicolon {-> New stmt.assignment(l_value, expr)} |
+        {block} block {-> New stmt.block(block)} |
+        {function} func_call semicolon {-> New stmt.function(func_call)} |
+        {return_expr} return expr? semicolon {-> New stmt.return([expr])} ;
+
+    block = l_brace stmt* r_brace {-> New block([stmt])} ;
+
+    func_call {-> func_call} = id l_par func_args? r_par {-> New func_call(id, [func_args.expr])} ;
+    func_args {-> expr*} = expr func_call_next_arg* {-> [expr, func_call_next_arg.expr]} ;
+    func_call_next_arg {-> expr} = comma expr {-> expr} ;
+
+    l_value {-> l_value} =
+        {id} id {-> New l_value.id(id)} |
+        {string} string_literal {-> New l_value.string(string_literal)} |
+        {expression} l_value l_bracket expr r_bracket {-> New l_value.expression(l_value, expr)} ;
+
+    expr =
+        {expr_plus_term} expr plus term {-> New expr.plus(expr, term.expr)} |
+        {expr_minus_term} expr minus term {-> New expr.minus(expr, term.expr)} |
+        {term} term {-> term.expr} ;
+    term {-> expr} =
+        {term_mult_factor} term mult factor {-> New expr.mult(term.expr, factor.expr)} |
+        {term_div_factor} term div factor {-> New expr.div(term.expr, factor.expr)} |
+        {term_division_factor} term division factor {-> New expr.division(term.expr, factor.expr)} |
+        {term_mod_factor} term mod factor {-> New expr.mod(term.expr, factor.expr)} |
+        {factor} factor {-> factor.expr} ;
+    factor {-> expr} =
+        {int_const} int_const {-> New expr.int_const(int_const)} |
+        {char_const} char_const {-> New expr.char_const(char_const)} |
+        {l_value} l_value {-> New expr.l_value(l_value)} |
+        {func_call} func_call {-> New expr.func_call(func_call)} |
+        {expr_in_pars} expr_in_pars {-> expr_in_pars.expr} |
+        {signed_expr} signed_expr {-> signed_expr.expr} ;
+    expr_in_pars {-> expr} = l_par expr r_par {-> expr} ;
+    signed_expr {-> expr} =
+        {sign_signed_expr} sign signed_expr {-> signed_expr.expr} |
+        {sign_factor} sign factor {-> factor.expr} ;
+    sign {-> } =
+        {plus_sign} plus {-> } |
+        {minus_sign} minus {-> } ;
+
+    cond =
+        {not} not_cond {-> not_cond.cond} |
+        {cond_and_termcond} cond and termcond {-> New cond.and(cond, termcond.cond)} |
+        {cond_or_termcond} cond or termcond {-> New cond.or(cond, termcond.cond)} |
+        {termcond} termcond {-> termcond.cond} ;
+    not_cond {-> cond} =
+        {not_not_cond} not not_cond {-> not_cond.cond} |
+        {not_termcond} not termcond {-> termcond.cond} ;
+    termcond {-> cond} =
+        {cond_in_pars} cond_in_pars {-> cond_in_pars.cond} |
+        {expr_numop_expr} expr numop_expr {-> New cond.numop(expr, numop_expr.expr)} ;
+    cond_in_pars {-> cond} = l_par cond r_par {-> cond} ;
+    numop_expr {-> expr} = numop expr {-> expr} ;
+    numop {-> } =
+        {equal} equal {-> } |
+        {hashtag} hashtag {-> } |
+        {unequal} unequal {-> } |
+        {lesser} lesser {-> } |
+        {greater} greater {-> } |
+        {lesseq} lesseq {-> } |
+        {greateq} greateq {-> } ;
+
+Abstract Syntax Tree
+
+    program = func_def ;
+
+    func_def = header local_def* block ;
+
+    header = id fpar_def* ;
+
+    fpar_def = [first]:id [next]:id* fpar_type ;
+
+    type = int_const* ;
+
+    fpar_type = int_const* ;
+
+    local_def =
+        {func_def} func_def |
+        {func_decl} func_decl |
+        {var_def} var_def ;
+
+    var_def = id [next]:id* type ;
+
+    func_decl = header ;
+
+    stmt =
+        {semicolon} |
+        {assignment} l_value expr |
+        {block} block |
+        {function} func_call |
+        {if} cond [then_m]:stmt [else_m]:stmt* |
+        {while} cond stmt |
+        {return} expr* ;
+
+    block = stmt* ;
+
+    func_call = id expr* ;
+
+    l_value =
+        {id} id |
+        {string} string_literal |
+        {expression} l_value expr ;
+
+    expr =
+        {int_const} int_const |
+        {char_const} char_const |
+        {l_value} l_value |
+        {func_call} func_call |
+        {expr} expr |
+        {plus} [left]:expr [right]:expr |
+        {minus} [left]:expr [right]:expr |
+        {mult} [left]:expr [right]:expr |
+        {div} [left]:expr [right]:expr |
+        {division} [left]:expr [right]:expr |
+        {mod} [left]:expr [right]:expr ;
+
+    cond =
+        {cond} cond |
+        {and} [left]:cond [right]:cond |
+        {or} [left]:cond [right]:cond |
+        {numop} [left]:expr [right]:expr ;
