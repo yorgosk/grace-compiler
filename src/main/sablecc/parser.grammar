@@ -108,18 +108,18 @@ Productions
     fpar_def = ref? id fpar_def_next_id* colon fpar_type {-> New fpar_def(id, [fpar_def_next_id.id], fpar_type)} ;
     fpar_def_next_id {-> id} = comma id {-> id} ;
 
-    data_type {-> } =
-        {int} int {-> } |
-        {char} char {-> } ;
+    data_type =
+        {int} int {-> New data_type.int(int)} |
+        {char} char {-> New data_type.char(char)} ;
 
-    type = data_type dimension* {-> New type([dimension.int_const])} ;
+    type = data_type dimension* {-> New type(data_type, [dimension.int_const])} ;
     dimension {-> int_const} = l_bracket int_const r_bracket {-> int_const} ;
 
-    ret_type {-> } =
-        {data_type} data_type {-> } |
-        {nothing} nothing {-> } ;
+    ret_type =
+        {data_type} data_type {-> New ret_type.data_type(data_type)} |
+        {nothing} nothing {-> New ret_type.nothing(nothing)} ;
 
-    fpar_type = data_type l_r_brackets? next_dimension* {-> New fpar_type([next_dimension.int_const])} ;
+    fpar_type = data_type l_r_brackets? next_dimension* {-> New fpar_type(data_type, [next_dimension.int_const])} ;
     l_r_brackets = l_bracket r_bracket ;
     next_dimension {-> int_const} = l_bracket int_const r_bracket {-> int_const} ;
 
@@ -219,9 +219,17 @@ Abstract Syntax Tree
 
     fpar_def = [first]:id [next]:id* fpar_type ;
 
-    type = int_const* ;
+    data_type =
+        {int} int |
+        {char} char ;
 
-    fpar_type = int_const* ;
+    type = data_type int_const* ;
+
+    ret_type =
+        {data_type} data_type |
+        {nothing} nothing ;
+
+    fpar_type = data_type int_const* ;
 
     local_def =
         {func_def} func_def |

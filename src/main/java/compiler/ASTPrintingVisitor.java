@@ -4,13 +4,20 @@ import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
 public class ASTPrintingVisitor extends DepthFirstAdapter {
+    // Symbol-Table for Syntactical Analysis
+    private SymbolTable symbolTable;
     // for indentation
     private int indent = 0;
     private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("    "); }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
-    public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++; }
+    public void inAProgram(AProgram node) {
+        // printing
+        makeIndent(); System.out.printf("program :\n"); indent++;
+        // we are entering a program, so we can create it's Symbol-Table
+        this.symbolTable = new SymbolTable();
+    }
     @Override
     public void outAProgram(AProgram node) { indent--; }
 
@@ -26,11 +33,29 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAHeader(AHeader node) { indent--; }
 
+    // IN A DATA TYPE------------------------------------------------------------
+    @Override
+    public void inAIntDataType(AIntDataType node) { makeIndent(); System.out.printf("\"int\"");  }
+    @Override
+    public void outAIntDataType(AIntDataType node) { System.out.printf("\n"); }
+    @Override
+    public void inACharDataType(ACharDataType node) { makeIndent(); System.out.printf("\"char\""); }
+    @Override
+    public void outACharDataType(ACharDataType node) { System.out.printf("\n"); }
+
     // IN AND OUT A TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
     public void inAType(AType node) { makeIndent(); System.out.printf("type :\n"); indent++; }
     @Override
     public void outAType(AType node) { indent--; }
+
+    // IN AND OUT A RETURN TYPE AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inADataTypeRetType(ADataTypeRetType node) { makeIndent(); System.out.printf("retType :\n"); indent++; }
+    @Override
+    public void outADataTypeRetType(ADataTypeRetType node) {  indent--; }
+    @Override
+    public void inANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf("retType :\"nothing\"\n"); }
 
     // IN AND OUT A FUNCTION PARAMETER TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
