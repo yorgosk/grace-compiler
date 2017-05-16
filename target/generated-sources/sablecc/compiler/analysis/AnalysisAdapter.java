@@ -89,7 +89,27 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseAIntDataType(AIntDataType node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACharDataType(ACharDataType node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAType(AType node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseADataTypeRetType(ADataTypeRetType node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANothingRetType(ANothingRetType node)
     {
         defaultCase(node);
     }

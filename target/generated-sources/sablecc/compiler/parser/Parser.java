@@ -1338,6 +1338,15 @@ public class Parser
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
         @SuppressWarnings("unused") ArrayList nodeArrayList1 = pop();
+        PDataType pdatatypeNode1;
+        {
+            // Block
+        TInt tintNode2;
+        tintNode2 = (TInt)nodeArrayList1.get(0);
+
+        pdatatypeNode1 = new AIntDataType(tintNode2);
+        }
+	nodeList.add(pdatatypeNode1);
         return nodeList;
     }
 
@@ -1349,6 +1358,15 @@ public class Parser
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
         @SuppressWarnings("unused") ArrayList nodeArrayList1 = pop();
+        PDataType pdatatypeNode1;
+        {
+            // Block
+        TChar tcharNode2;
+        tcharNode2 = (TChar)nodeArrayList1.get(0);
+
+        pdatatypeNode1 = new ACharDataType(tcharNode2);
+        }
+	nodeList.add(pdatatypeNode1);
         return nodeList;
     }
 
@@ -1363,12 +1381,14 @@ public class Parser
         PType ptypeNode1;
         {
             // Block
-        LinkedList listNode2 = new LinkedList();
+        PDataType pdatatypeNode2;
+        LinkedList listNode3 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         {
             // Block
         }
 
-        ptypeNode1 = new AType(listNode2);
+        ptypeNode1 = new AType(pdatatypeNode2, listNode3);
         }
 	nodeList.add(ptypeNode1);
         return nodeList;
@@ -1386,18 +1406,20 @@ public class Parser
         PType ptypeNode1;
         {
             // Block
-        LinkedList listNode3 = new LinkedList();
+        PDataType pdatatypeNode2;
+        LinkedList listNode4 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         {
             // Block
-        LinkedList listNode2 = new LinkedList();
-        listNode2 = (LinkedList)nodeArrayList2.get(0);
-	if(listNode2 != null)
+        LinkedList listNode3 = new LinkedList();
+        listNode3 = (LinkedList)nodeArrayList2.get(0);
+	if(listNode3 != null)
 	{
-	  listNode3.addAll(listNode2);
+	  listNode4.addAll(listNode3);
 	}
         }
 
-        ptypeNode1 = new AType(listNode3);
+        ptypeNode1 = new AType(pdatatypeNode2, listNode4);
         }
 	nodeList.add(ptypeNode1);
         return nodeList;
@@ -1427,6 +1449,15 @@ public class Parser
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
         @SuppressWarnings("unused") ArrayList nodeArrayList1 = pop();
+        PRetType prettypeNode1;
+        {
+            // Block
+        PDataType pdatatypeNode2;
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
+
+        prettypeNode1 = new ADataTypeRetType(pdatatypeNode2);
+        }
+	nodeList.add(prettypeNode1);
         return nodeList;
     }
 
@@ -1438,6 +1469,15 @@ public class Parser
         @SuppressWarnings("hiding") ArrayList nodeList = new ArrayList();
 
         @SuppressWarnings("unused") ArrayList nodeArrayList1 = pop();
+        PRetType prettypeNode1;
+        {
+            // Block
+        TNothing tnothingNode2;
+        tnothingNode2 = (TNothing)nodeArrayList1.get(0);
+
+        prettypeNode1 = new ANothingRetType(tnothingNode2);
+        }
+	nodeList.add(prettypeNode1);
         return nodeList;
     }
 
@@ -1452,12 +1492,14 @@ public class Parser
         PFparType pfpartypeNode1;
         {
             // Block
-        LinkedList listNode2 = new LinkedList();
+        PDataType pdatatypeNode2;
+        LinkedList listNode3 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         {
             // Block
         }
 
-        pfpartypeNode1 = new AFparType(listNode2);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode3);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;
@@ -1475,12 +1517,14 @@ public class Parser
         PFparType pfpartypeNode1;
         {
             // Block
-        LinkedList listNode2 = new LinkedList();
+        PDataType pdatatypeNode2;
+        LinkedList listNode3 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         {
             // Block
         }
 
-        pfpartypeNode1 = new AFparType(listNode2);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode3);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;
@@ -1498,18 +1542,20 @@ public class Parser
         PFparType pfpartypeNode1;
         {
             // Block
-        LinkedList listNode3 = new LinkedList();
+        PDataType pdatatypeNode2;
+        LinkedList listNode4 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         {
             // Block
-        LinkedList listNode2 = new LinkedList();
-        listNode2 = (LinkedList)nodeArrayList2.get(0);
-	if(listNode2 != null)
+        LinkedList listNode3 = new LinkedList();
+        listNode3 = (LinkedList)nodeArrayList2.get(0);
+	if(listNode3 != null)
 	{
-	  listNode3.addAll(listNode2);
+	  listNode4.addAll(listNode3);
 	}
         }
 
-        pfpartypeNode1 = new AFparType(listNode3);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode4);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;
@@ -1528,18 +1574,20 @@ public class Parser
         PFparType pfpartypeNode1;
         {
             // Block
-        LinkedList listNode3 = new LinkedList();
+        PDataType pdatatypeNode2;
+        LinkedList listNode4 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         {
             // Block
-        LinkedList listNode2 = new LinkedList();
-        listNode2 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode2 != null)
+        LinkedList listNode3 = new LinkedList();
+        listNode3 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode3 != null)
 	{
-	  listNode3.addAll(listNode2);
+	  listNode4.addAll(listNode3);
 	}
         }
 
-        pfpartypeNode1 = new AFparType(listNode3);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode4);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;

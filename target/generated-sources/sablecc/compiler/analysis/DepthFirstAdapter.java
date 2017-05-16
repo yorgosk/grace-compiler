@@ -149,6 +149,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAFparDef(node);
     }
 
+    public void inAIntDataType(AIntDataType node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIntDataType(AIntDataType node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIntDataType(AIntDataType node)
+    {
+        inAIntDataType(node);
+        if(node.getInt() != null)
+        {
+            node.getInt().apply(this);
+        }
+        outAIntDataType(node);
+    }
+
+    public void inACharDataType(ACharDataType node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACharDataType(ACharDataType node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACharDataType(ACharDataType node)
+    {
+        inACharDataType(node);
+        if(node.getChar() != null)
+        {
+            node.getChar().apply(this);
+        }
+        outACharDataType(node);
+    }
+
     public void inAType(AType node)
     {
         defaultIn(node);
@@ -163,6 +205,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAType(AType node)
     {
         inAType(node);
+        if(node.getDataType() != null)
+        {
+            node.getDataType().apply(this);
+        }
         {
             List<TIntConst> copy = new ArrayList<TIntConst>(node.getIntConst());
             for(TIntConst e : copy)
@@ -171,6 +217,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
             }
         }
         outAType(node);
+    }
+
+    public void inADataTypeRetType(ADataTypeRetType node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADataTypeRetType(ADataTypeRetType node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADataTypeRetType(ADataTypeRetType node)
+    {
+        inADataTypeRetType(node);
+        if(node.getDataType() != null)
+        {
+            node.getDataType().apply(this);
+        }
+        outADataTypeRetType(node);
+    }
+
+    public void inANothingRetType(ANothingRetType node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANothingRetType(ANothingRetType node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANothingRetType(ANothingRetType node)
+    {
+        inANothingRetType(node);
+        if(node.getNothing() != null)
+        {
+            node.getNothing().apply(this);
+        }
+        outANothingRetType(node);
     }
 
     public void inAFparType(AFparType node)
@@ -187,6 +275,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAFparType(AFparType node)
     {
         inAFparType(node);
+        if(node.getDataType() != null)
+        {
+            node.getDataType().apply(this);
+        }
         {
             List<TIntConst> copy = new ArrayList<TIntConst>(node.getIntConst());
             for(TIntConst e : copy)

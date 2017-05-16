@@ -16,7 +16,11 @@ public interface Analysis extends Switch
     void caseAFuncDef(AFuncDef node);
     void caseAHeader(AHeader node);
     void caseAFparDef(AFparDef node);
+    void caseAIntDataType(AIntDataType node);
+    void caseACharDataType(ACharDataType node);
     void caseAType(AType node);
+    void caseADataTypeRetType(ADataTypeRetType node);
+    void caseANothingRetType(ANothingRetType node);
     void caseAFparType(AFparType node);
     void caseAFuncDefLocalDef(AFuncDefLocalDef node);
     void caseAFuncDeclLocalDef(AFuncDeclLocalDef node);
