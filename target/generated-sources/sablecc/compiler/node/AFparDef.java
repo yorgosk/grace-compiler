@@ -8,10 +8,8 @@ import compiler.analysis.*;
 @SuppressWarnings("nls")
 public final class AFparDef extends PFparDef
 {
-    private TRef _ref_;
-    private TId _id_;
-    private final LinkedList<PFparDefNextId> _fparDefNextId_ = new LinkedList<PFparDefNextId>();
-    private TColon _colon_;
+    private TId _first_;
+    private final LinkedList<TId> _next_ = new LinkedList<TId>();
     private PFparType _fparType_;
 
     public AFparDef()
@@ -20,20 +18,14 @@ public final class AFparDef extends PFparDef
     }
 
     public AFparDef(
-        @SuppressWarnings("hiding") TRef _ref_,
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") List<PFparDefNextId> _fparDefNextId_,
-        @SuppressWarnings("hiding") TColon _colon_,
+        @SuppressWarnings("hiding") TId _first_,
+        @SuppressWarnings("hiding") List<TId> _next_,
         @SuppressWarnings("hiding") PFparType _fparType_)
     {
         // Constructor
-        setRef(_ref_);
+        setFirst(_first_);
 
-        setId(_id_);
-
-        setFparDefNextId(_fparDefNextId_);
-
-        setColon(_colon_);
+        setNext(_next_);
 
         setFparType(_fparType_);
 
@@ -43,10 +35,8 @@ public final class AFparDef extends PFparDef
     public Object clone()
     {
         return new AFparDef(
-            cloneNode(this._ref_),
-            cloneNode(this._id_),
-            cloneList(this._fparDefNextId_),
-            cloneNode(this._colon_),
+            cloneNode(this._first_),
+            cloneList(this._next_),
             cloneNode(this._fparType_));
     }
 
@@ -55,16 +45,16 @@ public final class AFparDef extends PFparDef
         ((Analysis) sw).caseAFparDef(this);
     }
 
-    public TRef getRef()
+    public TId getFirst()
     {
-        return this._ref_;
+        return this._first_;
     }
 
-    public void setRef(TRef node)
+    public void setFirst(TId node)
     {
-        if(this._ref_ != null)
+        if(this._first_ != null)
         {
-            this._ref_.parent(null);
+            this._first_.parent(null);
         }
 
         if(node != null)
@@ -77,44 +67,19 @@ public final class AFparDef extends PFparDef
             node.parent(this);
         }
 
-        this._ref_ = node;
+        this._first_ = node;
     }
 
-    public TId getId()
+    public LinkedList<TId> getNext()
     {
-        return this._id_;
+        return this._next_;
     }
 
-    public void setId(TId node)
+    public void setNext(List<TId> list)
     {
-        if(this._id_ != null)
-        {
-            this._id_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._id_ = node;
-    }
-
-    public LinkedList<PFparDefNextId> getFparDefNextId()
-    {
-        return this._fparDefNextId_;
-    }
-
-    public void setFparDefNextId(List<PFparDefNextId> list)
-    {
-        this._fparDefNextId_.clear();
-        this._fparDefNextId_.addAll(list);
-        for(PFparDefNextId e : list)
+        this._next_.clear();
+        this._next_.addAll(list);
+        for(TId e : list)
         {
             if(e.parent() != null)
             {
@@ -123,31 +88,6 @@ public final class AFparDef extends PFparDef
 
             e.parent(this);
         }
-    }
-
-    public TColon getColon()
-    {
-        return this._colon_;
-    }
-
-    public void setColon(TColon node)
-    {
-        if(this._colon_ != null)
-        {
-            this._colon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colon_ = node;
     }
 
     public PFparType getFparType()
@@ -179,10 +119,8 @@ public final class AFparDef extends PFparDef
     public String toString()
     {
         return ""
-            + toString(this._ref_)
-            + toString(this._id_)
-            + toString(this._fparDefNextId_)
-            + toString(this._colon_)
+            + toString(this._first_)
+            + toString(this._next_)
             + toString(this._fparType_);
     }
 
@@ -190,26 +128,14 @@ public final class AFparDef extends PFparDef
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._ref_ == child)
+        if(this._first_ == child)
         {
-            this._ref_ = null;
+            this._first_ = null;
             return;
         }
 
-        if(this._id_ == child)
+        if(this._next_.remove(child))
         {
-            this._id_ = null;
-            return;
-        }
-
-        if(this._fparDefNextId_.remove(child))
-        {
-            return;
-        }
-
-        if(this._colon_ == child)
-        {
-            this._colon_ = null;
             return;
         }
 
@@ -226,25 +152,19 @@ public final class AFparDef extends PFparDef
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._ref_ == oldChild)
+        if(this._first_ == oldChild)
         {
-            setRef((TRef) newChild);
+            setFirst((TId) newChild);
             return;
         }
 
-        if(this._id_ == oldChild)
-        {
-            setId((TId) newChild);
-            return;
-        }
-
-        for(ListIterator<PFparDefNextId> i = this._fparDefNextId_.listIterator(); i.hasNext();)
+        for(ListIterator<TId> i = this._next_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PFparDefNextId) newChild);
+                    i.set((TId) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;
@@ -254,12 +174,6 @@ public final class AFparDef extends PFparDef
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._colon_ == oldChild)
-        {
-            setColon((TColon) newChild);
-            return;
         }
 
         if(this._fparType_ == oldChild)

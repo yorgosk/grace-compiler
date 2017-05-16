@@ -2,18 +2,14 @@
 
 package compiler.node;
 
+import java.util.*;
 import compiler.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AHeader extends PHeader
 {
-    private TFun _fun_;
     private TId _id_;
-    private TLPar _lPar_;
-    private PHeaderParams _headerParams_;
-    private TRPar _rPar_;
-    private TColon _colon_;
-    private PRetType _retType_;
+    private final LinkedList<PFparDef> _fparDef_ = new LinkedList<PFparDef>();
 
     public AHeader()
     {
@@ -21,28 +17,13 @@ public final class AHeader extends PHeader
     }
 
     public AHeader(
-        @SuppressWarnings("hiding") TFun _fun_,
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TLPar _lPar_,
-        @SuppressWarnings("hiding") PHeaderParams _headerParams_,
-        @SuppressWarnings("hiding") TRPar _rPar_,
-        @SuppressWarnings("hiding") TColon _colon_,
-        @SuppressWarnings("hiding") PRetType _retType_)
+        @SuppressWarnings("hiding") List<PFparDef> _fparDef_)
     {
         // Constructor
-        setFun(_fun_);
-
         setId(_id_);
 
-        setLPar(_lPar_);
-
-        setHeaderParams(_headerParams_);
-
-        setRPar(_rPar_);
-
-        setColon(_colon_);
-
-        setRetType(_retType_);
+        setFparDef(_fparDef_);
 
     }
 
@@ -50,43 +31,13 @@ public final class AHeader extends PHeader
     public Object clone()
     {
         return new AHeader(
-            cloneNode(this._fun_),
             cloneNode(this._id_),
-            cloneNode(this._lPar_),
-            cloneNode(this._headerParams_),
-            cloneNode(this._rPar_),
-            cloneNode(this._colon_),
-            cloneNode(this._retType_));
+            cloneList(this._fparDef_));
     }
 
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAHeader(this);
-    }
-
-    public TFun getFun()
-    {
-        return this._fun_;
-    }
-
-    public void setFun(TFun node)
-    {
-        if(this._fun_ != null)
-        {
-            this._fun_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fun_ = node;
     }
 
     public TId getId()
@@ -114,187 +65,46 @@ public final class AHeader extends PHeader
         this._id_ = node;
     }
 
-    public TLPar getLPar()
+    public LinkedList<PFparDef> getFparDef()
     {
-        return this._lPar_;
+        return this._fparDef_;
     }
 
-    public void setLPar(TLPar node)
+    public void setFparDef(List<PFparDef> list)
     {
-        if(this._lPar_ != null)
+        this._fparDef_.clear();
+        this._fparDef_.addAll(list);
+        for(PFparDef e : list)
         {
-            this._lPar_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
         }
-
-        this._lPar_ = node;
-    }
-
-    public PHeaderParams getHeaderParams()
-    {
-        return this._headerParams_;
-    }
-
-    public void setHeaderParams(PHeaderParams node)
-    {
-        if(this._headerParams_ != null)
-        {
-            this._headerParams_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._headerParams_ = node;
-    }
-
-    public TRPar getRPar()
-    {
-        return this._rPar_;
-    }
-
-    public void setRPar(TRPar node)
-    {
-        if(this._rPar_ != null)
-        {
-            this._rPar_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._rPar_ = node;
-    }
-
-    public TColon getColon()
-    {
-        return this._colon_;
-    }
-
-    public void setColon(TColon node)
-    {
-        if(this._colon_ != null)
-        {
-            this._colon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colon_ = node;
-    }
-
-    public PRetType getRetType()
-    {
-        return this._retType_;
-    }
-
-    public void setRetType(PRetType node)
-    {
-        if(this._retType_ != null)
-        {
-            this._retType_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._retType_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._fun_)
             + toString(this._id_)
-            + toString(this._lPar_)
-            + toString(this._headerParams_)
-            + toString(this._rPar_)
-            + toString(this._colon_)
-            + toString(this._retType_);
+            + toString(this._fparDef_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._fun_ == child)
-        {
-            this._fun_ = null;
-            return;
-        }
-
         if(this._id_ == child)
         {
             this._id_ = null;
             return;
         }
 
-        if(this._lPar_ == child)
+        if(this._fparDef_.remove(child))
         {
-            this._lPar_ = null;
-            return;
-        }
-
-        if(this._headerParams_ == child)
-        {
-            this._headerParams_ = null;
-            return;
-        }
-
-        if(this._rPar_ == child)
-        {
-            this._rPar_ = null;
-            return;
-        }
-
-        if(this._colon_ == child)
-        {
-            this._colon_ = null;
-            return;
-        }
-
-        if(this._retType_ == child)
-        {
-            this._retType_ = null;
             return;
         }
 
@@ -305,46 +115,28 @@ public final class AHeader extends PHeader
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._fun_ == oldChild)
-        {
-            setFun((TFun) newChild);
-            return;
-        }
-
         if(this._id_ == oldChild)
         {
             setId((TId) newChild);
             return;
         }
 
-        if(this._lPar_ == oldChild)
+        for(ListIterator<PFparDef> i = this._fparDef_.listIterator(); i.hasNext();)
         {
-            setLPar((TLPar) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PFparDef) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._headerParams_ == oldChild)
-        {
-            setHeaderParams((PHeaderParams) newChild);
-            return;
-        }
-
-        if(this._rPar_ == oldChild)
-        {
-            setRPar((TRPar) newChild);
-            return;
-        }
-
-        if(this._colon_ == oldChild)
-        {
-            setColon((TColon) newChild);
-            return;
-        }
-
-        if(this._retType_ == oldChild)
-        {
-            setRetType((PRetType) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

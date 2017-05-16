@@ -8,9 +8,7 @@ import compiler.analysis.*;
 @SuppressWarnings("nls")
 public final class AFparType extends PFparType
 {
-    private PDataType _dataType_;
-    private PLRBrackets _lRBrackets_;
-    private final LinkedList<PNextDimension> _nextDimension_ = new LinkedList<PNextDimension>();
+    private final LinkedList<TIntConst> _intConst_ = new LinkedList<TIntConst>();
 
     public AFparType()
     {
@@ -18,16 +16,10 @@ public final class AFparType extends PFparType
     }
 
     public AFparType(
-        @SuppressWarnings("hiding") PDataType _dataType_,
-        @SuppressWarnings("hiding") PLRBrackets _lRBrackets_,
-        @SuppressWarnings("hiding") List<PNextDimension> _nextDimension_)
+        @SuppressWarnings("hiding") List<TIntConst> _intConst_)
     {
         // Constructor
-        setDataType(_dataType_);
-
-        setLRBrackets(_lRBrackets_);
-
-        setNextDimension(_nextDimension_);
+        setIntConst(_intConst_);
 
     }
 
@@ -35,9 +27,7 @@ public final class AFparType extends PFparType
     public Object clone()
     {
         return new AFparType(
-            cloneNode(this._dataType_),
-            cloneNode(this._lRBrackets_),
-            cloneList(this._nextDimension_));
+            cloneList(this._intConst_));
     }
 
     public void apply(Switch sw)
@@ -45,66 +35,16 @@ public final class AFparType extends PFparType
         ((Analysis) sw).caseAFparType(this);
     }
 
-    public PDataType getDataType()
+    public LinkedList<TIntConst> getIntConst()
     {
-        return this._dataType_;
+        return this._intConst_;
     }
 
-    public void setDataType(PDataType node)
+    public void setIntConst(List<TIntConst> list)
     {
-        if(this._dataType_ != null)
-        {
-            this._dataType_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._dataType_ = node;
-    }
-
-    public PLRBrackets getLRBrackets()
-    {
-        return this._lRBrackets_;
-    }
-
-    public void setLRBrackets(PLRBrackets node)
-    {
-        if(this._lRBrackets_ != null)
-        {
-            this._lRBrackets_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._lRBrackets_ = node;
-    }
-
-    public LinkedList<PNextDimension> getNextDimension()
-    {
-        return this._nextDimension_;
-    }
-
-    public void setNextDimension(List<PNextDimension> list)
-    {
-        this._nextDimension_.clear();
-        this._nextDimension_.addAll(list);
-        for(PNextDimension e : list)
+        this._intConst_.clear();
+        this._intConst_.addAll(list);
+        for(TIntConst e : list)
         {
             if(e.parent() != null)
             {
@@ -119,28 +59,14 @@ public final class AFparType extends PFparType
     public String toString()
     {
         return ""
-            + toString(this._dataType_)
-            + toString(this._lRBrackets_)
-            + toString(this._nextDimension_);
+            + toString(this._intConst_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._dataType_ == child)
-        {
-            this._dataType_ = null;
-            return;
-        }
-
-        if(this._lRBrackets_ == child)
-        {
-            this._lRBrackets_ = null;
-            return;
-        }
-
-        if(this._nextDimension_.remove(child))
+        if(this._intConst_.remove(child))
         {
             return;
         }
@@ -152,25 +78,13 @@ public final class AFparType extends PFparType
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._dataType_ == oldChild)
-        {
-            setDataType((PDataType) newChild);
-            return;
-        }
-
-        if(this._lRBrackets_ == oldChild)
-        {
-            setLRBrackets((PLRBrackets) newChild);
-            return;
-        }
-
-        for(ListIterator<PNextDimension> i = this._nextDimension_.listIterator(); i.hasNext();)
+        for(ListIterator<TIntConst> i = this._intConst_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PNextDimension) newChild);
+                    i.set((TIntConst) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

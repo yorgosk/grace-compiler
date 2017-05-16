@@ -2,8 +2,193 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AAssignmentOtherStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ABlockOtherStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACharConstFactor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACharDataType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACondAndTermcondCond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACondInPars.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACondInParsTermcond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACondOrTermcondCond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ADataTypeRetType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ADimension.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AExprInPars.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AExprInParsFactor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AExprMinusTermExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AExprNumopExprTermcond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AExprPlusTermExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFactorTerm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFparDefNextId.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncArgs.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncCallFactor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncCallNextArg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFunctionOtherStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AHeaderNextArg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIfMatchedElseMatchedMatched.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIfMatchedElseUnmatchedUnmatched.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIfUnmatched.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIntConstFactor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIntDataType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ALRBrackets.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ALValueFactor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AMatchedStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AMinusSignSign.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AMultSignMultSigns.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ANextDimension.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ANotNotCondNotCond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ANotTermcondNotCond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ANothingRetType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ANumopExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AOnlyOneMultSigns.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AOtherMatched.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/APlusSignSign.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AReturnExprOtherStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ASemicolonOtherStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ASignCharConstSignedExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ASignExprInParsSignedExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ASignFuncCallSignedExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ASignIntConstSignedExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ASignLValueSignedExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ATermDivFactorTerm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ATermDivisionFactorTerm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ATermExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ATermModFactorTerm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ATermMultFactorTerm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ATermcondCond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AUnmatchedStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AVarDefNextId.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AWhileMatchedMatched.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PCondInPars.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PDataType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PDimension.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PExprInPars.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFactor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFparDefNextId.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFuncArgs.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFuncCallNextArg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PHeaderNextArg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PLRBrackets.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PMatched.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PMultSigns.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PNextDimension.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PNotCond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PNumop.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PNumopExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/POtherStmt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PRetType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PSign.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PSignedExpr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PTerm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PTermcond.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PUnmatched.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PVarDefNextId.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AAssignmentOtherStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlockOtherStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharConstFactor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharDataType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondAndTermcondCond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondInPars.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondInParsTermcond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondOrTermcondCond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADataTypeRetType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADimension.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprInPars.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprInParsFactor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprMinusTermExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprNumopExprTermcond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprPlusTermExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFactorTerm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDefNextId.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncArgs.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCallFactor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCallNextArg.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFunctionOtherStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeaderNextArg.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIfMatchedElseMatchedMatched.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIfMatchedElseUnmatchedUnmatched.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIfUnmatched.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntConstFactor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntDataType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ALRBrackets.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ALValueFactor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMatchedStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMinusSignSign.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMultSignMultSigns.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANextDimension.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANotNotCondNotCond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANotTermcondNotCond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANothingRetType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANumopExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AOnlyOneMultSigns.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AOtherMatched.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/APlusSignSign.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AReturnExprOtherStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASemicolonOtherStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignCharConstSignedExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignExprInParsSignedExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignFuncCallSignedExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignIntConstSignedExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignLValueSignedExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermDivFactorTerm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermDivisionFactorTerm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermModFactorTerm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermMultFactorTerm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermcondCond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AUnmatchedStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDefNextId.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AWhileMatchedMatched.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PCondInPars.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PDataType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PDimension.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PExprInPars.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFactor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparDefNextId.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncArgs.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncCallNextArg.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PHeaderNextArg.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLRBrackets.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PMatched.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PMultSigns.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNextDimension.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNotCond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNumop.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNumopExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/POtherStmt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PRetType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PSign.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PSignedExpr.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PTerm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PTermcond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PUnmatched.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PVarDefNextId.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/Main.class" afterPath="$PROJECT_DIR$/target/classes/compiler/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/analysis/DepthFirstAdapter.class" afterPath="$PROJECT_DIR$/target/classes/compiler/analysis/DepthFirstAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/analysis/ReversedDepthFirstAdapter.class" afterPath="$PROJECT_DIR$/target/classes/compiler/analysis/ReversedDepthFirstAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/lexer/Lexer$State.class" afterPath="$PROJECT_DIR$/target/classes/compiler/lexer/Lexer$State.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ABlock.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/ABlock.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFparDef.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/AFparDef.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFparType.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/AFparType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncCall.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/AFuncCall.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncDecl.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/AFuncDecl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AHeader.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/AHeader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AType.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/AType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AVarDef.class" afterPath="$PROJECT_DIR$/target/classes/compiler/node/AVarDef.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/Parser.class" afterPath="$PROJECT_DIR$/target/classes/compiler/parser/Parser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/TokenIndex.class" afterPath="$PROJECT_DIR$/target/classes/compiler/parser/TokenIndex.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/parser.dat" afterPath="$PROJECT_DIR$/target/classes/compiler/parser/parser.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/Main.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/sablecc/parser.grammar" afterPath="$PROJECT_DIR$/src/main/sablecc/parser.grammar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlock.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlock.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDef.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDef.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparType.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDecl.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDecl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeader.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AType.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDef.java" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDef.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,24 +212,22 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="parser.grammar" pinned="false" current-in-tab="true">
+      <file leaf-file-name="parser.grammar" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="104" column="32" lean-forward="false" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+            <state relative-caret-position="44">
+              <caret line="153" column="55" lean-forward="false" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="139">
+              <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,11 +235,9 @@
       <file leaf-file-name="PTPrintingVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1935">
-              <caret line="130" column="43" lean-forward="false" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="40" column="45" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,9 +307,9 @@
         <option value="$PROJECT_DIR$/LICENCE" />
         <option value="$PROJECT_DIR$/ChangeLog" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/sablecc/parser.grammar" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/Main.java" />
       </list>
     </option>
   </component>
@@ -153,10 +334,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="713" />
-    <option name="y" value="52" />
-    <option name="width" value="653" />
-    <option name="height" value="716" />
+    <option name="x" value="61" />
+    <option name="y" value="24" />
+    <option name="width" value="1305" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -182,6 +363,42 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="grace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -263,9 +480,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -276,443 +493,6 @@
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.gitignore" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/Main.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/analysis/DepthFirstAdapter.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/analysis/ReversedDepthFirstAdapter.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/lexer/Lexer$State.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/lexer/LexerException.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AAssignmentOtherStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ABlock.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ABlockOtherStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ACharConstFactor.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ACharDataType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ACondAndTermcondCond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ACondInPars.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ACondInParsTermcond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ACondOrTermcondCond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ADataTypeRetType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ADimension.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AExprInPars.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AExprInParsFactor.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AExprMinusTermExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AExprNumopExprTermcond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AExprPlusTermExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFactorTerm.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFparDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFparDefNextId.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFparType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncArgs.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncCall.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncCallFactor.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncCallNextArg.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncDecl.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncDeclLocalDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFuncDefLocalDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AFunctionOtherStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AHeader.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AHeaderNextArg.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AIfMatchedElseMatchedMatched.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AIfMatchedElseUnmatchedUnmatched.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AIfUnmatched.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AIntConstFactor.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AIntDataType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ALRBrackets.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ALValueFactor.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AMatchedStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AMinusSignSign.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AMultSignMultSigns.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ANextDimension.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ANotNotCondNotCond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ANotTermcondNotCond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ANothingRetType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ANumopExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AOnlyOneMultSigns.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AOtherMatched.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/APlusSignSign.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AProgram.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AReturnExprOtherStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ASemicolonOtherStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ASignCharConstSignedExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ASignExprInParsSignedExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ASignFuncCallSignedExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ASignIntConstSignedExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ASignLValueSignedExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ATermDivFactorTerm.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ATermDivisionFactorTerm.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ATermExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ATermModFactorTerm.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ATermMultFactorTerm.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/ATermcondCond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AUnmatchedStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AVarDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AVarDefLocalDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AVarDefNextId.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/AWhileMatchedMatched.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/EOF.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/Node.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PBlock.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PCond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PCondInPars.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PDataType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PDimension.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PExprInPars.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFactor.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFparDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFparDefNextId.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFparType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFuncArgs.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFuncCall.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFuncCallNextArg.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFuncDecl.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PFuncDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PHeader.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PHeaderNextArg.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PLRBrackets.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PLValue.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PLocalDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PMatched.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PMultSigns.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PNextDimension.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PNotCond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PNumop.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PNumopExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/POtherStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PProgram.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PRetType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PSign.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PSignedExpr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PStmt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PTerm.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PTermcond.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PType.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PUnmatched.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PVarDef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/PVarDefNextId.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/Start.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/Switch.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/Switchable.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TAnd.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TAssignment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TBlank.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TChar.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TCharConst.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TColon.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TComma.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TDiv.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TDivision.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TDo.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TElse.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TEqual.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TFun.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TGreateq.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TGreater.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/THashtag.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TId.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TIdentifier.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TIf.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TInt.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TIntConst.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TLBrace.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TLBracket.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TLPar.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TLesseq.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TLesser.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TMinus.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TMod.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TMult.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TNot.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TNothing.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TOr.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TPlus.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TRBrace.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TRBracket.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TRPar.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TRef.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TReturn.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TSCharSequence.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TSemicolon.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TStringLiteral.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TThen.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TUnequal.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TVar.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/TWhile.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/node/Token.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/parser/Parser.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/parser/ParserException.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/parser/State.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/parser/TokenIndex.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/compiler/parser/parser.dat</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AAssignmentOtherStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlock.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlockOtherStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharConstFactor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharDataType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondAndTermcondCond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondInPars.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondInParsTermcond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondOrTermcondCond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADataTypeRetType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADimension.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprInPars.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprInParsFactor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprMinusTermExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprNumopExprTermcond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprPlusTermExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFactorTerm.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDefNextId.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncArgs.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCallFactor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCallNextArg.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDecl.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDeclLocalDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDefLocalDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFunctionOtherStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeaderNextArg.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIfMatchedElseMatchedMatched.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIfMatchedElseUnmatchedUnmatched.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIfUnmatched.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntConstFactor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntDataType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ALRBrackets.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ALValueFactor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMatchedStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMinusSignSign.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMultSignMultSigns.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANextDimension.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANotNotCondNotCond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANotTermcondNotCond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANothingRetType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANumopExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AOnlyOneMultSigns.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AOtherMatched.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/APlusSignSign.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AProgram.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AReturnExprOtherStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASemicolonOtherStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignCharConstSignedExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignExprInParsSignedExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignFuncCallSignedExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignIntConstSignedExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASignLValueSignedExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermDivFactorTerm.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermDivisionFactorTerm.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermModFactorTerm.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermMultFactorTerm.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ATermcondCond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AUnmatchedStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDefLocalDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDefNextId.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AWhileMatchedMatched.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/EOF.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Node.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PBlock.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PCond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PCondInPars.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PDataType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PDimension.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PExprInPars.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFactor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparDefNextId.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncArgs.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncCall.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncCallNextArg.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDecl.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PHeader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PHeaderNextArg.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLRBrackets.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLValue.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLocalDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PMatched.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PMultSigns.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNextDimension.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNotCond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNumop.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PNumopExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/POtherStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PProgram.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PRetType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PSign.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PSignedExpr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PStmt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PTerm.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PTermcond.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PUnmatched.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PVarDef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PVarDefNextId.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Start.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switch.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switchable.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAnd.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAssignment.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TBlank.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TChar.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TCharConst.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TColon.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TComma.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDiv.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDivision.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDo.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TElse.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TEqual.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TFun.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreateq.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreater.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/THashtag.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TId.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIdentifier.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIf.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TInt.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIntConst.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBrace.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBracket.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLPar.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesseq.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesser.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMinus.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMod.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMult.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNot.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNothing.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TOr.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TPlus.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBrace.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBracket.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRPar.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRef.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TReturn.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSCharSequence.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSemicolon.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TStringLiteral.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TThen.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TUnequal.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TVar.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TWhile.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Token.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1218,14 +998,8 @@
       <workItem from="1494529625565" duration="2273000" />
       <workItem from="1494602342862" duration="1455000" />
       <workItem from="1494838196501" duration="2314000" />
-      <workItem from="1494871039254" duration="8311000" />
-    </task>
-    <task id="LOCAL-00010" summary="trying to format parse-tree printing as a JSON file (continued)">
-      <created>1491213597904</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1491213597904</updated>
+      <workItem from="1494871039254" duration="8393000" />
+      <workItem from="1494921608127" duration="3494000" />
     </task>
     <task id="LOCAL-00011" summary="trying to format parse-tree printing as a JSON file (continued)">
       <created>1491216340133</created>
@@ -1563,14 +1337,21 @@
       <option name="project" value="LOCAL" />
       <updated>1494876000662</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="continued with AST">
+      <created>1494882306278</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1494882306278</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103344000" />
+    <option name="totallyTimeSpent" value="106920000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="713" y="52" width="653" height="716" extended-state="4" />
+    <frame x="61" y="24" width="1305" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1581,20 +1362,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.50277996" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.49722" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44272447" sideWeight="0.4853058" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42260063" sideWeight="0.4853058" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18824464" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1653,9 +1434,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1663,19 +1442,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1380">
@@ -1688,9 +1459,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1698,19 +1467,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
@@ -1723,9 +1484,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1733,19 +1492,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
@@ -1758,9 +1509,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1768,19 +1517,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
@@ -1793,9 +1534,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1803,19 +1542,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
@@ -1828,9 +1559,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1838,19 +1567,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
@@ -1863,9 +1584,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1873,27 +1592,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/target/parser.grammar" />
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="13" column="6" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1902,9 +1611,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="13" column="6" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1913,9 +1620,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="13" column="6" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1927,13 +1632,7 @@
     <entry file="file://$PROJECT_DIR$/target/classes/compiler/lexer/Lexer.class" />
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TFun.java" />
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TId.java" />
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -1975,30 +1674,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="153" column="55" lean-forward="false" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/PTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="130" column="43" lean-forward="false" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="40" column="45" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="104" column="32" lean-forward="false" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+        <state relative-caret-position="139">
+          <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
           <folding />
         </state>
       </provider>

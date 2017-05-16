@@ -8,7 +8,6 @@ import compiler.analysis.*;
 public final class AFuncDecl extends PFuncDecl
 {
     private PHeader _header_;
-    private TSemicolon _semicolon_;
 
     public AFuncDecl()
     {
@@ -16,13 +15,10 @@ public final class AFuncDecl extends PFuncDecl
     }
 
     public AFuncDecl(
-        @SuppressWarnings("hiding") PHeader _header_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") PHeader _header_)
     {
         // Constructor
         setHeader(_header_);
-
-        setSemicolon(_semicolon_);
 
     }
 
@@ -30,8 +26,7 @@ public final class AFuncDecl extends PFuncDecl
     public Object clone()
     {
         return new AFuncDecl(
-            cloneNode(this._header_),
-            cloneNode(this._semicolon_));
+            cloneNode(this._header_));
     }
 
     public void apply(Switch sw)
@@ -64,37 +59,11 @@ public final class AFuncDecl extends PFuncDecl
         this._header_ = node;
     }
 
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._header_)
-            + toString(this._semicolon_);
+            + toString(this._header_);
     }
 
     @Override
@@ -104,12 +73,6 @@ public final class AFuncDecl extends PFuncDecl
         if(this._header_ == child)
         {
             this._header_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
             return;
         }
 
@@ -123,12 +86,6 @@ public final class AFuncDecl extends PFuncDecl
         if(this._header_ == oldChild)
         {
             setHeader((PHeader) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
             return;
         }
 

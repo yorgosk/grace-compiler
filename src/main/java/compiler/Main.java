@@ -37,7 +37,7 @@ class Main {
 
 			try {
 				System.out.printf("\nPrinting Parsing Tree:\n\n");
-				tree.apply(new PTPrintingVisitor());
+//				tree.apply(new PTPrintingVisitor());
 			} catch (NullPointerException e) {
 				System.err.printf("Null pointer Exception: %s\n", e.getMessage());
 				e.printStackTrace();

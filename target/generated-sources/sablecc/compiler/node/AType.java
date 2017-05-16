@@ -8,8 +8,7 @@ import compiler.analysis.*;
 @SuppressWarnings("nls")
 public final class AType extends PType
 {
-    private PDataType _dataType_;
-    private final LinkedList<PDimension> _dimension_ = new LinkedList<PDimension>();
+    private final LinkedList<TIntConst> _intConst_ = new LinkedList<TIntConst>();
 
     public AType()
     {
@@ -17,13 +16,10 @@ public final class AType extends PType
     }
 
     public AType(
-        @SuppressWarnings("hiding") PDataType _dataType_,
-        @SuppressWarnings("hiding") List<PDimension> _dimension_)
+        @SuppressWarnings("hiding") List<TIntConst> _intConst_)
     {
         // Constructor
-        setDataType(_dataType_);
-
-        setDimension(_dimension_);
+        setIntConst(_intConst_);
 
     }
 
@@ -31,8 +27,7 @@ public final class AType extends PType
     public Object clone()
     {
         return new AType(
-            cloneNode(this._dataType_),
-            cloneList(this._dimension_));
+            cloneList(this._intConst_));
     }
 
     public void apply(Switch sw)
@@ -40,41 +35,16 @@ public final class AType extends PType
         ((Analysis) sw).caseAType(this);
     }
 
-    public PDataType getDataType()
+    public LinkedList<TIntConst> getIntConst()
     {
-        return this._dataType_;
+        return this._intConst_;
     }
 
-    public void setDataType(PDataType node)
+    public void setIntConst(List<TIntConst> list)
     {
-        if(this._dataType_ != null)
-        {
-            this._dataType_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._dataType_ = node;
-    }
-
-    public LinkedList<PDimension> getDimension()
-    {
-        return this._dimension_;
-    }
-
-    public void setDimension(List<PDimension> list)
-    {
-        this._dimension_.clear();
-        this._dimension_.addAll(list);
-        for(PDimension e : list)
+        this._intConst_.clear();
+        this._intConst_.addAll(list);
+        for(TIntConst e : list)
         {
             if(e.parent() != null)
             {
@@ -89,21 +59,14 @@ public final class AType extends PType
     public String toString()
     {
         return ""
-            + toString(this._dataType_)
-            + toString(this._dimension_);
+            + toString(this._intConst_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._dataType_ == child)
-        {
-            this._dataType_ = null;
-            return;
-        }
-
-        if(this._dimension_.remove(child))
+        if(this._intConst_.remove(child))
         {
             return;
         }
@@ -115,19 +78,13 @@ public final class AType extends PType
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._dataType_ == oldChild)
-        {
-            setDataType((PDataType) newChild);
-            return;
-        }
-
-        for(ListIterator<PDimension> i = this._dimension_.listIterator(); i.hasNext();)
+        for(ListIterator<TIntConst> i = this._intConst_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PDimension) newChild);
+                    i.set((TIntConst) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

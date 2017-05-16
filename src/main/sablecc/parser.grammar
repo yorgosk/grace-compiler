@@ -97,7 +97,7 @@ Ignored Tokens
 
 Productions
 
-    program = func_def {-> func_def};
+    program = func_def {-> New program(func_def)};
 
     func_def = header local_def* block {-> New func_def(header, [local_def], block)};
 
@@ -121,14 +121,14 @@ Productions
 
     fpar_type = data_type l_r_brackets? next_dimension* {-> New fpar_type([next_dimension.int_const])} ;
     l_r_brackets = l_bracket r_bracket ;
-    next_dimension {-> int_const} = l_bracket int_const r_bracket {-> New int_const(int_const)} ;
+    next_dimension {-> int_const} = l_bracket int_const r_bracket {-> int_const} ;
 
     local_def =
         {func_def} func_def {-> New local_def.func_def(func_def)} |
         {func_decl} func_decl {-> New local_def.func_decl(func_decl)} |
         {var_def} var_def {-> New local_def.var_def(var_def)} ;
 
-    var_def = var id var_def_next_id* colon type semicolon {-> New var_def(id, [id], type)} ;
+    var_def = var id var_def_next_id* colon type semicolon {-> New var_def(id, [var_def_next_id.id], type)} ;
     var_def_next_id {-> id} = comma id {-> id} ;
 
     func_decl = header semicolon {-> New func_decl(header)} ;
@@ -137,34 +137,34 @@ Productions
         {matched} matched {-> matched.stmt} |
         {unmatched} unmatched {-> unmatched.stmt} ;
     matched {-> stmt} =
-        {if_matched_else_matched} if cond then [then_m]:matched else [else_m]:matched {-> New stmt.if(cond.cond, matched.stmt, matched.stmt)} |
-        {while_matched} while cond do matched {-> New stmt.while(cond.cond, matched.stmt)} |
+        {if_matched_else_matched} if cond then [then_m]:matched else [else_m]:matched {-> New stmt.if(cond, then_m.stmt, [else_m.stmt])} |
+        {while_matched} while cond do matched {-> New stmt.while(cond, matched.stmt)} |
         {other} other_stmt {-> other_stmt.stmt} ;
     unmatched {-> stmt} =
-        {if} if cond then stmt {-> New stmt.if(cond.cond, stmt.stmt, [])} |
-        {while_unmatched} while cond do unmatched {-> New stmt.while(cond.cond, unmatched.stmt)} |
-        {if_matched_else_unmatched} if cond then matched else unmatched {-> New stmt.if(cond.cond, matched.stmt, unmatched.stmt)} ;
+        {if} if cond then stmt {-> New stmt.if(cond, stmt, [])} |
+        {while_unmatched} while cond do unmatched {-> New stmt.while(cond, unmatched.stmt)} |
+        {if_matched_else_unmatched} if cond then matched else unmatched {-> New stmt.if(cond, matched.stmt, [unmatched.stmt])} ;
     other_stmt {-> stmt} =
-        {semicolon} semicolon {-> } |
+        {semicolon} semicolon {-> New stmt.semicolon()} |
         {assignment} l_value assignment expr semicolon {-> New stmt.assignment(l_value, expr)} |
         {block} block {-> New stmt.block(block)} |
-        {function} func_call semicolon {-> New stmt.func_call(func_call)} |
+        {function} func_call semicolon {-> New stmt.function(func_call)} |
         {return_expr} return expr? semicolon {-> New stmt.return([expr])} ;
 
-    block {-> block} = l_brace stmt* r_brace {-> [stmt.stmt]} ;
+    block = l_brace stmt* r_brace {-> New block([stmt])} ;
 
-    func_call {-> func_call} = id l_par func_args? r_par {-> New func_call(id, func_args.expr)} ;
-    func_args {-> expr*} = expr func_call_next_arg* {-> [expr.expr, func_call_next_arg.expr]} ;
-    func_call_next_arg {-> expr} = comma expr {-> expr.expr} ;
+    func_call {-> func_call} = id l_par func_args? r_par {-> New func_call(id, [func_args.expr])} ;
+    func_args {-> expr*} = expr func_call_next_arg* {-> [expr, func_call_next_arg.expr]} ;
+    func_call_next_arg {-> expr} = comma expr {-> expr} ;
 
     l_value {-> l_value} =
         {id} id {-> New l_value.id(id)} |
         {string} string_literal {-> New l_value.string(string_literal)} |
-        {expression} l_value l_bracket expr r_bracket {-> New l_value.expression(l_value.l_value, expr.expr} ;
+        {expression} l_value l_bracket expr r_bracket {-> New l_value.expression(l_value, expr)} ;
 
     expr =
-        {expr_plus_term} expr plus term {-> New expr.plus(expr.expr, term.expr)} |
-        {expr_minus_term} expr minus term {-> New expr.minus(expr.expr, term.expr)} |
+        {expr_plus_term} expr plus term {-> New expr.plus(expr, term.expr)} |
+        {expr_minus_term} expr minus term {-> New expr.minus(expr, term.expr)} |
         {term} term {-> term.expr} ;
     term {-> expr} =
         {term_mult_factor} term mult factor {-> New expr.mult(term.expr, factor.expr)} |
@@ -179,7 +179,7 @@ Productions
         {func_call} func_call {-> New expr.func_call(func_call)} |
         {expr_in_pars} expr_in_pars {-> expr_in_pars.expr} |
         {signed_expr} signed_expr {-> signed_expr.expr} ;
-    expr_in_pars {-> expr} = l_par expr r_par {-> expr.expr} ;
+    expr_in_pars {-> expr} = l_par expr r_par {-> expr} ;
     signed_expr {-> expr} =
         {sign_signed_expr} sign signed_expr {-> signed_expr.expr} |
         {sign_factor} sign factor {-> factor.expr} ;
@@ -189,17 +189,17 @@ Productions
 
     cond =
         {not} not_cond {-> not_cond.cond} |
-        {cond_and_termcond} cond and termcond {-> New cond.and(cond.cond, termcond.cond} |
-        {cond_or_termcond} cond or termcond {-> New cond.or(cond.cond, termcond.cond} |
+        {cond_and_termcond} cond and termcond {-> New cond.and(cond, termcond.cond)} |
+        {cond_or_termcond} cond or termcond {-> New cond.or(cond, termcond.cond)} |
         {termcond} termcond {-> termcond.cond} ;
     not_cond {-> cond} =
         {not_not_cond} not not_cond {-> not_cond.cond} |
-        {not_termcond} not termcond {-> term_cond.cond} ;
+        {not_termcond} not termcond {-> termcond.cond} ;
     termcond {-> cond} =
         {cond_in_pars} cond_in_pars {-> cond_in_pars.cond} |
-        {expr_numop_expr} expr numop_expr {-> New cond.numop(expr.expr, numop_expr.expr} ;
-    cond_in_pars {-> cond} = l_par cond r_par {-> cond.cond} ;
-    numop_expr {-> expr} = numop expr {-> expr.expr} ;
+        {expr_numop_expr} expr numop_expr {-> New cond.numop(expr, numop_expr.expr)} ;
+    cond_in_pars {-> cond} = l_par cond r_par {-> cond} ;
+    numop_expr {-> expr} = numop expr {-> expr} ;
     numop {-> } =
         {equal} equal {-> } |
         {hashtag} hashtag {-> } |
@@ -233,10 +233,11 @@ Abstract Syntax Tree
     func_decl = header ;
 
     stmt =
+        {semicolon} |
         {assignment} l_value expr |
         {block} block |
         {function} func_call |
-        {if} cond [then]:stmt [else]:stmt* |
+        {if} cond [then_m]:stmt [else_m]:stmt* |
         {while} cond stmt |
         {return} expr* ;
 
