@@ -10,13 +10,13 @@ public class SymbolTable {
     private HashMap<String, Integer> namespace;
     private HashMap<String, Integer> variable;
     // the actual Symbol Table is going to be a Java ArrayList, utilized as a stack
-    private ArrayList<String> symbolTable;
+    private ArrayList<STRecord> symbolTable;
 
     // constructor of the Symbol-Table
     public SymbolTable() {
         this.namespace = new HashMap<String, Integer>();
         this.variable = new HashMap<String, Integer>();
-        this.symbolTable = new ArrayList<String>();
+        this.symbolTable = new ArrayList<STRecord>();
     }
 
     /* enter(): create a new scope */
