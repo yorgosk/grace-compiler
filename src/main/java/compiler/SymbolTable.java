@@ -17,7 +17,7 @@ public class SymbolTable {
     // a Hash-Map (<varName, varIndex>) where we note the last occurrences of variable names inside the Symbol-Table
     private HashMap<String, Integer> variableMap;
 
-    // constructor of the Symbol-Table
+    /* SymbolTable's class constructor */
     public SymbolTable() {
         this.symbolTableStackTop = 0;
         this.symbolTable = new ArrayList<STRecord>();
