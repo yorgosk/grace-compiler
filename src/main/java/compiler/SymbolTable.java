@@ -60,7 +60,7 @@ public class SymbolTable {
             // update Symbol-Table
             this.symbolTable.add(record);
             // update variables' Hash-Map so that in any case the name's (key) index (value) will point to it's latest occurrence
-            variableMap.put(record.getName(), symbolTableStackTop);
+            this.variableMap.put(record.getName(), symbolTableStackTop);
         } else {
             /* failure --
             * act accordingly */
@@ -98,6 +98,12 @@ public class SymbolTable {
         int i = this.symbolTable.size()-1;
         int scope = this.symbolTable.get(i).getScopeId();
         while(i >= 0 && scope == curr_scope) {
+            // if this name shadows another scope's name then update the variables' Hash-Map, else remove the name's (key) mapping
+            if(this.symbolTable.get(i).getShadowIndex() != -1) {
+                this.variableMap.put(this.symbolTable.get(i).getName(), this.symbolTable.get(i).getShadowIndex());
+            } else {
+                this.variableMap.remove(this.symbolTable.get(i).getName());
+            }
             this.symbolTable.remove(i);
             this.symbolTableStackTop--;
             i--;

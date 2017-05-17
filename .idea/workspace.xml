@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/NSRecord.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/NSRecord.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
@@ -53,12 +52,12 @@
             <state relative-caret-position="15">
               <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
               <folding>
-                <marker date="1495049471677" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
-                <marker date="1495049471677" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
-                <marker date="1495049471677" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
-                <marker date="1495049471677" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
-                <marker date="1495049471677" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
-                <marker date="1495049471677" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
+                <marker date="1495054200524" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
+                <marker date="1495054200524" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
+                <marker date="1495054200524" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
+                <marker date="1495054200524" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
+                <marker date="1495054200524" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
+                <marker date="1495054200524" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -79,8 +78,8 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="79" column="42" lean-forward="false" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
+            <state relative-caret-position="52">
+              <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -745,7 +744,7 @@
       <option name="presentableId" value="Default" />
       <updated>1495014207865</updated>
       <workItem from="1495014209248" duration="14233000" />
-      <workItem from="1495043390804" duration="5749000" />
+      <workItem from="1495043390804" duration="7458000" />
     </task>
     <task id="LOCAL-00001" summary="working on Symbol-Table structure">
       <created>1495018646572</created>
@@ -796,11 +795,25 @@
       <option name="project" value="LOCAL" />
       <updated>1495048217960</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="worked on Symbol-Table's enter(), insert() &amp; lookup() methods... fixed a run-time error">
+      <created>1495049503979</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1495049503979</updated>
+    </task>
+    <task id="LOCAL-00009" summary="worked on Symbol-Table's methods">
+      <created>1495053212587</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1495053212587</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19991000" />
+    <option name="totallyTimeSpent" value="21700000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -813,7 +826,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="24" width="1305" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -826,7 +839,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.4940429" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4024768" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4024768" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15409055" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -858,7 +871,9 @@
     <MESSAGE value="working on Symbol-Table structure... minor additions included (&quot;ref&quot; added to AST's fpardef)" />
     <MESSAGE value="worked on Symbol-Table's enter() &amp; insert() methods" />
     <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods" />
+    <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods... fixed a run-time error" />
+    <MESSAGE value="worked on Symbol-Table's methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked on Symbol-Table's methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1139,12 +1154,12 @@
         <state relative-caret-position="15">
           <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
           <folding>
-            <marker date="1495049471677" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
-            <marker date="1495049471677" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
-            <marker date="1495049471677" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
-            <marker date="1495049471677" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
-            <marker date="1495049471677" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
-            <marker date="1495049471677" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
+            <marker date="1495054200524" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
+            <marker date="1495054200524" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
+            <marker date="1495054200524" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
+            <marker date="1495054200524" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
+            <marker date="1495054200524" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
+            <marker date="1495054200524" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
@@ -1187,8 +1202,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="79" column="42" lean-forward="false" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
+        <state relative-caret-position="52">
+          <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
