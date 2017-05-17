@@ -21,7 +21,7 @@ public class SymbolTable {
     private Integer checkShadowing(STRecord record) {
         int index = 0;
         for(STRecord r : symbolTable) {
-            if(record.getName() == r.getName()) return index;
+            if(record.getName().equals(r.getName())) return index;
             index++;
         }
         return -1;
