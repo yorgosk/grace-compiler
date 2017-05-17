@@ -49,33 +49,49 @@ public class SymbolTable {
     /* insert(name): create record of a name in the current scope
     * -- insert(): new record in the beginning of the current list */
     public void insert(STRecord record){
-        this.symbolTableStackTop++;
-        record.setScopeId(noOfScopes);
-        /*
-        * LOOKUP
-        * */
-        record.setShadowIndex(this.checkShadowing(record));
-        this.symbolTable.add(record);
+        // look-up
+        boolean success = lookup(record.getName());
+        // if the "record" passed from lookup, add it to the symbol-table
+        if(success) {
+            // update scopes - namespaces' Stack
+            this.symbolTableStackTop++;
+            this.nameStack.peek().setIndex(this.symbolTableStackTop);
+            // update ST-record's info
+            record.setScopeId(noOfScopes);
+            record.setShadowIndex(this.checkShadowing(record));
+            // update Symbol-Table
+            this.symbolTable.add(record);
+            // update variables' Hash-Map so that in any case the name's (key) index (value) will point to it's latest occurrence
+            variableMap.put(record.getName(), symbolTableStackTop);
+        } else {
+            /* failure --
+            * act accordingly */
+            System.out.printf("Name %s ERROR\n", record.getName());
+        }
     }
 
     /* lookup(name): search for a name in the current scope
      * -- lookup(): search in the array */
-    public void lookup(String name){
-//        ArrayList< String > insideArray = new ArrayList<String>();
-//        if (symbolTable != null && !symbolTable.isEmpty()) {
-//            insideArray = symbolTable.get(symbolTable.size()-1);
-//        } else {
-//            System.out.println("Trying to access empty list");
-//        }
-//        if (insideArray != null){
-//            if (insideArray.contains(name)) {
-//                System.out.println("Variable allready exists");
-//            } else {
-//                System.out.println("Variable first time is declared");
-//            }
-//        } else {
-//            System.out.println("Trying to access empty list");
-//        }
+    public boolean lookup(String name){
+        // check if the Symbol-Table's Array-List is empty, if it is there is no point of looking up - we sort of have a "success"
+        if(this.symbolTable.isEmpty()) return true;
+        // take the current scope
+        NSRecord temp = this.nameStack.peek();  // peek returns the element on the top of the stack, but does not remove it
+        int curr_index = temp.getIndex();
+        System.out.printf("curr_index = %d\n", curr_index);
+        int curr_scope = this.symbolTable.get(curr_index).getScopeId();
+        // iterate the array-list in reverse order until you get out of the current-scope
+        int i = this.symbolTable.size();
+        int scope = this.symbolTable.get(i).getScopeId();
+        while(scope == curr_scope && i >= 0) {
+            scope = this.symbolTable.get(i).getScopeId();
+            if(this.symbolTable.get(i).getName().equals(name)) {
+                System.out.printf("Name %s found\n", name);
+                return false;
+            }
+            i--;
+        }
+        return true;
     }
 
     /* exit(): destroy the current scope and delete the names that are defined in it

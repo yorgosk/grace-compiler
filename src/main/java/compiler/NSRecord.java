@@ -17,4 +17,8 @@ public class NSRecord {
     public void setName(String name) { this.name = name; }
     public Integer getIndex() { return this.index; }
     public String getName() { return this.name; }
+
+    /* NSRecord's class various functions */
+    public void incrIndex() { this.index++; }
+    public void decrIndex() { this.index--; }
 }
