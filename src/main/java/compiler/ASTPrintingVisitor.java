@@ -3,9 +3,13 @@ package compiler;
 import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
+import java.util.Stack;
+
 public class ASTPrintingVisitor extends DepthFirstAdapter {
     // Symbol-Table for Syntactical Analysis
-    private SymbolTable symbolTable;
+    private SymbolTable symbolTable = new SymbolTable();
+    // a Java Stack where various information are stored temporarily
+    private Stack<STRecord> temp;
     // for indentation
     private int indent = 0;
     private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("    "); }
@@ -15,8 +19,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAProgram(AProgram node) {
         // printing
         makeIndent(); System.out.printf("program :\n"); indent++;
-        // we are entering a program, so we can create it's Symbol-Table
-        this.symbolTable = new SymbolTable();
     }
     @Override
     public void outAProgram(AProgram node) { indent--; }

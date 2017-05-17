@@ -8,13 +8,13 @@ import java.util.Stack;
 * A Symbol-Table implementation as an "Array of Lists" (kind-of-like a threaded stack)
 * */
 public class SymbolTable {
-    // the actual Symbol-Table is going to be a Java ArrayList, utilized as a Stack
+    // the actual Symbol-Table is going to be a Java Array-List, utilised as a Stack
     private Integer symbolTableStackTop;
     private ArrayList<STRecord> symbolTable;
-    // a Stack where we note where our namespaces begin, inside the Symbol-Table
+    // a Java Stack where we note where our namespaces begin, inside the Symbol-Table
     private Integer noOfNamespaces;
     private Stack<NSRecord> nameStack;
-    // a Hash-Map (<varName, varIndex>) where we note the last occurrences of variable names inside the Symbol-Table
+    // a Java Hash-Map (<varName, varIndex>) where we note the last occurrences of variable names inside the Symbol-Table
     private HashMap<String, Integer> variableMap;
 
     /* SymbolTable's class constructor */

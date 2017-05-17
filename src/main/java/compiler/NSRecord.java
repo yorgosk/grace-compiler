@@ -1,11 +1,8 @@
 package compiler;
 
-/**
- * Created by george on 17/5/2017.
- */
 public class NSRecord {
-    public Integer index;
-    public String name;
+    private Integer index;
+    private String name;
 
     /* NSRecord's class constructor */
     public NSRecord(Integer index, String name) {
