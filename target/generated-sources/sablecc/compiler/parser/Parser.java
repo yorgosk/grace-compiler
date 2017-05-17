@@ -1200,16 +1200,17 @@ public class Parser
         PFparDef pfpardefNode1;
         {
             // Block
-        TId tidNode2;
-        LinkedList listNode3 = new LinkedList();
-        PFparType pfpartypeNode4;
-        tidNode2 = (TId)nodeArrayList1.get(0);
+        @SuppressWarnings("unused") Object nullNode2 = null;
+        TId tidNode3;
+        LinkedList listNode4 = new LinkedList();
+        PFparType pfpartypeNode5;
+        tidNode3 = (TId)nodeArrayList1.get(0);
         {
             // Block
         }
-        pfpartypeNode4 = (PFparType)nodeArrayList3.get(0);
+        pfpartypeNode5 = (PFparType)nodeArrayList3.get(0);
 
-        pfpardefNode1 = new AFparDef(tidNode2, listNode3, pfpartypeNode4);
+        pfpardefNode1 = new AFparDef(null, tidNode3, listNode4, pfpartypeNode5);
         }
 	nodeList.add(pfpardefNode1);
         return nodeList;
@@ -1229,16 +1230,18 @@ public class Parser
         PFparDef pfpardefNode1;
         {
             // Block
-        TId tidNode2;
-        LinkedList listNode3 = new LinkedList();
-        PFparType pfpartypeNode4;
-        tidNode2 = (TId)nodeArrayList2.get(0);
+        TRef trefNode2;
+        TId tidNode3;
+        LinkedList listNode4 = new LinkedList();
+        PFparType pfpartypeNode5;
+        trefNode2 = (TRef)nodeArrayList1.get(0);
+        tidNode3 = (TId)nodeArrayList2.get(0);
         {
             // Block
         }
-        pfpartypeNode4 = (PFparType)nodeArrayList4.get(0);
+        pfpartypeNode5 = (PFparType)nodeArrayList4.get(0);
 
-        pfpardefNode1 = new AFparDef(tidNode2, listNode3, pfpartypeNode4);
+        pfpardefNode1 = new AFparDef(trefNode2, tidNode3, listNode4, pfpartypeNode5);
         }
 	nodeList.add(pfpardefNode1);
         return nodeList;
@@ -1258,22 +1261,23 @@ public class Parser
         PFparDef pfpardefNode1;
         {
             // Block
-        TId tidNode2;
-        LinkedList listNode4 = new LinkedList();
-        PFparType pfpartypeNode5;
-        tidNode2 = (TId)nodeArrayList1.get(0);
+        @SuppressWarnings("unused") Object nullNode2 = null;
+        TId tidNode3;
+        LinkedList listNode5 = new LinkedList();
+        PFparType pfpartypeNode6;
+        tidNode3 = (TId)nodeArrayList1.get(0);
         {
             // Block
-        LinkedList listNode3 = new LinkedList();
-        listNode3 = (LinkedList)nodeArrayList2.get(0);
-	if(listNode3 != null)
+        LinkedList listNode4 = new LinkedList();
+        listNode4 = (LinkedList)nodeArrayList2.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
-        pfpartypeNode5 = (PFparType)nodeArrayList4.get(0);
+        pfpartypeNode6 = (PFparType)nodeArrayList4.get(0);
 
-        pfpardefNode1 = new AFparDef(tidNode2, listNode4, pfpartypeNode5);
+        pfpardefNode1 = new AFparDef(null, tidNode3, listNode5, pfpartypeNode6);
         }
 	nodeList.add(pfpardefNode1);
         return nodeList;
@@ -1294,22 +1298,24 @@ public class Parser
         PFparDef pfpardefNode1;
         {
             // Block
-        TId tidNode2;
-        LinkedList listNode4 = new LinkedList();
-        PFparType pfpartypeNode5;
-        tidNode2 = (TId)nodeArrayList2.get(0);
+        TRef trefNode2;
+        TId tidNode3;
+        LinkedList listNode5 = new LinkedList();
+        PFparType pfpartypeNode6;
+        trefNode2 = (TRef)nodeArrayList1.get(0);
+        tidNode3 = (TId)nodeArrayList2.get(0);
         {
             // Block
-        LinkedList listNode3 = new LinkedList();
-        listNode3 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode3 != null)
+        LinkedList listNode4 = new LinkedList();
+        listNode4 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
-        pfpartypeNode5 = (PFparType)nodeArrayList5.get(0);
+        pfpartypeNode6 = (PFparType)nodeArrayList5.get(0);
 
-        pfpardefNode1 = new AFparDef(tidNode2, listNode4, pfpartypeNode5);
+        pfpardefNode1 = new AFparDef(trefNode2, tidNode3, listNode5, pfpartypeNode6);
         }
 	nodeList.add(pfpardefNode1);
         return nodeList;

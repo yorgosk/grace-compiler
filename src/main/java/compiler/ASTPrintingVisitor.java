@@ -6,13 +6,14 @@ import compiler.node.*;
 import java.util.Stack;
 
 public class ASTPrintingVisitor extends DepthFirstAdapter {
+    // for indentation
+    private int indent = 0;
+    private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("    "); }
+
     // Symbol-Table for Syntactical Analysis
     private SymbolTable symbolTable = new SymbolTable();
     // a Java Stack where various information are stored temporarily
     private Stack<STRecord> temp;
-    // for indentation
-    private int indent = 0;
-    private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("    "); }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override

@@ -105,7 +105,7 @@ Productions
     header_params {-> fpar_def*} = fpar_def header_next_arg* {-> [fpar_def, header_next_arg.fpar_def]} ;
     header_next_arg {-> fpar_def} = semicolon fpar_def {-> fpar_def} ;
 
-    fpar_def = ref? id fpar_def_next_id* colon fpar_type {-> New fpar_def(id, [fpar_def_next_id.id], fpar_type)} ;
+    fpar_def = ref? id fpar_def_next_id* colon fpar_type {-> New fpar_def(ref, id, [fpar_def_next_id.id], fpar_type)} ;
     fpar_def_next_id {-> id} = comma id {-> id} ;
 
     data_type =
@@ -217,7 +217,7 @@ Abstract Syntax Tree
 
     header = id fpar_def* ;
 
-    fpar_def = [first]:id [next]:id* fpar_type ;
+    fpar_def = ref? [first]:id [next]:id* fpar_type ;
 
     data_type =
         {int} int |

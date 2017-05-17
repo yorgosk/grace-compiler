@@ -131,6 +131,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAFparDef(AFparDef node)
     {
         inAFparDef(node);
+        if(node.getRef() != null)
+        {
+            node.getRef().apply(this);
+        }
         if(node.getFirst() != null)
         {
             node.getFirst().apply(this);
