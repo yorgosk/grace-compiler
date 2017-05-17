@@ -2,21 +2,28 @@ package compiler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 /*
 * A Symbol-Table implementation as an "Array of Lists" (kind-of-like a threaded stack)
 * */
 public class SymbolTable {
-    private HashMap<String, Integer> namespace;
-    private HashMap<String, Integer> variable;
-    // the actual Symbol Table is going to be a Java ArrayList, utilized as a stack
+    // the actual Symbol-Table is going to be a Java ArrayList, utilized as a Stack
+    private Integer symbolTableStackTop;
     private ArrayList<STRecord> symbolTable;
+    // a Stack where we note where our namespaces begin, inside the Symbol-Table
+    private Integer noOfNamespaces;
+    private Stack<NSRecord> nameStack;
+    // a Hash-Map (<varName, varIndex>) where we note the last occurrences of variable names inside the Symbol-Table
+    private HashMap<String, Integer> variableMap;
 
     // constructor of the Symbol-Table
     public SymbolTable() {
-        this.namespace = new HashMap<String, Integer>();
-        this.variable = new HashMap<String, Integer>();
+        this.symbolTableStackTop = 0;
         this.symbolTable = new ArrayList<STRecord>();
+        this.noOfNamespaces = 0;
+        this.nameStack = new Stack<NSRecord>();
+        this.variableMap = new HashMap<String, Integer>();
     }
 
     /* enter(): create a new scope */
