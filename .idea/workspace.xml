@@ -53,12 +53,12 @@
             <state relative-caret-position="15">
               <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
               <folding>
-                <marker date="1495048053887" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
-                <marker date="1495048053887" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
-                <marker date="1495048053887" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
-                <marker date="1495048053887" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
-                <marker date="1495048053887" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
-                <marker date="1495048053887" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
+                <marker date="1495049471677" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
+                <marker date="1495049471677" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
+                <marker date="1495049471677" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
+                <marker date="1495049471677" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
+                <marker date="1495049471677" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
+                <marker date="1495049471677" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -79,8 +79,8 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="80" column="59" lean-forward="false" selection-start-line="80" selection-start-column="59" selection-end-line="80" selection-end-column="59" />
+            <state relative-caret-position="195">
+              <caret line="79" column="42" lean-forward="false" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,8 +101,8 @@
       <file leaf-file-name="NSRecord.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/NSRecord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="44" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+            <state relative-caret-position="105">
+              <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -745,7 +745,7 @@
       <option name="presentableId" value="Default" />
       <updated>1495014207865</updated>
       <workItem from="1495014209248" duration="14233000" />
-      <workItem from="1495043390804" duration="4463000" />
+      <workItem from="1495043390804" duration="5749000" />
     </task>
     <task id="LOCAL-00001" summary="working on Symbol-Table structure">
       <created>1495018646572</created>
@@ -789,11 +789,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495032852163</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="worked on Symbol-Table's enter(), insert() &amp; lookup() methods">
+      <created>1495048217960</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1495048217960</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18705000" />
+    <option name="totallyTimeSpent" value="19991000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -850,7 +857,8 @@
     <MESSAGE value="working on Symbol-Table structure... minor additions included" />
     <MESSAGE value="working on Symbol-Table structure... minor additions included (&quot;ref&quot; added to AST's fpardef)" />
     <MESSAGE value="worked on Symbol-Table's enter() &amp; insert() methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="worked on Symbol-Table's enter() &amp; insert() methods" />
+    <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1131,12 +1139,12 @@
         <state relative-caret-position="15">
           <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
           <folding>
-            <marker date="1495048053887" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
-            <marker date="1495048053887" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
-            <marker date="1495048053887" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
-            <marker date="1495048053887" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
-            <marker date="1495048053887" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
-            <marker date="1495048053887" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
+            <marker date="1495049471677" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
+            <marker date="1495049471677" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
+            <marker date="1495049471677" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
+            <marker date="1495049471677" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
+            <marker date="1495049471677" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
+            <marker date="1495049471677" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
@@ -1151,6 +1159,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1161,26 +1177,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/NSRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="44" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        <state relative-caret-position="105">
+          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="80" column="59" lean-forward="false" selection-start-line="80" selection-start-column="59" selection-end-line="80" selection-end-column="59" />
+        <state relative-caret-position="195">
+          <caret line="79" column="42" lean-forward="false" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

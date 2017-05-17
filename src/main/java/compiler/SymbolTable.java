@@ -12,7 +12,7 @@ public class SymbolTable {
     private Integer symbolTableStackTop;
     private ArrayList<STRecord> symbolTable;
     // a Java Stack where we note where our scopes - namespaces begin, inside the Symbol-Table
-    private Integer noOfScopes;
+    private Integer numberOfScopes;
     private Stack<NSRecord> nameStack;
     // a Java Hash-Map (<varName, varIndex>) where we note the last occurrences of variable names inside the Symbol-Table
     private HashMap<String, Integer> variableMap;
@@ -31,7 +31,7 @@ public class SymbolTable {
     public SymbolTable() {
         this.symbolTableStackTop = -1;
         this.symbolTable = new ArrayList<STRecord>();
-        this.noOfScopes = 0;
+        this.numberOfScopes = 0;
         this.nameStack = new Stack<NSRecord>();
         this.variableMap = new HashMap<String, Integer>();
     }
@@ -39,9 +39,7 @@ public class SymbolTable {
     /* enter(): create a new scope - namespace */
     public void enter(String name){
         NSRecord temp = new NSRecord();
-        this.symbolTableStackTop++;
-        this.noOfScopes++;
-        temp.setIndex(this.symbolTableStackTop);
+        this.numberOfScopes++;
         temp.setName(name);
         nameStack.push(temp);
     }
@@ -57,7 +55,7 @@ public class SymbolTable {
             this.symbolTableStackTop++;
             this.nameStack.peek().setIndex(this.symbolTableStackTop);
             // update ST-record's info
-            record.setScopeId(noOfScopes);
+            record.setScopeId(numberOfScopes);
             record.setShadowIndex(this.checkShadowing(record));
             // update Symbol-Table
             this.symbolTable.add(record);
@@ -76,20 +74,17 @@ public class SymbolTable {
         // check if the Symbol-Table's Array-List is empty, if it is there is no point of looking up - we sort of have a "success"
         if(this.symbolTable.isEmpty()) return true;
         // take the current scope
-        NSRecord temp = this.nameStack.peek();  // peek returns the element on the top of the stack, but does not remove it
-        int curr_index = temp.getIndex();
-        System.out.printf("curr_index = %d\n", curr_index);
-        int curr_scope = this.symbolTable.get(curr_index).getScopeId();
+        int curr_scope = this.numberOfScopes;
         // iterate the array-list in reverse order until you get out of the current-scope
-        int i = this.symbolTable.size();
+        int i = this.symbolTable.size()-1;
         int scope = this.symbolTable.get(i).getScopeId();
-        while(scope == curr_scope && i >= 0) {
-            scope = this.symbolTable.get(i).getScopeId();
+        while(i >= 0 && scope == curr_scope) {
             if(this.symbolTable.get(i).getName().equals(name)) {
                 System.out.printf("Name %s found\n", name);
                 return false;
             }
             i--;
+            scope = this.symbolTable.get(i).getScopeId();
         }
         return true;
     }
