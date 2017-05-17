@@ -92,12 +92,19 @@ public class SymbolTable {
     /* exit(): destroy the current scope and delete the names that are defined in it
      * -- exit(): remove the head of the current list for each head of the scopen */
     public void exit(){
-        if (symbolTable != null && !symbolTable.isEmpty()) {
-            symbolTable.remove(symbolTable.size()-1);
+        // take the current scope
+        int curr_scope = this.numberOfScopes;
+        // iterate the array-list in reverse order until you get out of the current-scope
+        int i = this.symbolTable.size()-1;
+        int scope = this.symbolTable.get(i).getScopeId();
+        while(i >= 0 && scope == curr_scope) {
+            this.symbolTable.remove(i);
+            this.symbolTableStackTop--;
+            i--;
+            scope = this.symbolTable.get(i).getScopeId();
         }
-        else {
-            System.out.println("Trying to pop from empty list");
-        }
+        // update scopes - namespaces' Stack by popping the "reference" to the destroyed namespace
+        nameStack.pop();
     }
 
 }
