@@ -114,6 +114,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
+        if(node.getRetType() != null)
+        {
+            node.getRetType().apply(this);
+        }
         outAHeader(node);
     }
 

@@ -4,10 +4,12 @@ public class NSRecord {
     private Integer index;
     private String name;
 
-    /* NSRecord's class constructor */
-    public NSRecord(Integer index, String name) {
-        this.index = index;
-        this.name = name;
+    /* NSRecord's class (default-)constructor */
+    public NSRecord() {}
+    /* NSRecord's class copy-constructor */
+    public NSRecord(NSRecord temp) {
+        this.index = temp.index;
+        this.name = temp.name;
     }
 
     /* NSRecord's class setters and getters */

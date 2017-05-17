@@ -101,7 +101,7 @@ Productions
 
     func_def = header local_def* block {-> New func_def(header, [local_def], block)};
 
-    header = fun id l_par header_params? r_par colon ret_type {-> New header(id, [header_params.fpar_def])} ; /*because, we may have no pars at all e.g. hello example*/
+    header = fun id l_par header_params? r_par colon ret_type {-> New header(id, [header_params.fpar_def], ret_type)} ; /*because, we may have no pars at all e.g. hello example*/
     header_params {-> fpar_def*} = fpar_def header_next_arg* {-> [fpar_def, header_next_arg.fpar_def]} ;
     header_next_arg {-> fpar_def} = semicolon fpar_def {-> fpar_def} ;
 
@@ -215,7 +215,7 @@ Abstract Syntax Tree
 
     func_def = header local_def* block ;
 
-    header = id fpar_def* ;
+    header = id fpar_def* ret_type ;
 
     fpar_def = ref? [first]:id [next]:id* fpar_type ;
 

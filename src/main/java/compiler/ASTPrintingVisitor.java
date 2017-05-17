@@ -17,10 +17,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
-    public void inAProgram(AProgram node) {
-        // printing
-        makeIndent(); System.out.printf("program :\n"); indent++;
-    }
+    public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++; }
     @Override
     public void outAProgram(AProgram node) { indent--; }
 
@@ -34,7 +31,20 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString()); indent++; }
     @Override
-    public void outAHeader(AHeader node) { indent--; }
+    public void outAHeader(AHeader node) {
+        // for printing
+        indent--;
+
+        symbolTable.enter(node.getId().toString());
+
+        STRecord temp = new STRecord();
+        temp.setName(node.getId().toString());
+        temp.setType(node.getRetType().toString());
+        temp.setRef(false);
+        temp.setParam(false);
+        temp.setLocal(false);
+        symbolTable.insert(temp);
+    }
 
     // IN A DATA TYPE------------------------------------------------------------
     @Override

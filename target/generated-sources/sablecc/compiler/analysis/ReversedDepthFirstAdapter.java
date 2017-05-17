@@ -104,6 +104,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAHeader(AHeader node)
     {
         inAHeader(node);
+        if(node.getRetType() != null)
+        {
+            node.getRetType().apply(this);
+        }
         {
             List<PFparDef> copy = new ArrayList<PFparDef>(node.getFparDef());
             Collections.reverse(copy);

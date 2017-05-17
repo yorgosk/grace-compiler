@@ -1074,12 +1074,14 @@ public class Parser
             // Block
         TId tidNode2;
         LinkedList listNode3 = new LinkedList();
+        PRetType prettypeNode4;
         tidNode2 = (TId)nodeArrayList2.get(0);
         {
             // Block
         }
+        prettypeNode4 = (PRetType)nodeArrayList6.get(0);
 
-        pheaderNode1 = new AHeader(tidNode2, listNode3);
+        pheaderNode1 = new AHeader(tidNode2, listNode3, prettypeNode4);
         }
 	nodeList.add(pheaderNode1);
         return nodeList;
@@ -1104,6 +1106,7 @@ public class Parser
             // Block
         TId tidNode2;
         LinkedList listNode4 = new LinkedList();
+        PRetType prettypeNode5;
         tidNode2 = (TId)nodeArrayList2.get(0);
         {
             // Block
@@ -1114,8 +1117,9 @@ public class Parser
 	  listNode4.addAll(listNode3);
 	}
         }
+        prettypeNode5 = (PRetType)nodeArrayList7.get(0);
 
-        pheaderNode1 = new AHeader(tidNode2, listNode4);
+        pheaderNode1 = new AHeader(tidNode2, listNode4, prettypeNode5);
         }
 	nodeList.add(pheaderNode1);
         return nodeList;
