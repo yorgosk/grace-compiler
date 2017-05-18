@@ -1,12 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
+    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="worked on Symbol-Table's methods... minor additions">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlock.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharDataType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADataTypeRetType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDecl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDeclLocalDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDefLocalDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntDataType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANothingRetType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AProgram.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDefLocalDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/EOF.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Node.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PBlock.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PCond.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PDataType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PExpr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncCall.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDecl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PHeader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLValue.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLocalDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PProgram.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PRetType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PStmt.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PVarDef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Start.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switch.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switchable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAnd.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAssignment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TBlank.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TChar.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TCharConst.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TColon.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TComma.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDiv.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDivision.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TElse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TEqual.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TFun.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreateq.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreater.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/THashtag.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TId.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIdentifier.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIf.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TInt.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIntConst.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBrace.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBracket.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLPar.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesseq.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMinus.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMod.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNot.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNothing.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TOr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TPlus.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBrace.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBracket.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRPar.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRef.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TReturn.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSCharSequence.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSemicolon.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TStringLiteral.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TThen.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TUnequal.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TVar.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TWhile.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Token.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -37,11 +118,9 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
+            <state relative-caret-position="540">
               <caret line="42" column="36" lean-forward="false" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,34 +130,25 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
-              <folding>
-                <marker date="1495054200524" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
-                <marker date="1495054200524" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
-                <marker date="1495054200524" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
-                <marker date="1495054200524" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
-                <marker date="1495054200524" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
-                <marker date="1495054200524" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="45" column="33" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="165">
+              <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
+            <state relative-caret-position="564">
               <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -163,8 +233,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -744,7 +814,9 @@
       <option name="presentableId" value="Default" />
       <updated>1495014207865</updated>
       <workItem from="1495014209248" duration="14233000" />
-      <workItem from="1495043390804" duration="7458000" />
+      <workItem from="1495043390804" duration="7587000" />
+      <workItem from="1495085284114" duration="980000" />
+      <workItem from="1495093903343" duration="492000" />
     </task>
     <task id="LOCAL-00001" summary="working on Symbol-Table structure">
       <created>1495018646572</created>
@@ -809,11 +881,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495053212587</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="worked on Symbol-Table's methods... minor additions">
+      <created>1495054234863</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1495054234863</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21700000" />
+    <option name="totallyTimeSpent" value="23301000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -826,7 +905,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="24" width="1305" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -839,10 +918,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.4940429" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4024768" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4024768" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15409055" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15885623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -873,7 +952,8 @@
     <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods" />
     <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods... fixed a run-time error" />
     <MESSAGE value="worked on Symbol-Table's methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="worked on Symbol-Table's methods" />
+    <MESSAGE value="worked on Symbol-Table's methods... minor additions" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked on Symbol-Table's methods... minor additions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -905,9 +985,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -934,9 +1012,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -963,9 +1039,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -992,9 +1066,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
           <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1014,9 +1086,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="13" column="6" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,9 +1095,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="13" column="6" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1036,9 +1104,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="13" column="6" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1149,28 +1215,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
-          <folding>
-            <marker date="1495054200524" expanded="false" signature="4441:4452" ph="&lt;~&gt;" />
-            <marker date="1495054200524" expanded="false" signature="5926:5937" ph="&lt;~&gt;" />
-            <marker date="1495054200524" expanded="false" signature="10672:10679" ph="&lt;~&gt;" />
-            <marker date="1495054200524" expanded="false" signature="11651:11658" ph="&lt;~&gt;" />
-            <marker date="1495054200524" expanded="false" signature="12106:12113" ph="&lt;~&gt;" />
-            <marker date="1495054200524" expanded="false" signature="12668:12675" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
+        <state relative-caret-position="540">
           <caret line="42" column="36" lean-forward="false" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1179,16 +1228,6 @@
         <state relative-caret-position="210">
           <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="45" column="33" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1202,11 +1241,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
+        <state relative-caret-position="564">
           <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
