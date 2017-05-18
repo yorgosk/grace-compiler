@@ -18,6 +18,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private Stack<STRecord> tempStack;
     private Integer toPop;
     private boolean isDecl;
+    private boolean hasMain;
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
@@ -26,6 +27,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempStack = new Stack<STRecord>();
         this.toPop = 0;
         this.isDecl = false;
+        this.hasMain = false;
     }
     @Override
     public void outAProgram(AProgram node) { indent--; }
@@ -47,7 +49,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // keep the name of the function
         STRecord temp = new STRecord();
         temp.setType(node.getRetType().toString());
-        temp.setName(node.getId().toString());
+        // check for main-function existence
+        // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
+        if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
+            System.err.printf("Error: All Grace programs must have a \"main\" function\n");
+            // exit with "failure" code
+            System.exit(-1);
+        } else {
+            this.hasMain = true;
+            temp.setName(node.getId().toString());
+        }
         temp.setFunc(true);
         temp.setFuncDecl(this.isDecl);
         this.tempStack.push(temp);
