@@ -1,93 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="worked on Symbol-Table's methods... minor additions">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlock.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharDataType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADataTypeRetType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDecl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDeclLocalDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDefLocalDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntDataType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANothingRetType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AProgram.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDefLocalDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/EOF.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Node.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PBlock.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PCond.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PDataType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PExpr.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncCall.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDecl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PHeader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLocalDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PProgram.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PRetType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PStmt.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PVarDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Start.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switch.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switchable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAnd.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAssignment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TBlank.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TChar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TCharConst.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TColon.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TComma.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDiv.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDivision.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TElse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TEqual.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TFun.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreateq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreater.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/THashtag.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TId.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIdentifier.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIf.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TInt.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIntConst.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBrace.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBracket.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLPar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesseq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMinus.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMod.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNot.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNothing.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TOr.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TPlus.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBrace.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBracket.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRPar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TReturn.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSCharSequence.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSemicolon.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TStringLiteral.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TThen.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TUnequal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TVar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TWhile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Token.java" />
+    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -138,8 +55,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="-285">
+              <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -816,7 +733,7 @@
       <workItem from="1495014209248" duration="14233000" />
       <workItem from="1495043390804" duration="7587000" />
       <workItem from="1495085284114" duration="980000" />
-      <workItem from="1495093903343" duration="625000" />
+      <workItem from="1495093903343" duration="712000" />
     </task>
     <task id="LOCAL-00001" summary="working on Symbol-Table structure">
       <created>1495018646572</created>
@@ -895,11 +812,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495094410412</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="worked on Symbol-Table's methods... minor additions">
+      <created>1495094559194</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1495094559194</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23434000" />
+    <option name="totallyTimeSpent" value="23521000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -925,10 +849,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.4940429" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4024768" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4024768" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15885623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15885623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1266,8 +1190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="-285">
+          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="19" />
           <folding />
         </state>
       </provider>
