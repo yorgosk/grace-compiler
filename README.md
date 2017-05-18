@@ -2,7 +2,7 @@
 
   This project is a **Grace programming language Compiler**, developed at **Spring of 2017** by
   **Chrysinas Ioannis** and **Kamaras Georgios** as a semester-long group-project for Compilers course.
-  The project's development is going to progress in four stages, during the course of the semester:
+  The project's development is going to progress in three stages, during the course of the semester:
   1. The first stage _(current stage)_ involves the creation of the compiler's Lexical and Syntactical Analyser.
   2. The second stage involves creating the compiler's Semantical Analyser and generating Intermediate Code.
   3. The third, and final, stage is about Optimization and Program Execution.
