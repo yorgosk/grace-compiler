@@ -3,6 +3,8 @@ package compiler;
 import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class ASTPrintingVisitor extends DepthFirstAdapter {
@@ -11,40 +13,88 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("    "); }
 
     // Symbol-Table for Syntactical Analysis
-    private SymbolTable symbolTable = new SymbolTable();
+    private SymbolTable symbolTable;
     // a Java Stack where various information are stored temporarily
-    private Stack<STRecord> temp;
+    private Stack<STRecord> tempStack;
+    private Integer toPop;
+    private boolean isDecl;
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
-    public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++; }
+    public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++;
+        this.symbolTable = new SymbolTable();
+        this.tempStack = new Stack<STRecord>();
+        this.toPop = 0;
+        this.isDecl = false;
+    }
     @Override
     public void outAProgram(AProgram node) { indent--; }
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
-    public void inAFuncDef(AFuncDef node) { makeIndent(); System.out.printf("function :\n"); indent++; }
+    public void inAFuncDef(AFuncDef node) { makeIndent(); System.out.printf("function :\n"); indent++;
+        // we are in a function definition, this means that a new namespace-scope is created
+        symbolTable.enter();
+        // the very next header that we will see, we want to remember that it belongs to a function Definition
+        this.isDecl = false;
+    }
     @Override
     public void outAFuncDef(AFuncDef node) { indent--; }
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
-    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString()); indent++; }
-    @Override
-    public void outAHeader(AHeader node) {
-        // for printing
-        indent--;
-
-        symbolTable.enter(node.getId().toString());
-
+    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString()); indent++;
+        // keep the name of the function
         STRecord temp = new STRecord();
-        temp.setName(node.getId().toString());
         temp.setType(node.getRetType().toString());
-        temp.setRef(false);
-        temp.setParam(false);
-        temp.setLocal(false);
-        symbolTable.insert(temp);
+        temp.setName(node.getId().toString());
+        temp.setFunc(true);
+        temp.setFuncDecl(this.isDecl);
+        this.tempStack.push(temp);
+        this.toPop++;
     }
+    @Override
+    public void outAHeader(AHeader node) { indent--;
+        // insert the header's names to our Symbol-Table
+        STRecord temp;
+        while (this.toPop != 0) {
+            temp = this.tempStack.pop();
+            this.symbolTable.insert(temp);
+            toPop--;
+        }
+        // for debugging
+        this.symbolTable.printSTStructures();
+    }
+
+    // IN AND OUT A FUNCTION PARAMETERS------------------------------------------------------------
+    @Override
+    public void inAFparDef(AFparDef node) {
+        // keep the name of the parameters
+        boolean ref = node.getRef() != null;
+        String type = node.getFparType().toString();
+        STRecord temp = new STRecord();
+        if(node.getId() != null)
+        {
+            temp.setType(type);
+            temp.setName(node.getId().toString());
+            temp.setRef(ref);
+            this.tempStack.push(temp);
+            this.toPop++;
+        }
+        {
+            List<TId> copy = new ArrayList<TId>(node.getNext());
+            for(TId e : copy)
+            {
+                temp.setType(type);
+                temp.setName(e.toString());
+                temp.setRef(ref);
+                this.tempStack.push(temp);
+                this.toPop++;
+            }
+        }
+    }
+//    @Override
+//    public void outAFparDef(AFparDef node) {}
 
     // IN A DATA TYPE------------------------------------------------------------
     @Override

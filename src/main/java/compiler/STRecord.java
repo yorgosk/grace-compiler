@@ -7,12 +7,19 @@ public class STRecord {
     private boolean isParam;
     private boolean isLocal;
     private boolean isFunc;
-    private boolean isFuncDef;
+    private boolean isFuncDecl;
     private Integer scopeId;
     private Integer shadowIndex;
 
     /* STRecord's (default-)constructor */
     public STRecord() {
+        this.type = null;
+        this.name = null;
+        this.isRef = false;
+        this.isParam = false;
+        this.isLocal = true;
+        this.isFunc = false;
+        this.isFuncDecl = false;
         this.scopeId = -1;
         this.shadowIndex = -1;
     }
@@ -24,7 +31,7 @@ public class STRecord {
     public void setParam(boolean param) { this.isParam = param; }
     public void setLocal(boolean local) { this.isLocal = local; }
     public void setFunc(boolean func) { this.isFunc = func; }
-    public void setFuncDef(boolean funcDef) { this.isFuncDef = funcDef; }
+    public void setFuncDecl(boolean funcDecl) { this.isFuncDecl = funcDecl; }
     public void setScopeId(Integer scopeId) { this.scopeId = scopeId; }
     public void setShadowIndex(Integer shadowIndex) { this.shadowIndex = shadowIndex; }
     public String getType() { return this.type; }
@@ -33,14 +40,14 @@ public class STRecord {
     public boolean getParam() { return this.isParam; }
     public boolean getLocal() { return this.isLocal; }
     public boolean getFunc() { return this.isFunc; }
-    public boolean getFuncDef() { return this.isFuncDef; }
+    public boolean getFuncDecl() { return this.isFuncDecl; }
     public Integer getScopeId() { return this.scopeId; }
     public Integer getShadowIndex() { return this.shadowIndex; }
 
     /* STRecord's class printing function */
     public void printSTRecord() {
-        System.out.printf("STR -> type: %s - name: %s - isRef: %b - isParam: %b - isLocal: %b - isFunc: %b - isFuncDef: %b - scopeId: %d - shadowIndex: %d\n",
-                this.type, this.name, this.isRef, this.isParam, this.isLocal, this.isFunc, this.isFuncDef, this.scopeId, this.shadowIndex);
+        System.out.printf("STR -> type: %s - name: %s - isRef: %b - isParam: %b - isLocal: %b - isFunc: %b - isFuncDecl: %b - scopeId: %d - shadowIndex: %d\n",
+                this.type, this.name, this.isRef, this.isParam, this.isLocal, this.isFunc, this.isFuncDecl, this.scopeId, this.shadowIndex);
     }
 
 }

@@ -139,9 +139,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getRef().apply(this);
         }
-        if(node.getFirst() != null)
+        if(node.getId() != null)
         {
-            node.getFirst().apply(this);
+            node.getId().apply(this);
         }
         {
             List<TId> copy = new ArrayList<TId>(node.getNext());

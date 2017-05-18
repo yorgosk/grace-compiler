@@ -217,7 +217,7 @@ Abstract Syntax Tree
 
     header = id fpar_def* ret_type ;
 
-    fpar_def = ref? [first]:id [next]:id* fpar_type ;
+    fpar_def = ref? id [next]:id* fpar_type ;
 
     data_type =
         {int} int |

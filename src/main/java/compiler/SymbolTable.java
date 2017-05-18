@@ -38,10 +38,9 @@ public class SymbolTable {
     }
 
     /* enter(): create a new scope - namespace */
-    public void enter(String name){
+    public void enter(){
         NSRecord temp = new NSRecord();
         this.numberOfScopes++;
-        temp.setName(name);
         temp.setIndex(-1);
         nameStack.push(temp);
     }
