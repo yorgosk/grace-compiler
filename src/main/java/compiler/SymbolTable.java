@@ -1,6 +1,7 @@
 package compiler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -115,11 +116,17 @@ public class SymbolTable {
 
     /* print our structures
     * -- for debugging */
-//    public void printSTStructures() {
-//        System.out.printf("\nSymbol-Table:\n");
-//        for(Object e: this.symbolTable.toArray()) {
-//            e.printSTRecord();
-//        }
-//    }
+    public void printSTStructures() {
+        System.out.printf("\nSymbol-Table:\n");
+        for (int i = 0; i < this.symbolTable.size(); i++) {
+            this.symbolTable.get(i).printSTRecord();
+        }
+        System.out.printf("\nScope-Namespace Stack:\n");
+        for (int i = 0; i < this.nameStack.size(); i++) {
+            this.nameStack.get(i).printNSRecord();
+        }
+        System.out.printf("\nVariables' Hash-Map:\n");
+        System.out.println(Arrays.asList(variableMap));
+    }
 
 }
