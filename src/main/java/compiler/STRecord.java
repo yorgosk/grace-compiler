@@ -42,4 +42,10 @@ public class STRecord {
     public Integer getScopeId() { return this.scopeId; }
     public Integer getShadowIndex() { return this.shadowIndex; }
 
+    /* STRecord's class printing function */
+    public void printSTRecord() {
+        System.out.printf("STR -> type: %s - name: %s - isRef: %b - isParam: %b - isLocal: %b - scopeId: %d - shadowIndex: %d\n",
+                this.type, this.name, this.isRef, this.isParam, this.isLocal, this.scopeId, this.shadowIndex);
+    }
+
 }

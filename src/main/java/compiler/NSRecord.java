@@ -6,6 +6,7 @@ public class NSRecord {
 
     /* NSRecord's class (default-)constructor */
     public NSRecord() { this.index = -1; }
+
     /* NSRecord's class copy-constructor */
     public NSRecord(NSRecord temp) {
         this.index = temp.index;
@@ -21,4 +22,10 @@ public class NSRecord {
     /* NSRecord's class various functions */
     public void incrIndex() { this.index++; }
     public void decrIndex() { this.index--; }
+
+    /* NSRecord's class printing function */
+    public void printNSRecord() {
+        System.out.printf("NSR -> index: %d - name: %d\n", this.index, this.name);
+    }
+
 }

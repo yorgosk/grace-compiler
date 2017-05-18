@@ -113,4 +113,13 @@ public class SymbolTable {
         nameStack.pop();
     }
 
+    /* print our structures
+    * -- for debugging */
+//    public void printSTStructures() {
+//        System.out.printf("\nSymbol-Table:\n");
+//        for(Object e: this.symbolTable.toArray()) {
+//            e.printSTRecord();
+//        }
+//    }
+
 }
