@@ -5,7 +5,7 @@ public class NSRecord {
     private String name;
 
     /* NSRecord's class (default-)constructor */
-    public NSRecord() { this.index = -1; }
+    public NSRecord() {}
 
     /* NSRecord's class copy-constructor */
     public NSRecord(NSRecord temp) {

@@ -42,6 +42,7 @@ public class SymbolTable {
         NSRecord temp = new NSRecord();
         this.numberOfScopes++;
         temp.setName(name);
+        temp.setIndex(-1);
         nameStack.push(temp);
     }
 
@@ -61,7 +62,7 @@ public class SymbolTable {
             // update Symbol-Table
             this.symbolTable.add(record);
             // update variables' Hash-Map so that in any case the name's (key) index (value) will point to it's latest occurrence
-            this.variableMap.put(record.getName(), symbolTableStackTop);
+            this.variableMap.put(record.getName(), this.symbolTableStackTop);
         } else {
             /* failure --
             * act accordingly */
