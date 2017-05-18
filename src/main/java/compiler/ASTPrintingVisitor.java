@@ -75,6 +75,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         // for debugging
         this.symbolTable.printSTStructures();
+        assert (toPop == 0);
     }
 
     // IN AND OUT A FUNCTION PARAMETERS------------------------------------------------------------
@@ -83,9 +84,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // keep the name of the parameters
         boolean ref = node.getRef() != null;
         String type = node.getFparType().toString();
-        STRecord temp = new STRecord();
         if(node.getId() != null)
         {
+            STRecord temp = new STRecord();
             temp.setType(type);
             temp.setName(node.getId().toString());
             temp.setRef(ref);
@@ -96,6 +97,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             List<TId> copy = new ArrayList<TId>(node.getNext());
             for(TId e : copy)
             {
+                STRecord temp = new STRecord();
                 temp.setType(type);
                 temp.setName(e.toString());
                 temp.setRef(ref);
@@ -139,21 +141,62 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A LOCAL DEFINITION------------------------------------------------------------
     @Override
-    public void inAFuncDefLocalDef(AFuncDefLocalDef node) { makeIndent(); System.out.printf("funcDefLocalDef :\n"); indent++; }
+    public void inAFuncDefLocalDef(AFuncDefLocalDef node) { makeIndent(); System.out.printf("funcDefLocalDef :\n"); indent++;
+        // we are in a function definition, this means that a new namespace-scope is created
+        symbolTable.enter();
+        // the very next header that we will see, we want to remember that it belongs to a function Definition
+        this.isDecl = false;
+    }
     @Override
     public void outAFuncDefLocalDef(AFuncDefLocalDef node) { indent--; }
     @Override
-    public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) { makeIndent(); System.out.printf("funcDeclLocalDef :\n"); indent++; }
+    public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) { makeIndent(); System.out.printf("funcDeclLocalDef :\n"); indent++;
+        // the very next header that we will see, we want to remember that it belongs to a function Declaration
+        this.isDecl = true;
+    }
     @Override
     public void outAFuncDeclLocalDef(AFuncDeclLocalDef node) { indent--; }
     @Override
     public void inAVarDefLocalDef(AVarDefLocalDef node) { makeIndent(); System.out.printf("varDefLocalDef :\n"); indent++; }
     @Override
-    public void outAVarDefLocalDef(AVarDefLocalDef node) { indent--; }
+    public void outAVarDefLocalDef(AVarDefLocalDef node) { indent--;
+        // insert the variables' names to our Symbol-Table
+        STRecord temp;
+        while (this.toPop != 0) {
+            temp = this.tempStack.pop();
+            this.symbolTable.insert(temp);
+            toPop--;
+        }
+        // for debugging
+        this.symbolTable.printSTStructures();
+        assert (toPop == 0);
+    }
 
     // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("var :\"%s\"\n", node.getId().toString()); indent++;}
+    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("var :\"%s\"\n", node.getId().toString()); indent++;
+        // keep the name of the parameters
+        String type = node.getType().toString();
+        if(node.getId() != null)
+        {
+            STRecord temp = new STRecord();
+            temp.setType(type);
+            temp.setName(node.getId().toString());
+            this.tempStack.push(temp);
+            this.toPop++;
+        }
+        {
+            List<TId> copy = new ArrayList<TId>(node.getNext());
+            for(TId e : copy)
+            {
+                STRecord temp = new STRecord();
+                temp.setType(type);
+                temp.setName(e.toString());
+                this.tempStack.push(temp);
+                this.toPop++;
+            }
+        }
+    }
     @Override
     public void outAVarDef(AVarDef node) { indent--; }
 
