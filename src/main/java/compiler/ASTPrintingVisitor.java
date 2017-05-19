@@ -48,7 +48,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString()); indent++;
         // keep the name of the function
         STRecord temp = new STRecord();
-        temp.setType(node.getRetType().toString());
+        temp.type.setKind(node.getRetType().toString());
         // check for main-function existence
         // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
         if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
@@ -87,7 +87,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if(node.getId() != null)
         {
             STRecord temp = new STRecord();
-            temp.setType(type);
+            temp.type.setKind(type);
             temp.setName(node.getId().toString());
             temp.setRef(ref);
             this.tempStack.push(temp);
@@ -98,7 +98,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             for(TId e : copy)
             {
                 STRecord temp = new STRecord();
-                temp.setType(type);
+                temp.type.setKind(type);
                 temp.setName(e.toString());
                 temp.setRef(ref);
                 this.tempStack.push(temp);
@@ -174,13 +174,15 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("var :\"%s\"\n", node.getId().toString()); indent++;
+    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("var :\"%s\"\n", node.getId().toString()); indent++; }
+    @Override
+    public void outAVarDef(AVarDef node) { indent--;
         // keep the name of the parameters
         String type = node.getType().toString();
         if(node.getId() != null)
         {
             STRecord temp = new STRecord();
-            temp.setType(type);
+            temp.type.setKind(type);
             temp.setName(node.getId().toString());
             this.tempStack.push(temp);
             this.toPop++;
@@ -190,15 +192,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             for(TId e : copy)
             {
                 STRecord temp = new STRecord();
-                temp.setType(type);
+                temp.type.setKind(type);
                 temp.setName(e.toString());
                 this.tempStack.push(temp);
                 this.toPop++;
             }
         }
     }
-    @Override
-    public void outAVarDef(AVarDef node) { indent--; }
 
     // IN AND OUT A FUNCTION DECLARATION------------------------------------------------------------
     @Override
