@@ -52,6 +52,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString()); indent++;
         // keep the name of the function
         STRecord temp = new STRecord();
+
+        temp.type = new STRecord.Type();
         temp.type.setKind(node.getRetType().toString());
         // check for main-function existence
         // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
@@ -90,24 +92,29 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // keep the name of the parameters
         boolean ref = node.getRef() != null;
         String type = node.getFparType().toString();
+        STRecord.Type tempType = null;
         if(node.getId() != null)
         {
-            STRecord temp = new STRecord();
-            temp.type.setKind(type);
-            temp.setName(node.getId().toString());
-            temp.setRef(ref);
-            this.tempRecordStack.push(temp);
+            STRecord tempRec = new STRecord();
+
+            tempType = this.tempTypeStack.pop();
+            this.toPopFromTempTypeStack--;
+            tempRec.type = new STRecord.Type(tempType);
+            tempRec.setName(node.getId().toString());
+            tempRec.setRef(ref);
+            this.tempRecordStack.push(tempRec);
             this.toPopFromTempRecordStack++;
         }
         {
             List<TId> copy = new ArrayList<TId>(node.getNext());
             for(TId e : copy)
             {
-                STRecord temp = new STRecord();
-                temp.type.setKind(type);
-                temp.setName(e.toString());
-                temp.setRef(ref);
-                this.tempRecordStack.push(temp);
+                STRecord tempRec = new STRecord();
+
+                tempRec.type = new STRecord.Type(tempType);
+                tempRec.setName(e.toString());
+                tempRec.setRef(ref);
+                this.tempRecordStack.push(tempRec);
                 this.toPopFromTempRecordStack++;
             }
         }
@@ -125,7 +132,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAType(AType node) { makeIndent(); System.out.printf("type :\n"); indent++; }
+    public void inAType(AType node) { makeIndent(); System.out.printf("type :\n"); indent++;
+        STRecord.Type temp = new STRecord.Type();
+        temp.setKind(node.getDataType().toString());
+        if(node.getIntConst().size() > 0) {
+            temp.setArray(true);
+            temp.setDimension(node.getIntConst().size());
+        }
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
     @Override
     public void outAType(AType node) { indent--; }
 
@@ -139,7 +155,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A FUNCTION PARAMETER TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAFparType(AFparType node) { makeIndent(); System.out.printf("funcParType :\n"); indent++; }
+    public void inAFparType(AFparType node) { makeIndent(); System.out.printf("funcParType :\n"); indent++;
+        STRecord.Type temp = new STRecord.Type();
+        temp.setKind(node.getDataType().toString());
+        if(node.getIntConst().size() > 0) {
+            temp.setArray(true);
+            temp.setDimension(node.getIntConst().size());
+        }
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
     @Override
     public void outAFparType(AFparType node) { indent--; }
 
@@ -183,22 +208,28 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void outAVarDef(AVarDef node) { indent--;
         // keep the name of the parameters
         String type = node.getType().toString();
+        STRecord.Type tempType = null;
         if(node.getId() != null)
         {
-            STRecord temp = new STRecord();
-            temp.type.setKind(type);
-            temp.setName(node.getId().toString());
-            this.tempRecordStack.push(temp);
+            STRecord tempRec = new STRecord();
+
+            tempType = this.tempTypeStack.pop();
+            this.toPopFromTempTypeStack--;
+            tempRec.type = new STRecord.Type(tempType);
+            tempRec.setName(node.getId().toString());
+            this.tempRecordStack.push(tempRec);
             this.toPopFromTempRecordStack++;
         }
         {
             List<TId> copy = new ArrayList<TId>(node.getNext());
             for(TId e : copy)
             {
-                STRecord temp = new STRecord();
-                temp.type.setKind(type);
-                temp.setName(e.toString());
-                this.tempRecordStack.push(temp);
+                STRecord tempRec = new STRecord();
+
+                tempRec.type = new STRecord.Type(tempType);
+                tempRec.type.setKind(type);
+                tempRec.setName(e.toString());
+                this.tempRecordStack.push(tempRec);
                 this.toPopFromTempRecordStack++;
             }
         }

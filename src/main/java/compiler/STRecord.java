@@ -1,7 +1,7 @@
 package compiler;
 
 public class STRecord {
-    public class Type {
+    public static class Type {
         private String kind;
         private boolean isArray;
         private Integer dimension;
@@ -13,6 +13,13 @@ public class STRecord {
             this.dimension = 0;
         }
 
+        /* Type's copy-constructor */
+        public Type(Type temp) {
+            this.kind = temp.kind;
+            this.isArray = temp.isArray;
+            this.dimension = temp.dimension;
+        }
+
         /* Type's class setters and getters */
         public void setKind(String kind) { this.kind = kind; }
         public void setArray(boolean array) { this.isArray = array; }
@@ -20,6 +27,15 @@ public class STRecord {
         public String getKind() { return this.kind; }
         public boolean getArray() { return this.isArray; }
         public Integer getDimension() { return this.dimension; }
+
+        /* Type's class various functions */
+        public boolean isSame(Type other) {
+            if(this.kind != other.kind) return false;
+            if(this.isArray != other.isArray) return false;
+            if(this.dimension != other.dimension) return false;
+
+            return true;
+        }
 
         /* Type's class printing function */
         public void printType() {
@@ -40,7 +56,7 @@ public class STRecord {
 
     /* STRecord's (default-)constructor */
     public STRecord() {
-        this.type = new Type();
+        this.type = null;
         this.name = null;
         this.isRef = false;
         this.isParam = false;

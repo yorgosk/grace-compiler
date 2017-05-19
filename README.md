@@ -3,13 +3,13 @@
   This project is a **Grace programming language Compiler**, developed at **Spring of 2017** by
   **Chrysinas Ioannis** and **Kamaras Georgios** as a semester-long group-project for Compilers course.
   The project's development is going to progress in three stages, during the course of the semester:
-  1. The first stage _(current stage)_ involves the creation of the compiler's Lexical and Syntactical Analyser.
-  2. The second stage involves creating the compiler's Semantical Analyser and generating Intermediate Code.
+  1. The first stage _(Parts I and II)_ involves the creation of the compiler's Lexical and Syntactical Analyser.
+  2. The second stage _(Parts II and III -- current stage)_ involves creating the compiler's Semantical Analyser and generating Intermediate Code.
   3. The third, and final, stage is about Optimization and Program Execution.
 
 ## Current Version (version 1.0)
 
-  ***Stable Version for Parts I and II of the project***
+  ***Stable Version for first stage _(Parts I and II)_ of the project***
   >Our compiler is currently on the *first stage* of it's development. For now, it has *Lexer and Parser capabilities*.
   It processes the input's program and, after it decides that it is correct (meaning that it conforms with our grammar's
   specifications), it prints it's Parsing Tree. If it decides that the program is not correct, it produces some
