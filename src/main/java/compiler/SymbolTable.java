@@ -85,7 +85,7 @@ public class SymbolTable {
                 return false;
             }
             i--;
-            scope = this.symbolTable.get(i).getScopeId();
+            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
         }
         return true;
     }
