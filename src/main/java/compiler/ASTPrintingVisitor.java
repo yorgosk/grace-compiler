@@ -120,7 +120,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
     }
 
-    // IN A DATA TYPE------------------------------------------------------------
+    // IN AND OUT A DATA TYPE------------------------------------------------------------
     @Override
     public void inAIntDataType(AIntDataType node) { makeIndent(); System.out.printf("\"int\"");  }
     @Override
@@ -247,7 +247,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outABlock(ABlock node) { indent--; }
 
-    // IN A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString()); indent++; }
     @Override
@@ -260,5 +260,135 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString()); }
     @Override
     public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
+
+    // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inAIntConstExpr(AIntConstExpr node) {}
+    @Override
+    public void outAIntConstExpr(AIntConstExpr node) {}
+    @Override
+    public void inACharConstExpr(ACharConstExpr node) {}
+    @Override
+    public void outACharConstExpr(ACharConstExpr node) {}
+    @Override
+    public void inALValueExpr(ALValueExpr node) {}
+    @Override
+    public void outALValueExpr(ALValueExpr node) {}
+    @Override
+    public void inAFuncCallExpr(AFuncCallExpr node) {}
+    @Override
+    public void outAFuncCallExpr(AFuncCallExpr node) {}
+    @Override
+    public void inAExprExpr(AExprExpr node) {}
+    @Override
+    public void outAExprExpr(AExprExpr node) {}
+    @Override
+    public void inAPlusExpr(APlusExpr node) {}
+    @Override
+    public void outAPlusExpr(APlusExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"plus\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAMinusExpr(AMinusExpr node) {}
+    @Override
+    public void outAMinusExpr(AMinusExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"minus\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAMultExpr(AMultExpr node) {}
+    @Override
+    public void outAMultExpr(AMultExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"mult\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inADivExpr(ADivExpr node) {}
+    @Override
+    public void outADivExpr(ADivExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"div\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inADivisionExpr(ADivisionExpr node) {}
+    @Override
+    public void outADivisionExpr(ADivisionExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"division\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAModExpr(AModExpr node) {}
+    @Override
+    public void outAModExpr(AModExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"mod\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+
+    // IN AND OUT A CONDITION AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inACondCond(ACondCond node) {}
+    @Override
+    public void outACondCond(ACondCond node) {}
+    @Override
+    public void inAAndCond(AAndCond node) {}
+    @Override
+    public void outAAndCond(AAndCond node) {}
+    @Override
+    public void inAOrCond(AOrCond node) {}
+    @Override
+    public void outAOrCond(AOrCond node) {}
+    @Override
+    public void inANumopCond(ANumopCond node) {}
+    @Override
+    public void outANumopCond(ANumopCond node) {}
 
 }

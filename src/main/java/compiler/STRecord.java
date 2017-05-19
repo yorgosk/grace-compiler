@@ -67,6 +67,19 @@ public class STRecord {
         this.shadowIndex = -1;
     }
 
+    /* STRecord's class copy-constructor */
+    public STRecord(STRecord temp) {
+        this.type = new Type(temp.type);
+        this.name = temp.name;
+        this.isRef = temp.isRef;
+        this.isParam = temp.isParam;
+        this.isLocal = temp.isLocal;
+        this.isFunc = temp.isFunc;
+        this.isFuncDecl = temp.isFuncDecl;
+        this.scopeId = temp.scopeId;
+        this.shadowIndex = temp.shadowIndex;
+    }
+
     /* STRecord's class setters and getters */
     public void setName(String name) { this.name = name; }
     public void setRef(boolean ref) { this.isRef = ref; }
