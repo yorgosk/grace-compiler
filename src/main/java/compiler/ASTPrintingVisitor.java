@@ -15,8 +15,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     // Symbol-Table for Syntactical Analysis
     private SymbolTable symbolTable;
     // a Java Stack where various information are stored temporarily
-    private Stack<STRecord> tempStack;
-    private Integer toPop;
+    private Stack<STRecord> tempRecordStack;
+    private Integer toPopFromTempRecordStack;
+    private Stack<STRecord.Type> tempTypeStack;
+    private Integer toPopFromTempTypeStack;
     private boolean isDecl;
     private boolean hasMain;
 
@@ -24,8 +26,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++;
         this.symbolTable = new SymbolTable();
-        this.tempStack = new Stack<STRecord>();
-        this.toPop = 0;
+        this.tempRecordStack = new Stack<STRecord>();
+        this.toPopFromTempRecordStack = 0;
+        this.tempTypeStack = new Stack<STRecord.Type>();
+        this.toPopFromTempTypeStack = 0;
         this.isDecl = false;
         this.hasMain = false;
     }
@@ -61,26 +65,28 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         temp.setFunc(true);
         temp.setFuncDecl(this.isDecl);
-        this.tempStack.push(temp);
-        this.toPop++;
+        this.tempRecordStack.push(temp);
+        this.toPopFromTempRecordStack++;
     }
     @Override
     public void outAHeader(AHeader node) { indent--;
         // insert the header's names to our Symbol-Table
         STRecord temp;
-        while (this.toPop != 0) {
-            temp = this.tempStack.pop();
+        while (this.toPopFromTempRecordStack != 0) {
+            temp = this.tempRecordStack.pop();
             this.symbolTable.insert(temp);
-            toPop--;
+            toPopFromTempRecordStack--;
         }
         // for debugging
         this.symbolTable.printSTStructures();
-        assert (toPop == 0);
+        assert (toPopFromTempRecordStack == 0);
     }
 
     // IN AND OUT A FUNCTION PARAMETERS------------------------------------------------------------
     @Override
-    public void inAFparDef(AFparDef node) {
+    public void inAFparDef(AFparDef node) { makeIndent(); System.out.printf("fparDef :\n"); indent++; }
+    @Override
+    public void outAFparDef(AFparDef node) { indent--;
         // keep the name of the parameters
         boolean ref = node.getRef() != null;
         String type = node.getFparType().toString();
@@ -90,8 +96,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             temp.type.setKind(type);
             temp.setName(node.getId().toString());
             temp.setRef(ref);
-            this.tempStack.push(temp);
-            this.toPop++;
+            this.tempRecordStack.push(temp);
+            this.toPopFromTempRecordStack++;
         }
         {
             List<TId> copy = new ArrayList<TId>(node.getNext());
@@ -101,13 +107,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 temp.type.setKind(type);
                 temp.setName(e.toString());
                 temp.setRef(ref);
-                this.tempStack.push(temp);
-                this.toPop++;
+                this.tempRecordStack.push(temp);
+                this.toPopFromTempRecordStack++;
             }
         }
     }
-//    @Override
-//    public void outAFparDef(AFparDef node) {}
 
     // IN A DATA TYPE------------------------------------------------------------
     @Override
@@ -162,14 +166,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void outAVarDefLocalDef(AVarDefLocalDef node) { indent--;
         // insert the variables' names to our Symbol-Table
         STRecord temp;
-        while (this.toPop != 0) {
-            temp = this.tempStack.pop();
+        while (this.toPopFromTempRecordStack != 0) {
+            temp = this.tempRecordStack.pop();
             this.symbolTable.insert(temp);
-            toPop--;
+            toPopFromTempRecordStack--;
         }
         // for debugging
         this.symbolTable.printSTStructures();
-        assert (toPop == 0);
+        assert (toPopFromTempRecordStack == 0);
     }
 
     // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
@@ -184,8 +188,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             STRecord temp = new STRecord();
             temp.type.setKind(type);
             temp.setName(node.getId().toString());
-            this.tempStack.push(temp);
-            this.toPop++;
+            this.tempRecordStack.push(temp);
+            this.toPopFromTempRecordStack++;
         }
         {
             List<TId> copy = new ArrayList<TId>(node.getNext());
@@ -194,8 +198,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 STRecord temp = new STRecord();
                 temp.type.setKind(type);
                 temp.setName(e.toString());
-                this.tempStack.push(temp);
-                this.toPop++;
+                this.tempRecordStack.push(temp);
+                this.toPopFromTempRecordStack++;
             }
         }
     }

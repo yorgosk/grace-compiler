@@ -23,60 +23,49 @@ public class STRecord {
 
         /* Type's class printing function */
         public void printType() {
-            System.out.printf("\t|__>TYPE -> kind: %s - isArray: %b - dimension: %d\n", this.kind, this.isArray, this.dimension);
+            System.out.printf("\t|__> TYPE -> kind: %s - isArray: %b - dimension: %d\n", this.kind, this.isArray, this.dimension);
         }
 
     }
+
     public Type type;
-//    private String type;
     private String name;
     private boolean isRef;
     private boolean isParam;
     private boolean isLocal;
     private boolean isFunc;
     private boolean isFuncDecl;
-//    private boolean isArray;
-//    private Integer dimension;
     private Integer scopeId;
     private Integer shadowIndex;
 
     /* STRecord's (default-)constructor */
     public STRecord() {
         this.type = new Type();
-//        this.type = null;
         this.name = null;
         this.isRef = false;
         this.isParam = false;
         this.isLocal = true;
         this.isFunc = false;
         this.isFuncDecl = false;
-//        this.isArray = false;
-//        this.dimension = 0;
         this.scopeId = -1;
         this.shadowIndex = -1;
     }
 
     /* STRecord's class setters and getters */
-//    public void setType(String type) { this.type = type; }
     public void setName(String name) { this.name = name; }
     public void setRef(boolean ref) { this.isRef = ref; }
     public void setParam(boolean param) { this.isParam = param; }
     public void setLocal(boolean local) { this.isLocal = local; }
     public void setFunc(boolean func) { this.isFunc = func; }
     public void setFuncDecl(boolean funcDecl) { this.isFuncDecl = funcDecl; }
-//    public void setArray(boolean array) { this.isArray = array; }
-//    public void setDimension(Integer dimension) { this.dimension = dimension; }
     public void setScopeId(Integer scopeId) { this.scopeId = scopeId; }
     public void setShadowIndex(Integer shadowIndex) { this.shadowIndex = shadowIndex; }
-//    public String getType() { return this.type; }
     public String getName() { return this.name; }
     public boolean getRef() { return this.isRef; }
     public boolean getParam() { return this.isParam; }
     public boolean getLocal() { return this.isLocal; }
     public boolean getFunc() { return this.isFunc; }
     public boolean getFuncDecl() { return this.isFuncDecl; }
-//    public boolean getArray() { return this.isArray; }
-//    public Integer getDimension() { return this.dimension; }
     public Integer getScopeId() { return this.scopeId; }
     public Integer getShadowIndex() { return this.shadowIndex; }
 
