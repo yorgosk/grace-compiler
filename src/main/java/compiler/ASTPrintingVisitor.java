@@ -4,6 +4,7 @@ import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
@@ -14,13 +15,119 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // Symbol-Table for Syntactical Analysis
     private SymbolTable symbolTable;
-    // a Java Stack where various information are stored temporarily
+    // a Java Stack where various STRecord-related information are stored temporarily
     private Stack<STRecord> tempRecordStack;
     private Integer toPopFromTempRecordStack;
+    // a Java Stack where various STRecord's Type-related information are stored temporarily
     private Stack<STRecord.Type> tempTypeStack;
     private Integer toPopFromTempTypeStack;
+    // a Java Array-List where we store Grace's Library Functions
+    private ArrayList<STRecord> library;
     private boolean isDecl;
     private boolean hasMain;
+
+    private void loadGraceLibrary() {
+        /* INPUT & OUTPUT FUNCTIONS */
+        // add puti
+        ArrayList<STRecord.Type> params = new ArrayList<STRecord.Type>();
+        STRecord.Type tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
+        params.add(tempParamType);
+        STRecord.Type tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        STRecord tempRec = new STRecord(tempType, "puti", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add putc
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char-const", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "putc", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add puts
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "puts", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add geti
+        params = null;
+        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "geti", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add getc
+        params = null;
+        tempType = new STRecord.Type("char-const", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "getc", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add puts
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "gets", false, false, false, -1, -1);
+        this.library.add(tempRec);
+
+        /* CONVERTION FUNCTIONS */
+        // add abs
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "abs", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add ord
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char-const", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "ord", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add chr
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("char-const", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "chr", false, false, false, -1, -1);
+        this.library.add(tempRec);
+
+        /* STRING MANAGEMENT FUNCTIONS */
+        // add strlen
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strlen", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add strcmp
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strcmp", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add strcpy
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strcpy", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add strcat
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strcat", false, false, false, -1, -1);
+        this.library.add(tempRec);
+    }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
@@ -30,8 +137,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempRecordStack = 0;
         this.tempTypeStack = new Stack<STRecord.Type>();
         this.toPopFromTempTypeStack = 0;
+        this.library = new ArrayList<STRecord>();
         this.isDecl = false;
         this.hasMain = false;
+
+        // load Grace's library-functions
+        this.loadGraceLibrary();
     }
     @Override
     public void outAProgram(AProgram node) { indent--; }
@@ -55,6 +166,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         temp.type = new STRecord.Type();
         temp.type.setKind(node.getRetType().toString());
+        temp.type.setFunction(true);
         // check for main-function existence
         // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
         if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
@@ -65,7 +177,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.hasMain = true;
             temp.setName(node.getId().toString());
         }
-        temp.setFunc(true);
         temp.setFuncDecl(this.isDecl);
         this.tempRecordStack.push(temp);
         this.toPopFromTempRecordStack++;
@@ -100,8 +211,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             tempType = this.tempTypeStack.pop();
             this.toPopFromTempTypeStack--;
             tempRec.type = new STRecord.Type(tempType);
+            tempRec.type.setRef(ref);
             tempRec.setName(node.getId().toString());
-            tempRec.setRef(ref);
             this.tempRecordStack.push(tempRec);
             this.toPopFromTempRecordStack++;
         }
@@ -112,8 +223,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 STRecord tempRec = new STRecord();
 
                 tempRec.type = new STRecord.Type(tempType);
+                tempRec.type.setRef(ref);
                 tempRec.setName(e.toString());
-                tempRec.setRef(ref);
                 this.tempRecordStack.push(tempRec);
                 this.toPopFromTempRecordStack++;
             }
@@ -444,6 +555,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //    @Override
 //    public void inANumopCond(ANumopCond node) {}
 //    @Override
-//    public void outANumopCond(ANumopCond node) {}
+//    public void outANumopCond(ANumopCond node) {
+//        STRecord.Type temp1 = this.tempTypeStack.pop();
+//        this.toPopFromTempTypeStack--;
+//        STRecord.Type temp2 = this.tempTypeStack.pop();
+//        this.toPopFromTempTypeStack--;
+//        if (!temp1.isSame(temp2)) {
+//            System.err.printf("Error: In condition one member is %s and the other member is %s\n",
+//                    temp1.getKind(), temp2.getKind());
+//            // exit with "failure" code
+//            System.exit(-1);
+//        }
+//    }
 
 }
