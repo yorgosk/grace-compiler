@@ -253,13 +253,23 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
 
-    // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
-    @Override
-    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString()); }
-    @Override
-    public void outAIdLValue(AIdLValue node) {}
-    @Override
-    public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString()); }
+//    // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
+//    @Override
+//    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString()); }
+//    @Override
+//    public void outAIdLValue(AIdLValue node) {
+//        STRecord.Type temp = this.symbolTable.fetchType(node.getId().toString());
+//        if (temp != null) { // if temp exists in the current scope
+//            this.tempTypeStack.push(temp);
+//            this.toPopFromTempTypeStack++;
+//        } else {    // if temp doesn't exist in the current scope, we have an error
+//            System.err.printf("Error: id \"%s\" unknown in it's scope\n", node.getId().toString());
+//            // exit with "failure" code
+//            System.exit(-1);
+//        }
+//    }
+//    @Override
+//    public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString()); }
 //    @Override
 //    public void outAStringLValue(AStringLValue node) {
 //        STRecord.Type temp = new STRecord.Type();
@@ -267,11 +277,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.tempTypeStack.push(temp);
 //        this.toPopFromTempTypeStack++;
 //    }
-    @Override
-    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
-    @Override
-    public void outAExpressionLValue(AExpressionLValue node) {}
-
+//    @Override
+//    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
+//    @Override
+//    public void outAExpressionLValue(AExpressionLValue node) {}
+//
 //    // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
 //    @Override
 //    public void inAIntConstExpr(AIntConstExpr node) {}
