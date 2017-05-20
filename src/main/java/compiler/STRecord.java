@@ -62,7 +62,14 @@ public class STRecord {
             if (this.isArray != other.isArray) return false;
             if (this.dimension != other.dimension) return false;
             if (this.isFunction != other.isFunction) return false;
-            if (compareList(this.parameters, other.parameters)) return false;
+//            if (compareList(this.parameters, other.parameters)) return false;
+            if ((this.parameters == null && other.parameters != null) || (this.parameters != null && other.parameters == null)) return false;
+            if (this.parameters != null && other.parameters != null) {
+                if (this.parameters.size() != other.parameters.size()) return false;
+                for (int i = 0; i < this.parameters.size(); i++) {
+                    if (!this.parameters.get(i).isSame(other.parameters.get(i))) return false;
+                }
+            }
 
             return true;
         }
