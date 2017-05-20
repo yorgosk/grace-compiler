@@ -114,6 +114,26 @@ public class SymbolTable {
         nameStack.pop();
     }
 
+    /* fetchType(name): search for a name in the current scope and then return it's Type
+     * -- fetchType(): search in the array, same as the lookup(), it only returns Type */
+    public STRecord.Type fetchType(String name){
+        // take the current scope
+        int curr_scope = this.numberOfScopes;
+        // iterate the array-list in reverse order until you get out of the current-scope
+        int i = this.symbolTable.size()-1;
+        int scope = this.symbolTable.get(i).getScopeId();
+        while(i >= 0 && scope == curr_scope) {
+            if(this.symbolTable.get(i).getName().equals(name)) {
+                System.out.printf("Name %s found\n", name);
+                STRecord.Type temp = new STRecord.Type(this.symbolTable.get(i).getType());
+                return temp;
+            }
+            i--;
+            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
+        }
+        return null;
+    }
+
     /* print our structures
     * -- for debugging */
     public void printSTStructures() {

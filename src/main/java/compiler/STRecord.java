@@ -44,7 +44,7 @@ public class STRecord {
 
     }
 
-    public Type type;
+    public Type type;       // makes things easier -- spares us functions
     private String name;
     private boolean isRef;
     private boolean isParam;
@@ -81,6 +81,7 @@ public class STRecord {
     }
 
     /* STRecord's class setters and getters */
+    public void setType(Type temp) { this.type = new Type(temp); }
     public void setName(String name) { this.name = name; }
     public void setRef(boolean ref) { this.isRef = ref; }
     public void setParam(boolean param) { this.isParam = param; }
@@ -89,6 +90,7 @@ public class STRecord {
     public void setFuncDecl(boolean funcDecl) { this.isFuncDecl = funcDecl; }
     public void setScopeId(Integer scopeId) { this.scopeId = scopeId; }
     public void setShadowIndex(Integer shadowIndex) { this.shadowIndex = shadowIndex; }
+    public Type getType() { return this.type; }
     public String getName() { return this.name; }
     public boolean getRef() { return this.isRef; }
     public boolean getParam() { return this.isParam; }

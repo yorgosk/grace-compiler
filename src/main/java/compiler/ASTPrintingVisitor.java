@@ -253,23 +253,44 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
 
-    // IN A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString()); }
     @Override
+    public void outAIdLValue(AIdLValue node) {}
+    @Override
     public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString()); }
+//    @Override
+//    public void outAStringLValue(AStringLValue node) {
+//        STRecord.Type temp = new STRecord.Type();
+//        temp.setKind("string-literal");
+//        this.tempTypeStack.push(temp);
+//        this.toPopFromTempTypeStack++;
+//    }
     @Override
     public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
+    @Override
+    public void outAExpressionLValue(AExpressionLValue node) {}
 
 //    // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
 //    @Override
 //    public void inAIntConstExpr(AIntConstExpr node) {}
 //    @Override
-//    public void outAIntConstExpr(AIntConstExpr node) {}
+//    public void outAIntConstExpr(AIntConstExpr node) {
+//        STRecord.Type temp = new STRecord.Type();
+//        temp.setKind("int-const");
+//        this.tempTypeStack.push(temp);
+//        this.toPopFromTempTypeStack++;
+//    }
 //    @Override
 //    public void inACharConstExpr(ACharConstExpr node) {}
 //    @Override
-//    public void outACharConstExpr(ACharConstExpr node) {}
+//    public void outACharConstExpr(ACharConstExpr node) {
+//        STRecord.Type temp = new STRecord.Type();
+//        temp.setKind("char-const");
+//        this.tempTypeStack.push(temp);
+//        this.toPopFromTempTypeStack++;
+//    }
 //    @Override
 //    public void inALValueExpr(ALValueExpr node) {}
 //    @Override
@@ -296,6 +317,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            // exit with "failure" code
 //            System.exit(-1);
 //        }
+//        // if they are of the same type, then the result of the expression between them is going to be of the same type
+//        STRecord.Type temp3 = new STRecord.Type(temp1);
+//        this.tempTypeStack.push(temp3);
+//        this.toPopFromTempTypeStack++;
 //    }
 //    @Override
 //    public void inAMinusExpr(AMinusExpr node) {}
@@ -311,6 +336,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            // exit with "failure" code
 //            System.exit(-1);
 //        }
+//        // if they are of the same type, then the result of the expression between them is going to be of the same type
+//        STRecord.Type temp3 = new STRecord.Type(temp1);
+//        this.tempTypeStack.push(temp3);
+//        this.toPopFromTempTypeStack++;
 //    }
 //    @Override
 //    public void inAMultExpr(AMultExpr node) {}
@@ -326,6 +355,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            // exit with "failure" code
 //            System.exit(-1);
 //        }
+//        // if they are of the same type, then the result of the expression between them is going to be of the same type
+//        STRecord.Type temp3 = new STRecord.Type(temp1);
+//        this.tempTypeStack.push(temp3);
+//        this.toPopFromTempTypeStack++;
 //    }
 //    @Override
 //    public void inADivExpr(ADivExpr node) {}
@@ -341,6 +374,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            // exit with "failure" code
 //            System.exit(-1);
 //        }
+//        // if they are of the same type, then the result of the expression between them is going to be of the same type
+//        STRecord.Type temp3 = new STRecord.Type(temp1);
+//        this.tempTypeStack.push(temp3);
+//        this.toPopFromTempTypeStack++;
 //    }
 //    @Override
 //    public void inADivisionExpr(ADivisionExpr node) {}
@@ -356,6 +393,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            // exit with "failure" code
 //            System.exit(-1);
 //        }
+//        // if they are of the same type, then the result of the expression between them is going to be of the same type
+//        STRecord.Type temp3 = new STRecord.Type(temp1);
+//        this.tempTypeStack.push(temp3);
+//        this.toPopFromTempTypeStack++;
 //    }
 //    @Override
 //    public void inAModExpr(AModExpr node) {}
@@ -371,6 +412,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            // exit with "failure" code
 //            System.exit(-1);
 //        }
+//        // if they are of the same type, then the result of the expression between them is going to be of the same type
+//        STRecord.Type temp3 = new STRecord.Type(temp1);
+//        this.tempTypeStack.push(temp3);
+//        this.toPopFromTempTypeStack++;
 //    }
 //
 //    // IN AND OUT A CONDITION AND ASSISTANT-STATEMENTS------------------------------------------------------------
