@@ -330,14 +330,23 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //    @Override
 //    public void outAStringLValue(AStringLValue node) {
 //        STRecord.Type temp = new STRecord.Type();
-//        temp.setKind("string-literal");
+//        temp.setKind("string");
 //        this.tempTypeStack.push(temp);
 //        this.toPopFromTempTypeStack++;
 //    }
 //    @Override
 //    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
 //    @Override
-//    public void outAExpressionLValue(AExpressionLValue node) {}
+//    public void outAExpressionLValue(AExpressionLValue node) {
+//        // take the <expr>'s type from the <l-value>[<expr>] structure
+//        STRecord.Type tempExpr = this.tempTypeStack.pop();
+//        this.toPopFromTempTypeStack--;
+//        if (!tempExpr.getKind().equals("int")) {
+//            System.err.printf("Error: cannot navigate in l-value using a \"%s\" type\n", tempExpr.getKind());
+//            // exit with "failure" code
+//            System.exit(-1);
+//        }
+//    }
 //
 //    // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
 //    @Override
@@ -345,7 +354,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //    @Override
 //    public void outAIntConstExpr(AIntConstExpr node) {
 //        STRecord.Type temp = new STRecord.Type();
-//        temp.setKind("int-const");
+//        temp.setKind("int");
 //        this.tempTypeStack.push(temp);
 //        this.toPopFromTempTypeStack++;
 //    }
@@ -354,18 +363,30 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //    @Override
 //    public void outACharConstExpr(ACharConstExpr node) {
 //        STRecord.Type temp = new STRecord.Type();
-//        temp.setKind("char-const");
+//        temp.setKind("char");
 //        this.tempTypeStack.push(temp);
 //        this.toPopFromTempTypeStack++;
 //    }
 //    @Override
 //    public void inALValueExpr(ALValueExpr node) {}
 //    @Override
-//    public void outALValueExpr(ALValueExpr node) {}
+//    public void outALValueExpr(ALValueExpr node) {
+//        // the l-value-as-an-expression's Type is going to be the same as the l-value's
+//        STRecord.Type temp = new STRecord.Type(this.tempTypeStack.pop());
+//        this.toPopFromTempTypeStack--;
+//        this.tempTypeStack.push(temp);
+//        this.toPopFromTempTypeStack++;
+//    }
 //    @Override
 //    public void inAFuncCallExpr(AFuncCallExpr node) {}
 //    @Override
-//    public void outAFuncCallExpr(AFuncCallExpr node) {}
+//    public void outAFuncCallExpr(AFuncCallExpr node) {
+//        // the func-call-as-an-expression's Type is going to be the same as the func-call's
+//        STRecord.Type temp = new STRecord.Type(this.tempTypeStack.pop());
+//        this.toPopFromTempTypeStack--;
+//        this.tempTypeStack.push(temp);
+//        this.toPopFromTempTypeStack++;
+//    }
 //    @Override
 //    public void inAExprExpr(AExprExpr node) {}
 //    @Override
