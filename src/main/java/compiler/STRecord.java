@@ -73,6 +73,13 @@ public class STRecord {
 
             return true;
         }
+        // add a parameter in the beginning of our Type's parameter list
+        public void addParameter(Type parameter) {
+            if (this.parameters == null) {
+                this.parameters = new ArrayList<Type>();
+            }
+            this.parameters.add(0, parameter);
+        }
 
         /* Type's class printing function */
         public void printType() {
@@ -86,7 +93,7 @@ public class STRecord {
     private String name;
     private boolean isParam;
     private boolean isLocal;
-    private boolean isFuncDecl;
+    private boolean isDefined;
     private Integer scopeId;
     private Integer shadowIndex;
 
@@ -96,18 +103,18 @@ public class STRecord {
         this.name = null;
         this.isParam = false;
         this.isLocal = true;
-        this.isFuncDecl = false;
+        this.isDefined = true;
         this.scopeId = -1;
         this.shadowIndex = -1;
     }
 
     /* STRecord's constructor */
-    public STRecord(Type type, String name, boolean isParam, boolean isLocal, boolean isFuncDecl, Integer scopeId, Integer shadowIndex) {
+    public STRecord(Type type, String name, boolean isParam, boolean isLocal, boolean isDefined, Integer scopeId, Integer shadowIndex) {
         this.type = new Type(type);
         this.name = name;
         this.isParam = isParam;
         this.isLocal = isLocal;
-        this.isFuncDecl = isFuncDecl;
+        this.isDefined = isDefined;
         this.scopeId = scopeId;
         this.shadowIndex = shadowIndex;
     }
@@ -118,7 +125,7 @@ public class STRecord {
         this.name = temp.name;
         this.isParam = temp.isParam;
         this.isLocal = temp.isLocal;
-        this.isFuncDecl = temp.isFuncDecl;
+        this.isDefined = temp.isDefined;
         this.scopeId = temp.scopeId;
         this.shadowIndex = temp.shadowIndex;
     }
@@ -128,21 +135,21 @@ public class STRecord {
     public void setName(String name) { this.name = name; }
     public void setParam(boolean param) { this.isParam = param; }
     public void setLocal(boolean local) { this.isLocal = local; }
-    public void setFuncDecl(boolean funcDecl) { this.isFuncDecl = funcDecl; }
+    public void setDefined(boolean defined) { this.isDefined = defined; }
     public void setScopeId(Integer scopeId) { this.scopeId = scopeId; }
     public void setShadowIndex(Integer shadowIndex) { this.shadowIndex = shadowIndex; }
     public Type getType() { return this.type; }
     public String getName() { return this.name; }
     public boolean getParam() { return this.isParam; }
     public boolean getLocal() { return this.isLocal; }
-    public boolean getFuncDecl() { return this.isFuncDecl; }
+    public boolean getDefined() { return this.isDefined; }
     public Integer getScopeId() { return this.scopeId; }
     public Integer getShadowIndex() { return this.shadowIndex; }
 
     /* STRecord's class printing function */
     public void printSTRecord() {
-        System.out.printf("STR -> name: %s - isParam: %b - isLocal: %b - isFuncDecl: %b - scopeId: %d - shadowIndex: %d\n",
-                this.name, this.isParam, this.isLocal, this.isFuncDecl, this.scopeId, this.shadowIndex);
+        System.out.printf("STR -> name: %s - isParam: %b - isLocal: %b - isDefined: %b - scopeId: %d - shadowIndex: %d\n",
+                this.name, this.isParam, this.isLocal, this.isDefined, this.scopeId, this.shadowIndex);
         this.type.printType();
     }
 

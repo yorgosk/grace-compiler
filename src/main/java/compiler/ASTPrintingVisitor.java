@@ -21,128 +21,20 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     // a Java Stack where various STRecord's Type-related information are stored temporarily
     private Stack<STRecord.Type> tempTypeStack;
     private Integer toPopFromTempTypeStack;
-    // a Java Array-List where we store Grace's Library Functions
-    private ArrayList<STRecord> library;
     private boolean isDecl;
     private boolean hasMain;
-
-    private void loadGraceLibrary() {
-        /* INPUT & OUTPUT FUNCTIONS */
-        // add puti
-        ArrayList<STRecord.Type> params = new ArrayList<STRecord.Type>();
-        STRecord.Type tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
-        params.add(tempParamType);
-        STRecord.Type tempType = new STRecord.Type("nothing", false, false, 0, true, params);
-        STRecord tempRec = new STRecord(tempType, "puti", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add putc
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char-const", false, false, 0, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "putc", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add puts
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "puts", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add geti
-        params = null;
-        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "geti", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add getc
-        params = null;
-        tempType = new STRecord.Type("char-const", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "getc", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add puts
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
-        params.add(tempParamType);
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "gets", false, false, false, -1, -1);
-        this.library.add(tempRec);
-
-        /* CONVERTION FUNCTIONS */
-        // add abs
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "abs", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add ord
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char-const", false, false, 0, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "ord", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add chr
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("int-const", false, false, 0, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("char-const", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "chr", false, false, false, -1, -1);
-        this.library.add(tempRec);
-
-        /* STRING MANAGEMENT FUNCTIONS */
-        // add strlen
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "strlen", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add strcmp
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("int-const", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "strcmp", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add strcpy
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "strcpy", false, false, false, -1, -1);
-        this.library.add(tempRec);
-        // add strcat
-        params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempParamType = new STRecord.Type("char-const", true, true, null, false, null);
-        params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
-        tempRec = new STRecord(tempType, "strcat", false, false, false, -1, -1);
-        this.library.add(tempRec);
-    }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
     public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++;
+        // create Symbol-Table and assistant-structures and initialize assistant-variables
         this.symbolTable = new SymbolTable();
         this.tempRecordStack = new Stack<STRecord>();
         this.toPopFromTempRecordStack = 0;
         this.tempTypeStack = new Stack<STRecord.Type>();
         this.toPopFromTempTypeStack = 0;
-        this.library = new ArrayList<STRecord>();
         this.isDecl = false;
         this.hasMain = false;
-
-        // load Grace's library-functions
-        this.loadGraceLibrary();
     }
     @Override
     public void outAProgram(AProgram node) { indent--; }
@@ -160,35 +52,77 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
-    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString()); indent++;
+    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString()); indent++; }
+    @Override
+    public void outAHeader(AHeader node) { indent--;
         // keep the name of the function
-        STRecord temp = new STRecord();
+        STRecord tempRec = new STRecord();
 
-        temp.type = new STRecord.Type();
-        temp.type.setKind(node.getRetType().toString());
-        temp.type.setFunction(true);
+        STRecord.Type tempType = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        tempRec.type = new STRecord.Type(tempType);
+
+        tempRec.type.setFunction(true);
         // check for main-function existence
         // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
         if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
             System.err.printf("Error: All Grace programs must have a \"main\" function\n");
             // exit with "failure" code
             System.exit(-1);
+        } else if (node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " ")) && node.getFparDef().size() != 0) {
+            System.err.printf("Error: \"main\" function takes no arguments\n");
+            // exit with "failure" code
+            System.exit(-1);
+        } else if (!this.isDecl && this.hasMain && node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
+            System.err.printf("Error: All Grace programs must have only one \"main\" function\n");
+            // exit with "failure" code
+            System.exit(-1);
         } else {
             this.hasMain = true;
-            temp.setName(node.getId().toString());
+            tempRec.setName(node.getId().toString());
         }
-        temp.setFuncDecl(this.isDecl);
-        this.tempRecordStack.push(temp);
-        this.toPopFromTempRecordStack++;
-    }
-    @Override
-    public void outAHeader(AHeader node) { indent--;
+
         // insert the header's names to our Symbol-Table
         STRecord temp;
         while (this.toPopFromTempRecordStack != 0) {
             temp = this.tempRecordStack.pop();
             this.symbolTable.insert(temp);
             toPopFromTempRecordStack--;
+            tempRec.type.addParameter(temp.getType());
+        }
+        // if we are in a function declaration, check to see if it's definition exists in the current scope, and if it does, do the appropriate Name & Type-checking
+        int result = this.symbolTable.searchFunction(tempRec);
+        if (this.isDecl) {
+            if (result == 0) {
+                tempRec.setDefined(false);
+                this.symbolTable.insert(tempRec);
+            }
+            // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
+            else if (result == 1) {
+                System.err.printf("Error: function \"%s\" has already been defined\n", tempRec.getName());
+                // exit with "failure" code
+                System.exit(-1);
+            }
+            else {
+                System.err.printf("Error: function \"%s\" already known under a different type\n", tempRec.getName());
+                // exit with "failure" code
+                System.exit(-1);
+            }
+        }else {
+            if (result == 0) {
+                this.symbolTable.insert(tempRec);
+            }
+            // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
+            else if (result == 1) {
+                System.err.printf("Error: function \"%s\" has already been defined\n", tempRec.getName());
+                // exit with "failure" code
+                System.exit(-1);
+            }
+            else {
+                System.err.printf("Error: function \"%s\" already known under a different type\n", tempRec.getName());
+                // exit with "failure" code
+                System.exit(-1);
+            }
         }
         // for debugging
         this.symbolTable.printSTStructures();
@@ -200,10 +134,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAFparDef(AFparDef node) { makeIndent(); System.out.printf("fparDef :\n"); indent++; }
     @Override
     public void outAFparDef(AFparDef node) { indent--;
-        // keep the name of the parameters
+        // keep whether it is a ref or not
         boolean ref = node.getRef() != null;
-        String type = node.getFparType().toString();
         STRecord.Type tempType = null;
+        // enter the id's in the current scope
         if(node.getId() != null)
         {
             STRecord tempRec = new STRecord();
@@ -243,7 +177,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAType(AType node) { makeIndent(); System.out.printf("type :\n"); indent++;
+    public void inAType(AType node) { makeIndent(); System.out.printf("type :\n"); indent++; }
+    @Override
+    public void outAType(AType node) { indent--;
         STRecord.Type temp = new STRecord.Type();
         temp.setKind(node.getDataType().toString());
         if(node.getIntConst().size() > 0) {
@@ -253,16 +189,26 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempTypeStack.push(temp);
         this.toPopFromTempTypeStack++;
     }
-    @Override
-    public void outAType(AType node) { indent--; }
 
     // IN AND OUT A RETURN TYPE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inADataTypeRetType(ADataTypeRetType node) { makeIndent(); System.out.printf("retType :\n"); indent++; }
     @Override
-    public void outADataTypeRetType(ADataTypeRetType node) {  indent--; }
+    public void outADataTypeRetType(ADataTypeRetType node) { indent--;
+        STRecord.Type temp = new STRecord.Type();
+        temp.setKind(node.getDataType().toString());
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
     @Override
     public void inANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf("retType :\"nothing\"\n"); }
+    @Override
+    public void outANothingRetType(ANothingRetType node) {
+        STRecord.Type temp = new STRecord.Type();
+        temp.setKind("nothing");
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
 
     // IN AND OUT A FUNCTION PARAMETER TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override

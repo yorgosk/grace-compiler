@@ -17,6 +17,8 @@ public class SymbolTable {
     private Stack<NSRecord> nameStack;
     // a Java Hash-Map (<varName, varIndex>) where we note the last occurrences of variable names inside the Symbol-Table
     private HashMap<String, Integer> variableMap;
+    // a Java Array-List where we store Grace's Library Functions
+    private ArrayList<STRecord> library;
 
     /* checkShadowing(record): check if a record shadows another record that is already in the Symbol-Table */
     private Integer checkShadowing(STRecord record) {
@@ -35,6 +37,9 @@ public class SymbolTable {
         this.numberOfScopes = 0;
         this.nameStack = new Stack<NSRecord>();
         this.variableMap = new HashMap<String, Integer>();
+        this.library = new ArrayList<STRecord>();
+        // load Grace's library-functions
+        this.loadGraceLibrary();
     }
 
     /* enter(): create a new scope - namespace */
@@ -114,6 +119,30 @@ public class SymbolTable {
         nameStack.pop();
     }
 
+    /* searchFunction(tempRecord): search to find out whether we have occured a function again in the current scope
+     * -- searchFunction(): search in the array, -1: type-error, 0: search-failure (not defined), 1: search-success (defined) */
+    public Integer searchFunction(STRecord tempRec){
+        // check if the Symbol-Table's Array-List is empty, if it is there is no point of searching - we sort of have a "search failure"
+        if(this.symbolTable.isEmpty()) return 0;
+        // take the current scope
+        int curr_scope = this.numberOfScopes;
+        // iterate the array-list in reverse order until you get out of the current-scope
+        int i = this.symbolTable.size()-1;
+        int scope = this.symbolTable.get(i).getScopeId();
+        while(i >= 0 && scope == curr_scope) {
+            if (this.symbolTable.get(i).getName().equals(tempRec.getName())) {
+                if (this.symbolTable.get(i).getType().isSame(tempRec.getType())) {
+                    System.out.printf("Function %s found\n", tempRec.getName());
+                    if (this.symbolTable.get(i).getDefined()) return 1; // we have a "search-success"
+                    else return 0;                                      // we have a "search-failure"
+                } else return -1;       // same name, but incompatible types -- we have a "type-error"
+            }
+            i--;
+            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
+        }
+        return 0;   // if we reached this far, then we have a "search-failure"
+    }
+
     /* fetchType(name): search for a name in the current scope and then return it's Type
      * -- fetchType(): search in the array, same as the lookup(), it only returns Type */
     public STRecord.Type fetchType(String name){
@@ -147,6 +176,109 @@ public class SymbolTable {
         }
         System.out.printf("\nVariables' Hash-Map:\n");
         System.out.println(Arrays.asList(variableMap));
+    }
+
+    private void loadGraceLibrary() {
+        /* INPUT & OUTPUT FUNCTIONS */
+        // add puti
+        ArrayList<STRecord.Type> params = new ArrayList<STRecord.Type>();
+        STRecord.Type tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        params.add(tempParamType);
+        STRecord.Type tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        STRecord tempRec = new STRecord(tempType, "puti", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add putc
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "putc", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add puts
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "puts", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add geti
+        params = null;
+        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "geti", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add getc
+        params = null;
+        tempType = new STRecord.Type("char", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "getc", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add puts
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "gets", false, false, false, -1, -1);
+        this.library.add(tempRec);
+
+        /* CONVERTION FUNCTIONS */
+        // add abs
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "abs", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add ord
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "ord", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add chr
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("char", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "chr", false, false, false, -1, -1);
+        this.library.add(tempRec);
+
+        /* STRING MANAGEMENT FUNCTIONS */
+        // add strlen
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strlen", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add strcmp
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strcmp", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add strcpy
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strcpy", false, false, false, -1, -1);
+        this.library.add(tempRec);
+        // add strcat
+        params = new ArrayList<STRecord.Type>();
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        params.add(tempParamType);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempRec = new STRecord(tempType, "strcat", false, false, false, -1, -1);
+        this.library.add(tempRec);
     }
 
 }
