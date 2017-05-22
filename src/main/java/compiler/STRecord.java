@@ -58,7 +58,7 @@ public class STRecord {
 
         /* Type's class various functions */
         public boolean isSame(Type other) {
-            if (this.kind != other.kind) return false;
+            if (!this.kind.equals(other.kind)) return false;		//modified by yiannis
             if (this.isArray != other.isArray) return false;
             if (this.dimension != other.dimension) return false;
             if (this.isFunction != other.isFunction) return false;

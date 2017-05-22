@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bsort.grace" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/STRecord$Type.class" afterPath="$PROJECT_DIR$/target/classes/compiler/STRecord$Type.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/general/bsort.grace" afterPath="$PROJECT_DIR$/examples/general/bsort.grace" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -63,12 +67,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="264" column="104" lean-forward="false" selection-start-line="264" selection-start-column="104" selection-end-line="264" selection-end-column="104" />
-              <folding />
+            <state relative-caret-position="159">
+              <caret line="419" column="23" lean-forward="false" selection-start-line="419" selection-start-column="23" selection-end-line="419" selection-end-column="23" />
+              <folding>
+                <marker date="1495494246819" expanded="true" signature="18815:19546" ph="{...}" />
+                <marker date="1495494246819" expanded="true" signature="19547:25133" ph="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,22 +84,24 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2320">
-              <caret line="285" column="0" lean-forward="false" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
+              <caret line="288" column="0" lean-forward="false" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
               <folding>
-                <marker date="1495465598067" expanded="false" signature="8347:8362" ph="&lt;~&gt;" />
+                <marker date="1495487477347" expanded="true" signature="5574:6824" ph="{...}" />
+                <marker date="1495487477347" expanded="true" signature="7052:7753" ph="{...}" />
+                <marker date="1495487477347" expanded="true" signature="7845:8310" ph="{...}" />
+                <marker date="1495487477347" expanded="true" signature="8348:13631" ph="{...}" />
+                <marker date="1495487477347" expanded="false" signature="8464:8479" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="STRecord.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="STRecord.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-              <folding>
-                <marker date="1495401000953" expanded="true" signature="6981:6988" ph="{...}" />
-              </folding>
+            <state relative-caret-position="447">
+              <caret line="60" column="12" lean-forward="false" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -134,10 +143,10 @@
         <option value="$PROJECT_DIR$/src/main/java/compiler/NSRecord.java" />
         <option value="$PROJECT_DIR$/src/main/sablecc/parser.grammar" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" />
         <option value="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/ReversedDepthFirstAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" />
       </list>
     </option>
   </component>
@@ -362,7 +371,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="bsort.grace" />
+      <option name="PROGRAM_PARAMETERS" value="examples/general/bsort.grace" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -974,6 +983,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -998,6 +1008,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,6 +1033,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1046,6 +1058,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1160,6 +1173,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1889">
           <caret line="63" column="15" lean-forward="true" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1170,16 +1184,6 @@
           <caret line="19" column="45" lean-forward="false" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
           <folding>
             <marker date="1495401000953" expanded="false" signature="709:715" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding>
-            <marker date="1495401000953" expanded="true" signature="6981:6988" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1211,9 +1215,13 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2320">
-          <caret line="285" column="0" lean-forward="false" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
+          <caret line="288" column="0" lean-forward="false" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
           <folding>
-            <marker date="1495465598067" expanded="false" signature="8347:8362" ph="&lt;~&gt;" />
+            <marker date="1495487477347" expanded="true" signature="5574:6824" ph="{...}" />
+            <marker date="1495487477347" expanded="true" signature="7052:7753" ph="{...}" />
+            <marker date="1495487477347" expanded="true" signature="7845:8310" ph="{...}" />
+            <marker date="1495487477347" expanded="true" signature="8348:13631" ph="{...}" />
+            <marker date="1495487477347" expanded="false" signature="8464:8479" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
@@ -1228,8 +1236,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="264" column="104" lean-forward="false" selection-start-line="264" selection-start-column="104" selection-end-line="264" selection-end-column="104" />
+        <state relative-caret-position="159">
+          <caret line="419" column="23" lean-forward="false" selection-start-line="419" selection-start-column="23" selection-end-line="419" selection-end-column="23" />
+          <folding>
+            <marker date="1495494246819" expanded="true" signature="18815:19546" ph="{...}" />
+            <marker date="1495494246819" expanded="true" signature="19547:25133" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="60" column="12" lean-forward="false" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="12" />
           <folding />
         </state>
       </provider>

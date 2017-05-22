@@ -262,7 +262,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                  System.exit(-1);
              }
              else {
-                 System.err.printf("Error: function \"%s\" already known under a different type\n", temp.getName());
+             System.err.printf("Error: function \"%s\" already known under a different type\n", temp.getName());
                  // exit with "failure" code
                  System.exit(-1);
              }
@@ -327,21 +327,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
 
-//    // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
-//    @Override
-//    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString()); }
-//    @Override
-//    public void outAIdLValue(AIdLValue node) {
-//        STRecord.Type temp = this.symbolTable.fetchType(node.getId().toString());
-//        if (temp != null) { // if temp exists in the current scope
-//            this.tempTypeStack.push(temp);
-//            this.toPopFromTempTypeStack++;
-//        } else {    // if temp doesn't exist in the current scope, we have an error
-//            System.err.printf("Error: id \"%s\" unknown in it's scope\n", node.getId().toString());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//    }
+    // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString()); }
+    @Override
+    public void outAIdLValue(AIdLValue node) {
+        STRecord.Type temp = this.symbolTable.fetchType(node.getId().toString());
+        
+        if (temp != null) { // if temp exists in the current scope
+            this.tempTypeStack.push(temp);
+            this.toPopFromTempTypeStack++;
+        } else {    // if temp doesn't exist in the current scope, we have an error
+            System.err.printf("Error: id \"%s\" unknown in it's scope\n", node.getId().toString());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
 //    @Override
 //    public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString()); }
 //    @Override
@@ -358,7 +359,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        // take the <expr>'s type from the <l-value>[<expr>] structure
 //        STRecord.Type tempExpr = this.tempTypeStack.pop();
 //        this.toPopFromTempTypeStack--;
-//        if (!tempExpr.getKind().equals("int")) {
+//        if (!tempExpr.getKind().equals("int")) {	// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
 //            System.err.printf("Error: cannot navigate in l-value using a \"%s\" type\n", tempExpr.getKind());
 //            // exit with "failure" code
 //            System.exit(-1);
@@ -371,7 +372,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //    @Override
 //    public void outAIntConstExpr(AIntConstExpr node) {
 //        STRecord.Type temp = new STRecord.Type();
-//        temp.setKind("int");
+//        temp.setKind("int");			// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
 //        this.tempTypeStack.push(temp);
 //        this.toPopFromTempTypeStack++;
 //    }
@@ -409,24 +410,24 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //    @Override
 //    public void outAExprExpr(AExprExpr node) {}
 //    @Override
-//    public void inAPlusExpr(APlusExpr node) {}
-//    @Override
-//    public void outAPlusExpr(APlusExpr node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In \"plus\" expression one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//        // if they are of the same type, then the result of the expression between them is going to be of the same type
-//        STRecord.Type temp3 = new STRecord.Type(temp1);
-//        this.tempTypeStack.push(temp3);
-//        this.toPopFromTempTypeStack++;
-//    }
+    public void inAPlusExpr(APlusExpr node) {}
+    @Override
+    public void outAPlusExpr(APlusExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"plus\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }
 //    @Override
 //    public void inAMinusExpr(AMinusExpr node) {}
 //    @Override
