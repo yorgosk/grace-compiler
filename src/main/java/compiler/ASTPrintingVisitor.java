@@ -48,7 +48,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.isDecl = false;
     }
     @Override
-    public void outAFuncDef(AFuncDef node) { indent--; }
+    public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit(); }	//modified by yiannis
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
@@ -92,7 +92,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         // if we are in a function declaration, check to see if it's definition exists in the current scope, and if it does, do the appropriate Name & Type-checking
         int result = this.symbolTable.searchFunction(tempRec);
-	System.out.printf("ErrorFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf\n");
         if (this.isDecl) {
             if (result == 0) {
                 tempRec.setDefined(false);
@@ -235,7 +234,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.isDecl = false;
     }
     @Override
-    public void outAFuncDefLocalDef(AFuncDefLocalDef node) { indent--; }
+    public void outAFuncDefLocalDef(AFuncDefLocalDef node) { indent--; symbolTable.exit();}	//changed by yiannis
     @Override
     public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) { makeIndent(); System.out.printf("funcDeclLocalDef :\n"); indent++;
         // the very next header that we will see, we want to remember that it belongs to a function Declaration
@@ -251,7 +250,24 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord temp;
         while (this.toPopFromTempRecordStack != 0) {
             temp = this.tempRecordStack.pop();
-            this.symbolTable.insert(temp);
+//added by yiannis
+             int result = this.symbolTable.searchFunction(temp);
+             if (result == 0) {
+                this.symbolTable.insert(temp);
+             }
+             // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
+             else if (result == 1) {
+                 System.err.printf("Error: function \"%s\" has already been defined\n", temp.getName());
+                 // exit with "failure" code
+                 System.exit(-1);
+             }
+             else {
+                 System.err.printf("Error: function \"%s\" already known under a different type\n", temp.getName());
+                 // exit with "failure" code
+                 System.exit(-1);
+             }
+//till here
+           // this.symbolTable.insert(temp);	commented by yiannis
             toPopFromTempRecordStack--;
         }
         // for debugging
