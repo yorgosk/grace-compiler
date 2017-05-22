@@ -23,11 +23,12 @@ public class SymbolTable {
     /* checkShadowing(record): check if a record shadows another record that is already in the Symbol-Table */
     private Integer checkShadowing(STRecord record) {
         int index = 0;
+	int ret_Value = -1;
         for(STRecord r : symbolTable) {
-            if(record.getName().equals(r.getName())) return index;
+            if(record.getName().equals(r.getName())) ret_Value = index;
             index++;
         }
-        return -1;
+        return ret_Value;
     }
 
     /* SymbolTable's class constructor */

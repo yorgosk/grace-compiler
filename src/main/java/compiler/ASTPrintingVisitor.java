@@ -92,6 +92,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         // if we are in a function declaration, check to see if it's definition exists in the current scope, and if it does, do the appropriate Name & Type-checking
         int result = this.symbolTable.searchFunction(tempRec);
+	System.out.printf("ErrorFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf\n");
         if (this.isDecl) {
             if (result == 0) {
                 tempRec.setDefined(false);
