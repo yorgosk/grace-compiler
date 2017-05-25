@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/semantics/initial.grace" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -781,7 +778,7 @@
       <workItem from="1495350989187" duration="8346000" />
       <workItem from="1495365042044" duration="901000" />
       <workItem from="1495695637957" duration="827000" />
-      <workItem from="1495698113059" duration="1706000" />
+      <workItem from="1495698113059" duration="1765000" />
     </task>
     <task id="LOCAL-00001" summary="working on Symbol-Table structure">
       <created>1495018646572</created>
@@ -1035,11 +1032,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495658705481</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="micro-corrections, pushed samentics' examples folder">
+      <created>1495699843358</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1495699843358</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72674000" />
+    <option name="totallyTimeSpent" value="72733000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1116,7 +1120,8 @@
     <MESSAGE value="continued type checking with an emphasis in functions... most of it is still under development, so I commented it out, in order for our program to be runnable" />
     <MESSAGE value="restructured examples' folder - continued type checking with an emphasis in functions... most of it is still under development, so I commented it out, in order for our program to be runnable" />
     <MESSAGE value="checking" />
-    <option name="LAST_COMMIT_MESSAGE" value="checking" />
+    <MESSAGE value="micro-corrections, pushed samentics' examples folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="micro-corrections, pushed samentics' examples folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
