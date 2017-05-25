@@ -9,6 +9,7 @@ import compiler.analysis.*;
 public final class AFparType extends PFparType
 {
     private PDataType _dataType_;
+    private final LinkedList<PLRBrackets> _lRBrackets_ = new LinkedList<PLRBrackets>();
     private final LinkedList<TIntConst> _intConst_ = new LinkedList<TIntConst>();
 
     public AFparType()
@@ -18,10 +19,13 @@ public final class AFparType extends PFparType
 
     public AFparType(
         @SuppressWarnings("hiding") PDataType _dataType_,
+        @SuppressWarnings("hiding") List<PLRBrackets> _lRBrackets_,
         @SuppressWarnings("hiding") List<TIntConst> _intConst_)
     {
         // Constructor
         setDataType(_dataType_);
+
+        setLRBrackets(_lRBrackets_);
 
         setIntConst(_intConst_);
 
@@ -32,6 +36,7 @@ public final class AFparType extends PFparType
     {
         return new AFparType(
             cloneNode(this._dataType_),
+            cloneList(this._lRBrackets_),
             cloneList(this._intConst_));
     }
 
@@ -65,6 +70,26 @@ public final class AFparType extends PFparType
         this._dataType_ = node;
     }
 
+    public LinkedList<PLRBrackets> getLRBrackets()
+    {
+        return this._lRBrackets_;
+    }
+
+    public void setLRBrackets(List<PLRBrackets> list)
+    {
+        this._lRBrackets_.clear();
+        this._lRBrackets_.addAll(list);
+        for(PLRBrackets e : list)
+        {
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+        }
+    }
+
     public LinkedList<TIntConst> getIntConst()
     {
         return this._intConst_;
@@ -90,6 +115,7 @@ public final class AFparType extends PFparType
     {
         return ""
             + toString(this._dataType_)
+            + toString(this._lRBrackets_)
             + toString(this._intConst_);
     }
 
@@ -100,6 +126,11 @@ public final class AFparType extends PFparType
         if(this._dataType_ == child)
         {
             this._dataType_ = null;
+            return;
+        }
+
+        if(this._lRBrackets_.remove(child))
+        {
             return;
         }
 
@@ -119,6 +150,24 @@ public final class AFparType extends PFparType
         {
             setDataType((PDataType) newChild);
             return;
+        }
+
+        for(ListIterator<PLRBrackets> i = this._lRBrackets_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PLRBrackets) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         for(ListIterator<TIntConst> i = this._intConst_.listIterator(); i.hasNext();)

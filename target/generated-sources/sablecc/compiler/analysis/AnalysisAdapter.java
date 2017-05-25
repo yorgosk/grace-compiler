@@ -119,6 +119,11 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseALRBrackets(ALRBrackets node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAFuncDefLocalDef(AFuncDefLocalDef node)
     {
         defaultCase(node);

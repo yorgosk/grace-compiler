@@ -23,7 +23,7 @@ public class SymbolTable {
     /* checkShadowing(record): check if a record shadows another record that is already in the Symbol-Table */
     private Integer checkShadowing(STRecord record) {
         int index = 0;
-	int ret_Value = -1;
+	    int ret_Value = -1;
         for(STRecord r : symbolTable) {
             if(record.getName().equals(r.getName())) ret_Value = index;
             index++;
@@ -118,9 +118,11 @@ public class SymbolTable {
         }
         // update scopes - namespaces' Stack by popping the "reference" to the destroyed namespace
         nameStack.pop();
-	if(this.numberOfScopes>2){		//leitourgei an kai 8elei allagi wste na einai pio swsti i lusi (xwris auto bgainei e3w apo ta oria tou pinaka)
-		this.numberOfScopes--;			//added by yiannis
-	}
+        // ???????????????????????????????????????????
+        if(this.numberOfScopes>2){		//leitourgei an kai 8elei allagi wste na einai pio swsti i lusi (xwris auto bgainei e3w apo ta oria tou pinaka)
+            this.numberOfScopes--;			//added by yiannis
+        }
+        // ???????????????????????????????????????????
     }
 
     /* searchFunction(tempRecord): search to find out whether we have occured a function again in the current scope

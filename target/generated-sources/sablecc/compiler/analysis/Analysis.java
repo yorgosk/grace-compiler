@@ -22,6 +22,7 @@ public interface Analysis extends Switch
     void caseADataTypeRetType(ADataTypeRetType node);
     void caseANothingRetType(ANothingRetType node);
     void caseAFparType(AFparType node);
+    void caseALRBrackets(ALRBrackets node);
     void caseAFuncDefLocalDef(AFuncDefLocalDef node);
     void caseAFuncDeclLocalDef(AFuncDeclLocalDef node);
     void caseAVarDefLocalDef(AVarDefLocalDef node);

@@ -119,8 +119,8 @@ Productions
         {data_type} data_type {-> New ret_type.data_type(data_type)} |
         {nothing} nothing {-> New ret_type.nothing(nothing)} ;
 
-    fpar_type = data_type l_r_brackets? next_dimension* {-> New fpar_type(data_type, [next_dimension.int_const])} ;
-    l_r_brackets = l_bracket r_bracket ;
+    fpar_type = data_type l_r_brackets? next_dimension* {-> New fpar_type(data_type, [l_r_brackets], [next_dimension.int_const])} ;
+    l_r_brackets {-> l_r_brackets?} = l_bracket r_bracket {-> New l_r_brackets(l_bracket, r_bracket)} ;
     next_dimension {-> int_const} = l_bracket int_const r_bracket {-> int_const} ;
 
     local_def =
@@ -229,7 +229,8 @@ Abstract Syntax Tree
         {data_type} data_type |
         {nothing} nothing ;
 
-    fpar_type = data_type int_const* ;
+    fpar_type = data_type l_r_brackets* int_const* ;
+    l_r_brackets = l_bracket r_bracket ;
 
     local_def =
         {func_def} func_def |

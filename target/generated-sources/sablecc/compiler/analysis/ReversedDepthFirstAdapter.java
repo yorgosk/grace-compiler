@@ -295,11 +295,44 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
+        {
+            List<PLRBrackets> copy = new ArrayList<PLRBrackets>(node.getLRBrackets());
+            Collections.reverse(copy);
+            for(PLRBrackets e : copy)
+            {
+                e.apply(this);
+            }
+        }
         if(node.getDataType() != null)
         {
             node.getDataType().apply(this);
         }
         outAFparType(node);
+    }
+
+    public void inALRBrackets(ALRBrackets node)
+    {
+        defaultIn(node);
+    }
+
+    public void outALRBrackets(ALRBrackets node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseALRBrackets(ALRBrackets node)
+    {
+        inALRBrackets(node);
+        if(node.getRBracket() != null)
+        {
+            node.getRBracket().apply(this);
+        }
+        if(node.getLBracket() != null)
+        {
+            node.getLBracket().apply(this);
+        }
+        outALRBrackets(node);
     }
 
     public void inAFuncDefLocalDef(AFuncDefLocalDef node)

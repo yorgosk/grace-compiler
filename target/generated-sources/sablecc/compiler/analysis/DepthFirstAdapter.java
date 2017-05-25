@@ -288,6 +288,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getDataType().apply(this);
         }
         {
+            List<PLRBrackets> copy = new ArrayList<PLRBrackets>(node.getLRBrackets());
+            for(PLRBrackets e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        {
             List<TIntConst> copy = new ArrayList<TIntConst>(node.getIntConst());
             for(TIntConst e : copy)
             {
@@ -295,6 +302,31 @@ public class DepthFirstAdapter extends AnalysisAdapter
             }
         }
         outAFparType(node);
+    }
+
+    public void inALRBrackets(ALRBrackets node)
+    {
+        defaultIn(node);
+    }
+
+    public void outALRBrackets(ALRBrackets node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseALRBrackets(ALRBrackets node)
+    {
+        inALRBrackets(node);
+        if(node.getLBracket() != null)
+        {
+            node.getLBracket().apply(this);
+        }
+        if(node.getRBracket() != null)
+        {
+            node.getRBracket().apply(this);
+        }
+        outALRBrackets(node);
     }
 
     public void inAFuncDefLocalDef(AFuncDefLocalDef node)
