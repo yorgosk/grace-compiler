@@ -291,4 +291,12 @@ public class SymbolTable {
         this.library.add(tempRec);
     }
 
+    public boolean inLibrary(String funcName) {
+        for (int i = 0; i < this.library.size(); i++) {
+            // found in library
+            if (this.library.get(i).getName().equals(funcName)) return true;
+        }
+        return false;   // not found in library
+    }
+
 }

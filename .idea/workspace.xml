@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/general/bsort.grace" afterPath="$PROJECT_DIR$/examples/general/bsort.grace" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -48,8 +44,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="353" column="59" lean-forward="false" selection-start-line="353" selection-start-column="48" selection-end-line="353" selection-end-column="59" />
+            <state relative-caret-position="233">
+              <caret line="339" column="56" lean-forward="true" selection-start-line="339" selection-start-column="56" selection-end-line="339" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,8 +56,8 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="116" column="24" lean-forward="false" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+            <state relative-caret-position="3547">
+              <caret line="298" column="47" lean-forward="false" selection-start-line="298" selection-start-column="47" selection-end-line="298" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -107,9 +103,9 @@
       <find>getId</find>
       <find>toString</find>
       <find>setDimension</find>
-      <find>unknown in</find>
       <find>numberOfScopes++</find>
       <find>numberOfScopes--</find>
+      <find>unknown in</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -744,7 +740,7 @@
       <workItem from="1495695637957" duration="827000" />
       <workItem from="1495698113059" duration="4659000" />
       <workItem from="1495738186020" duration="122000" />
-      <workItem from="1495780599672" duration="4794000" />
+      <workItem from="1495780599672" duration="5535000" />
     </task>
     <task id="LOCAL-00001" summary="working on Symbol-Table structure">
       <created>1495018646572</created>
@@ -1026,11 +1022,25 @@
       <option name="project" value="LOCAL" />
       <updated>1495782881721</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="some more fixes">
+      <created>1495785567902</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1495785567902</updated>
+    </task>
+    <task id="LOCAL-00042" summary="some more fixes">
+      <created>1495785587150</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1495785587150</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80543000" />
+    <option name="totallyTimeSpent" value="81284000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1043,7 +1053,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="24" width="1305" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1056,7 +1066,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41021672" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41021672" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09054805" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1084,7 +1094,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working on Symbol-Table structure... minor additions included" />
     <MESSAGE value="working on Symbol-Table structure... minor additions included (&quot;ref&quot; added to AST's fpardef)" />
     <MESSAGE value="worked on Symbol-Table's enter() &amp; insert() methods" />
     <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods" />
@@ -1109,7 +1118,8 @@
     <MESSAGE value="micro-corrections, pushed samentics' examples folder" />
     <MESSAGE value="added lr brackets check" />
     <MESSAGE value="fixed lr brackets issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed lr brackets issue" />
+    <MESSAGE value="some more fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some more fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1376,16 +1386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="353" column="59" lean-forward="false" selection-start-line="353" selection-start-column="48" selection-end-line="353" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
@@ -1407,10 +1407,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="339" column="56" lean-forward="true" selection-start-line="339" selection-start-column="56" selection-end-line="339" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="116" column="24" lean-forward="false" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+        <state relative-caret-position="3547">
+          <caret line="298" column="47" lean-forward="false" selection-start-line="298" selection-start-column="47" selection-end-line="298" selection-end-column="47" />
           <folding />
         </state>
       </provider>
