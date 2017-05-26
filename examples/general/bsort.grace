@@ -26,10 +26,9 @@ fun main () : nothing
       }
    }
 
-   fun putArray (ref msg : int[]; n : int; ref x : int[]) : nothing
+   fun putArray (ref msg : char[]; n : int; ref x : int[]) : nothing
       var i : int;
    {
-	msg <- msg + n;
       puts(msg);
       i <- 0;
       while i < n do {

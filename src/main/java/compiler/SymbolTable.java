@@ -114,14 +114,16 @@ public class SymbolTable {
             this.symbolTable.remove(i);
             this.symbolTableStackTop--;
             i--;
-            scope = this.symbolTable.get(i).getScopeId();
+            if (i >= 0) scope = this.symbolTable.get(i).getScopeId();
         }
         // update scopes - namespaces' Stack by popping the "reference" to the destroyed namespace
         nameStack.pop();
+        // we have one less scope
+        this.numberOfScopes--;
         // ???????????????????????????????????????????
-        if(this.numberOfScopes>2){		//leitourgei an kai 8elei allagi wste na einai pio swsti i lusi (xwris auto bgainei e3w apo ta oria tou pinaka)
-            this.numberOfScopes--;			//added by yiannis
-        }
+//        if(this.numberOfScopes>2){		//leitourgei an kai 8elei allagi wste na einai pio swsti i lusi (xwris auto bgainei e3w apo ta oria tou pinaka)
+//            this.numberOfScopes--;			//added by yiannis
+//        }
         // ???????????????????????????????????????????
     }
 
@@ -152,19 +154,26 @@ public class SymbolTable {
     /* fetchType(name): search for a name in the current scope and then return it's Type
      * -- fetchType(): search in the array, same as the lookup(), it only returns Type */
     public STRecord.Type fetchType(String name){
-        // take the current scope
-        int curr_scope = this.numberOfScopes;
-        // iterate the array-list in reverse order until you get out of the current-scope
-        int i = this.symbolTable.size()-1;
-        int scope = this.symbolTable.get(i).getScopeId();
-        while(i >= 0 && scope == curr_scope) {
-            if(this.symbolTable.get(i).getName().equals(name)) {
-                System.out.printf("Name %s found\n", name);
-                STRecord.Type temp = new STRecord.Type(this.symbolTable.get(i).getType());
-                return temp;
-            }
-            i--;
-            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
+//        // take the current scope
+//        int curr_scope = this.numberOfScopes;
+//        // iterate the array-list in reverse order until you get out of the current-scope
+//        int i = this.symbolTable.size()-1;
+//        int scope = this.symbolTable.get(i).getScopeId();
+//        while(i >= 0 && scope == curr_scope) {
+//            if(this.symbolTable.get(i).getName().equals(name)) {
+//                System.out.printf("Name %s found\n", name);
+//                STRecord.Type temp = new STRecord.Type(this.symbolTable.get(i).getType());
+//                return temp;
+//            }
+//            i--;
+//            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
+//        }
+        // take the type from any scope (it may not be local
+        if (this.variableMap.containsKey(name)) {
+            System.out.printf("Name %s found\n", name);
+            int index = this.variableMap.get(name);
+            STRecord.Type temp = new STRecord.Type(this.symbolTable.get(index).getType());
+            return temp;
         }
         return null;
     }
