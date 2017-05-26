@@ -1503,17 +1503,14 @@ public class Parser
         {
             // Block
         PDataType pdatatypeNode2;
-        LinkedList listNode3 = new LinkedList();
+        @SuppressWarnings("unused") Object nullNode3 = null;
         LinkedList listNode4 = new LinkedList();
         pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         {
             // Block
         }
-        {
-            // Block
-        }
 
-        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode3, listNode4);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, null, listNode4);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;
@@ -1532,23 +1529,15 @@ public class Parser
         {
             // Block
         PDataType pdatatypeNode2;
-        LinkedList listNode4 = new LinkedList();
-        LinkedList listNode5 = new LinkedList();
-        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
-        {
-            // Block
         PLRBrackets plrbracketsNode3;
+        LinkedList listNode4 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         plrbracketsNode3 = (PLRBrackets)nodeArrayList2.get(0);
-	if(plrbracketsNode3 != null)
-	{
-	  listNode4.add(plrbracketsNode3);
-	}
-        }
         {
             // Block
         }
 
-        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode4, listNode5);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, plrbracketsNode3, listNode4);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;
@@ -1567,12 +1556,9 @@ public class Parser
         {
             // Block
         PDataType pdatatypeNode2;
-        LinkedList listNode3 = new LinkedList();
+        @SuppressWarnings("unused") Object nullNode3 = null;
         LinkedList listNode5 = new LinkedList();
         pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
-        {
-            // Block
-        }
         {
             // Block
         LinkedList listNode4 = new LinkedList();
@@ -1583,7 +1569,7 @@ public class Parser
 	}
         }
 
-        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode3, listNode5);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, null, listNode5);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;
@@ -1603,29 +1589,21 @@ public class Parser
         {
             // Block
         PDataType pdatatypeNode2;
-        LinkedList listNode4 = new LinkedList();
-        LinkedList listNode6 = new LinkedList();
-        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
-        {
-            // Block
         PLRBrackets plrbracketsNode3;
+        LinkedList listNode5 = new LinkedList();
+        pdatatypeNode2 = (PDataType)nodeArrayList1.get(0);
         plrbracketsNode3 = (PLRBrackets)nodeArrayList2.get(0);
-	if(plrbracketsNode3 != null)
-	{
-	  listNode4.add(plrbracketsNode3);
-	}
-        }
         {
             // Block
-        LinkedList listNode5 = new LinkedList();
-        listNode5 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode5 != null)
+        LinkedList listNode4 = new LinkedList();
+        listNode4 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode4 != null)
 	{
-	  listNode6.addAll(listNode5);
+	  listNode5.addAll(listNode4);
 	}
         }
 
-        pfpartypeNode1 = new AFparType(pdatatypeNode2, listNode4, listNode6);
+        pfpartypeNode1 = new AFparType(pdatatypeNode2, plrbracketsNode3, listNode5);
         }
 	nodeList.add(pfpartypeNode1);
         return nodeList;

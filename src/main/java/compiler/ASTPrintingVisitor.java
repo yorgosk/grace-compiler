@@ -220,10 +220,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp = new STRecord.Type();
         temp.setKind(node.getDataType().toString().trim().replaceAll("\\s+", " "));
         if (node.getLRBrackets() != null) {
+            System.out.printf("getLRBrackets\n");
             temp.setArray(true);
             temp.setDimension(1);
         }
         if(node.getIntConst().size() > 0) {
+            System.out.printf("getIntconst\n");
             temp.setArray(true);
 //            temp.setDimension(node.getIntConst().size());
             int curr_dimension = temp.getDimension();
@@ -337,230 +339,233 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
 
-//    // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
-//    @Override
-//    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString().trim().replaceAll("\\s+", " ")); }
-//    @Override
-//    public void outAIdLValue(AIdLValue node) {
-//        STRecord.Type temp = this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "));
-//
-//        if (temp != null) { // if temp exists in the current scope
-//            this.tempTypeStack.push(temp);
-//            this.toPopFromTempTypeStack++;
-//        } else {    // if temp doesn't exist in the current scope, we have an error
-//            System.err.printf("Error: id \"%s\" unknown in it's scope\n", node.getId().toString().trim().replaceAll("\\s+", " "));
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//    }
-//    @Override
-//    public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString().trim().replaceAll("\\s+", " ")); }
-//    @Override
-//    public void outAStringLValue(AStringLValue node) {
-//        STRecord.Type temp = new STRecord.Type();
-//        temp.setKind("string");
-//        this.tempTypeStack.push(temp);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
-//    @Override
-//    public void outAExpressionLValue(AExpressionLValue node) {
-//        // take the <expr>'s type from the <l-value>[<expr>] structure
-//        STRecord.Type tempExpr = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!tempExpr.getKind().equals("int")) {	// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
-//            System.err.printf("Error: cannot navigate in l-value using a \"%s\" type\n", tempExpr.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//    }
-//
-//    // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
-//    @Override
-//    public void inAIntConstExpr(AIntConstExpr node) {}
-//    @Override
-//    public void outAIntConstExpr(AIntConstExpr node) {
-//        STRecord.Type temp = new STRecord.Type();
-//        temp.setKind("int");			// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
-//        this.tempTypeStack.push(temp);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inACharConstExpr(ACharConstExpr node) {}
-//    @Override
-//    public void outACharConstExpr(ACharConstExpr node) {
-//        STRecord.Type temp = new STRecord.Type();
-//        temp.setKind("char");
-//        this.tempTypeStack.push(temp);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inALValueExpr(ALValueExpr node) {}
-//    @Override
-//    public void outALValueExpr(ALValueExpr node) {
-//        // the l-value-as-an-expression's Type is going to be the same as the l-value's
-//        STRecord.Type temp = new STRecord.Type(this.tempTypeStack.pop());
-//        this.toPopFromTempTypeStack--;
-//        this.tempTypeStack.push(temp);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inAFuncCallExpr(AFuncCallExpr node) {}
-//    @Override
-//    public void outAFuncCallExpr(AFuncCallExpr node) {
-//        // the func-call-as-an-expression's Type is going to be the same as the func-call's
-//        STRecord.Type temp = new STRecord.Type(this.tempTypeStack.pop());
-//        this.toPopFromTempTypeStack--;
-//        this.tempTypeStack.push(temp);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inAExprExpr(AExprExpr node) {}
-//    @Override
-//    public void outAExprExpr(AExprExpr node) {}
-//    @Override
-//    public void inAPlusExpr(APlusExpr node) {}
-//    @Override
-//    public void outAPlusExpr(APlusExpr node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In \"plus\" expression one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//        // if they are of the same type, then the result of the expression between them is going to be of the same type
-//        STRecord.Type temp3 = new STRecord.Type(temp1);
-//        this.tempTypeStack.push(temp3);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inAMinusExpr(AMinusExpr node) {}
-//    @Override
-//    public void outAMinusExpr(AMinusExpr node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In \"minus\" expression one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//        // if they are of the same type, then the result of the expression between them is going to be of the same type
-//        STRecord.Type temp3 = new STRecord.Type(temp1);
-//        this.tempTypeStack.push(temp3);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inAMultExpr(AMultExpr node) {}
-//    @Override
-//    public void outAMultExpr(AMultExpr node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In \"mult\" expression one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//        // if they are of the same type, then the result of the expression between them is going to be of the same type
-//        STRecord.Type temp3 = new STRecord.Type(temp1);
-//        this.tempTypeStack.push(temp3);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inADivExpr(ADivExpr node) {}
-//    @Override
-//    public void outADivExpr(ADivExpr node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In \"div\" expression one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//        // if they are of the same type, then the result of the expression between them is going to be of the same type
-//        STRecord.Type temp3 = new STRecord.Type(temp1);
-//        this.tempTypeStack.push(temp3);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inADivisionExpr(ADivisionExpr node) {}
-//    @Override
-//    public void outADivisionExpr(ADivisionExpr node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In \"division\" expression one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//        // if they are of the same type, then the result of the expression between them is going to be of the same type
-//        STRecord.Type temp3 = new STRecord.Type(temp1);
-//        this.tempTypeStack.push(temp3);
-//        this.toPopFromTempTypeStack++;
-//    }
-//    @Override
-//    public void inAModExpr(AModExpr node) {}
-//    @Override
-//    public void outAModExpr(AModExpr node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In \"mod\" expression one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//        // if they are of the same type, then the result of the expression between them is going to be of the same type
-//        STRecord.Type temp3 = new STRecord.Type(temp1);
-//        this.tempTypeStack.push(temp3);
-//        this.toPopFromTempTypeStack++;
-//    }
-//
-//    // IN AND OUT A CONDITION AND ASSISTANT-STATEMENTS------------------------------------------------------------
-//    @Override
-//    public void inACondCond(ACondCond node) {}
-//    @Override
-//    public void outACondCond(ACondCond node) {}
-//    @Override
-//    public void inAAndCond(AAndCond node) {}
-//    @Override
-//    public void outAAndCond(AAndCond node) {}
-//    @Override
-//    public void inAOrCond(AOrCond node) {}
-//    @Override
-//    public void outAOrCond(AOrCond node) {}
-//    @Override
-//    public void inANumopCond(ANumopCond node) {}
-//    @Override
-//    public void outANumopCond(ANumopCond node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In condition one member is %s and the other member is %s\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//    }
+    // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString().trim().replaceAll("\\s+", " ")); }
+    @Override
+    public void outAIdLValue(AIdLValue node) {
+        STRecord.Type temp = this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "));
+
+        if (temp != null) { // if temp exists in the current scope
+            temp.printType();
+            this.tempTypeStack.push(temp);
+            this.toPopFromTempTypeStack++;
+        } else {    // if temp doesn't exist in the current scope, we have an error
+            System.err.printf("Error: id \"%s\" unknown in it's scope\n", node.getId().toString().trim().replaceAll("\\s+", " "));
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString().trim().replaceAll("\\s+", " ")); }
+    @Override
+    public void outAStringLValue(AStringLValue node) {
+        STRecord.Type temp = new STRecord.Type();
+        temp.setKind("string");
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
+    @Override
+    public void outAExpressionLValue(AExpressionLValue node) {
+        // take the <expr>'s type from the <l-value>[<expr>] structure
+        STRecord.Type tempExpr = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!tempExpr.getKind().equals("int")) {	// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
+            System.err.printf("Error: cannot navigate in l-value using a \"%s\" type\n", tempExpr.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+
+    // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inAIntConstExpr(AIntConstExpr node) {}
+    @Override
+    public void outAIntConstExpr(AIntConstExpr node) {
+        STRecord.Type temp = new STRecord.Type();
+        temp.setKind("int");			// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inACharConstExpr(ACharConstExpr node) {}
+    @Override
+    public void outACharConstExpr(ACharConstExpr node) {
+        STRecord.Type temp = new STRecord.Type();
+        temp.setKind("char");
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inALValueExpr(ALValueExpr node) {}
+    @Override
+    public void outALValueExpr(ALValueExpr node) {
+        // the l-value-as-an-expression's Type is going to be the same as the l-value's
+        STRecord.Type temp = new STRecord.Type(this.tempTypeStack.pop());
+        this.toPopFromTempTypeStack--;
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inAFuncCallExpr(AFuncCallExpr node) {}
+    @Override
+    public void outAFuncCallExpr(AFuncCallExpr node) {
+        // the func-call-as-an-expression's Type is going to be the same as the func-call's
+        STRecord.Type temp = new STRecord.Type(this.tempTypeStack.pop());
+        this.toPopFromTempTypeStack--;
+        this.tempTypeStack.push(temp);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inAExprExpr(AExprExpr node) {}
+    @Override
+    public void outAExprExpr(AExprExpr node) {}
+    @Override
+    public void inAPlusExpr(APlusExpr node) {}
+    @Override
+    public void outAPlusExpr(APlusExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"plus\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inAMinusExpr(AMinusExpr node) {}
+    @Override
+    public void outAMinusExpr(AMinusExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"minus\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inAMultExpr(AMultExpr node) {}
+    @Override
+    public void outAMultExpr(AMultExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"mult\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inADivExpr(ADivExpr node) {}
+    @Override
+    public void outADivExpr(ADivExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"div\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inADivisionExpr(ADivisionExpr node) {}
+    @Override
+    public void outADivisionExpr(ADivisionExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"division\" expression one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }
+    @Override
+    public void inAModExpr(AModExpr node) {}
+    @Override
+    public void outAModExpr(AModExpr node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"mod\" expression one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }
+
+    // IN AND OUT A CONDITION AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inACondCond(ACondCond node) {}
+    @Override
+    public void outACondCond(ACondCond node) {}
+    @Override
+    public void inAAndCond(AAndCond node) {}
+    @Override
+    public void outAAndCond(AAndCond node) {}
+    @Override
+    public void inAOrCond(AOrCond node) {}
+    @Override
+    public void outAOrCond(AOrCond node) {}
+    @Override
+    public void inANumopCond(ANumopCond node) {}
+    @Override
+    public void outANumopCond(ANumopCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
 
 }

@@ -287,12 +287,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getDataType().apply(this);
         }
+        if(node.getLRBrackets() != null)
         {
-            List<PLRBrackets> copy = new ArrayList<PLRBrackets>(node.getLRBrackets());
-            for(PLRBrackets e : copy)
-            {
-                e.apply(this);
-            }
+            node.getLRBrackets().apply(this);
         }
         {
             List<TIntConst> copy = new ArrayList<TIntConst>(node.getIntConst());
