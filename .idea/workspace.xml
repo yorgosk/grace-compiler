@@ -1,270 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/NSRecord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/PTPrintingVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/STRecord$Type.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/STRecord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/analysis/Analysis.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/analysis/AnalysisAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/analysis/DepthFirstAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/analysis/ReversedDepthFirstAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/lexer/Lexer$State.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/lexer/Lexer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/lexer/LexerException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/lexer/lexer.dat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AAndCond.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AAssignmentStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ABlock.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ABlockStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACharConstExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACharDataType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ACondCond.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ADataTypeRetType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ADivExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ADivisionExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AExprExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AExpressionLValue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFparDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFparType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncCall.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncCallExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncDecl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncDeclLocalDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFuncDefLocalDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AFunctionStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AHeader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIdLValue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIfStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIntConstExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AIntDataType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ALValueExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AMinusExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AModExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AMultExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ANothingRetType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ANumopCond.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AOrCond.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/APlusExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AProgram.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AReturnStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/ASemicolonStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AStringLValue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AVarDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AVarDefLocalDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/AWhileStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/EOF.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PBlock.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PCond.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PDataType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PExpr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFparDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFparType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFuncCall.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFuncDecl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PFuncDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PHeader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PLValue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PLocalDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PProgram.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PRetType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PStmt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/PVarDef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/Start.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/Switch.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/Switchable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TAnd.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TAssignment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TBlank.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TChar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TCharConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TColon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TComma.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TDiv.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TDivision.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TDo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TElse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TEqual.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TErroneousNumber.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TFun.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TGreateq.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TGreater.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/THashtag.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TId.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TIdentifier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TIf.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TInt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TIntConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TLBrace.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TLBracket.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TLPar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TLesseq.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TLesser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TLineComment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TMinus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TMod.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TMult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TMultilineComment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TNot.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TNothing.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TOr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TPlus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TRBrace.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TRBracket.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TRPar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TRef.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TReturn.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TSCharSequence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TSemicolon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TStringLiteral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TThen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TUnequal.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TVar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/TWhile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/node/Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/Parser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/ParserException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/State.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/TokenIndex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/compiler/parser/parser.dat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/Analysis.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/AnalysisAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/ReversedDepthFirstAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/lexer/Lexer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/lexer/LexerException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/lexer/lexer.dat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AAndCond.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AAssignmentStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlock.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlockStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharConstExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACharDataType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ACondCond.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADataTypeRetType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADivExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ADivisionExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExprExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AExpressionLValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFparType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCallExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDecl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDeclLocalDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncDefLocalDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFunctionStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AHeader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIdLValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIfStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntConstExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AIntDataType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ALValueExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMinusExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AModExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AMultExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANothingRetType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ANumopCond.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AOrCond.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/APlusExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AProgram.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AReturnStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ASemicolonStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AStringLValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AVarDefLocalDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AWhileStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/EOF.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Node.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PBlock.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PCond.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PDataType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFparType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncCall.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDecl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PFuncDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PHeader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PLocalDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PProgram.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PRetType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PStmt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/PVarDef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Start.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switch.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Switchable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAnd.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TAssignment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TBlank.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TChar.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TCharConst.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TColon.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TComma.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDiv.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDivision.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TDo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TElse.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TEqual.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TErroneousNumber.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TFun.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreateq.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TGreater.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/THashtag.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TId.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIdentifier.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIf.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TInt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TIntConst.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBrace.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLBracket.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLPar.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesseq.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLesser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TLineComment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMinus.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMod.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMult.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TMultilineComment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TNothing.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TOr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TPlus.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBrace.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRBracket.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRPar.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TRef.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TReturn.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSCharSequence.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TSemicolon.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TStringLiteral.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TThen.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TUnequal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TVar.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/TWhile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/Token.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/parser/Parser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/parser/ParserException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/parser/State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/parser/TokenIndex.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/parser/parser.dat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/parser.grammar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
     <ignored path="$PROJECT_DIR$/target/maven-status/" />
@@ -284,8 +21,8 @@
       <file leaf-file-name="parser.grammar" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="107" column="19" lean-forward="false" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="19" />
+            <state relative-caret-position="1952">
+              <caret line="122" column="34" lean-forward="false" selection-start-line="122" selection-start-column="34" selection-end-line="122" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -294,9 +31,370 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="39" column="47" lean-forward="false" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+            <state relative-caret-position="245">
+              <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReversedDepthFirstAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/ReversedDepthFirstAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="815">
+              <caret line="299" column="15" lean-forward="false" selection-start-line="299" selection-start-column="15" selection-end-line="299" selection-end-column="15" />
+              <folding>
+                <marker date="1495792578295" expanded="true" signature="6450:6465" ph=" { " />
+                <marker date="1495792578295" expanded="true" signature="6481:6487" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="6537:6552" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="6569:6575" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="6645:6917" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="6976:6991" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="7007:7013" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="7073:7088" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="7105:7111" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="7191:7368" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="7429:7444" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="7460:7466" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="7528:7543" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="7560:7566" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="7648:7829" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="7886:7901" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="7917:7923" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="7981:7996" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="8013:8019" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="8097:8270" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="8311:8326" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="8342:8348" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="8390:8405" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="8422:8428" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="8490:8947" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="8992:9007" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="9023:9029" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="9075:9090" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="9107:9113" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="9179:9340" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="9395:9410" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="9426:9432" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="9488:9503" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="9520:9526" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="9602:9674" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="9731:9746" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="9762:9768" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="9826:9841" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="9858:9864" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="9942:10210" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="10257:10272" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="10288:10294" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="10342:10357" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="10374:10380" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="10448:10609" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="10662:10677" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="10693:10699" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="10753:10768" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="10785:10791" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="10865:11038" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="11079:11094" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="11110:11116" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="11158:11173" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="11190:11196" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="11258:11728" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="11339:11346" ph="&lt;~&gt;" />
+                <marker date="1495792578295" expanded="false" signature="11775:11790" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="11806:11812" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="11860:11875" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="11892:11898" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="11966:12220" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="12269:12284" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="12300:12306" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="12356:12371" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="12388:12394" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="12464:12749" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="12549:12556" ph="&lt;~&gt;" />
+                <marker date="1495792578295" expanded="false" signature="12788:12803" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="12819:12825" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="12865:12880" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="12897:12903" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="12963:13238" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="13043:13050" ph="&lt;~&gt;" />
+                <marker date="1495792578295" expanded="false" signature="13283:13298" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="13314:13320" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="13366:13381" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="13398:13404" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="13470:13842" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="13553:13560" ph="&lt;~&gt;" />
+                <marker date="1495792578295" expanded="false" signature="13887:13902" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="13918:13924" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="13970:13985" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="14002:14008" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="14074:14227" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="14280:14295" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="14311:14317" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="14371:14386" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="14403:14409" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="14483:14666" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="14727:14742" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="14758:14764" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="14826:14841" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="14858:14864" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="14946:15218" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="15271:15286" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="15302:15308" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="15362:15377" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="15394:15400" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="15474:15647" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="15702:15717" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="15733:15739" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="15795:15810" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="15827:15833" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="15909:16086" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="16135:16150" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="16166:16172" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="16222:16237" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="16254:16260" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="16330:16495" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="16548:16563" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="16579:16585" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="16639:16654" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="16671:16677" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="16751:16924" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="16969:16984" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="17000:17006" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="17052:17067" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="17084:17090" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="17156:17313" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="17358:17373" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="17389:17395" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="17441:17456" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="17473:17479" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="17545:17799" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="17846:17861" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="17877:17883" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="17931:17946" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="17963:17969" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="18037:18293" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="18338:18353" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="18369:18375" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="18421:18436" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="18453:18459" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="18525:18779" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="18822:18837" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="18853:18859" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="18903:18918" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="18935:18941" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="19005:19257" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="19310:19325" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="19341:19347" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="19401:19416" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="19433:19439" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="19513:19775" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="19818:19833" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="19849:19855" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="19899:19914" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="19931:19937" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="20001:20253" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="20298:20313" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="20329:20335" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="20381:20396" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="20413:20419" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="20485:20642" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="20685:20700" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="20716:20722" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="20766:20781" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="20798:20804" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="20868:21120" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="21161:21176" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="21192:21198" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="21240:21255" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="21272:21278" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="21340:21590" ph="{...}" />
+                <marker date="1495792578295" expanded="false" signature="21637:21652" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="21668:21674" ph=" }" />
+                <marker date="1495792578295" expanded="false" signature="21722:21737" ph=" { " />
+                <marker date="1495792578295" expanded="false" signature="21754:21760" ph=" }" />
+                <marker date="1495792578295" expanded="true" signature="21828:22084" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DepthFirstAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-560">
+              <caret line="75" column="26" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="26" />
+              <folding>
+                <marker date="1495792578291" expanded="false" signature="6027:6038" ph="&lt;~&gt;" />
+                <marker date="1495792578291" expanded="false" signature="6247:6262" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="6278:6284" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="6334:6349" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="6366:6372" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="6442:6714" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="6773:6788" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="6804:6810" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="6870:6885" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="6902:6908" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="6988:7165" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="7226:7241" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="7257:7263" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="7325:7340" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="7357:7363" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="7445:7626" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="7683:7698" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="7714:7720" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="7778:7793" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="7810:7816" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="7894:8067" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="8108:8123" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="8139:8145" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="8187:8202" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="8219:8225" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="8287:8705" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="8750:8765" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="8781:8787" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="8833:8848" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="8865:8871" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="8937:9098" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="9153:9168" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="9184:9190" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="9246:9261" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="9278:9284" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="9360:9432" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="9489:9504" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="9520:9526" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="9584:9599" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="9616:9622" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="9700:9968" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="10015:10030" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="10046:10052" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="10100:10115" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="10132:10138" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="10206:10367" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="10420:10435" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="10451:10457" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="10511:10526" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="10543:10549" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="10623:10796" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="10837:10852" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="10868:10874" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="10916:10931" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="10948:10954" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="11016:11447" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="11289:11296" ph="&lt;~&gt;" />
+                <marker date="1495792578291" expanded="false" signature="11494:11509" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="11525:11531" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="11579:11594" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="11611:11617" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="11685:11939" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="11988:12003" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="12019:12025" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="12075:12090" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="12107:12113" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="12183:12429" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="12268:12275" ph="&lt;~&gt;" />
+                <marker date="1495792578291" expanded="false" signature="12468:12483" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="12499:12505" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="12545:12560" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="12577:12583" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="12643:12879" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="12723:12730" ph="&lt;~&gt;" />
+                <marker date="1495792578291" expanded="false" signature="12924:12939" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="12955:12961" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="13007:13022" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="13039:13045" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="13111:13444" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="13285:13292" ph="&lt;~&gt;" />
+                <marker date="1495792578291" expanded="false" signature="13489:13504" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="13520:13526" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="13572:13587" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="13604:13610" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="13676:13829" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="13882:13897" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="13913:13919" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="13973:13988" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="14005:14011" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="14085:14268" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="14329:14344" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="14360:14366" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="14428:14443" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="14460:14466" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="14548:14820" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="14873:14888" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="14904:14910" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="14964:14979" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="14996:15002" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="15076:15249" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="15304:15319" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="15335:15341" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="15397:15412" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="15429:15435" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="15511:15688" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="15737:15752" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="15768:15774" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="15824:15839" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="15856:15862" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="15932:16097" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="16150:16165" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="16181:16187" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="16241:16256" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="16273:16279" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="16353:16526" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="16571:16586" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="16602:16608" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="16654:16669" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="16686:16692" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="16758:16915" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="16960:16975" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="16991:16997" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="17043:17058" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="17075:17081" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="17147:17401" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="17448:17463" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="17479:17485" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="17533:17548" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="17565:17571" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="17639:17895" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="17940:17955" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="17971:17977" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="18023:18038" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="18055:18061" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="18127:18381" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="18424:18439" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="18455:18461" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="18505:18520" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="18537:18543" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="18607:18859" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="18912:18927" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="18943:18949" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="19003:19018" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="19035:19041" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="19115:19377" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="19420:19435" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="19451:19457" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="19501:19516" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="19533:19539" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="19603:19855" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="19900:19915" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="19931:19937" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="19983:19998" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="20015:20021" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="20087:20244" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="20287:20302" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="20318:20324" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="20368:20383" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="20400:20406" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="20470:20722" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="20763:20778" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="20794:20800" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="20842:20857" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="20874:20880" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="20942:21192" ph="{...}" />
+                <marker date="1495792578291" expanded="false" signature="21239:21254" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="21270:21276" ph=" }" />
+                <marker date="1495792578291" expanded="false" signature="21324:21339" ph=" { " />
+                <marker date="1495792578291" expanded="false" signature="21356:21362" ph=" }" />
+                <marker date="1495792578291" expanded="true" signature="21430:21686" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -304,8 +402,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="339" column="56" lean-forward="false" selection-start-line="339" selection-start-column="56" selection-end-line="339" selection-end-column="56" />
+            <state relative-caret-position="15">
+              <caret line="214" column="5" lean-forward="false" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -316,9 +414,11 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2917">
-              <caret line="298" column="47" lean-forward="false" selection-start-line="298" selection-start-column="47" selection-end-line="298" selection-end-column="47" />
-              <folding />
+            <state relative-caret-position="243">
+              <caret line="124" column="44" lean-forward="false" selection-start-line="124" selection-start-column="44" selection-end-line="124" selection-end-column="44" />
+              <folding>
+                <marker date="1495795196807" expanded="false" signature="9131:9146" ph="&lt;~&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -326,7 +426,7 @@
       <file leaf-file-name="STRecord.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
+            <state relative-caret-position="1040">
               <caret line="66" column="45" lean-forward="false" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -338,7 +438,7 @@
       <file leaf-file-name="NSRecord.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/NSRecord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="320">
               <caret line="23" column="59" lean-forward="false" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
               <folding>
                 <element signature="e#647#648#0" expanded="true" />
@@ -363,9 +463,9 @@
       <find>getId</find>
       <find>toString</find>
       <find>setDimension</find>
+      <find>unknown in</find>
       <find>numberOfScopes++</find>
       <find>numberOfScopes--</find>
-      <find>unknown in</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -397,10 +497,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="61" />
-    <option name="y" value="24" />
-    <option name="width" value="1305" />
-    <option name="height" value="744" />
+    <option name="x" value="-1" />
+    <option name="width" value="1602" />
+    <option name="height" value="875" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -426,6 +525,42 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="grace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="generated-sources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sablecc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -534,6 +669,18 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="SearchEverywhereHistoryKey" value="current line&#9;PSI&#9;JAVA://javax.swing.text.html.parser.Parser#getCurrentLine&#10;getName&#9;PSI&#9;JAVA://compiler.STRecord#getName" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
@@ -620,136 +767,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -764,15 +781,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
-      <setting name="passParentEnv" value="true" />
-      <setting name="launchBrowser" value="true" />
-      <setting name="launchBrowserUrl" value="" />
-      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -817,15 +825,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -851,21 +850,12 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -894,41 +884,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
   </component>
@@ -964,7 +919,7 @@
       <workItem from="1495695637957" duration="827000" />
       <workItem from="1495698113059" duration="4659000" />
       <workItem from="1495738186020" duration="122000" />
-      <workItem from="1495780599672" duration="5651000" />
+      <workItem from="1495780599672" duration="4794000" />
     </task>
     <task id="LOCAL-00001" summary="working on Symbol-Table structure">
       <created>1495018646572</created>
@@ -1246,32 +1201,11 @@
       <option name="project" value="LOCAL" />
       <updated>1495782881721</updated>
     </task>
-    <task id="LOCAL-00041" summary="some more fixes">
-      <created>1495785567902</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1495785567902</updated>
-    </task>
-    <task id="LOCAL-00042" summary="some more fixes">
-      <created>1495785587150</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1495785587150</updated>
-    </task>
-    <task id="LOCAL-00043" summary="some more fixes... inLibrary added">
-      <created>1495786313263</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1495786313263</updated>
-    </task>
-    <option name="localTasksCounter" value="44" />
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81400000" />
+    <option name="totallyTimeSpent" value="80543000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1283,26 +1217,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="24" width="1305" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-1" y="0" width="1602" height="875" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3170103" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32972136" sideWeight="0.50913423" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.50913423" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5953608" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41021672" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39948454" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26449564" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.086875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1310,12 +1243,35 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.50913423" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31733745" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41021672" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09054805" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1325,6 +1281,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="working on Symbol-Table structure... minor additions included" />
+    <MESSAGE value="working on Symbol-Table structure... minor additions included (&quot;ref&quot; added to AST's fpardef)" />
     <MESSAGE value="worked on Symbol-Table's enter() &amp; insert() methods" />
     <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods" />
     <MESSAGE value="worked on Symbol-Table's enter(), insert() &amp; lookup() methods... fixed a run-time error" />
@@ -1348,15 +1306,17 @@
     <MESSAGE value="micro-corrections, pushed samentics' examples folder" />
     <MESSAGE value="added lr brackets check" />
     <MESSAGE value="fixed lr brackets issue" />
-    <MESSAGE value="some more fixes" />
-    <MESSAGE value="some more fixes... inLibrary added" />
-    <option name="LAST_COMMIT_MESSAGE" value="some more fixes... inLibrary added" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed lr brackets issue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
@@ -1380,7 +1340,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1405,7 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1430,7 +1388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1455,7 +1412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1541,7 +1497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1556,7 +1511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1571,55 +1525,219 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1889">
           <caret line="63" column="15" lean-forward="true" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/javax/swing/text/html/parser/Parser.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/javax/swing/text/html/parser/Parser.class" />
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
+        <state relative-caret-position="-560">
           <caret line="75" column="26" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="26" />
-          <folding />
+          <folding>
+            <marker date="1495792578291" expanded="false" signature="6027:6038" ph="&lt;~&gt;" />
+            <marker date="1495792578291" expanded="false" signature="6247:6262" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="6278:6284" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="6334:6349" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="6366:6372" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="6442:6714" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="6773:6788" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="6804:6810" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="6870:6885" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="6902:6908" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="6988:7165" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="7226:7241" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="7257:7263" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="7325:7340" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="7357:7363" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="7445:7626" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="7683:7698" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="7714:7720" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="7778:7793" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="7810:7816" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="7894:8067" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="8108:8123" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="8139:8145" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="8187:8202" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="8219:8225" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="8287:8705" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="8750:8765" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="8781:8787" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="8833:8848" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="8865:8871" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="8937:9098" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="9153:9168" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="9184:9190" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="9246:9261" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="9278:9284" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="9360:9432" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="9489:9504" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="9520:9526" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="9584:9599" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="9616:9622" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="9700:9968" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="10015:10030" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="10046:10052" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="10100:10115" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="10132:10138" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="10206:10367" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="10420:10435" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="10451:10457" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="10511:10526" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="10543:10549" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="10623:10796" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="10837:10852" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="10868:10874" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="10916:10931" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="10948:10954" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="11016:11447" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="11289:11296" ph="&lt;~&gt;" />
+            <marker date="1495792578291" expanded="false" signature="11494:11509" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="11525:11531" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="11579:11594" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="11611:11617" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="11685:11939" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="11988:12003" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="12019:12025" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="12075:12090" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="12107:12113" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="12183:12429" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="12268:12275" ph="&lt;~&gt;" />
+            <marker date="1495792578291" expanded="false" signature="12468:12483" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="12499:12505" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="12545:12560" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="12577:12583" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="12643:12879" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="12723:12730" ph="&lt;~&gt;" />
+            <marker date="1495792578291" expanded="false" signature="12924:12939" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="12955:12961" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="13007:13022" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="13039:13045" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="13111:13444" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="13285:13292" ph="&lt;~&gt;" />
+            <marker date="1495792578291" expanded="false" signature="13489:13504" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="13520:13526" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="13572:13587" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="13604:13610" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="13676:13829" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="13882:13897" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="13913:13919" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="13973:13988" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="14005:14011" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="14085:14268" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="14329:14344" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="14360:14366" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="14428:14443" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="14460:14466" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="14548:14820" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="14873:14888" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="14904:14910" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="14964:14979" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="14996:15002" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="15076:15249" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="15304:15319" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="15335:15341" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="15397:15412" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="15429:15435" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="15511:15688" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="15737:15752" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="15768:15774" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="15824:15839" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="15856:15862" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="15932:16097" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="16150:16165" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="16181:16187" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="16241:16256" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="16273:16279" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="16353:16526" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="16571:16586" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="16602:16608" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="16654:16669" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="16686:16692" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="16758:16915" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="16960:16975" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="16991:16997" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="17043:17058" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="17075:17081" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="17147:17401" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="17448:17463" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="17479:17485" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="17533:17548" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="17565:17571" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="17639:17895" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="17940:17955" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="17971:17977" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="18023:18038" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="18055:18061" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="18127:18381" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="18424:18439" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="18455:18461" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="18505:18520" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="18537:18543" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="18607:18859" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="18912:18927" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="18943:18949" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="19003:19018" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="19035:19041" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="19115:19377" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="19420:19435" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="19451:19457" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="19501:19516" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="19533:19539" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="19603:19855" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="19900:19915" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="19931:19937" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="19983:19998" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="20015:20021" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="20087:20244" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="20287:20302" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="20318:20324" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="20368:20383" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="20400:20406" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="20470:20722" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="20763:20778" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="20794:20800" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="20842:20857" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="20874:20880" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="20942:21192" ph="{...}" />
+            <marker date="1495792578291" expanded="false" signature="21239:21254" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="21270:21276" ph=" }" />
+            <marker date="1495792578291" expanded="false" signature="21324:21339" ph=" { " />
+            <marker date="1495792578291" expanded="false" signature="21356:21362" ph=" }" />
+            <marker date="1495792578291" expanded="true" signature="21430:21686" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="60">
-            <caret line="73" column="83" lean-forward="false" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="83" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="39" column="47" lean-forward="false" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+        <state relative-caret-position="245">
+          <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="107" column="19" lean-forward="false" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="19" />
+        <state relative-caret-position="1952">
+          <caret line="122" column="34" lean-forward="false" selection-start-line="122" selection-start-column="34" selection-end-line="122" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="214" column="5" lean-forward="false" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
+        <state relative-caret-position="1040">
           <caret line="66" column="45" lean-forward="false" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1629,7 +1747,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/NSRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="320">
           <caret line="23" column="59" lean-forward="false" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
           <folding>
             <element signature="e#647#648#0" expanded="true" />
@@ -1638,21 +1756,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="339" column="56" lean-forward="false" selection-start-line="339" selection-start-column="56" selection-end-line="339" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2917">
-          <caret line="298" column="47" lean-forward="false" selection-start-line="298" selection-start-column="47" selection-end-line="298" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="243">
+          <caret line="124" column="44" lean-forward="false" selection-start-line="124" selection-start-column="44" selection-end-line="124" selection-end-column="44" />
+          <folding>
+            <marker date="1495795196807" expanded="false" signature="9131:9146" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
