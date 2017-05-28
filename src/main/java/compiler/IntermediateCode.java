@@ -3,6 +3,11 @@ package compiler;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/* General Scheme:
+* We can define the "translation" of each AST's node to IR as soon as we have code for it's children.
+* Each child's result is in a temporary variable. We generate quads that combine the results.
+* The end-result is a sequence of quads, where order matters. */
+
 public class IntermediateCode {
     /* we will use a low-level intermediate code (intermediate representation - IR) */
     private String intermediateCode;
@@ -29,28 +34,39 @@ public class IntermediateCode {
     }
 
     /* HELPER FUNCTIONS */
-    /* the only function that generates instructions
-    * -- adds instructions to the end of the buffer -- at the end, buffer contains code */
-    public void emit() {
+    /* returns the number of the next quad */
+    public int NEXTQUAD() {
+        return 0;
+    }
+
+    /* generates the next quad op,x,y,z */
+    public void GENQUAD(String op, String x, String y, String z) {
 
     }
 
-    /* generate a unique label name
-     * -- does not update code */
-    public String new_label() {
+    /* creates a new temporary value of Type t */
+    public String NEWTEMP(STRecord.Type t) {
         return null;
     }
 
-    /* generate a unique temporary name
-     * -- may require type information */
-    public String new_temp() {
-        return null;
+    /* creates an empty list of quads' labels */
+    public void EMPTYLIST() {
+
     }
 
-    /* our main IR code generation function
-     * -- basically runs the whole process */
-    public String generate() {
-        return null;
+    /* creates a list of quads' labels that contains just one element x */
+    public void MAKELIST(String x) {
+
+    }
+
+    /* merges the lists of quads' labels l1,...,ln */
+    public void MERGE(ArrayList<String> l) {
+
+    }
+
+    /* replaces in all the quads that are included in l the unknown the label with z  */
+    public void BACKPATCH(String l, String z) {
+
     }
 
 }

@@ -23,6 +23,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private boolean isDecl;
     private boolean hasMain;
 
+    // we keep our Intermediate Representation, to be used for machine-code generation in the future
+    private IntermediateCode ir;
+
     // IN A START------------------------------------------------------------
     @Override
     public void inStart(Start node) {
@@ -34,6 +37,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack = 0;
         this.isDecl = false;
         this.hasMain = false;
+        // create the Intermediate Representation storing structures
+        this.ir = new IntermediateCode();
     }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
