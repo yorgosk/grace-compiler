@@ -9,6 +9,56 @@ import java.util.Stack;
 * The end-result is a sequence of quads, where order matters. */
 
 public class IntermediateCode {
+    /* we are working with quads */
+    public static class Quad {
+        private String label;
+        private String op;
+        private String x;
+        private String y;
+        private String z;
+
+        /* Quad's class (default-)constructor */
+        public Quad() {}
+
+        /* Quad's class constructors */
+        public Quad(String label, String op, String x, String y, String z) {
+            this.label = label;
+            this.op = op;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public Quad(String op, String x, String y, String z) {
+            this.label = null;
+            this.op = op;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        /* Quad's class copy-costructor */
+        public Quad(Quad temp) {
+            this.label = temp.label;
+            this.op = temp.op;
+            this.x = temp.x;
+            this.y = temp.y;
+            this.z = temp.z;
+        }
+
+        /* Quad's class setters and getters*/
+        public void setLabel(String label) { this.label = label; }
+        public void setOp(String op) { this.op = op; }
+        public void setX(String x) { this.x = x; }
+        public void setY(String y) { this.y = y; }
+        public void setZ(String z) { this.z = z; }
+        public String getLabel() { return this.label; }
+        public String getOp() { return this.op; }
+        public String getX() { return this.x; }
+        public String getY() { return this.y; }
+        public String getZ() { return this.z; }
+
+    }
     /* we will use a low-level intermediate code (intermediate representation - IR) */
     private String intermediateCode;
     /* we use a stack-buffer to store temporarily parts of the IR,
@@ -40,8 +90,8 @@ public class IntermediateCode {
     }
 
     /* generates the next quad op,x,y,z */
-    public void GENQUAD(String op, String x, String y, String z) {
-
+    public Quad GENQUAD(String op, String x, String y, String z) {
+        return new Quad(op, x, y, z);
     }
 
     /* creates a new temporary value of Type t */
@@ -50,18 +100,23 @@ public class IntermediateCode {
     }
 
     /* creates an empty list of quads' labels */
-    public void EMPTYLIST() {
-
+    public ArrayList<Quad> EMPTYLIST() {
+        return new ArrayList<Quad>();
     }
 
     /* creates a list of quads' labels that contains just one element x */
-    public void MAKELIST(String x) {
-
+    public ArrayList<Quad> MAKELIST(Quad q) {
+        ArrayList<Quad> temp = new ArrayList<Quad>();
+        temp.add(q);
+        return temp;
     }
 
     /* merges the lists of quads' labels l1,...,ln */
-    public void MERGE(ArrayList<String> l) {
-
+    public ArrayList<Quad> MERGE(ArrayList<ArrayList<Quad>> l) {
+        ArrayList<Quad> temp = new ArrayList<Quad>();
+        for (int i = 0; i < l.size(); i++)
+            temp.addAll(l.get(i));
+        return temp;
     }
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
