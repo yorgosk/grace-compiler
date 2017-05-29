@@ -44,17 +44,28 @@ public class SymbolTable {
     }
 
     public boolean checkRetType(STRecord.Type other){
-        int index;
-        index = this.nameStack.peek().getIndex();      //function added by yiannis
-        STRecord temp;
-        //if(index < 0){index = 0;}
-        temp = this.symbolTable.get(index);
-        if(temp.getType().isSame(other)){
+//        int index;
+//        index = this.nameStack.peek().getIndex();      //function added by yiannis
+//        STRecord temp;
+//        //if(index < 0){index = 0;}
+//        temp = this.symbolTable.get(index);
+//        if(temp.getType().isSame(other)){
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
+        STRecord.Type temp = this.nameStack.peek().getType();      //function added by yiannis
+        if(temp.isSame(other)){
             return true;
         }
         else{
             return false;
         }
+    }
+
+    public void setScopeType(STRecord.Type type) {
+        this.nameStack.peek().setType(type);
     }
 
     /* enter(): create a new scope - namespace */
