@@ -43,6 +43,20 @@ public class SymbolTable {
         this.loadGraceLibrary();
     }
 
+    public boolean checkRetType(STRecord.Type other){
+        int index;
+        index = this.nameStack.peek().getIndex();      //function added by yiannis
+        STRecord temp;
+        //if(index < 0){index = 0;}
+        temp = this.symbolTable.get(index);
+        if(temp.getType().isSame(other)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     /* enter(): create a new scope - namespace */
     public void enter(){
         NSRecord temp = new NSRecord();
