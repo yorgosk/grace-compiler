@@ -56,7 +56,10 @@ public class SymbolTable {
 //            return false;
 //        }
         STRecord.Type temp = this.nameStack.peek().getType();      //function added by yiannis
-        if(temp.isSame(other)){
+        System.out.printf("printing temp type\n");
+        temp.printType();
+        System.out.printf("printed temp type\n");
+        if(temp.isSameRetType(other)){
             return true;
         }
         else{

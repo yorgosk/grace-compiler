@@ -57,6 +57,7 @@ public class STRecord {
         public ArrayList<Type> getParameters() { return this.parameters; }
 
         /* Type's class various functions */
+        // check if two types are equal -- general case
         public boolean isSame(Type other) {
             if (!this.kind.equals(other.kind)) return false;		//modified by yiannis
             if (this.isArray != other.isArray) return false;
@@ -70,6 +71,23 @@ public class STRecord {
                     if (!this.parameters.get(i).isSame(other.parameters.get(i))) return false;
                 }
             }
+
+            return true;
+        }
+        // check if two types are equal -- function type vs return type case
+        public boolean isSameRetType(Type other) {
+            if (!this.kind.equals(other.kind)) return false;		//modified by yiannis
+            if (this.isArray != other.isArray) return false;
+            if (this.dimension != other.dimension) return false;
+//            if (this.isFunction != other.isFunction) return false;
+//            if (compareList(this.parameters, other.parameters)) return false;
+//            if ((this.parameters == null && other.parameters != null) || (this.parameters != null && other.parameters == null)) return false;
+//            if (this.parameters != null && other.parameters != null) {
+//                if (this.parameters.size() != other.parameters.size()) return false;
+//                for (int i = 0; i < this.parameters.size(); i++) {
+//                    if (!this.parameters.get(i).isSame(other.parameters.get(i))) return false;
+//                }
+//            }
 
             return true;
         }

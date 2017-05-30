@@ -71,7 +71,7 @@
    
    * If compiler takes input from a file:
    
-   ```>java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main examples/hello.grace```
+   ```>java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main examples/general/hello.grace ```
    
    * or, if compiler takes input from stdin *(not recommended for large programs, for practical reasons)*:
    

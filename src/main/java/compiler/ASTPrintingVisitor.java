@@ -208,11 +208,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         temp.setKind(node.getDataType().toString().trim().replaceAll("\\s+", " "));
         this.tempTypeStack.push(temp);
         this.toPopFromTempTypeStack++;
-        if(!this.symbolTable.checkRetType(temp)){	//added by yiannis
-            System.err.printf("Error: function has different return type\n");
-            // exit with "failure" code
-            System.exit(-1);
-        }
+//        if(!this.symbolTable.checkRetType(temp)){	//added by yiannis
+//            System.err.printf("Error: function has different return type\n");
+//            // exit with "failure" code
+//            System.exit(-1);
+//        }
     }
     @Override
     public void inANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf("retType :\"nothing\"\n"); }
@@ -348,6 +348,20 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++; }
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
+
+    // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
+    @Override
+    public void inAReturnStmt(AReturnStmt node) {}
+    @Override
+    public void outAReturnStmt(AReturnStmt node) {
+        STRecord.Type temp = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if(!this.symbolTable.checkRetType(temp)){	//added by yiannis
+            System.err.printf("Error: function has different return type\n");
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
 
     // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
