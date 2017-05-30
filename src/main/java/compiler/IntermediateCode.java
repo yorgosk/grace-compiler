@@ -58,29 +58,44 @@ public class IntermediateCode {
         public String getY() { return this.y; }
         public String getZ() { return this.z; }
 
+        /* Quad's class printing function */
+        public void printQuad() {
+            System.out.printf("%s: %s, %s, %s, %s\n", this.label, this.op, this.x, this.y, this.z);
+        }
+
     }
     /* we will use a low-level intermediate code (intermediate representation - IR) */
-    private String intermediateCode;
-    /* we use a stack-buffer to store temporarily parts of the IR,
-    * so that we can later "plug" them together in the proper order */
-    private Stack<String> irBuffer;
+    private ArrayList<Quad> intermediateCode;
     /* we use a Java Array-List to store our used label names */
     private ArrayList<String> usedLabelNames;
+    private Integer numOfLabel;
     /* we use a Java Array-List to store our used temporary names */
     private ArrayList<String> usedTempNames;
+    private Integer numOfTemp;
+    /* a Java Array-List of quad labels that contain jumps in the next command */
+    private ArrayList<Integer> NEXT;
+    /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is True */
+    private ArrayList<Integer> TRUE;
+    /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is True */
+    private ArrayList<Integer> FALSE;
 
     /* IntermediateCode's class constructor */
     public IntermediateCode() {
-        this.intermediateCode = "";
-        this.irBuffer = new Stack<String>();
+        this.intermediateCode = new ArrayList<Quad>();
         this.usedLabelNames = new ArrayList<String>();
+        this.numOfLabel = 0;
         this.usedTempNames = new ArrayList<String>();
+        this.numOfTemp = 0;
+        this.NEXT = new ArrayList<Integer>();
+        this.TRUE = new ArrayList<Integer>();
+        this.FALSE = new ArrayList<Integer>();
     }
 
     /* our Intermediate Code / Intermediate Representation printing function */
     public void printIR() {
         System.out.printf("\n\t\tLow Level Intermediate Representation:\n");
-        System.out.printf(this.intermediateCode);
+        for (int i = 0; i < this.intermediateCode.size(); i++)
+            this.intermediateCode.get(i).printQuad();
     }
 
     /* HELPER FUNCTIONS */
@@ -91,12 +106,18 @@ public class IntermediateCode {
 
     /* generates the next quad op,x,y,z */
     public Quad GENQUAD(String op, String x, String y, String z) {
-        return new Quad(op, x, y, z);
+        this.numOfLabel++;
+        this.usedLabelNames.add(this.numOfLabel.toString());
+        return new Quad(this.numOfLabel.toString(),op, x, y, z);
     }
 
     /* creates a new temporary value of Type t */
     public String NEWTEMP(STRecord.Type t) {
-        return null;
+        this.numOfTemp++;
+        // our new temp name
+        String newTemp = "$"+numOfTemp;
+        this.usedTempNames.add(newTemp);
+        return newTemp;
     }
 
     /* creates an empty list of quads' labels */
