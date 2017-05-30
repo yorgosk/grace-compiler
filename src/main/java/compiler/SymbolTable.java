@@ -44,17 +44,6 @@ public class SymbolTable {
     }
 
     public boolean checkRetType(STRecord.Type other){
-//        int index;
-//        index = this.nameStack.peek().getIndex();      //function added by yiannis
-//        STRecord temp;
-//        //if(index < 0){index = 0;}
-//        temp = this.symbolTable.get(index);
-//        if(temp.getType().isSame(other)){
-//            return true;
-//        }
-//        else{
-//            return false;
-//        }
         STRecord.Type temp = this.nameStack.peek().getType();      //function added by yiannis
         System.out.printf("printing temp type\n");
         temp.printType();
@@ -177,21 +166,7 @@ public class SymbolTable {
     /* fetchType(name): search for a name in the current scope and then return it's Type
      * -- fetchType(): search in the array, same as the lookup(), it only returns Type */
     public STRecord.Type fetchType(String name){
-//        // take the current scope
-//        int curr_scope = this.numberOfScopes;
-//        // iterate the array-list in reverse order until you get out of the current-scope
-//        int i = this.symbolTable.size()-1;
-//        int scope = this.symbolTable.get(i).getScopeId();
-//        while(i >= 0 && scope == curr_scope) {
-//            if(this.symbolTable.get(i).getName().equals(name)) {
-//                System.out.printf("Name %s found\n", name);
-//                STRecord.Type temp = new STRecord.Type(this.symbolTable.get(i).getType());
-//                return temp;
-//            }
-//            i--;
-//            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
-//        }
-        // take the type from any scope (it may not be local
+        // take the type from any scope (it may not be local)
         if (this.variableMap.containsKey(name)) {
             System.out.printf("Name %s found\n", name);
             int index = this.variableMap.get(name);

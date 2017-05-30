@@ -1,7 +1,6 @@
 package compiler;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 /* General Scheme:
 * We can define the "translation" of each AST's node to IR as soon as we have code for it's children.
@@ -11,7 +10,7 @@ import java.util.Stack;
 public class IntermediateCode {
     /* we are working with quads */
     public static class Quad {
-        private String label;
+        private Integer label;
         private String op;
         private String x;
         private String y;
@@ -21,7 +20,7 @@ public class IntermediateCode {
         public Quad() {}
 
         /* Quad's class constructors */
-        public Quad(String label, String op, String x, String y, String z) {
+        public Quad(Integer label, String op, String x, String y, String z) {
             this.label = label;
             this.op = op;
             this.x = x;
@@ -47,12 +46,12 @@ public class IntermediateCode {
         }
 
         /* Quad's class setters and getters*/
-        public void setLabel(String label) { this.label = label; }
+        public void setLabel(Integer label) { this.label = label; }
         public void setOp(String op) { this.op = op; }
         public void setX(String x) { this.x = x; }
         public void setY(String y) { this.y = y; }
         public void setZ(String z) { this.z = z; }
-        public String getLabel() { return this.label; }
+        public Integer getLabel() { return this.label; }
         public String getOp() { return this.op; }
         public String getX() { return this.x; }
         public String getY() { return this.y; }
@@ -67,8 +66,8 @@ public class IntermediateCode {
     /* we will use a low-level intermediate code (intermediate representation - IR) */
     private ArrayList<Quad> intermediateCode;
     /* we use a Java Array-List to store our used label names */
-    private ArrayList<String> usedLabelNames;
-    private Integer numOfLabel;
+    private ArrayList<Integer> usedLabels;
+    private Integer numOfLabels;
     /* we use a Java Array-List to store our used temporary names */
     private ArrayList<String> usedTempNames;
     private Integer numOfTemp;
@@ -82,8 +81,8 @@ public class IntermediateCode {
     /* IntermediateCode's class constructor */
     public IntermediateCode() {
         this.intermediateCode = new ArrayList<Quad>();
-        this.usedLabelNames = new ArrayList<String>();
-        this.numOfLabel = 0;
+        this.usedLabels = new ArrayList<Integer>();
+        this.numOfLabels = 0;
         this.usedTempNames = new ArrayList<String>();
         this.numOfTemp = 0;
         this.NEXT = new ArrayList<Integer>();
@@ -101,14 +100,17 @@ public class IntermediateCode {
     /* HELPER FUNCTIONS */
     /* returns the number of the next quad */
     public int NEXTQUAD() {
-        return 0;
+        int index = this.numOfLabels+1;  // our next quad is going to be the very next label that we are going to produce
+        return this.intermediateCode.get(index).getLabel();
     }
 
     /* generates the next quad op,x,y,z */
     public Quad GENQUAD(String op, String x, String y, String z) {
-        this.numOfLabel++;
-        this.usedLabelNames.add(this.numOfLabel.toString());
-        return new Quad(this.numOfLabel.toString(),op, x, y, z);
+        this.numOfLabels++;
+        this.usedLabels.add(this.numOfLabels);
+        Quad temp = new Quad(this.numOfLabels, op, x, y, z);
+        this.intermediateCode.add(temp);
+        return temp;
     }
 
     /* creates a new temporary value of Type t */
@@ -121,28 +123,38 @@ public class IntermediateCode {
     }
 
     /* creates an empty list of quads' labels */
-    public ArrayList<Quad> EMPTYLIST() {
-        return new ArrayList<Quad>();
-    }
+    public ArrayList<Integer> EMPTYLIST() { return new ArrayList<Integer>(); }
 
     /* creates a list of quads' labels that contains just one element x */
-    public ArrayList<Quad> MAKELIST(Quad q) {
-        ArrayList<Quad> temp = new ArrayList<Quad>();
-        temp.add(q);
+    public ArrayList<Integer> MAKELIST(Integer x) {
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        temp.add(x);
         return temp;
     }
 
     /* merges the lists of quads' labels l1,...,ln */
-    public ArrayList<Quad> MERGE(ArrayList<ArrayList<Quad>> l) {
-        ArrayList<Quad> temp = new ArrayList<Quad>();
+    public ArrayList<Integer> MERGE(ArrayList<ArrayList<Integer>> l) {
+        ArrayList<Integer> temp = new ArrayList<Integer>();
         for (int i = 0; i < l.size(); i++)
             temp.addAll(l.get(i));
         return temp;
     }
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
-    public void BACKPATCH(String l, String z) {
-
+    public void BACKPATCH(ArrayList<Integer> l, Integer z) {
+        for (int i = 0; i < l.size(); i++) {
+            for (int j = 0; j < this.intermediateCode.size(); j++) {
+                this.intermediateCode.get(j).setZ(z.toString());
+            }
+        }
     }
+
+    /* NEXT, TRUE, FALSE manipulation functions */
+    public void addNEXT(Integer label) { this.NEXT.add(label); }
+    public void addTRUE(Integer label) { this.TRUE.add(label);}
+    public void addFALSE(Integer label) { this.FALSE.add(label); }
+    public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
+    public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
+    public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
 
 }
