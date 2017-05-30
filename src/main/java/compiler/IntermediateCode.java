@@ -1,6 +1,7 @@
 package compiler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /* General Scheme:
 * We can define the "translation" of each AST's node to IR as soon as we have code for it's children.
@@ -77,6 +78,10 @@ public class IntermediateCode {
     private ArrayList<Integer> TRUE;
     /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is True */
     private ArrayList<Integer> FALSE;
+    /* a Java Hash-Map that for each temporary storage name maps it's type */
+    private HashMap<String, STRecord.Type> typeMap;
+    /* temporarily hold an l-value or an r-value will be stored */
+    private String PLACE;
 
     /* IntermediateCode's class constructor */
     public IntermediateCode() {
@@ -88,6 +93,8 @@ public class IntermediateCode {
         this.NEXT = new ArrayList<Integer>();
         this.TRUE = new ArrayList<Integer>();
         this.FALSE = new ArrayList<Integer>();
+        this.typeMap = new HashMap<String, STRecord.Type>();
+        this.PLACE = null;
     }
 
     /* our Intermediate Code / Intermediate Representation printing function */
@@ -119,6 +126,8 @@ public class IntermediateCode {
         // our new temp name
         String newTemp = "$"+numOfTemp;
         this.usedTempNames.add(newTemp);
+        // map temp's Type
+        this.typeMap.put(newTemp, t);
         return newTemp;
     }
 
@@ -153,6 +162,8 @@ public class IntermediateCode {
     public void addNEXT(Integer label) { this.NEXT.add(label); }
     public void addTRUE(Integer label) { this.TRUE.add(label);}
     public void addFALSE(Integer label) { this.FALSE.add(label); }
+    public void setPLACE(String temp) { this.PLACE = temp; }
+    public String getPLACE() { return this.PLACE; }
     public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
     public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
     public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
