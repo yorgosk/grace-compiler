@@ -562,6 +562,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outACondCond(ACondCond node) {}
     @Override
+    public void inANotCond(ANotCond node) {}
+    @Override
+    public void outANotCond(ANotCond node) {}
+    @Override
     public void inAAndCond(AAndCond node) {}
     @Override
     public void outAAndCond(AAndCond node) {}
@@ -586,5 +590,124 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            System.exit(-1);
 //        }
 //    }
+    @Override
+    public void inAEqualCond(AEqualCond node) {}
+    @Override
+    public void outAEqualCond(AEqualCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAHashtagCond(AHashtagCond node) {}
+    @Override
+    public void outAHashtagCond(AHashtagCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAUnequalCond(AUnequalCond node) {}
+    @Override
+    public void outAUnequalCond(AUnequalCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inALesserCond(ALesserCond node) {}
+    @Override
+    public void outALesserCond(ALesserCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAGreaterCond(AGreaterCond node) {}
+    @Override
+    public void outAGreaterCond(AGreaterCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inALesseqCond(ALesseqCond node) {}
+    @Override
+    public void outALesseqCond(ALesseqCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
+    @Override
+    public void inAGreateqCond(AGreateqCond node) {}
+    @Override
+    public void outAGreateqCond(AGreateqCond node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        temp1.printType();
+        temp2.printType();
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+    }
 
 }
