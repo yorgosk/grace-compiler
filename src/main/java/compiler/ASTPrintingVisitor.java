@@ -392,6 +392,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String str = node.getId().toString();
+        this.tempOperandsStack.push(str);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString().trim().replaceAll("\\s+", " ")); }
@@ -401,6 +406,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         temp.setKind("string");
         this.tempTypeStack.push(temp);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        String str = node.getStringLiteral().toString();
+        this.tempOperandsStack.push(str);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
@@ -425,6 +435,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         temp.setKind("int");
         this.tempTypeStack.push(temp);
         this.toPopFromTempTypeStack++;
+
+        // producting IR
+        String str = node.getIntConst().toString();
+        this.tempOperandsStack.push(str);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inACharConstExpr(ACharConstExpr node) {}
@@ -434,6 +449,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         temp.setKind("char");
         this.tempTypeStack.push(temp);
         this.toPopFromTempTypeStack++;
+
+        //producing IR
+        String str = node.getCharConst().toString();
+        this.tempOperandsStack.push(str);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inALValueExpr(ALValueExpr node) {}

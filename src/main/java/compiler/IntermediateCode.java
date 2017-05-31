@@ -80,7 +80,7 @@ public class IntermediateCode {
     private ArrayList<Integer> FALSE;
     /* a Java Hash-Map that for each temporary storage or variable/l-value name maps it's type */
     private HashMap<String, STRecord.Type> typeMap;
-    /* a Java Hash-Map that maps the temporary storage where a quad is stored with a specific label result is stored */
+    /* a Java Hash-Map that maps the temporary storage where a quad's, of a specific label, result is stored */
     private HashMap<Integer, String> PLACE;
 
     /* IntermediateCode's class constructor */
