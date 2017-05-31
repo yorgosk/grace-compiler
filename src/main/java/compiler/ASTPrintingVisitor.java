@@ -351,7 +351,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++; }
+    public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
+	/*STRecord temp = new STRecord();
+        temp.setName(node.getId().toString().trim().replaceAll("\\s+", " "));
+        if(!this.symbolTable.inLibrary(node.getId().toString().trim().replaceAll("\\s+", " ")) || this.symbolTable.searchFunction(temp)!=1){    //if added by yiannis2
+            System.err.printf("%s has not been declared\n",node.getId().toString().trim().replaceAll("\\s+", " "));
+            System.exit(-1);
+        }*/
+    }
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
 
