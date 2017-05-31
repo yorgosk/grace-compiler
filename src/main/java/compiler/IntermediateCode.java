@@ -80,8 +80,8 @@ public class IntermediateCode {
     private ArrayList<Integer> FALSE;
     /* a Java Hash-Map that for each temporary storage name maps it's type */
     private HashMap<String, STRecord.Type> typeMap;
-    /* temporarily hold an l-value or an r-value will be stored */
-    private String PLACE;
+    /* a Java Hash-Map that maps the temporary storage where a quad's with a specific label result is stored */
+    private HashMap<Integer, String> PLACE;
 
     /* IntermediateCode's class constructor */
     public IntermediateCode() {
@@ -94,7 +94,7 @@ public class IntermediateCode {
         this.TRUE = new ArrayList<Integer>();
         this.FALSE = new ArrayList<Integer>();
         this.typeMap = new HashMap<String, STRecord.Type>();
-        this.PLACE = null;
+        this.PLACE = new HashMap<Integer, String>();
     }
 
     /* our Intermediate Code / Intermediate Representation printing function */
@@ -124,7 +124,7 @@ public class IntermediateCode {
     public String NEWTEMP(STRecord.Type t) {
         this.numOfTemp++;
         // our new temp name
-        String newTemp = "$"+numOfTemp;
+        String newTemp = "$t"+numOfTemp;
         this.usedTempNames.add(newTemp);
         // map temp's Type
         this.typeMap.put(newTemp, t);
@@ -162,10 +162,11 @@ public class IntermediateCode {
     public void addNEXT(Integer label) { this.NEXT.add(label); }
     public void addTRUE(Integer label) { this.TRUE.add(label);}
     public void addFALSE(Integer label) { this.FALSE.add(label); }
-    public void setPLACE(String temp) { this.PLACE = temp; }
-    public String getPLACE() { return this.PLACE; }
+    public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
+    public String getPLACE(Integer key) { return this.PLACE.get(key); }
     public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
     public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
     public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
+    public void resetPLACE() { this.PLACE = new HashMap<Integer, String>(); }
 
 }
