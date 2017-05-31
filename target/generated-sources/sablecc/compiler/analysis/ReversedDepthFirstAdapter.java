@@ -991,6 +991,73 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAModExpr(node);
     }
 
+    public void inASignedExpr(ASignedExpr node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASignedExpr(ASignedExpr node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASignedExpr(ASignedExpr node)
+    {
+        inASignedExpr(node);
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        if(node.getSign() != null)
+        {
+            node.getSign().apply(this);
+        }
+        outASignedExpr(node);
+    }
+
+    public void inAPlusSignSign(APlusSignSign node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAPlusSignSign(APlusSignSign node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAPlusSignSign(APlusSignSign node)
+    {
+        inAPlusSignSign(node);
+        if(node.getPlus() != null)
+        {
+            node.getPlus().apply(this);
+        }
+        outAPlusSignSign(node);
+    }
+
+    public void inAMinusSignSign(AMinusSignSign node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMinusSignSign(AMinusSignSign node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMinusSignSign(AMinusSignSign node)
+    {
+        inAMinusSignSign(node);
+        if(node.getMinus() != null)
+        {
+            node.getMinus().apply(this);
+        }
+        outAMinusSignSign(node);
+    }
+
     public void inACondCond(ACondCond node)
     {
         defaultIn(node);
@@ -1010,6 +1077,31 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getCond().apply(this);
         }
         outACondCond(node);
+    }
+
+    public void inANotCond(ANotCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANotCond(ANotCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANotCond(ANotCond node)
+    {
+        inANotCond(node);
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+        if(node.getNot() != null)
+        {
+            node.getNot().apply(this);
+        }
+        outANotCond(node);
     }
 
     public void inAAndCond(AAndCond node)
@@ -1062,20 +1154,20 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAOrCond(node);
     }
 
-    public void inANumopCond(ANumopCond node)
+    public void inAEqualCond(AEqualCond node)
     {
         defaultIn(node);
     }
 
-    public void outANumopCond(ANumopCond node)
+    public void outAEqualCond(AEqualCond node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseANumopCond(ANumopCond node)
+    public void caseAEqualCond(AEqualCond node)
     {
-        inANumopCond(node);
+        inAEqualCond(node);
         if(node.getRight() != null)
         {
             node.getRight().apply(this);
@@ -1084,6 +1176,156 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getLeft().apply(this);
         }
-        outANumopCond(node);
+        outAEqualCond(node);
+    }
+
+    public void inAHashtagCond(AHashtagCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAHashtagCond(AHashtagCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAHashtagCond(AHashtagCond node)
+    {
+        inAHashtagCond(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAHashtagCond(node);
+    }
+
+    public void inAUnequalCond(AUnequalCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnequalCond(AUnequalCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnequalCond(AUnequalCond node)
+    {
+        inAUnequalCond(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAUnequalCond(node);
+    }
+
+    public void inALesserCond(ALesserCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outALesserCond(ALesserCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseALesserCond(ALesserCond node)
+    {
+        inALesserCond(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outALesserCond(node);
+    }
+
+    public void inAGreaterCond(AGreaterCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAGreaterCond(AGreaterCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAGreaterCond(AGreaterCond node)
+    {
+        inAGreaterCond(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAGreaterCond(node);
+    }
+
+    public void inALesseqCond(ALesseqCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outALesseqCond(ALesseqCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseALesseqCond(ALesseqCond node)
+    {
+        inALesseqCond(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outALesseqCond(node);
+    }
+
+    public void inAGreateqCond(AGreateqCond node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAGreateqCond(AGreateqCond node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAGreateqCond(AGreateqCond node)
+    {
+        inAGreateqCond(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        outAGreateqCond(node);
     }
 }

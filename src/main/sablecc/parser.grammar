@@ -195,7 +195,7 @@ Productions
     not_cond {-> cond} =
         {not_not_cond} not not_cond {-> not_cond.cond} |
         {not_termcond} not termcond {-> termcond.cond} ;
-    termcond {-> cond} =
+/*    termcond {-> cond} =
         {cond_in_pars} cond_in_pars {-> cond_in_pars.cond} |
         {expr_numop_expr} expr numop_expr {-> New cond.numop(expr, numop_expr.expr)} ;
     cond_in_pars {-> cond} = l_par cond r_par {-> cond} ;
@@ -208,6 +208,17 @@ Productions
         {greater} greater {-> } |
         {lesseq} lesseq {-> } |
         {greateq} greateq {-> } ;
+*/
+    termcond {-> cond} =
+        {cond_in_pars} cond_in_pars {-> cond_in_pars.cond} |
+        {expr_equal_expr} [left]:expr equal [right]:expr {-> New cond.equal(left, right)} |
+        {expr_hashtag_expr} [left]:expr hashtag [right]:expr {-> New cond.hashtag(left, right)} |
+        {expr_unequal_expr} [left]:expr unequal [right]:expr {-> New cond.unequal(left, right)} |
+        {expr_lesser_expr} [left]:expr lesser [right]:expr {-> New cond.lesser(left, right)} |
+        {expr_greater_expr} [left]:expr greater [right]:expr {-> New cond.greater(left, right)} |
+        {expr_lesseq_expr} [left]:expr lesseq [right]:expr {-> New cond.lesseq(left, right)} |
+        {expr_greateq_expr} [left]:expr greateq [right]:expr {-> New cond.greateq(left, right)} ;
+    cond_in_pars {-> cond} = l_par cond r_par {-> cond} ;
 
 Abstract Syntax Tree
 
@@ -270,10 +281,21 @@ Abstract Syntax Tree
         {mult} [left]:expr [right]:expr |
         {div} [left]:expr [right]:expr |
         {division} [left]:expr [right]:expr |
-        {mod} [left]:expr [right]:expr ;
+        {mod} [left]:expr [right]:expr |
+        {signed} sign expr ;
+    sign =
+        {plus_sign} plus |
+        {minus_sign} minus ;
 
     cond =
         {cond} cond |
+        {not} not cond |
         {and} [left]:cond [right]:cond |
         {or} [left]:cond [right]:cond |
-        {numop} [left]:expr [right]:expr ;
+        {equal} [left]:expr [right]:expr |
+        {hashtag} [left]:expr [right]:expr |
+        {unequal} [left]:expr [right]:expr |
+        {lesser} [left]:expr [right]:expr |
+        {greater} [left]:expr [right]:expr |
+        {lesseq} [left]:expr [right]:expr |
+        {greateq} [left]:expr [right]:expr ;

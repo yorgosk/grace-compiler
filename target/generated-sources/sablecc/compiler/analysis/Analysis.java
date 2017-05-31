@@ -51,10 +51,20 @@ public interface Analysis extends Switch
     void caseADivExpr(ADivExpr node);
     void caseADivisionExpr(ADivisionExpr node);
     void caseAModExpr(AModExpr node);
+    void caseASignedExpr(ASignedExpr node);
+    void caseAPlusSignSign(APlusSignSign node);
+    void caseAMinusSignSign(AMinusSignSign node);
     void caseACondCond(ACondCond node);
+    void caseANotCond(ANotCond node);
     void caseAAndCond(AAndCond node);
     void caseAOrCond(AOrCond node);
-    void caseANumopCond(ANumopCond node);
+    void caseAEqualCond(AEqualCond node);
+    void caseAHashtagCond(AHashtagCond node);
+    void caseAUnequalCond(AUnequalCond node);
+    void caseALesserCond(ALesserCond node);
+    void caseAGreaterCond(AGreaterCond node);
+    void caseALesseqCond(ALesseqCond node);
+    void caseAGreateqCond(AGreateqCond node);
 
     void caseTAnd(TAnd node);
     void caseTChar(TChar node);

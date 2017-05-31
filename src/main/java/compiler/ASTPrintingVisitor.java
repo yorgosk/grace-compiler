@@ -569,22 +569,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAOrCond(AOrCond node) {}
     @Override
     public void outAOrCond(AOrCond node) {}
-    @Override
-    public void inANumopCond(ANumopCond node) {}
-    @Override
-    public void outANumopCond(ANumopCond node) {
-        STRecord.Type temp1 = this.tempTypeStack.pop();
-        this.toPopFromTempTypeStack--;
-        STRecord.Type temp2 = this.tempTypeStack.pop();
-        this.toPopFromTempTypeStack--;
-        temp1.printType();
-        temp2.printType();
-        if (!temp1.isSame(temp2)) {
-            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
-                    temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
-        }
-    }
+//    @Override
+//    public void inANumopCond(ANumopCond node) {}
+//    @Override
+//    public void outANumopCond(ANumopCond node) {
+//        STRecord.Type temp1 = this.tempTypeStack.pop();
+//        this.toPopFromTempTypeStack--;
+//        STRecord.Type temp2 = this.tempTypeStack.pop();
+//        this.toPopFromTempTypeStack--;
+//        temp1.printType();
+//        temp2.printType();
+//        if (!temp1.isSame(temp2)) {
+//            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
+//                    temp1.getKind(), temp2.getKind());
+//            // exit with "failure" code
+//            System.exit(-1);
+//        }
+//    }
 
 }

@@ -264,7 +264,27 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseASignedExpr(ASignedExpr node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAPlusSignSign(APlusSignSign node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMinusSignSign(AMinusSignSign node)
+    {
+        defaultCase(node);
+    }
+
     public void caseACondCond(ACondCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANotCond(ANotCond node)
     {
         defaultCase(node);
     }
@@ -279,7 +299,37 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseANumopCond(ANumopCond node)
+    public void caseAEqualCond(AEqualCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAHashtagCond(AHashtagCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAUnequalCond(AUnequalCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseALesserCond(ALesserCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAGreaterCond(AGreaterCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseALesseqCond(ALesseqCond node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAGreateqCond(AGreateqCond node)
     {
         defaultCase(node);
     }
