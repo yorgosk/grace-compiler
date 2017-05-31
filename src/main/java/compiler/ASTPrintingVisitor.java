@@ -25,6 +25,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // we keep our Intermediate Representation, to be used for machine-code generation in the future
     private IntermediateCode ir;
+    // a Java Stack from where quad operands are temporarily stored and retrieved
+    private Stack<String> tempOperandsStack;
+    private Integer toPopFromTempOperandsStack;
 
     // IN A START------------------------------------------------------------
     @Override
@@ -39,6 +42,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.hasMain = false;
         // create the Intermediate Representation storing structures
         this.ir = new IntermediateCode();
+        this.tempOperandsStack = new Stack<String>();
+        this.toPopFromTempOperandsStack = 0;
     }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
@@ -56,11 +61,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.isDecl = false;
     }
     @Override
-    public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit(); }	//modified by yiannis
+    public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit(); }
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
-    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++; }
+    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
+        // producing IR
+        if (!this.isDecl) this.ir.GENQUAD("unit", node.getId().toString().trim().replaceAll("\\s+", " "), "-", "-");
+    }
     @Override
     public void outAHeader(AHeader node) { indent--;
         // keep the name of the function
@@ -120,6 +128,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             if (result == 0) {
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.setScopeType(tempRec.getType());
+
+                // producing IR
+                this.ir.GENQUAD("endu", node.getId().toString().trim().replaceAll("\\s+", " "), "-", "-");
             }
             // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
             else if (result == 1) {
@@ -391,7 +402,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // take the <expr>'s type from the <l-value>[<expr>] structure
         STRecord.Type tempExpr = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!tempExpr.getKind().equals("int")) {	// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
+        if (!tempExpr.getKind().equals("int")) {
             System.err.printf("Error: cannot navigate in l-value using a \"%s\" type\n", tempExpr.getKind());
             // exit with "failure" code
             System.exit(-1);
@@ -404,7 +415,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAIntConstExpr(AIntConstExpr node) {
         STRecord.Type temp = new STRecord.Type();
-        temp.setKind("int");			// comment added by yiannis : to int prepei na exei ena space meta gia na vgei iso me to kind (etsi apo8ikeuetai sto kind)
+        temp.setKind("int");
         this.tempTypeStack.push(temp);
         this.toPopFromTempTypeStack++;
     }
@@ -459,6 +470,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("+", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAMinusExpr(AMinusExpr node) {}
@@ -478,6 +499,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("-", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAMultExpr(AMultExpr node) {}
@@ -497,6 +528,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("*", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inADivExpr(ADivExpr node) {}
@@ -516,6 +557,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("div", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inADivisionExpr(ADivisionExpr node) {}
@@ -535,6 +586,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("/", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAModExpr(AModExpr node) {}
@@ -554,6 +615,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("mod", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
 
     // IN AND OUT A CONDITION AND ASSISTANT-STATEMENTS------------------------------------------------------------
@@ -564,32 +635,43 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void inANotCond(ANotCond node) {}
     @Override
-    public void outANotCond(ANotCond node) {}
+    public void outANotCond(ANotCond node) {
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
+        this.ir.GENQUAD("not", t1, "-", t2);
+        this.tempOperandsStack.push(t2);
+        this.toPopFromTempOperandsStack++;
+    }
     @Override
     public void inAAndCond(AAndCond node) {}
     @Override
-    public void outAAndCond(AAndCond node) {}
+    public void outAAndCond(AAndCond node) {
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
+        this.ir.GENQUAD("and", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
+    }
     @Override
     public void inAOrCond(AOrCond node) {}
     @Override
-    public void outAOrCond(AOrCond node) {}
-//    @Override
-//    public void inANumopCond(ANumopCond node) {}
-//    @Override
-//    public void outANumopCond(ANumopCond node) {
-//        STRecord.Type temp1 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        STRecord.Type temp2 = this.tempTypeStack.pop();
-//        this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
-//        if (!temp1.isSame(temp2)) {
-//            System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
-//                    temp1.getKind(), temp2.getKind());
-//            // exit with "failure" code
-//            System.exit(-1);
-//        }
-//    }
+    public void outAOrCond(AOrCond node) {
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
+        this.ir.GENQUAD("or", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
+    }
     @Override
     public void inAEqualCond(AEqualCond node) {}
     @Override
@@ -606,6 +688,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("=", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAHashtagCond(AHashtagCond node) {}
@@ -623,6 +715,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("#", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAUnequalCond(AUnequalCond node) {}
@@ -640,6 +742,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("<>", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inALesserCond(ALesserCond node) {}
@@ -657,6 +769,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("<", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAGreaterCond(AGreaterCond node) {}
@@ -674,6 +796,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD(">", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inALesseqCond(ALesseqCond node) {}
@@ -691,6 +823,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD("<=", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
     @Override
     public void inAGreateqCond(AGreateqCond node) {}
@@ -708,6 +850,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        String t1 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t2 = this.tempOperandsStack.pop();
+        this.toPopFromTempOperandsStack--;
+        String t3 = this.ir.NEWTEMP(temp1);
+        this.ir.GENQUAD(">=", t1, t2, t3);
+        this.tempOperandsStack.push(t3);
+        this.toPopFromTempOperandsStack++;
     }
 
 }
