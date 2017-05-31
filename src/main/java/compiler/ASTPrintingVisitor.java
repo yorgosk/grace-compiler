@@ -484,7 +484,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("+", t1, t2, t3);
+        this.ir.GENQUAD("+", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -513,7 +513,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("-", t1, t2, t3);
+        this.ir.GENQUAD("-", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -542,7 +542,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("*", t1, t2, t3);
+        this.ir.GENQUAD("*", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -571,7 +571,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("div", t1, t2, t3);
+        this.ir.GENQUAD("div", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -600,7 +600,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("/", t1, t2, t3);
+        this.ir.GENQUAD("/", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -629,7 +629,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("mod", t1, t2, t3);
+        this.ir.GENQUAD("mod", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -661,7 +661,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
-        this.ir.GENQUAD("and", t1, t2, t3);
+        this.ir.GENQUAD("and", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -675,7 +675,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
-        this.ir.GENQUAD("or", t1, t2, t3);
+        this.ir.GENQUAD("or", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -702,7 +702,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("=", t1, t2, t3);
+        this.ir.GENQUAD("=", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -729,7 +729,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("#", t1, t2, t3);
+        this.ir.GENQUAD("#", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -756,7 +756,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("<>", t1, t2, t3);
+        this.ir.GENQUAD("<>", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -783,7 +783,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("<", t1, t2, t3);
+        this.ir.GENQUAD("<", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -810,7 +810,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD(">", t1, t2, t3);
+        this.ir.GENQUAD(">", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -837,7 +837,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD("<=", t1, t2, t3);
+        this.ir.GENQUAD("<=", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
@@ -864,7 +864,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t3 = this.ir.NEWTEMP(temp1);
-        this.ir.GENQUAD(">=", t1, t2, t3);
+        this.ir.GENQUAD(">=", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
     }
