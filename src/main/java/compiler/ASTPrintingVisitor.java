@@ -360,7 +360,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }*/
     }
     @Override
-    public void outAFuncCall(AFuncCall node) { indent--; }
+    public void outAFuncCall(AFuncCall node) { indent--;
+        // producing IR
+        this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
+    }
 
     // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
@@ -394,7 +397,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String str = node.getId().toString();
+        String str = node.getId().toString().trim().replaceAll("\\s+", " ");
         this.tempOperandsStack.push(str);
         this.toPopFromTempOperandsStack++;
     }
@@ -437,7 +440,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producting IR
-        String str = node.getIntConst().toString();
+        String str = node.getIntConst().toString().trim().replaceAll("\\s+", " ");
         this.tempOperandsStack.push(str);
         this.toPopFromTempOperandsStack++;
     }
@@ -451,7 +454,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         //producing IR
-        String str = node.getCharConst().toString();
+        String str = node.getCharConst().toString().trim().replaceAll("\\s+", " ");
         this.tempOperandsStack.push(str);
         this.toPopFromTempOperandsStack++;
     }
@@ -652,6 +655,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("mod", t2, t1, t3);
         this.tempOperandsStack.push(t3);
         this.toPopFromTempOperandsStack++;
+    }
+    @Override
+    public void inASignedExpr(ASignedExpr node) {}
+    @Override
+    public void outASignedExpr(ASignedExpr node) {
+        // producing IR
+        // we mostly care about the minus "-" sign case
+        if(node.getSign().toString().trim().replaceAll("\\s+", " ").equals("-")) {
+            String t1 = this.tempOperandsStack.pop();
+            this.toPopFromTempOperandsStack--;
+            STRecord.Type temp1 = this.tempTypeStack.peek();
+            String t2 = this.ir.NEWTEMP(temp1);
+            this.ir.GENQUAD("-", "0", t1, t2);
+            this.tempOperandsStack.push(t2);
+            this.toPopFromTempOperandsStack++;
+        }
     }
 
     // IN AND OUT A CONDITION AND ASSISTANT-STATEMENTS------------------------------------------------------------

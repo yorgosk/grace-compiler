@@ -91,12 +91,19 @@ public class STRecord {
 
             return true;
         }
+
         // add a parameter in the beginning of our Type's parameter list
         public void addParameter(Type parameter) {
             if (this.parameters == null) {
                 this.parameters = new ArrayList<Type>();
             }
             this.parameters.add(0, parameter);
+        }
+
+        // get the type of a function's specific parameter
+        public Type fetchParamType(int number) {
+            if(!this.isFunction || number < this.parameters.size()) return null;
+            return this.parameters.get(number);
         }
 
         /* Type's class printing function */

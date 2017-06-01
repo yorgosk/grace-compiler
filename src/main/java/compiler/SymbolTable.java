@@ -176,6 +176,20 @@ public class SymbolTable {
         return null;
     }
 
+    /* paramType(name): search for a function's specific parameter in the current scope and then return it's Type
+     * -- fetchType(): search in the array, same as the lookup(), it only returns Type */
+    public STRecord.Type paramType(String name, int number){
+        // take the type from any scope (it may not be local)
+        if (this.variableMap.containsKey(name)) {
+            System.out.printf("Name %s found\n", name);
+            int index = this.variableMap.get(name);
+            STRecord.Type temp = new STRecord.Type(this.symbolTable.get(index).getType());
+            STRecord.Type tempParam = temp.fetchParamType(number);
+            return tempParam;
+        }
+        return null;
+    }
+
     /* print our structures
     * -- for debugging */
     public void printSTStructures() {
