@@ -4,7 +4,6 @@
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -58,8 +57,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="384" column="52" lean-forward="true" selection-start-line="384" selection-start-column="52" selection-end-line="384" selection-end-column="52" />
+            <state relative-caret-position="330">
+              <caret line="394" column="9" lean-forward="false" selection-start-line="394" selection-start-column="9" selection-end-line="394" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -679,14 +678,7 @@
       <workItem from="1496209728744" duration="5536000" />
       <workItem from="1496262519470" duration="1810000" />
       <workItem from="1496265148196" duration="23000" />
-      <workItem from="1496285272683" duration="5737000" />
-    </task>
-    <task id="LOCAL-00008" summary="worked on Symbol-Table's enter(), insert() &amp; lookup() methods... fixed a run-time error">
-      <created>1495049503979</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1495049503979</updated>
+      <workItem from="1496285272683" duration="6182000" />
     </task>
     <task id="LOCAL-00009" summary="worked on Symbol-Table's methods">
       <created>1495053212587</created>
@@ -1024,11 +1016,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496291071666</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="continued with IR... various changes in more than one file, mainly functions were added">
+      <created>1496292513401</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1496292513401</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112395000" />
+    <option name="totallyTimeSpent" value="112840000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1370,8 +1369,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="384" column="52" lean-forward="true" selection-start-line="384" selection-start-column="52" selection-end-line="384" selection-end-column="52" />
+        <state relative-caret-position="330">
+          <caret line="394" column="9" lean-forward="false" selection-start-line="394" selection-start-column="9" selection-end-line="394" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

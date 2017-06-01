@@ -362,10 +362,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }*/
     }
     @Override
-    public void outAFuncCall(AFuncCall node) { indent--;
-        // producing IR
-        this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
-    }
+    public void outAFuncCall(AFuncCall node) { indent--; }
     @Override
     public void caseAFuncCall(AFuncCall node)
     {
@@ -388,6 +385,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 n++;
             }
         }
+
+        // producing IR
+        STRecord.Type funcType = this.symbolTable.fetchType(node.getId().toString());
+        if (!funcType.getKind().equals("nothing")) {
+            String w = this.ir.NEWTEMP(funcType);
+            this.ir.GENQUAD("par", "RET", w, "-");
+            this.ir.addPLACE("call", w);
+        }
+
+        this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
+
         outAFuncCall(node);
     }
 
