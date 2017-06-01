@@ -80,8 +80,8 @@ public class IntermediateCode {
     private ArrayList<Integer> FALSE;
     /* a Java Hash-Map that for each temporary storage or variable/l-value name maps it's type */
     private HashMap<String, STRecord.Type> typeMap;
-    /* a Java Hash-Map that maps the temporary storage where a specific label's l-values or r-values value is stored */
-    private HashMap<Integer, String> PLACE;
+    /* a Java Hash-Map that maps the temporary storage where a, l-value's or r-value's value is stored */
+    private HashMap<String, String> PLACE;
 
     /* IntermediateCode's class constructor */
     public IntermediateCode() {
@@ -94,7 +94,7 @@ public class IntermediateCode {
         this.TRUE = new ArrayList<Integer>();
         this.FALSE = new ArrayList<Integer>();
         this.typeMap = new HashMap<String, STRecord.Type>();
-        this.PLACE = new HashMap<Integer, String>();
+        this.PLACE = new HashMap<String, String>();
     }
 
     /* our Intermediate Code / Intermediate Representation printing function */
@@ -117,7 +117,6 @@ public class IntermediateCode {
         this.usedLabels.add(this.numOfLabels);
         Quad temp = new Quad(this.numOfLabels, op, x, y, z);
         this.intermediateCode.add(temp);
-        this.PLACE.put(this.numOfLabels, z);
     }
 
     /* creates a new temporary value of Type t */
@@ -173,13 +172,13 @@ public class IntermediateCode {
     public void addTRUE(Integer label) { this.TRUE.add(label);}
     public void addFALSE(Integer label) { this.FALSE.add(label); }
     public void addType(String key, STRecord.Type value) { this.typeMap.put(key, value); }
-    public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
+    public void addPLACE(String key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }
-    public String getPLACE(Integer key) { return this.PLACE.get(key); }
+    public String getPLACE(String key) { return this.PLACE.get(key); }
     public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
     public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
     public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
     public void resetType() { this.typeMap = new HashMap<String, STRecord.Type>(); }
-    public void resetPLACE() { this.PLACE = new HashMap<Integer, String>(); }
+    public void resetPLACE() { this.PLACE = new HashMap<String, String>(); }
 
 }

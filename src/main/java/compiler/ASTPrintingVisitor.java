@@ -370,6 +370,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void caseAFuncCall(AFuncCall node)
     {
         inAFuncCall(node);
+        int n = 1;
         if(node.getId() != null)
         {
             node.getId().apply(this);
@@ -381,6 +382,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 e.apply(this);
 
                 // producing IR
+                String t1 = tempOperandsStack.pop();
+                this.toPopFromTempOperandsStack--;
+                this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString(), n), "-");
+                n++;
             }
         }
         outAFuncCall(node);
@@ -419,7 +424,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producing IR
         String str = node.getId().toString().trim().replaceAll("\\s+", " ");
-        this.tempOperandsStack.push(str);
+        String t1 = this.ir.NEWTEMP(temp);
+        this.ir.GENQUAD(":=", "-", str, t1);
+        this.tempOperandsStack.push(t1);
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -433,7 +440,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producing IR
         String str = node.getStringLiteral().toString();
-        this.tempOperandsStack.push(str);
+        String t1 = this.ir.NEWTEMP(temp);
+        this.ir.GENQUAD(":=", "-", str, t1);
+        this.tempOperandsStack.push(t1);
         this.toPopFromTempOperandsStack++;
     }
     @Override
