@@ -22,6 +22,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private Integer toPopFromTempTypeStack;
     private boolean isDecl;
     private boolean hasMain;
+    private boolean isFuncCall;
+    private  Integer numOfParam;
 
     // we keep our Intermediate Representation, to be used for machine-code generation in the future
     private IntermediateCode ir;
@@ -363,6 +365,25 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void outAFuncCall(AFuncCall node) { indent--;
         // producing IR
         this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
+    }
+    @Override
+    public void caseAFuncCall(AFuncCall node)
+    {
+        inAFuncCall(node);
+        if(node.getId() != null)
+        {
+            node.getId().apply(this);
+        }
+        {
+            List<PExpr> copy = new ArrayList<PExpr>(node.getExpr());
+            for(PExpr e : copy)
+            {
+                e.apply(this);
+
+                // producing IR
+            }
+        }
+        outAFuncCall(node);
     }
 
     // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
