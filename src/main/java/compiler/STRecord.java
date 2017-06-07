@@ -60,9 +60,9 @@ public class STRecord {
         // check if two types are equal -- general case
         public boolean isSame(Type other) {
             if (!this.kind.equals(other.kind)) return false;		//modified by yiannis
-            if (this.isArray != other.isArray) return false;
-            if (this.dimension != other.dimension) return false;
-            if (this.isFunction != other.isFunction) return false;
+            if (this.isArray != other.isArray) return false;            // but, in case it is assignment of function ret value, we don't want this check
+            if (this.dimension != other.dimension) return false;        // but, in case it is assignment of function ret value, we don't want this check
+            if (this.isFunction != other.isFunction) return false;      // but, in case it is assignment of function ret value, we don't want this check
 //            if (compareList(this.parameters, other.parameters)) return false;
             if ((this.parameters == null && other.parameters != null) || (this.parameters != null && other.parameters == null)) return false;
             if (this.parameters != null && other.parameters != null) {
@@ -71,6 +71,14 @@ public class STRecord {
                     if (!this.parameters.get(i).isSame(other.parameters.get(i))) return false;
                 }
             }
+
+            return true;
+        }
+        // check if two types are equal -- general case
+        public boolean isSame(Type other, String flag) {
+            if (!this.kind.equals(other.kind)) return false;		//modified by yiannis
+//            if (this.isArray != other.isArray) return false;
+//            if (this.dimension != other.dimension) return false;
 
             return true;
         }
@@ -102,8 +110,8 @@ public class STRecord {
 
         // get the type of a function's specific parameter
         public Type fetchParamType(int number) {
-            if(!this.isFunction || number < this.parameters.size()) return null;
-            return this.parameters.get(number);
+            if(!this.isFunction || number > this.parameters.size()) return null;
+            return this.parameters.get(number-1);
         }
 
         /* Type's class printing function */

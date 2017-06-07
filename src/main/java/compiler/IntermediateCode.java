@@ -159,6 +159,7 @@ public class IntermediateCode {
 
     /* takes the Type of a parameter and determines the mode under which it is passed */
     public String PARAMMODE(String id, Integer number) {
+        System.out.printf("PARAMMODE for %s - %d", id, number);
         STRecord.Type temp = this.typeMap.get(id);
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);

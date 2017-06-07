@@ -46,13 +46,18 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir = new IntermediateCode();
         this.tempOperandsStack = new Stack<String>();
         this.toPopFromTempOperandsStack = 0;
+        // let our IR know of the Types of our library's functions
+        ArrayList<STRecord> temp = this.symbolTable.getLibrary();
+        for(int i = 0; i < temp.size(); i++) {
+            this.ir.addType(temp.get(i).getName(), temp.get(i).getType());
+        }
     }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
     public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++; }
     @Override
-    public void outAProgram(AProgram node) { indent--; }
+    public void outAProgram(AProgram node) { indent--; System.out.printf("Intermediate Representation:\n"); this.ir.printIR(); }
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
@@ -114,6 +119,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             if (result == 0) {
                 tempRec.setDefined(false);
                 this.symbolTable.insert(tempRec);
+
+                // for IR production
+                this.ir.addType(tempRec.getName(), tempRec.getType());
             }
             // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
             else if (result == 1) {
@@ -130,6 +138,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             if (result == 0) {
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.setScopeType(tempRec.getType());
+
+                // for IR production
+                this.ir.addType(tempRec.getName(), tempRec.getType());
 
                 // producing IR
                 this.ir.GENQUAD("endu", node.getId().toString().trim().replaceAll("\\s+", " "), "-", "-");
@@ -283,7 +294,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //added by yiannis
              int result = this.symbolTable.searchFunction(temp);
              if (result == 0) {
-                this.symbolTable.insert(temp);
+                 this.symbolTable.insert(temp);
              }
              // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
              else if (result == 1) {
@@ -354,12 +365,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
-	/*STRecord temp = new STRecord();
-        temp.setName(node.getId().toString().trim().replaceAll("\\s+", " "));
-        if(!this.symbolTable.inLibrary(node.getId().toString().trim().replaceAll("\\s+", " ")) || this.symbolTable.searchFunction(temp)!=1){    //if added by yiannis2
-            System.err.printf("%s has not been declared\n",node.getId().toString().trim().replaceAll("\\s+", " "));
-            System.exit(-1);
-        }*/
+//	    STRecord temp = new STRecord();
+//        temp.setName(node.getId().toString().trim().replaceAll("\\s+", " "));
+//        if(!this.symbolTable.inLibrary(node.getId().toString().trim().replaceAll("\\s+", " ")) || this.symbolTable.searchFunction(temp)!=1) {    //if added by yiannis2
+//            System.err.printf("%s has not been declared\n",node.getId().toString().trim().replaceAll("\\s+", " "));
+//            System.exit(-1);
+//        }
     }
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
@@ -381,13 +392,21 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 // producing IR
                 String t1 = tempOperandsStack.pop();
                 this.toPopFromTempOperandsStack--;
-                this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString(), n), "-");
+//                System.out.printf("searching param %d of %s", n, node.getId().toString());
+                this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n), "-");
                 n++;
             }
         }
 
+        outAFuncCall(node);
+
         // producing IR
-        STRecord.Type funcType = this.symbolTable.fetchType(node.getId().toString());
+        STRecord.Type funcType = this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "));
+        System.out.printf("Type:\n");
+        assert (funcType != null);
+        this.tempTypeStack.push(funcType);
+        this.toPopFromTempTypeStack++;
+        funcType.printType();
         if (!funcType.getKind().equals("nothing")) {
             String w = this.ir.NEWTEMP(funcType);
             this.ir.GENQUAD("par", "RET", w, "-");
@@ -395,21 +414,19 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
-
-        outAFuncCall(node);
     }
 
     // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
 	//add by yiannis2
-    /*@Override
-    public void inAAssignmentStmt(AReturnStmt node) {}
     @Override
-    public void outAAssignmentStmt(AReturnStmt node) {
+    public void inAAssignmentStmt(AAssignmentStmt node) {}
+    @Override
+    public void outAAssignmentStmt(AAssignmentStmt node) {
         STRecord.Type temp1 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "assignment")) {
             System.err.printf("Error: In \"assignment\" statement one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -419,7 +436,21 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
-    }*/
+    }
+    @Override
+    public void caseAAssignmentStmt(AAssignmentStmt node)
+    {
+        inAAssignmentStmt(node);
+        if(node.getExpr() != null)
+        {
+            node.getExpr().apply(this);
+        }
+        if(node.getLValue() != null)
+        {
+            node.getLValue().apply(this);
+        }
+        outAAssignmentStmt(node);
+    }
 	//till here
     @Override
     public void inAReturnStmt(AReturnStmt node) {}
@@ -433,6 +464,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
     }
+    @Override
+    public void inAFunctionStmt(AFunctionStmt node) {}
+    @Override
+    public void outAFunctionStmt(AFunctionStmt node) {}
 
     // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
@@ -469,7 +504,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
-        String str = node.getStringLiteral().toString();
+        String str = node.getStringLiteral().toString().trim().replaceAll("\\s+", " ");
         String t1 = this.ir.NEWTEMP(temp);
         this.ir.GENQUAD(":=", "-", str, t1);
         this.tempOperandsStack.push(t1);

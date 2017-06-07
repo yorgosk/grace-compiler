@@ -56,9 +56,11 @@ public class SymbolTable {
         }
     }
 
+    /* setters and getters */
     public void setScopeType(STRecord.Type type) {
         this.nameStack.peek().setType(type);
     }
+    public ArrayList<STRecord> getLibrary() { return this.library; }
 
     /* enter(): create a new scope - namespace */
     public void enter(){
@@ -200,13 +202,20 @@ public class SymbolTable {
      * -- fetchType(): search in the array, same as the lookup(), it only returns Type */
     public STRecord.Type fetchType(String name){
         // take the type from any scope (it may not be local)
+        STRecord.Type temp = null;
         if (this.variableMap.containsKey(name)) {
             System.out.printf("Name %s found\n", name);
             int index = this.variableMap.get(name);
-            STRecord.Type temp = new STRecord.Type(this.symbolTable.get(index).getType());
-            return temp;
+            temp = new STRecord.Type(this.symbolTable.get(index).getType());
+        } else {
+            for(int i = 0; i < this.library.size(); i++) {
+                if(this.library.get(i).getName().equals(name)) {
+                    temp = new STRecord.Type(this.library.get(i).getType());
+                    break;
+                }
+            }
         }
-        return null;
+        return temp;
     }
 
     /* paramType(name): search for a function's specific parameter in the current scope and then return it's Type
