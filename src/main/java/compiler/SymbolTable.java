@@ -92,6 +92,39 @@ public class SymbolTable {
         }
     }
 
+    /*public void insertprev(STRecord record){  //yiannis2 : function to insert the name of a function into the prev scope
+        // look-up                              //not yet working
+        boolean success = lookup(record.getName());
+        // if the "record" passed from lookup, add it to the symbol-table
+        int i=this.symbolTableStackTop;
+        if(i>=0) {
+            int scope = this.symbolTable.get(i).getScopeId();
+            if (success) {
+                while (i >= 0 && scope == numberOfScopes) {
+                    i--;
+                    if (i >= 0) scope = this.symbolTable.get(i).getScopeId();
+                }
+                // update scopes - namespaces' Stack\
+                // ...
+                // update ST-record's info
+                record.setScopeId(numberOfScopes - 1);
+                record.setShadowIndex(this.checkShadowing(record));
+                // update Symbol-Table
+                this.symbolTable.add(i, record);
+                // update variables' Hash-Map so that in any case the name's (key) index (value) will point to it's latest occurrence
+                this.variableMap.put(record.getName(), i);
+            } else {
+            // failure --
+            // act accordingly
+                System.out.printf("Name %s ERROR\n", record.getName());
+            }
+        }
+        else{
+            insert(record);
+        }
+    }*/
+
+
     /* lookup(name): search for a name in the current scope
      * -- lookup(): search in the array */
     public boolean lookup(String name){

@@ -400,6 +400,27 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     }
 
     // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
+	//add by yiannis2
+    /*@Override
+    public void inAAssignmentStmt(AReturnStmt node) {}
+    @Override
+    public void outAAssignmentStmt(AReturnStmt node) {
+        STRecord.Type temp1 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        STRecord.Type temp2 = this.tempTypeStack.pop();
+        this.toPopFromTempTypeStack--;
+        if (!temp1.isSame(temp2)) {
+            System.err.printf("Error: In \"assignment\" statement one member is %s and the other member is %s\n",
+                    temp1.getKind(), temp2.getKind());
+            // exit with "failure" code
+            System.exit(-1);
+        }
+        // if they are of the same type, then the result of the expression between them is going to be of the same type
+        STRecord.Type temp3 = new STRecord.Type(temp1);
+        this.tempTypeStack.push(temp3);
+        this.toPopFromTempTypeStack++;
+    }*/
+	//till here
     @Override
     public void inAReturnStmt(AReturnStmt node) {}
     @Override
@@ -441,6 +462,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString().trim().replaceAll("\\s+", " ")); }
     @Override
     public void outAStringLValue(AStringLValue node) {
+	//yiannis2 : prepei na pairnei to onoma tis metavlitis kai na vlepei an einai ontws pinakas, antistoixa kai sto int
         STRecord.Type temp = new STRecord.Type();
         temp.setKind("string");
         this.tempTypeStack.push(temp);
