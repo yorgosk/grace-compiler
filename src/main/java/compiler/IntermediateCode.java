@@ -177,6 +177,8 @@ public class IntermediateCode {
     public void addPLACE(String key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }
     public String getPLACE(String key) { return this.PLACE.get(key); }
+    public ArrayList<Integer> getTRUE() { return this.TRUE; }
+    public ArrayList<Integer> getNEXT() { return this.NEXT; }
     public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
     public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
     public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
