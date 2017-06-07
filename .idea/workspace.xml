@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -72,8 +71,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="411" column="116" lean-forward="true" selection-start-line="411" selection-start-column="116" selection-end-line="411" selection-end-column="116" />
+            <state relative-caret-position="3078">
+              <caret line="403" column="0" lean-forward="false" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#18309#18316#0" expanded="true" />
@@ -82,34 +81,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
+            <state relative-caret-position="-759">
               <caret line="247" column="5" lean-forward="false" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1496858943735" expanded="true" signature="10403:10410" ph="{...}" />
-                <marker date="1496858943735" expanded="true" signature="10675:11121" ph="{...}" />
-                <marker date="1496858943735" expanded="true" signature="11213:11678" ph="{...}" />
-                <marker date="1496858943735" expanded="true" signature="11716:16999" ph="{...}" />
-                <marker date="1496858943735" expanded="true" signature="11832:11847" ph="&lt;~&gt;" />
+                <element signature="e#2400#2401#0" expanded="true" />
+                <element signature="e#2451#2452#0" expanded="true" />
+                <element signature="e#11832#11847#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5358#5367#0" expanded="true" />
                 <element signature="e#5592#5601#0" expanded="true" />
-                <marker date="1496861007779" expanded="true" signature="7844:7858" ph="{...}" />
-                <marker date="1496861007779" expanded="true" signature="7852:7858" ph="{...}" />
+                <marker date="1496861479763" expanded="true" signature="7980:7994" ph="{...}" />
+                <marker date="1496861479763" expanded="true" signature="7988:7994" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -989,7 +986,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1602" height="875" extended-state="6" />
+    <frame x="-1" y="0" width="1602" height="875" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1002,7 +999,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42248723" sideWeight="0.5310606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35180414" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35180414" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42248723" sideWeight="0.4689394" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1301,21 +1298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="247" column="5" lean-forward="false" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1496858943735" expanded="true" signature="10403:10410" ph="{...}" />
-            <marker date="1496858943735" expanded="true" signature="10675:11121" ph="{...}" />
-            <marker date="1496858943735" expanded="true" signature="11213:11678" ph="{...}" />
-            <marker date="1496858943735" expanded="true" signature="11716:16999" ph="{...}" />
-            <marker date="1496858943735" expanded="true" signature="11832:11847" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -1336,10 +1318,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5358#5367#0" expanded="true" />
+            <element signature="e#5592#5601#0" expanded="true" />
+            <marker date="1496861479763" expanded="true" signature="7980:7994" ph="{...}" />
+            <marker date="1496861479763" expanded="true" signature="7988:7994" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="411" column="116" lean-forward="true" selection-start-line="411" selection-start-column="116" selection-end-line="411" selection-end-column="116" />
+        <state relative-caret-position="3078">
+          <caret line="403" column="0" lean-forward="false" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#18309#18316#0" expanded="true" />
@@ -1347,16 +1343,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+        <state relative-caret-position="-759">
+          <caret line="247" column="5" lean-forward="false" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5358#5367#0" expanded="true" />
-            <element signature="e#5592#5601#0" expanded="true" />
-            <marker date="1496861007779" expanded="true" signature="7844:7858" ph="{...}" />
-            <marker date="1496861007779" expanded="true" signature="7852:7858" ph="{...}" />
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2451#2452#0" expanded="true" />
+            <element signature="e#11832#11847#0" expanded="true" />
           </folding>
         </state>
       </provider>

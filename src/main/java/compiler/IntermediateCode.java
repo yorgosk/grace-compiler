@@ -161,7 +161,11 @@ public class IntermediateCode {
     public String PARAMMODE(String id, Integer number) {
         System.out.printf("PARAMMODE for %s - %d", id, number);
         this.printTypeMap();
+        System.out.print("DFSDFSDFSDFFD");
+        System.out.print(id);
         STRecord.Type temp = this.typeMap.get(id);
+        temp.printType();
+        System.out.print("SFAFFSD");
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);
         assert (tempParam != null);
