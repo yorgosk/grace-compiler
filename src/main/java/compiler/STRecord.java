@@ -110,6 +110,7 @@ public class STRecord {
 
         // get the type of a function's specific parameter
         public Type fetchParamType(int number) {
+            if(this.parameters == null) return null;    // if our function has no parameters
             if(!this.isFunction || number > this.parameters.size()) return null;
             return this.parameters.get(number-1);
         }

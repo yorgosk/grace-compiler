@@ -163,7 +163,8 @@ public class IntermediateCode {
         STRecord.Type temp = this.typeMap.get(id);
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);
-        assert (tempParam != null);
+//        assert (tempParam != null);
+        if (tempParam == null) return "RET";
         if (tempParam.getArray() || tempParam.getRef()) return "R";
         else return "V";
     }
