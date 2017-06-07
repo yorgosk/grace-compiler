@@ -135,9 +135,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 System.exit(-1);
             }
         }else {
+//            if (!node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
+//                // if this is not the main function, we want to know the function in the previous scope
+//                this.symbolTable.insert(tempRec);
+//            }
+//            // we are in a function definition, this means that a new namespace-scope is created
+//            symbolTable.enter();
+
             if (result == 0) {
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.setScopeType(tempRec.getType());
+                this.symbolTable.addKnownFunction(tempRec);
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
@@ -402,8 +410,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producing IR
         STRecord.Type funcType = this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "));
-        System.out.printf("Type:\n");
         assert (funcType != null);
+        System.out.printf("Type:\n");
         this.tempTypeStack.push(funcType);
         this.toPopFromTempTypeStack++;
         funcType.printType();

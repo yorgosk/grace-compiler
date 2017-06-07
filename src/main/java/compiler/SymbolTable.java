@@ -19,6 +19,8 @@ public class SymbolTable {
     private HashMap<String, Integer> variableMap;
     // a Java Array-List where we store Grace's Library Functions
     private ArrayList<STRecord> library;
+    // a Java Array-List where we store the functions that have been defined in outer scopes (e.g. local-def functions)
+    private ArrayList<STRecord> knownFunctions;
 
     /* checkShadowing(record): check if a record shadows another record that is already in the Symbol-Table */
     private Integer checkShadowing(STRecord record) {
@@ -39,6 +41,7 @@ public class SymbolTable {
         this.nameStack = new Stack<NSRecord>();
         this.variableMap = new HashMap<String, Integer>();
         this.library = new ArrayList<STRecord>();
+        this.knownFunctions = new ArrayList<STRecord>();
         // load Grace's library-functions
         this.loadGraceLibrary();
     }
@@ -60,7 +63,9 @@ public class SymbolTable {
     public void setScopeType(STRecord.Type type) {
         this.nameStack.peek().setType(type);
     }
+    public void addKnownFunction(STRecord func) { this.knownFunctions.add(func); }
     public ArrayList<STRecord> getLibrary() { return this.library; }
+    public ArrayList<STRecord> getKnownFunctions() { return this.knownFunctions; }
 
     /* enter(): create a new scope - namespace */
     public void enter(){
@@ -207,7 +212,8 @@ public class SymbolTable {
             System.out.printf("Name %s found\n", name);
             int index = this.variableMap.get(name);
             temp = new STRecord.Type(this.symbolTable.get(index).getType());
-        } else {
+        }
+        if (temp == null) {
             for(int i = 0; i < this.library.size(); i++) {
                 if(this.library.get(i).getName().equals(name)) {
                     temp = new STRecord.Type(this.library.get(i).getType());
@@ -215,6 +221,15 @@ public class SymbolTable {
                 }
             }
         }
+        if (temp == null) {
+            for (int i = 0; i < this.knownFunctions.size(); i++) {
+                if (this.knownFunctions.get(i).getName().equals(name)) {
+                    temp = new STRecord.Type(this.knownFunctions.get(i).getType());
+                    break;
+                }
+            }
+        }
+
         return temp;
     }
 
