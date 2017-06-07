@@ -7,22 +7,37 @@
   2. The second stage _(Parts II and III -- current stage)_ involves creating the compiler's Semantical Analyser and generating Intermediate Code.
   3. The third, and final, stage is about Optimization and Program Execution.
 
-## Current Version (version 1.0)
+## Current Version (version 1.5)
 
-  ***Stable Version for first stage _(Parts I and II)_ of the project***
-  >Our compiler is currently on the *first stage* of it's development. For now, it has *Lexer and Parser capabilities*.
+  ***Stable Version for second stage _(Parts II and III)_ of the project***
+  >Our compiler is currently on the *second stage* of it's development. For now, it has *Lexer and Parser capabilities*.
   It processes the input's program and, after it decides that it is correct (meaning that it conforms with our grammar's
   specifications), it prints it's Parsing Tree. If it decides that the program is not correct, it produces some
-  basic error messages to help the user-programmer find what's wrong and correct it.
+  basic error messages to help the user-programmer find what's wrong and correct it. After that, it proceeds in 
+  semantical analysis. If he finds a semantic error it immediately exits with an appropriate code and error message.
+  If it finds the program to be semantically correct, it produces some basic Low Level Intermediate Representation (LLIR)
+  code. This code will be later used to produce machine code.
+  
+  **Important Note**
+  Due to time constraints regarding other courses' assignments version 1.5 has not yet been thoroughly tested. However, 
+  we commit have fixed any issues by the time the third stage is complete. We also intend to make many additions and 
+  improvements.
   
   **Important Files**
   * at ```src/main/java/compiler/Main.java``` we have our **Main class** from which we read the Grace code from a
   *text file* (*.grace*, *.txt*, etc) passed as an argument in the execution command *or* from the *stdin*, if no
   argument was given, we process it to spot Lexer, Parser or IO Exceptions that it may create and we load it's
   Syntactical components in a Parsing Tree, which we print in the end.
-  * at ```src/main/java/compiler/PTPrintingVisitor``` we have our **PTPrintingVisitor** class, in which
+  * at ```src/main/java/compiler/PTPrintingVisitor.java``` we have our **PTPrintingVisitor** class, in which
   we use the *Visitor Pattern* to traverse and print our Parsing Tree (PT) in an efficient and easily maintainable way.
   * at ```src/main/sablecc/parser.grammar``` we have our **Grammar's** file, created using the *SableCC Framework*.
+  * at ```src/main/java/compiler/ASTPrintingVisitor.java``` we have our **ASTPrintingVisitor** class, in which
+    we use the *Visitor Pattern* to traverse and print our Abstract Syntax Tree (AST) in an efficient and easily maintainable way.
+  * at ```src/main/java/compiler/SymbolTable.java``` we have our **SymbolTable** class, which is the core of our Symbol 
+  Tables implementation. To improve our project structure we have included many utility functions and structures, which
+  can be found at ```src/main/java/compiler/STRecord.java``` and ```src/main/java/compiler/NSRecord.java```.
+  * at ```src/main/java/compiler/IntermediateCode.java``` we have our **IntermediateCode** class, which is the core of our
+   LLIR code production infrastructure implementation.
 
 # Specifications
 
@@ -84,7 +99,7 @@
    >For the second execution option, the compiler expects to receive a Ctrl^D signal to start processing the input. This
    signal should be received **in a line below the last line of the Grace code**.
    
-### Output Example
+### Output Example (version 1.0)
 
    ```
    >java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main examples/hello.grace 
