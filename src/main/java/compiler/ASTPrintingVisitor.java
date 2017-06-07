@@ -421,8 +421,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         funcType.printType();
         if (!funcType.getKind().equals("nothing")) {
             String w = this.ir.NEWTEMP(funcType);
-            this.ir.GENQUAD("par", "RET", w, "-");
             this.ir.addPLACE("call", w);
+            this.ir.GENQUAD("par", w, "RET", "-");
         }
 
         this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
@@ -501,8 +501,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         String str = node.getId().toString().trim().replaceAll("\\s+", " ");
         String t1 = this.ir.NEWTEMP(temp);
+        this.ir.addPLACE(str, t1);
         this.ir.GENQUAD(":=", "-", str, t1);
-        this.tempOperandsStack.push(t1);
+        this.tempOperandsStack.push(str);
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -518,8 +519,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         String str = node.getStringLiteral().toString().trim().replaceAll("\\s+", " ");
         String t1 = this.ir.NEWTEMP(temp);
+        this.ir.addPLACE(str, t1);
         this.ir.GENQUAD(":=", "-", str, t1);
-        this.tempOperandsStack.push(t1);
+        this.tempOperandsStack.push(str);
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -774,6 +776,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.toPopFromTempOperandsStack--;
             STRecord.Type temp1 = this.tempTypeStack.peek();
             String t2 = this.ir.NEWTEMP(temp1);
+            this.ir.addPLACE(t1, t2);
             this.ir.GENQUAD("-", "0", t1, t2);
             this.tempOperandsStack.push(t2);
             this.toPopFromTempOperandsStack++;
@@ -793,8 +796,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         String t2 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
+        this.ir.addPLACE(t1, t2);
         this.ir.GENQUAD("not", t1, "-", t2);
-        this.tempOperandsStack.push(t2);
+        this.tempOperandsStack.push(t1);
         this.toPopFromTempOperandsStack++;
     }
     @Override
