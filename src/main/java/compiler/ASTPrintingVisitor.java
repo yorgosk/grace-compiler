@@ -24,6 +24,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private boolean hasMain;
     private boolean isFuncCall;
     private  Integer numOfParam;
+    // a Java Stack to store the name of the function in which we are at any time
+    private Stack<String> tempFunctionStack;
 
     // we keep our Intermediate Representation, to be used for machine-code generation in the future
     private IntermediateCode ir;
@@ -46,6 +48,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir = new IntermediateCode();
         this.tempOperandsStack = new Stack<String>();
         this.toPopFromTempOperandsStack = 0;
+        this.tempFunctionStack = new Stack<String>();
         // let our IR know of the Types of our library's functions
         ArrayList<STRecord> temp = this.symbolTable.getLibrary();
         for(int i = 0; i < temp.size(); i++) {
@@ -68,7 +71,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.isDecl = false;
     }
     @Override
-    public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit(); }
+    public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit();
+        // producing IR
+        this.ir.GENQUAD("endu", this.tempFunctionStack.pop(), "-", "-");
+    }
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
@@ -149,9 +155,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
-
-                // producing IR
-                this.ir.GENQUAD("endu", node.getId().toString().trim().replaceAll("\\s+", " "), "-", "-");
+                this.tempFunctionStack.push(node.getId().toString().trim().replaceAll("\\s+", " "));
             }
             // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
             else if (result == 1) {
@@ -593,7 +597,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"plus\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -622,7 +626,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"minus\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -651,7 +655,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"mult\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -680,7 +684,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"div\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -709,7 +713,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"division\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -738,7 +742,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"mod\" expression one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -831,7 +835,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         temp1.printType();
         temp2.printType();
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -858,7 +862,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         temp1.printType();
         temp2.printType();
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -885,7 +889,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         temp1.printType();
         temp2.printType();
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -912,7 +916,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         temp1.printType();
         temp2.printType();
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -939,7 +943,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         temp1.printType();
         temp2.printType();
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -966,7 +970,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         temp1.printType();
         temp2.printType();
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code
@@ -993,7 +997,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         temp1.printType();
         temp2.printType();
-        if (!temp1.isSame(temp2)) {
+        if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
             // exit with "failure" code

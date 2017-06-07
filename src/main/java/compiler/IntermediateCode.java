@@ -168,7 +168,8 @@ public class IntermediateCode {
         System.out.print("SFAFFSD");
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);
-        assert (tempParam != null);
+//        assert (tempParam != null);
+        if (tempParam == null) return "RET";
         if (tempParam.getArray() || tempParam.getRef()) return "R";
         else return "V";
     }
