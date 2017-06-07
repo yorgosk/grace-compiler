@@ -160,12 +160,27 @@ public class IntermediateCode {
     /* takes the Type of a parameter and determines the mode under which it is passed */
     public String PARAMMODE(String id, Integer number) {
         System.out.printf("PARAMMODE for %s - %d", id, number);
+        this.printTypeMap();
         STRecord.Type temp = this.typeMap.get(id);
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);
         assert (tempParam != null);
         if (tempParam.getArray() || tempParam.getRef()) return "R";
         else return "V";
+    }
+
+    //debug function
+    public void printTypeMap(){
+        for (String name: this.typeMap.keySet()){
+
+            String key =name.toString();
+            System.out.print(key);
+            System.out.print("\n");
+            STRecord.Type value= this.typeMap.get(name);
+            value.printType();
+
+
+        }
     }
 
     /* NEXT, TRUE, FALSE manipulation functions */
