@@ -2,12 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
     </list>
 =======
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="" />
 >>>>>>> 252bf2f2c778a78955699a7a99d1653aa60de321
+=======
+    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
+    </list>
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
     <ignored path="$PROJECT_DIR$/target/maven-status/" />
@@ -24,8 +36,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/Main.java">
+=======
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="95">
+                <caret line="101" column="31" lean-forward="false" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="31" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parser.grammar" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="528">
               <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
@@ -53,12 +83,17 @@
         <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="416">
               <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
 =======
             <state relative-caret-position="5130">
               <caret line="517" column="13" lean-forward="false" selection-start-line="517" selection-start-column="13" selection-end-line="517" selection-end-column="13" />
 >>>>>>> 252bf2f2c778a78955699a7a99d1653aa60de321
+=======
+            <state relative-caret-position="-240">
+              <caret line="528" column="4" lean-forward="false" selection-start-line="528" selection-start-column="4" selection-end-line="583" selection-end-column="5" />
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
               <folding />
             </state>
           </provider>
@@ -81,6 +116,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="3078">
               <caret line="403" column="0" lean-forward="false" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
 =======
@@ -90,6 +126,13 @@
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#18309#18316#0" expanded="true" />
+=======
+            <state relative-caret-position="428">
+              <caret line="902" column="43" lean-forward="false" selection-start-line="902" selection-start-column="43" selection-end-line="902" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1496868421319" expanded="false" signature="21558:21565" ph="&lt;~&gt;" />
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
               </folding>
             </state>
           </provider>
@@ -117,6 +160,19 @@
       </file>
       <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
+<<<<<<< HEAD
+=======
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="742">
+              <caret line="180" column="58" lean-forward="false" selection-start-line="180" selection-start-column="58" selection-end-line="180" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="STRecord.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
             <state relative-caret-position="150">
@@ -149,6 +205,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="ABlock.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/ABlock.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -182,6 +239,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -212,6 +271,11 @@
       <find>symbolTable.insert</find>
       <find>symbolTable.enter()</find>
       <find>symbolTable.</find>
+      <find>NEWTEMP</find>
+      <find>&quot;par</find>
+      <find>:=</find>
+      <find>addPlace</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -227,13 +291,13 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/NSRecord.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/sablecc/parser.grammar" />
         <option value="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
         <option value="$PROJECT_DIR$/examples/general/bsort.grace" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
@@ -694,21 +758,7 @@
       <workItem from="1496843537931" duration="13000" />
       <workItem from="1496843558632" duration="962000" />
       <workItem from="1496845013521" duration="19000" />
-      <workItem from="1496848935544" duration="10040000" />
-    </task>
-    <task id="LOCAL-00012" summary="worked on Symbol-Table's methods... minor additions">
-      <created>1495094559194</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1495094559194</updated>
-    </task>
-    <task id="LOCAL-00013" summary="worked on Symbol-Table's methods... minor additions">
-      <created>1495094634019</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1495094634019</updated>
+      <workItem from="1496848935544" duration="15987000" />
     </task>
     <task id="LOCAL-00014" summary="worked on Symbol-Table's methods... minor additions">
       <created>1495094775175</created>
@@ -1039,11 +1089,25 @@
       <option name="project" value="LOCAL" />
       <updated>1496861898859</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="continued with IR">
+      <created>1496864405622</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1496864405622</updated>
+    </task>
+    <task id="LOCAL-00062" summary="updated README">
+      <created>1496865998105</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1496865998105</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124959000" />
+    <option name="totallyTimeSpent" value="130906000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1064,6 +1128,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3170103" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42248723" sideWeight="0.5310606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1071,6 +1136,15 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35180414" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42248723" sideWeight="0.4689394" order="7" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.75386995" sideWeight="0.53409094" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.75386995" sideWeight="0.4659091" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24305004" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1119,7 +1193,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="inserting function's header info to symbol table... created test for &quot;main&quot; function inclusion" />
     <MESSAGE value="worked further in the insertion... WE HAVE TO FIX: nullpointerexception ar reverse.grace" />
     <MESSAGE value="added Type class, this is going to help us later on... WE STILL HAVE TO FIX: nullpointerexception ar reverse.grace" />
     <MESSAGE value="worked on Type" />
@@ -1140,11 +1213,12 @@
     <MESSAGE value="continued with ir" />
     <MESSAGE value="added more terminals for IR production" />
     <MESSAGE value="corrected detail in IR" />
-    <MESSAGE value="continued with IR" />
     <MESSAGE value="continued with IR... various changes in more than one file, mainly functions were added" />
     <MESSAGE value="many IR related additions" />
     <MESSAGE value="we have IR for reverse.grace" />
-    <option name="LAST_COMMIT_MESSAGE" value="we have IR for reverse.grace" />
+    <MESSAGE value="continued with IR" />
+    <MESSAGE value="updated README" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1350,7 +1424,10 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/README.md" />
+=======
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/NSRecord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1375,6 +1452,7 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -1394,25 +1472,39 @@
           </folding>
 =======
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5130">
-          <caret line="517" column="13" lean-forward="false" selection-start-line="517" selection-start-column="13" selection-end-line="517" selection-end-column="13" />
+        <state relative-caret-position="115">
+          <caret line="112" column="92" lean-forward="false" selection-start-line="112" selection-start-column="92" selection-end-line="112" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="95">
+            <caret line="101" column="31" lean-forward="false" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="31" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-240">
+          <caret line="528" column="4" lean-forward="false" selection-start-line="528" selection-start-column="4" selection-end-line="583" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="162" column="50" lean-forward="false" selection-start-line="162" selection-start-column="50" selection-end-line="162" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="112" column="92" lean-forward="false" selection-start-line="112" selection-start-column="92" selection-end-line="112" selection-end-column="92" />
+        <state relative-caret-position="742">
+          <caret line="180" column="58" lean-forward="false" selection-start-line="180" selection-start-column="58" selection-end-line="180" selection-end-column="58" />
           <folding />
 >>>>>>> 252bf2f2c778a78955699a7a99d1653aa60de321
         </state>
@@ -1440,6 +1532,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="3078">
           <caret line="403" column="0" lean-forward="false" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
           <folding>
@@ -1462,6 +1555,13 @@
             <element signature="e#2400#2401#0" expanded="true" />
             <element signature="e#2451#2452#0" expanded="true" />
             <element signature="e#11832#11847#0" expanded="true" />
+=======
+        <state relative-caret-position="428">
+          <caret line="902" column="43" lean-forward="false" selection-start-line="902" selection-start-column="43" selection-end-line="902" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1496868421319" expanded="false" signature="21558:21565" ph="&lt;~&gt;" />
+>>>>>>> e52e7c0bf9949fb8145ec0807fa92c7f1cb10dc4
           </folding>
         </state>
       </provider>
