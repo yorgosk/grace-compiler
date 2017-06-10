@@ -182,6 +182,7 @@ public class IntermediateCode {
     public String getPLACE(Integer key) { return this.PLACE.get(key); }
     public void setFALSE(ArrayList<Integer> list) { this.FALSE = list; }
     public void setTRUE(ArrayList<Integer> list) { this.TRUE = list; }
+    public void setNEXT(ArrayList<Integer> list) { this.NEXT = list; }
     public ArrayList<Integer> getFALSE() { return this.FALSE; }
     public ArrayList<Integer> getTRUE() { return this.TRUE; }
     public ArrayList<Integer> getNEXT() { return this.NEXT; }

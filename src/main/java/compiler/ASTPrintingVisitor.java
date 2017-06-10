@@ -373,6 +373,28 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inABlock(ABlock node) { makeIndent(); System.out.printf("code-block body :\n"); indent++;}
     @Override
     public void outABlock(ABlock node) { indent--; }
+//    @Override
+//    public void caseABlock(ABlock node)
+//    {
+//        inABlock(node);
+//
+//        // for IR production
+//        int numOfStmt = 1;
+//
+//        {
+//            List<PStmt> copy = new ArrayList<PStmt>(node.getStmt());
+//            for(PStmt e : copy)
+//            {
+//                // for IR production
+//                if (numOfStmt != 1)
+//                    this.ir.BACKPATCH("NEXT", this.ir.NEXTQUAD());
+//                numOfStmt++;
+//
+//                e.apply(this);
+//            }
+//        }
+//        outABlock(node);
+//    }
 
     // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
@@ -475,17 +497,39 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         {
             node.getCond().apply(this);
         }
+
+        // for IR production
+        this.ir.BACKPATCH("TRUE", this.ir.NEXTQUAD());
+        ArrayList<Integer> l1 = this.ir.getFALSE();
+        ArrayList<Integer> l2 = this.ir.EMPTYLIST();
+
         if(node.getThenM() != null)
         {
             node.getThenM().apply(this);
         }
         {
+            // for IR production
+            l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
+            this.ir.GENQUAD("jump", "-", "-", "?");
+            this.ir.BACKPATCH("FALSE", this.ir.NEXTQUAD());
+
             List<PStmt> copy = new ArrayList<PStmt>(node.getElseM());
             for(PStmt e : copy)
             {
                 e.apply(this);
             }
+
+            // for IR production
+            l2 = this.ir.getNEXT();
         }
+
+        // for IR production
+        ArrayList<ArrayList<Integer>> param = new ArrayList<ArrayList<Integer>>();
+        param.add(l1);
+        param.add(this.ir.getNEXT());
+        param.add(l2);
+        this.ir.setNEXT(this.ir.MERGE(param));
+
         outAIfStmt(node);
     }
 //    @Override
