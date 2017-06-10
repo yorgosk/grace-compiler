@@ -412,7 +412,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void caseAFuncCall(AFuncCall node)
     {
         inAFuncCall(node);
+
+        // for IR production
         int n = 1;
+
         if(node.getId() != null)
         {
             node.getId().apply(this);
@@ -444,7 +447,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!funcType.getKind().equals("nothing")) {
             String w = this.ir.NEWTEMP(funcType);
 //            this.ir.addPLACE("call", w);
-            this.ir.GENQUAD("par", w, "RET", "-");
+            this.ir.GENQUAD("par", "RET", w, "-");
             this.ir.addPLACE(this.ir.getCurrentLabel(), w);
         }
 
@@ -524,6 +527,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
+        this.ir.resetNEXT();
         ArrayList<ArrayList<Integer>> param = new ArrayList<ArrayList<Integer>>();
         param.add(l1);
         param.add(this.ir.getNEXT());
@@ -560,6 +564,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // for IR production
         this.ir.BACKPATCH("NEXT", Q);
         this.ir.GENQUAD("jump", "-", "-", Q.toString());
+        this.ir.resetNEXT();
         this.ir.setNEXT(this.ir.getFALSE());
 
         outAWhileStmt(node);
@@ -601,10 +606,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         String str = node.getId().toString().trim().replaceAll("\\s+", " ");
         String t1 = this.ir.NEWTEMP(temp);
-//        this.ir.addPLACE(str, t1);
         this.ir.GENQUAD(":=", "-", str, t1);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
-//        this.tempOperandsStack.push(t1);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -621,10 +624,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         String str = node.getStringLiteral().toString().trim().replaceAll("\\s+", " ");
         String t1 = this.ir.NEWTEMP(temp);
-//        this.ir.addPLACE(str, t1);
         this.ir.GENQUAD(":=", "-", str, t1);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
-//        this.tempOperandsStack.push(str);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -732,7 +733,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("+", t2, t1, t3);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
-//        this.tempOperandsStack.push(t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -765,7 +765,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("-", t2, t1, t3);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
-//        this.tempOperandsStack.push(t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -798,7 +797,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("*", t2, t1, t3);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
-//        this.tempOperandsStack.push(t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -831,7 +829,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("div", t2, t1, t3);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
-//        this.tempOperandsStack.push(t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -864,7 +861,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("/", t2, t1, t3);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
-//        this.tempOperandsStack.push(t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -897,7 +893,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("mod", t2, t1, t3);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
-//        this.tempOperandsStack.push(t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -913,7 +908,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             String t1 = this.ir.getPLACE(l1);
             STRecord.Type temp1 = this.tempTypeStack.peek();
             String t2 = this.ir.NEWTEMP(temp1);
-//            this.ir.addPLACE(t1, t2);
             this.ir.GENQUAD("-", "0", t1, t2);
             this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
             this.tempOperandsStack.push(this.ir.getCurrentLabel());
@@ -1078,6 +1072,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
+        this.ir.resetFALSE();
         this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
@@ -1117,6 +1112,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
+        this.ir.resetFALSE();
         this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
@@ -1156,6 +1152,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
+        this.ir.resetFALSE();
         this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
@@ -1195,6 +1192,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
+        this.ir.resetFALSE();
         this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
@@ -1234,6 +1232,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
+        this.ir.resetFALSE();
         this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
@@ -1273,6 +1272,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
+        this.ir.resetFALSE();
         this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
@@ -1312,6 +1312,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
+        this.ir.resetFALSE();
         this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }

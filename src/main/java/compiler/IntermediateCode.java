@@ -156,7 +156,8 @@ public class IntermediateCode {
         assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
             for (int j = 0; j < this.intermediateCode.size(); j++) {
-                this.intermediateCode.get(j).setZ(z.toString());
+                if (this.intermediateCode.get(j).getZ().equals("?"))
+                    this.intermediateCode.get(j).setZ(z.toString());
             }
         }
     }
