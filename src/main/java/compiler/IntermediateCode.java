@@ -152,6 +152,7 @@ public class IntermediateCode {
         ArrayList<Integer> l = null;
         if (listName.equals("TRUE")) l = this.TRUE;
         else if (listName.equals("FALSE"))  l = this.FALSE;
+        else if (listName.equals("NEXT")) l = this.NEXT;
         assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
             for (int j = 0; j < this.intermediateCode.size(); j++) {

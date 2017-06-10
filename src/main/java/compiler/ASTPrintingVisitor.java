@@ -532,32 +532,38 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         outAIfStmt(node);
     }
-//    @Override
-//    public void inAWhileStmt(AWhileStmt node) {}
-//    @Override
-//    public void outAWhileStmt(AWhileStmt node) {}
-//    @Override
-//    public void caseAWhileStmt(AWhileStmt node)
-//    {
-//        inAWhileStmt(node);
-//        // for IR production
-//        Integer Q = this.ir.NEXTQUAD();
-//        if(node.getCond() != null)
-//        {
-//            node.getCond().apply(this);
-//        }
-//        // for IR production
-//        this.ir.BACKPATCH(this.ir.getTRUE(), this.ir.NEXTQUAD());
-//        if(node.getStmt() != null)
-//        {
-//            node.getStmt().apply(this);
-//        }
-//        // for IR production
-//        this.ir.BACKPATCH(this.ir.getNEXT(), Q);
-//        this.ir.GENQUAD("jump", "-", "-", Q.toString());
-//        // stmt.NEXT = cond.FALSE
-//        outAWhileStmt(node);
-//    }
+    @Override
+    public void inAWhileStmt(AWhileStmt node) {}
+    @Override
+    public void outAWhileStmt(AWhileStmt node) {}
+    @Override
+    public void caseAWhileStmt(AWhileStmt node)
+    {
+        inAWhileStmt(node);
+
+        // for IR production
+        Integer Q = this.ir.NEXTQUAD();
+
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+
+        // for IR production
+        this.ir.BACKPATCH("TRUE", this.ir.NEXTQUAD());
+
+        if(node.getStmt() != null)
+        {
+            node.getStmt().apply(this);
+        }
+
+        // for IR production
+        this.ir.BACKPATCH("NEXT", Q);
+        this.ir.GENQUAD("jump", "-", "-", Q.toString());
+        this.ir.setNEXT(this.ir.getFALSE());
+
+        outAWhileStmt(node);
+    }
     @Override
     public void inAReturnStmt(AReturnStmt node) {}
     @Override

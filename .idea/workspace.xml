@@ -75,13 +75,13 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="526" column="82" lean-forward="false" selection-start-line="526" selection-start-column="82" selection-end-line="526" selection-end-column="82" />
+            <state relative-caret-position="420">
+              <caret line="556" column="39" lean-forward="false" selection-start-line="556" selection-start-column="39" selection-end-line="556" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#22841#22861#0" expanded="true" />
-                <marker date="1497123614218" expanded="false" signature="17666:17673" ph="&lt;~&gt;" />
-                <marker date="1497123614218" expanded="false" signature="22555:22562" ph="&lt;~&gt;" />
+                <marker date="1497123828765" expanded="false" signature="17666:17673" ph="&lt;~&gt;" />
+                <marker date="1497123828765" expanded="false" signature="22555:22562" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -102,8 +102,8 @@
       <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="939">
-              <caret line="196" column="0" lean-forward="false" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+            <state relative-caret-position="309">
+              <caret line="154" column="56" lean-forward="false" selection-start-line="154" selection-start-column="56" selection-end-line="154" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -842,14 +842,7 @@
       <workItem from="1496845013521" duration="19000" />
       <workItem from="1496848935544" duration="16605000" />
       <workItem from="1497029385962" duration="74000" />
-      <workItem from="1497114481394" duration="8048000" />
-    </task>
-    <task id="LOCAL-00018" summary="inserting function's header info to symbol table">
-      <created>1495135950753</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1495135950753</updated>
+      <workItem from="1497114481394" duration="8261000" />
     </task>
     <task id="LOCAL-00019" summary="inserting function's header info to symbol table... created test for &quot;main&quot; function inclusion">
       <created>1495136760365</created>
@@ -1187,11 +1180,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497122091237</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="continue with IR... changes regarding PLACE, TRUE, FALSE and things related to them (continued)... block stuff added but commented due to error-production, if stuff added successfully but may need debugging">
+      <created>1497123683408</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1497123683408</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139646000" />
+    <option name="totallyTimeSpent" value="139859000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1204,7 +1204,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1217,7 +1217,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3527508" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7894737" sideWeight="0.4659091" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7894737" sideWeight="0.4659091" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1245,7 +1245,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="array issue fixed" />
     <MESSAGE value="started type checking" />
     <MESSAGE value="started type checking... most of it is still under development, so I commented it out, in order for our program to be runnable" />
     <MESSAGE value="continued type checking... most of it is still under development, so I commented it out, in order for our program to be runnable" />
@@ -1270,7 +1269,8 @@
     <MESSAGE value="wrapped up part 2 submission" />
     <MESSAGE value="continue with IR... changes regarding PLACE, TRUE, FALSE and things related to them" />
     <MESSAGE value="continue with IR... changes regarding PLACE, TRUE, FALSE and things related to them (continued)" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue with IR... changes regarding PLACE, TRUE, FALSE and things related to them (continued)" />
+    <MESSAGE value="continue with IR... changes regarding PLACE, TRUE, FALSE and things related to them (continued)... block stuff added but commented due to error-production, if stuff added successfully but may need debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue with IR... changes regarding PLACE, TRUE, FALSE and things related to them (continued)... block stuff added but commented due to error-production, if stuff added successfully but may need debugging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1532,21 +1532,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="939">
-          <caret line="196" column="0" lean-forward="false" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+        <state relative-caret-position="309">
+          <caret line="154" column="56" lean-forward="false" selection-start-line="154" selection-start-column="56" selection-end-line="154" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="526" column="82" lean-forward="false" selection-start-line="526" selection-start-column="82" selection-end-line="526" selection-end-column="82" />
+        <state relative-caret-position="420">
+          <caret line="556" column="39" lean-forward="false" selection-start-line="556" selection-start-column="39" selection-end-line="556" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#22841#22861#0" expanded="true" />
-            <marker date="1497123614218" expanded="false" signature="17666:17673" ph="&lt;~&gt;" />
-            <marker date="1497123614218" expanded="false" signature="22555:22562" ph="&lt;~&gt;" />
+            <marker date="1497123828765" expanded="false" signature="17666:17673" ph="&lt;~&gt;" />
+            <marker date="1497123828765" expanded="false" signature="22555:22562" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
