@@ -29,8 +29,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // we keep our Intermediate Representation, to be used for machine-code generation in the future
     private IntermediateCode ir;
-    // a Java Stack from where quad operands are temporarily stored and retrieved
-    private Stack<String> tempOperandsStack;
+    // a Java Stack from where the label's of quad operands are temporarily stored and retrieved
+    private Stack<Integer> tempOperandsStack;
     private Integer toPopFromTempOperandsStack;
 
     // IN A START------------------------------------------------------------
@@ -46,7 +46,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.hasMain = false;
         // create the Intermediate Representation storing structures
         this.ir = new IntermediateCode();
-        this.tempOperandsStack = new Stack<String>();
+        this.tempOperandsStack = new Stack<Integer>();
         this.toPopFromTempOperandsStack = 0;
         this.tempFunctionStack = new Stack<String>();
         // let our IR know of the Types of our library's functions
@@ -170,7 +170,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
         }
         // for debugging
-//        this.symbolTable.printSTStructures();
+        this.symbolTable.printSTStructures();
         assert (toPopFromTempRecordStack == 0);
     }
 
@@ -402,9 +402,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 e.apply(this);
 
                 // producing IR
-                String t1 = tempOperandsStack.pop();
+                Integer t1 = tempOperandsStack.pop();
                 this.toPopFromTempOperandsStack--;
-//                System.out.printf("searching param %d of %s", n, node.getId().toString());
+                System.out.printf("searching param %d of %s", n, node.getId().toString());
                 this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n), "-");
                 n++;
             }
@@ -418,11 +418,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         System.out.printf("Type:\n");
         this.tempTypeStack.push(funcType);
         this.toPopFromTempTypeStack++;
-//        funcType.printType();
+        funcType.printType();
         if (!funcType.getKind().equals("nothing")) {
             String w = this.ir.NEWTEMP(funcType);
-            this.ir.addPLACE("call", w);
+//            this.ir.addPLACE("call", w);
             this.ir.GENQUAD("par", w, "RET", "-");
+            this.ir.addPLACE(this.ir.getCurrentLabel(), w);
         }
 
         this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
@@ -462,31 +463,31 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         outAAssignmentStmt(node);
     }
-//    @Override
-//    public void inAIfStmt(AIfStmt node) {}
-//    @Override
-//    public void outAIfStmt(AIfStmt node) {}
-//    @Override
-//    public void caseAIfStmt(AIfStmt node)
-//    {
-//        inAIfStmt(node);
-//        if(node.getCond() != null)
-//        {
-//            node.getCond().apply(this);
-//        }
-//        if(node.getThenM() != null)
-//        {
-//            node.getThenM().apply(this);
-//        }
-//        {
-//            List<PStmt> copy = new ArrayList<PStmt>(node.getElseM());
-//            for(PStmt e : copy)
-//            {
-//                e.apply(this);
-//            }
-//        }
-//        outAIfStmt(node);
-//    }
+    @Override
+    public void inAIfStmt(AIfStmt node) {}
+    @Override
+    public void outAIfStmt(AIfStmt node) {}
+    @Override
+    public void caseAIfStmt(AIfStmt node)
+    {
+        inAIfStmt(node);
+        if(node.getCond() != null)
+        {
+            node.getCond().apply(this);
+        }
+        if(node.getThenM() != null)
+        {
+            node.getThenM().apply(this);
+        }
+        {
+            List<PStmt> copy = new ArrayList<PStmt>(node.getElseM());
+            for(PStmt e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outAIfStmt(node);
+    }
 //    @Override
 //    public void inAWhileStmt(AWhileStmt node) {}
 //    @Override
@@ -538,7 +539,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp = this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "));
 
         if (temp != null) { // if temp exists in the current scope
-//            temp.printType();
+            temp.printType();
             this.tempTypeStack.push(temp);
             this.toPopFromTempTypeStack++;
         } else {    // if temp doesn't exist in the current scope, we have an error
@@ -550,9 +551,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         String str = node.getId().toString().trim().replaceAll("\\s+", " ");
         String t1 = this.ir.NEWTEMP(temp);
-        this.ir.addPLACE(str, t1);
+//        this.ir.addPLACE(str, t1);
         this.ir.GENQUAD(":=", "-", str, t1);
-        this.tempOperandsStack.push(str);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
+//        this.tempOperandsStack.push(t1);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -568,9 +571,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         String str = node.getStringLiteral().toString().trim().replaceAll("\\s+", " ");
         String t1 = this.ir.NEWTEMP(temp);
-        this.ir.addPLACE(str, t1);
+//        this.ir.addPLACE(str, t1);
         this.ir.GENQUAD(":=", "-", str, t1);
-        this.tempOperandsStack.push(str);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
+//        this.tempOperandsStack.push(str);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -599,7 +604,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producting IR
         String str = node.getIntConst().toString().trim().replaceAll("\\s+", " ");
-        this.tempOperandsStack.push(str);
+//        this.tempOperandsStack.push(str);
+        String t1 = this.ir.NEWTEMP(temp);
+        this.ir.GENQUAD(":=", "-", str, t1);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -613,7 +622,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         //producing IR
         String str = node.getCharConst().toString().trim().replaceAll("\\s+", " ");
-        this.tempOperandsStack.push(str);
+//        this.tempOperandsStack.push(str);
+        String t1 = this.ir.NEWTEMP(temp);
+        this.ir.GENQUAD(":=", "-", str, t1);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -660,13 +673,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("+", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        this.tempOperandsStack.push(t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -689,13 +706,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("-", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        this.tempOperandsStack.push(t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -718,13 +739,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("*", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        this.tempOperandsStack.push(t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -747,13 +772,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("div", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        this.tempOperandsStack.push(t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -776,13 +805,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("/", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        this.tempOperandsStack.push(t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -805,13 +838,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("mod", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        this.tempOperandsStack.push(t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -821,13 +858,15 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         // we mostly care about the minus "-" sign case
         if(node.getSign().toString().trim().replaceAll("\\s+", " ").equals("-")) {
-            String t1 = this.tempOperandsStack.pop();
+            Integer l1 = this.tempOperandsStack.pop();
             this.toPopFromTempOperandsStack--;
+            String t1 = this.ir.getPLACE(l1);
             STRecord.Type temp1 = this.tempTypeStack.peek();
             String t2 = this.ir.NEWTEMP(temp1);
-            this.ir.addPLACE(t1, t2);
+//            this.ir.addPLACE(t1, t2);
             this.ir.GENQUAD("-", "0", t1, t2);
-            this.tempOperandsStack.push(t2);
+            this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
+            this.tempOperandsStack.push(this.ir.getCurrentLabel());
             this.toPopFromTempOperandsStack++;
         }
     }
@@ -842,12 +881,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outANotCond(ANotCond node) {
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
-        this.ir.addPLACE(t1, t2);
         this.ir.GENQUAD("not", t1, "-", t2);
-        this.tempOperandsStack.push(t1);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -855,13 +895,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAAndCond(AAndCond node) {
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
         this.ir.GENQUAD("and", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -869,13 +912,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAOrCond(AOrCond node) {
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
         this.ir.GENQUAD("or", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -886,8 +932,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
+        temp1.printType();
+        temp2.printType();
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
@@ -896,13 +942,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("=", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -913,8 +962,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
+        temp1.printType();
+        temp2.printType();
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
@@ -923,13 +972,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("#", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -940,8 +992,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
+        temp1.printType();
+        temp2.printType();
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
@@ -950,13 +1002,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("<>", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -967,8 +1022,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
+        temp1.printType();
+        temp2.printType();
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
@@ -977,13 +1032,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("<", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -994,8 +1052,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
+        temp1.printType();
+        temp2.printType();
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
@@ -1004,13 +1062,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD(">", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -1021,8 +1082,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
+        temp1.printType();
+        temp2.printType();
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
@@ -1031,13 +1092,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("<=", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
     @Override
@@ -1048,8 +1112,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
-//        temp1.printType();
-//        temp2.printType();
+        temp1.printType();
+        temp2.printType();
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
@@ -1058,13 +1122,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        String t1 = this.tempOperandsStack.pop();
+        Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t2 = this.tempOperandsStack.pop();
+        Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
+        String t1 = this.ir.getPLACE(l1);
+        String t2 = this.ir.getPLACE(l2);
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD(">=", t2, t1, t3);
-        this.tempOperandsStack.push(t3);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
 
