@@ -875,7 +875,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void inACondCond(ACondCond node) {}
     @Override
-    public void outACondCond(ACondCond node) {}
+    public void outACondCond(ACondCond node) {
+        // for later stages of IR production
+        String w = this.ir.NEWTEMP(null);
+        this.ir.BACKPATCH("TRUE", this.ir.NEXTQUAD());
+        this.ir.GENQUAD(":=", "true", "-", w);
+        Integer q = this.ir.NEXTQUAD()+2;
+        this.ir.GENQUAD("jump", "-", "-", q.toString());
+        this.ir.BACKPATCH("FALSE", this.ir.NEXTQUAD());
+        this.ir.GENQUAD(":=", "false", "-", w);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), w);
+    }
     @Override
     public void inANotCond(ANotCond node) {}
     @Override
@@ -889,6 +899,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        ArrayList<Integer> tempTRUE = this.ir.getTRUE();
+        ArrayList<Integer> tempFALSE = this.ir.getFALSE();
+        this.ir.resetFALSE();
+        this.ir.resetTRUE();
+        this.ir.setFALSE(tempTRUE);
+        this.ir.setTRUE(tempFALSE);
     }
     @Override
     public void inAAndCond(AAndCond node) {}
@@ -908,6 +926,31 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
     }
     @Override
+    public void caseAAndCond(AAndCond node)
+    {
+        inAAndCond(node);
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+
+        // for IR production
+        this.ir.BACKPATCH("TRUE", this.ir.NEXTQUAD());
+
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+
+        // for IR production
+        /* nothing to do here
+         * -- from the way the things are going, the FALSE lists will have been already MERGE,
+         * essentially the second one is appended after the first, and the TRUE list will have
+         * already changed from the second condition */
+
+        outAAndCond(node);
+    }
+    @Override
     public void inAOrCond(AOrCond node) {}
     @Override
     public void outAOrCond(AOrCond node) {
@@ -923,6 +966,31 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+    }
+    @Override
+    public void caseAOrCond(AOrCond node)
+    {
+        inAOrCond(node);
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+
+        // for IR production
+        this.ir.BACKPATCH("TRUE", this.ir.NEXTQUAD());
+
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+
+        // for IR production
+        /* nothing to do here
+         * -- from the way the things are going, the FALSE lists will have been already MERGE,
+         * essentially the second one is appended after the first, and the TRUE list will have
+         * already changed from the second condition */
+
+        outAOrCond(node);
     }
     @Override
     public void inAEqualCond(AEqualCond node) {}
@@ -941,6 +1009,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
+        // for later stages of IR production
+        this.ir.resetTRUE();
+        this.ir.resetFALSE();
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -953,6 +1026,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void inAHashtagCond(AHashtagCond node) {}
@@ -971,6 +1048,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
+        // for later stages of IR production
+        this.ir.resetTRUE();
+        this.ir.resetFALSE();
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -983,6 +1065,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void inAUnequalCond(AUnequalCond node) {}
@@ -1001,6 +1087,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
+        // for later stages of IR production
+        this.ir.resetTRUE();
+        this.ir.resetFALSE();
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1013,6 +1104,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void inALesserCond(ALesserCond node) {}
@@ -1031,6 +1126,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
+        // for later stages of IR production
+        this.ir.resetTRUE();
+        this.ir.resetFALSE();
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1043,6 +1143,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void inAGreaterCond(AGreaterCond node) {}
@@ -1061,6 +1165,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
+        // for later stages of IR production
+        this.ir.resetTRUE();
+        this.ir.resetFALSE();
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1073,6 +1182,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void inALesseqCond(ALesseqCond node) {}
@@ -1091,6 +1204,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
+        // for later stages of IR production
+        this.ir.resetTRUE();
+        this.ir.resetFALSE();
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1103,6 +1221,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void inAGreateqCond(AGreateqCond node) {}
@@ -1121,6 +1243,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
+        // for later stages of IR production
+        this.ir.resetTRUE();
+        this.ir.resetFALSE();
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1133,6 +1260,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // for later stages of IR production
+        this.ir.setFALSE(this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
 
 }

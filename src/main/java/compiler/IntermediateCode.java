@@ -148,7 +148,11 @@ public class IntermediateCode {
     }
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
-    public void BACKPATCH(ArrayList<Integer> l, Integer z) {
+    public void BACKPATCH(String listName, Integer z) {
+        ArrayList<Integer> l = null;
+        if (listName.equals("TRUE")) l = this.TRUE;
+        else if (listName.equals("FALSE"))  l = this.FALSE;
+        assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
             for (int j = 0; j < this.intermediateCode.size(); j++) {
                 this.intermediateCode.get(j).setZ(z.toString());
@@ -176,6 +180,8 @@ public class IntermediateCode {
     public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }
     public String getPLACE(Integer key) { return this.PLACE.get(key); }
+    public void setFALSE(ArrayList<Integer> list) { this.FALSE = list; }
+    public void setTRUE(ArrayList<Integer> list) { this.TRUE = list; }
     public ArrayList<Integer> getFALSE() { return this.FALSE; }
     public ArrayList<Integer> getTRUE() { return this.TRUE; }
     public ArrayList<Integer> getNEXT() { return this.NEXT; }
