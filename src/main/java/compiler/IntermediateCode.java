@@ -81,7 +81,7 @@ public class IntermediateCode {
     /* a Java Hash-Map that for each temporary storage or variable/l-value name maps it's type */
     private HashMap<String, STRecord.Type> typeMap;
     /* a Java Hash-Map that maps the temporary storage where a, l-value's or r-value's value is stored */
-    private HashMap<String, String> PLACE;
+    private HashMap<Integer, String> PLACE;
 
     /* IntermediateCode's class constructor */
     public IntermediateCode() {
@@ -94,7 +94,7 @@ public class IntermediateCode {
         this.TRUE = new ArrayList<Integer>();
         this.FALSE = new ArrayList<Integer>();
         this.typeMap = new HashMap<String, STRecord.Type>();
-        this.PLACE = new HashMap<String, String>();
+        this.PLACE = new HashMap<Integer, String>();
     }
 
     /* our Intermediate Code / Intermediate Representation printing function */
@@ -107,8 +107,7 @@ public class IntermediateCode {
     /* HELPER FUNCTIONS */
     /* returns the number of the next quad */
     public int NEXTQUAD() {
-        int index = this.numOfLabels+1;  // our next quad is going to be the very next label that we are going to produce
-        return this.intermediateCode.get(index).getLabel();
+        return this.numOfLabels+1;  // our next quad is going to be the very next label that we are going to produce
     }
 
     /* generates the next quad op,x,y,z */
@@ -149,7 +148,12 @@ public class IntermediateCode {
     }
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
-    public void BACKPATCH(ArrayList<Integer> l, Integer z) {
+    public void BACKPATCH(String listName, Integer z) {
+        ArrayList<Integer> l = null;
+        if (listName.equals("TRUE")) l = this.TRUE;
+        else if (listName.equals("FALSE"))  l = this.FALSE;
+        else if (listName.equals("NEXT")) l = this.NEXT;
+        assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
             for (int j = 0; j < this.intermediateCode.size(); j++) {
                 this.intermediateCode.get(j).setZ(z.toString());
@@ -193,15 +197,20 @@ public class IntermediateCode {
     public void addTRUE(Integer label) { this.TRUE.add(label);}
     public void addFALSE(Integer label) { this.FALSE.add(label); }
     public void addType(String key, STRecord.Type value) { this.typeMap.put(key, value); }
-    public void addPLACE(String key, String value) { this.PLACE.put(key, value); }
+    public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }
-    public String getPLACE(String key) { return this.PLACE.get(key); }
+    public String getPLACE(Integer key) { return this.PLACE.get(key); }
+    public void setFALSE(ArrayList<Integer> list) { this.FALSE = list; }
+    public void setTRUE(ArrayList<Integer> list) { this.TRUE = list; }
+    public void setNEXT(ArrayList<Integer> list) { this.NEXT = list; }
+    public ArrayList<Integer> getFALSE() { return this.FALSE; }
     public ArrayList<Integer> getTRUE() { return this.TRUE; }
     public ArrayList<Integer> getNEXT() { return this.NEXT; }
+    public Integer getCurrentLabel() { return this.numOfLabels; }
     public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
     public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
     public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
     public void resetType() { this.typeMap = new HashMap<String, STRecord.Type>(); }
-    public void resetPLACE() { this.PLACE = new HashMap<String, String>(); }
+    public void resetPLACE() { this.PLACE = new HashMap<Integer, String>(); }
 
 }
