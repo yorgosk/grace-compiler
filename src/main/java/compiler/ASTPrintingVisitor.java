@@ -570,10 +570,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
+        int stmtLabel = this.ir.getCurrentLabel();
         this.ir.BACKPATCH(this.ir.getCurrentLabel(), "NEXT", Q);
         this.ir.GENQUAD("jump", "-", "-", Q.toString());
 //        this.ir.resetNEXT();
-        this.ir.setNEXT(this.ir.getCurrentLabel(), condFALSE);
+        this.ir.setNEXT(stmtLabel, condFALSE);
 
         outAWhileStmt(node);
     }
