@@ -129,6 +129,18 @@ public class IntermediateCode {
         return newTemp;
     }
 
+
+    /* creates a new temporary value of Type t */
+    public String NEWTEMP_named(STRecord.Type t,String name) {
+        this.numOfTemp++;
+        // our new temp name
+        //String newTemp = "$t"+numOfTemp;
+        this.usedTempNames.add(name);
+        // map temp's Type
+        this.typeMap.put(name, t);
+        return name;
+    }
+
     /* creates an empty list of quads' labels */
     public ArrayList<Integer> EMPTYLIST() { return new ArrayList<Integer>(); }
 
@@ -156,7 +168,8 @@ public class IntermediateCode {
         assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
             for (int j = 0; j < this.intermediateCode.size(); j++) {
-                this.intermediateCode.get(j).setZ(z.toString());
+                if (this.intermediateCode.get(j).getZ().equals("?"))
+                    this.intermediateCode.get(j).setZ(z.toString());
             }
         }
     }
