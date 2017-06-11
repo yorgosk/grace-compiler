@@ -630,7 +630,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
     }
     @Override
-    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValu    e :\n"); }
+    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
     @Override
     public void outAExpressionLValue(AExpressionLValue node) {
         // take the <expr>'s type from the <l-value>[<expr>] structure

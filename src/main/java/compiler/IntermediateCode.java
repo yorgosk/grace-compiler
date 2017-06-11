@@ -129,17 +129,16 @@ public class IntermediateCode {
         return newTemp;
     }
 
-
-    /* creates a new temporary value of Type t */
-    public String NEWTEMP_named(STRecord.Type t,String name) {
-        this.numOfTemp++;
-        // our new temp name
-        //String newTemp = "$t"+numOfTemp;
-        this.usedTempNames.add(name);
-        // map temp's Type
-        this.typeMap.put(name, t);
-        return name;
-    }
+//    /* creates a new temporary value of Type t */
+//    public String NEWTEMP_named(STRecord.Type t,String name) {
+//        this.numOfTemp++;
+//        // our new temp name
+//        //String newTemp = "$t"+numOfTemp;
+//        this.usedTempNames.add(name);
+//        // map temp's Type
+//        this.typeMap.put(name, t);
+//        return name;
+//    }
 
     /* creates an empty list of quads' labels */
     public ArrayList<Integer> EMPTYLIST() { return new ArrayList<Integer>(); }
@@ -177,12 +176,12 @@ public class IntermediateCode {
     /* takes the Type of a parameter and determines the mode under which it is passed */
     public String PARAMMODE(String id, Integer number) {
         System.out.printf("PARAMMODE for %s - %d", id, number);
-        this.printTypeMap();
-        System.out.print("DFSDFSDFSDFFD");
-        System.out.print(id);
+//        this.printTypeMap();
+//        System.out.print("DFSDFSDFSDFFD");
+//        System.out.print(id);
         STRecord.Type temp = this.typeMap.get(id);
-        temp.printType();
-        System.out.print("SFAFFSD");
+//        temp.printType();
+//        System.out.print("SFAFFSD");
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);
 //        assert (tempParam != null);
