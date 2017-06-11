@@ -73,11 +73,17 @@ public class IntermediateCode {
     private ArrayList<String> usedTempNames;
     private Integer numOfTemp;
     /* a Java Array-List of quad labels that contain jumps in the next command */
-    private ArrayList<Integer> NEXT;
+//    private ArrayList<Integer> NEXT;
+    /* a Java Hash-Map that for each quad, keeps track of it's NEXT list */
+    private HashMap<Integer, ArrayList<Integer>> NEXT;
     /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is True */
-    private ArrayList<Integer> TRUE;
-    /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is True */
-    private ArrayList<Integer> FALSE;
+//    private ArrayList<Integer> TRUE;
+    /* a Java Hash-Map that for each quad, keeps track of it's TRUE list */
+    private HashMap<Integer, ArrayList<Integer>> TRUE;
+    /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is False */
+//    private ArrayList<Integer> FALSE;
+    /* a Java Hash-Map that for each quad, keeps track of it's FALSE list */
+    private HashMap<Integer, ArrayList<Integer>> FALSE;
     /* a Java Hash-Map that for each temporary storage or variable/l-value name maps it's type */
     private HashMap<String, STRecord.Type> typeMap;
     /* a Java Hash-Map that maps the temporary storage where a, l-value's or r-value's value is stored */
@@ -90,9 +96,12 @@ public class IntermediateCode {
         this.numOfLabels = 0;
         this.usedTempNames = new ArrayList<String>();
         this.numOfTemp = 0;
-        this.NEXT = new ArrayList<Integer>();
-        this.TRUE = new ArrayList<Integer>();
-        this.FALSE = new ArrayList<Integer>();
+//        this.NEXT = new ArrayList<Integer>();
+//        this.TRUE = new ArrayList<Integer>();
+//        this.FALSE = new ArrayList<Integer>();
+        this.NEXT = new HashMap<Integer, ArrayList<Integer>>();
+        this.TRUE = new HashMap<Integer, ArrayList<Integer>>();
+        this.FALSE = new HashMap<Integer, ArrayList<Integer>>();
         this.typeMap = new HashMap<String, STRecord.Type>();
         this.PLACE = new HashMap<Integer, String>();
     }
@@ -159,11 +168,11 @@ public class IntermediateCode {
     }
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
-    public void BACKPATCH(String listName, Integer z) {
+    public void BACKPATCH(Integer quadLabel, String listName, Integer z) {
         ArrayList<Integer> l = null;
-        if (listName.equals("TRUE")) l = this.TRUE;
-        else if (listName.equals("FALSE"))  l = this.FALSE;
-        else if (listName.equals("NEXT")) l = this.NEXT;
+        if (listName.equals("TRUE")) l = this.TRUE.get(quadLabel);
+        else if (listName.equals("FALSE"))  l = this.FALSE.get(quadLabel);
+        else if (listName.equals("NEXT")) l = this.NEXT.get(quadLabel);
         assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
             for (int j = 0; j < this.intermediateCode.size(); j++) {
@@ -205,23 +214,44 @@ public class IntermediateCode {
     }
 
     /* NEXT, TRUE, FALSE manipulation functions */
-    public void addNEXT(Integer label) { this.NEXT.add(label); }
-    public void addTRUE(Integer label) { this.TRUE.add(label);}
-    public void addFALSE(Integer label) { this.FALSE.add(label); }
+//    public void addNEXT(Integer nextLabel) { this.NEXT.add(label); }
+//    public void addTRUE(Integer label) { this.TRUE.add(label);}
+//    public void addFALSE(Integer label) { this.FALSE.add(label); }
+    public void addNEXT(Integer quadLabel, Integer nextLabel) {
+        ArrayList<Integer> newList = this.NEXT.get(quadLabel);
+        newList.add(nextLabel);
+        this.NEXT.put(quadLabel, newList);
+    }
+    public void addTRUE(Integer quadLabel, Integer trueLabel) {
+        ArrayList<Integer> newList = this.NEXT.get(quadLabel);
+        newList.add(trueLabel);
+        this.NEXT.put(quadLabel, newList);
+    }
+    public void addFALSE(Integer quadLabel, Integer falseLabel) {
+        ArrayList<Integer> newList = this.NEXT.get(quadLabel);
+        newList.add(falseLabel);
+        this.NEXT.put(quadLabel, newList);
+    }
     public void addType(String key, STRecord.Type value) { this.typeMap.put(key, value); }
     public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }
     public String getPLACE(Integer key) { return this.PLACE.get(key); }
-    public void setFALSE(ArrayList<Integer> list) { this.FALSE = list; }
-    public void setTRUE(ArrayList<Integer> list) { this.TRUE = list; }
-    public void setNEXT(ArrayList<Integer> list) { this.NEXT = list; }
-    public ArrayList<Integer> getFALSE() { return this.FALSE; }
-    public ArrayList<Integer> getTRUE() { return this.TRUE; }
-    public ArrayList<Integer> getNEXT() { return this.NEXT; }
+//    public void setFALSE(ArrayList<Integer> list) { this.FALSE = list; }
+//    public void setTRUE(ArrayList<Integer> list) { this.TRUE = list; }
+//    public void setNEXT(ArrayList<Integer> list) { this.NEXT = list; }
+    public void setNEXT(Integer quadLabel, ArrayList<Integer> list) { this.NEXT.put(quadLabel, list); }
+    public void setTRUE(Integer quadLabel, ArrayList<Integer> list) { this.TRUE.put(quadLabel, list); }
+    public void setFALSE(Integer quadLabel, ArrayList<Integer> list) { this.FALSE.put(quadLabel, list); }
+//    public ArrayList<Integer> getFALSE() { return this.FALSE; }
+//    public ArrayList<Integer> getTRUE() { return this.TRUE; }
+//    public ArrayList<Integer> getNEXT() { return this.NEXT; }
+    public ArrayList<Integer> getNEXT(Integer quadLabel) { return this.NEXT.get(quadLabel); }
+    public ArrayList<Integer> getTRUE(Integer quadLabel) { return this.TRUE.get(quadLabel); }
+    public ArrayList<Integer> getFALSE(Integer quadLabel) { return this.FALSE.get(quadLabel); }
     public Integer getCurrentLabel() { return this.numOfLabels; }
-    public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
-    public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
-    public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
+//    public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
+//    public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
+//    public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
     public void resetType() { this.typeMap = new HashMap<String, STRecord.Type>(); }
     public void resetPLACE() { this.PLACE = new HashMap<Integer, String>(); }
 
