@@ -473,6 +473,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
         this.toPopFromTempTypeStack++;
+
+        // producing IR
+        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
     @Override
     public void caseAAssignmentStmt(AAssignmentStmt node)
@@ -502,8 +505,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
-        int condLabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
-        this.ir.BACKPATCH(condLabel, "TRUE", this.ir.NEXTQUAD());
+        int condTRUELabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
+        int condFALSELabel = this.ir.getCurrentLabel();
+        this.ir.BACKPATCH(condTRUELabel, "TRUE", this.ir.NEXTQUAD());
         ArrayList<Integer> l1 = this.ir.getFALSE(this.ir.getCurrentLabel());
         ArrayList<Integer> l2 = this.ir.EMPTYLIST();
         ArrayList<Integer> stmt1NEXT = null;
@@ -520,7 +524,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
             this.ir.GENQUAD("jump", "-", "-", "?");
             // "-1" because there is the jump, -, -, ? in the middle
-            this.ir.BACKPATCH(condLabel, "FALSE", this.ir.NEXTQUAD());
+            this.ir.BACKPATCH(condFALSELabel, "FALSE", this.ir.NEXTQUAD());
 
             List<PStmt> copy = new ArrayList<PStmt>(node.getElseM());
             for(PStmt e : copy)
@@ -533,7 +537,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
-//        this.ir.resetNEXT();
         ArrayList<ArrayList<Integer>> param = new ArrayList<ArrayList<Integer>>();
         param.add(l1);
         param.add(stmt1NEXT);
@@ -560,9 +563,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
-        int condLabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
-        ArrayList<Integer> condFALSE = this.ir.getFALSE(this.ir.getCurrentLabel());
-        this.ir.BACKPATCH(condLabel, "TRUE", this.ir.NEXTQUAD());
+        int condTRUELabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
+        int condFALSELabel = this.ir.getCurrentLabel();
+        ArrayList<Integer> condFALSE = this.ir.getFALSE(condFALSELabel);
+        this.ir.BACKPATCH(condTRUELabel, "TRUE", this.ir.NEXTQUAD());
 
         if(node.getStmt() != null)
         {
@@ -571,7 +575,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // for IR production
         int stmtLabel = this.ir.getCurrentLabel();
-        this.ir.BACKPATCH(this.ir.getCurrentLabel(), "NEXT", Q);
+        this.ir.BACKPATCH(stmtLabel, "NEXT", Q);
         this.ir.GENQUAD("jump", "-", "-", Q.toString());
 //        this.ir.resetNEXT();
         this.ir.setNEXT(stmtLabel, condFALSE);
@@ -589,11 +593,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // exit with "failure" code
             System.exit(-1);
         }
+
+        // producing IR
+        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
     @Override
     public void inAFunctionStmt(AFunctionStmt node) {}
     @Override
-    public void outAFunctionStmt(AFunctionStmt node) {}
+    public void outAFunctionStmt(AFunctionStmt node) {
+        // producing IR
+        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+    }
 
     // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
@@ -957,11 +967,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void outACondCond(ACondCond node) {
         // for later stages of IR production
         String w = this.ir.NEWTEMP(null);
-        this.ir.BACKPATCH(this.ir.getCurrentLabel(), "TRUE", this.ir.NEXTQUAD());
+        Integer condTRUELabel = this.ir.getCurrentLabel()-2;
+        this.ir.BACKPATCH(condTRUELabel, "TRUE", this.ir.NEXTQUAD());
         this.ir.GENQUAD(":=", "true", "-", w);
         Integer q = this.ir.NEXTQUAD()+2;
         this.ir.GENQUAD("jump", "-", "-", q.toString());
-        this.ir.BACKPATCH(this.ir.getCurrentLabel(), "FALSE", this.ir.NEXTQUAD());
+        Integer condFALSE = this.ir.getCurrentLabel()-2;
+        this.ir.BACKPATCH(condFALSE, "FALSE", this.ir.NEXTQUAD());
         this.ir.GENQUAD(":=", "false", "-", w);
         this.ir.addPLACE(this.ir.getCurrentLabel(), w);
     }
@@ -972,20 +984,19 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t1 = this.ir.getPLACE(l1);
-        String t2 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
-        this.ir.GENQUAD("not", t1, "-", t2);
-        this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
+//        String t1 = this.ir.getPLACE(l1);
+//        String t2 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
+        this.ir.GENQUAD("not", "-", "-", "?");
+//        this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+        this.ir.GENQUAD("jump", "-", "-", "?");
 
-        // for later stages of IR production
-        ArrayList<Integer> tempTRUE = this.ir.getTRUE(this.ir.getCurrentLabel());
-        ArrayList<Integer> tempFALSE = this.ir.getFALSE(this.ir.getCurrentLabel());
-//        this.ir.resetFALSE();
-//        this.ir.resetTRUE();
-        this.ir.setFALSE(this.ir.getCurrentLabel(), tempTRUE);
-        this.ir.setTRUE(this.ir.getCurrentLabel(), tempFALSE);
+        // for IR production
+        ArrayList<Integer> cond1TRUE = this.ir.getTRUE(this.ir.getCurrentLabel()-1);
+        ArrayList<Integer> cond1FALSE = this.ir.getFALSE(this.ir.getCurrentLabel());
+        this.ir.setTRUE(this.ir.getCurrentLabel()-1, cond1FALSE);
+        this.ir.setFALSE(this.ir.getCurrentLabel(), cond1TRUE);
     }
     @Override
     public void inAAndCond(AAndCond node) {}
@@ -996,13 +1007,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t1 = this.ir.getPLACE(l1);
-        String t2 = this.ir.getPLACE(l2);
-        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
-        this.ir.GENQUAD("and", t2, t1, t3);
-        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        String t1 = this.ir.getPLACE(l1);
+//        String t2 = this.ir.getPLACE(l2);
+//        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
+        this.ir.GENQUAD("and", "-", "-", "?");
+//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void caseAAndCond(AAndCond node)
@@ -1014,8 +1026,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
-        this.ir.BACKPATCH(this.ir.getCurrentLabel(), "TRUE", this.ir.NEXTQUAD());
-        ArrayList<Integer> cond1FALSE = this.ir.getFALSE(this.ir.getCurrentLabel());
+        Integer cond1TRUELabel = this.ir.getCurrentLabel()-1;
+        Integer cond1FALSELabel = this.ir.getCurrentLabel();
+        this.ir.BACKPATCH(cond1TRUELabel, "TRUE", this.ir.NEXTQUAD());
+        ArrayList<Integer> cond1FALSE = this.ir.getFALSE(cond1FALSELabel);
 
         if(node.getRight() != null)
         {
@@ -1023,17 +1037,21 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
-        ArrayList<Integer> cond2FALSE = this.ir.getFALSE(this.ir.getCurrentLabel());
-        ArrayList<Integer> cond2TRUE = this.ir.getTRUE(this.ir.getCurrentLabel());
+        Integer cond2TRUELabel = this.ir.getCurrentLabel()-1;
+        Integer cond2FALSELabel = this.ir.getCurrentLabel();
+        ArrayList<Integer> cond2FALSE = this.ir.getFALSE(cond2FALSELabel);
+        ArrayList<Integer> cond2TRUE = this.ir.getTRUE(cond2TRUELabel);
 
         outAAndCond(node);
 
         // for IR production
+        Integer condTRUELabel = this.ir.getCurrentLabel()-1;
+        this.ir.setTRUE(condTRUELabel, cond2TRUE);
         ArrayList<ArrayList<Integer>> tempList = new ArrayList<ArrayList<Integer>>();
         tempList.add(cond1FALSE);
         tempList.add(cond2FALSE);
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MERGE(tempList));
-        this.ir.setTRUE(this.ir.getCurrentLabel(), cond2TRUE);
+        Integer condFALSELabel = this.ir.getCurrentLabel();
+        this.ir.setFALSE(condFALSELabel, this.ir.MERGE(tempList));
     }
     @Override
     public void inAOrCond(AOrCond node) {}
@@ -1044,13 +1062,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t1 = this.ir.getPLACE(l1);
-        String t2 = this.ir.getPLACE(l2);
-        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
-        this.ir.GENQUAD("or", t2, t1, t3);
-        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
+//        String t1 = this.ir.getPLACE(l1);
+//        String t2 = this.ir.getPLACE(l2);
+//        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
+        this.ir.GENQUAD("or", "-", "-", "?");
+//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void caseAOrCond(AOrCond node)
@@ -1062,9 +1081,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
-        this.ir.BACKPATCH(this.ir.getCurrentLabel(), "TRUE", this.ir.NEXTQUAD());
-        ArrayList<Integer> cond1FALSE = this.ir.getFALSE(this.ir.getCurrentLabel());
-        ArrayList<Integer> cond1TRUE = this.ir.getTRUE(this.ir.getCurrentLabel());
+        // for IR production
+        Integer cond1TRUELabel = this.ir.getCurrentLabel()-1;
+        Integer cond1FALSELabel = this.ir.getCurrentLabel();
+        this.ir.BACKPATCH(cond1TRUELabel, "TRUE", this.ir.NEXTQUAD());
+        ArrayList<Integer> cond1TRUE = this.ir.getTRUE(cond1TRUELabel);
+        ArrayList<Integer> cond1FALSE = this.ir.getFALSE(cond1FALSELabel);
 
         if(node.getRight() != null)
         {
@@ -1072,20 +1094,25 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
-        ArrayList<Integer> cond2FALSE = this.ir.getFALSE(this.ir.getCurrentLabel());
-        ArrayList<Integer> cond2TRUE = this.ir.getTRUE(this.ir.getCurrentLabel());
+        Integer cond2TRUELabel = this.ir.getCurrentLabel()-1;
+        Integer cond2FALSELabel = this.ir.getCurrentLabel();
+        ArrayList<Integer> cond2FALSE = this.ir.getFALSE(cond2FALSELabel);
+        ArrayList<Integer> cond2TRUE = this.ir.getTRUE(cond2TRUELabel);
 
         outAOrCond(node);
 
         // for IR production
-        ArrayList<ArrayList<Integer>> tempFALSEList = new ArrayList<ArrayList<Integer>>();
-        tempFALSEList.add(cond1FALSE);
-        tempFALSEList.add(cond2FALSE);
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MERGE(tempFALSEList));
+//        ArrayList<ArrayList<Integer>> tempFALSEList = new ArrayList<ArrayList<Integer>>();
+//        tempFALSEList.add(cond1FALSE);
+//        tempFALSEList.add(cond2FALSE);
+        Integer condFALSELabel = this.ir.getCurrentLabel();
+//        this.ir.setFALSE(condFALSELabel, this.ir.MERGE(tempFALSEList)); // we probably need to reconsider this
+        this.ir.setFALSE(condFALSELabel, cond2FALSE);
         ArrayList<ArrayList<Integer>> tempTRUEList = new ArrayList<ArrayList<Integer>>();
         tempTRUEList.add(cond1TRUE);
         tempTRUEList.add(cond2TRUE);
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MERGE(tempTRUEList));
+        Integer condTRUELabel = this.ir.getCurrentLabel()-1;
+        this.ir.setTRUE(condTRUELabel, this.ir.MERGE(tempTRUEList));
     }
     @Override
     public void inAEqualCond(AEqualCond node) {}
@@ -1104,10 +1131,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // for later stages of IR production
-//        this.ir.resetTRUE();
-//        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
-
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1122,9 +1145,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
-//        this.ir.resetFALSE();
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
@@ -1144,10 +1166,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // for later stages of IR production
-//        this.ir.resetTRUE();
-//        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
-
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1155,16 +1173,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("#", t2, t1, "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
-//        this.ir.resetFALSE();
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
@@ -1184,10 +1199,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // for later stages of IR production
-//        this.ir.resetTRUE();
-//        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
-
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1195,15 +1206,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("<>", t2, t1, "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);        this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
-//        this.ir.resetFALSE();
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
@@ -1223,10 +1231,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // for later stages of IR production
-//        this.ir.resetTRUE();
-//        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
-
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1234,16 +1238,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("<", t2, t1, "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
-//        this.ir.resetFALSE();
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
@@ -1263,10 +1264,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // for later stages of IR production
-//        this.ir.resetTRUE();
-//        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
-
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1274,16 +1271,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD(">", t2, t1, "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
-//        this.ir.resetFALSE();
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
@@ -1303,10 +1297,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // for later stages of IR production
-//        this.ir.resetTRUE();
-//        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
-
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1314,16 +1304,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("<=", t2, t1, "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
-//        this.ir.resetFALSE();
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
@@ -1343,10 +1330,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // for later stages of IR production
-//        this.ir.resetTRUE();
-//        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
-
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
@@ -1354,16 +1337,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD(">=", t2, t1, "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
-//        this.ir.resetFALSE();
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
     }
 

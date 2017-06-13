@@ -163,22 +163,26 @@ public class IntermediateCode {
     public ArrayList<Integer> MERGE(ArrayList<ArrayList<Integer>> l) {
         ArrayList<Integer> temp = new ArrayList<Integer>();
         for (int i = 0; i < l.size(); i++)
-            temp.addAll(l.get(i));
+            if (l.get(i) != null) temp.addAll(l.get(i));
         return temp;
     }
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
     public void BACKPATCH(Integer quadLabel, String listName, Integer z) {
+        System.out.printf("BACKPATCH for:");
+        this.intermediateCode.get(quadLabel-1).printQuad();
         ArrayList<Integer> l = null;
         if (listName.equals("TRUE")) l = this.TRUE.get(quadLabel);
         else if (listName.equals("FALSE"))  l = this.FALSE.get(quadLabel);
         else if (listName.equals("NEXT")) l = this.NEXT.get(quadLabel);
         assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
-            for (int j = 0; j < this.intermediateCode.size(); j++) {
-                if (this.intermediateCode.get(j).getZ().equals("?"))
-                    this.intermediateCode.get(j).setZ(z.toString());
-            }
+            assert (this.intermediateCode.get(i).getZ().equals("?"));
+            this.intermediateCode.get(i).setZ(z.toString());
+//            for (int j = 0; j < this.intermediateCode.size(); j++) {
+//                if (this.intermediateCode.get(j).getZ().equals("?"))
+//                    this.intermediateCode.get(j).setZ(z.toString());
+//            }
         }
     }
 
@@ -199,19 +203,19 @@ public class IntermediateCode {
         else return "V";
     }
 
-    //debug function
-    public void printTypeMap(){
-        for (String name: this.typeMap.keySet()){
-
-            String key =name.toString();
-            System.out.print(key);
-            System.out.print("\n");
-            STRecord.Type value= this.typeMap.get(name);
-            value.printType();
-
-
-        }
-    }
+//    //debug function
+//    public void printTypeMap(){
+//        for (String name: this.typeMap.keySet()){
+//
+//            String key =name.toString();
+//            System.out.print(key);
+//            System.out.print("\n");
+//            STRecord.Type value= this.typeMap.get(name);
+//            value.printType();
+//
+//
+//        }
+//    }
 
     /* NEXT, TRUE, FALSE manipulation functions */
 //    public void addNEXT(Integer nextLabel) { this.NEXT.add(label); }
