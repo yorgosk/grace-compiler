@@ -373,28 +373,37 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inABlock(ABlock node) { makeIndent(); System.out.printf("code-block body :\n"); indent++;}
     @Override
     public void outABlock(ABlock node) { indent--; }
-//    @Override
-//    public void caseABlock(ABlock node)
-//    {
-//        inABlock(node);
-//
-//        // for IR production
-//        int numOfStmt = 1;
-//
-//        {
-//            List<PStmt> copy = new ArrayList<PStmt>(node.getStmt());
-//            for(PStmt e : copy)
-//            {
-//                // for IR production
-//                if (numOfStmt != 1)
-//                    this.ir.BACKPATCH("NEXT", this.ir.NEXTQUAD());
-//                numOfStmt++;
-//
-//                e.apply(this);
-//            }
-//        }
-//        outABlock(node);
-//    }
+    @Override
+    public void caseABlock(ABlock node)
+    {
+        inABlock(node);
+
+        // for IR production
+        int numOfStmt = 1;
+        int stmtNEXTLabel = -1;
+
+        {
+            List<PStmt> copy = new ArrayList<PStmt>(node.getStmt());
+            for(PStmt e : copy)
+            {
+                // for IR production
+                if (numOfStmt != 1)
+                    this.ir.BACKPATCH(stmtNEXTLabel, "NEXT", this.ir.NEXTQUAD());
+                numOfStmt++;
+
+                e.apply(this);
+
+                // for IR production
+                if (numOfStmt == 1) stmtNEXTLabel = this.ir.getCurrentLabel();
+                else if (numOfStmt == 2) stmtNEXTLabel = this.ir.getCurrentLabel();
+            }
+        }
+
+        // producing IR
+        this.ir.setNEXT(stmtNEXTLabel, this.ir.EMPTYLIST());
+
+        outABlock(node);
+    }
 
     // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
