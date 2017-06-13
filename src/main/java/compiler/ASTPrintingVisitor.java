@@ -492,6 +492,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         outAAssignmentStmt(node);
     }
     @Override
+    public void inABlockStmt(ABlockStmt node) {}
+    @Override
+    public void outABlockStmt(ABlockStmt node) {
+        // producing IR
+        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+    }
+    @Override
     public void inAIfStmt(AIfStmt node) {}
     @Override
     public void outAIfStmt(AIfStmt node) {}
@@ -583,6 +590,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         outAWhileStmt(node);
     }
     @Override
+    public void inAFunctionStmt(AFunctionStmt node) {}
+    @Override
+    public void outAFunctionStmt(AFunctionStmt node) {
+        // producing IR
+        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+    }
+    @Override
     public void inAReturnStmt(AReturnStmt node) {}
     @Override
     public void outAReturnStmt(AReturnStmt node) {
@@ -594,13 +608,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.exit(-1);
         }
 
-        // producing IR
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
-    }
-    @Override
-    public void inAFunctionStmt(AFunctionStmt node) {}
-    @Override
-    public void outAFunctionStmt(AFunctionStmt node) {
         // producing IR
         this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
