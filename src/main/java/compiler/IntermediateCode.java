@@ -72,16 +72,10 @@ public class IntermediateCode {
     /* we use a Java Array-List to store our used temporary names */
     private ArrayList<String> usedTempNames;
     private Integer numOfTemp;
-    /* a Java Array-List of quad labels that contain jumps in the next command */
-//    private ArrayList<Integer> NEXT;
     /* a Java Hash-Map that for each quad, keeps track of it's NEXT list */
     private HashMap<Integer, ArrayList<Integer>> NEXT;
-    /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is True */
-//    private ArrayList<Integer> TRUE;
     /* a Java Hash-Map that for each quad, keeps track of it's TRUE list */
     private HashMap<Integer, ArrayList<Integer>> TRUE;
-    /* a Java Array-List of quad labels that contain jumps that should be executed in case a command is False */
-//    private ArrayList<Integer> FALSE;
     /* a Java Hash-Map that for each quad, keeps track of it's FALSE list */
     private HashMap<Integer, ArrayList<Integer>> FALSE;
     /* a Java Hash-Map that for each temporary storage or variable/l-value name maps it's type */
@@ -96,9 +90,6 @@ public class IntermediateCode {
         this.numOfLabels = 0;
         this.usedTempNames = new ArrayList<String>();
         this.numOfTemp = 0;
-//        this.NEXT = new ArrayList<Integer>();
-//        this.TRUE = new ArrayList<Integer>();
-//        this.FALSE = new ArrayList<Integer>();
         this.NEXT = new HashMap<Integer, ArrayList<Integer>>();
         this.TRUE = new HashMap<Integer, ArrayList<Integer>>();
         this.FALSE = new HashMap<Integer, ArrayList<Integer>>();
@@ -138,17 +129,6 @@ public class IntermediateCode {
         return newTemp;
     }
 
-//    /* creates a new temporary value of Type t */
-//    public String NEWTEMP_named(STRecord.Type t,String name) {
-//        this.numOfTemp++;
-//        // our new temp name
-//        //String newTemp = "$t"+numOfTemp;
-//        this.usedTempNames.add(name);
-//        // map temp's Type
-//        this.typeMap.put(name, t);
-//        return name;
-//    }
-
     /* creates an empty list of quads' labels */
     public ArrayList<Integer> EMPTYLIST() { return new ArrayList<Integer>(); }
 
@@ -179,48 +159,21 @@ public class IntermediateCode {
         for (int i = 0; i < l.size(); i++) {
             assert (this.intermediateCode.get(i).getZ().equals("?"));
             this.intermediateCode.get(i).setZ(z.toString());
-//            for (int j = 0; j < this.intermediateCode.size(); j++) {
-//                if (this.intermediateCode.get(j).getZ().equals("?"))
-//                    this.intermediateCode.get(j).setZ(z.toString());
-//            }
         }
     }
 
     /* takes the Type of a parameter and determines the mode under which it is passed */
     public String PARAMMODE(String id, Integer number) {
         System.out.printf("PARAMMODE for %s - %d", id, number);
-//        this.printTypeMap();
-//        System.out.print("DFSDFSDFSDFFD");
-//        System.out.print(id);
         STRecord.Type temp = this.typeMap.get(id);
-//        temp.printType();
-//        System.out.print("SFAFFSD");
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);
-//        assert (tempParam != null);
         if (tempParam == null) return "RET";
         if (tempParam.getArray() || tempParam.getRef()) return "R";
         else return "V";
     }
 
-//    //debug function
-//    public void printTypeMap(){
-//        for (String name: this.typeMap.keySet()){
-//
-//            String key =name.toString();
-//            System.out.print(key);
-//            System.out.print("\n");
-//            STRecord.Type value= this.typeMap.get(name);
-//            value.printType();
-//
-//
-//        }
-//    }
-
     /* NEXT, TRUE, FALSE manipulation functions */
-//    public void addNEXT(Integer nextLabel) { this.NEXT.add(label); }
-//    public void addTRUE(Integer label) { this.TRUE.add(label);}
-//    public void addFALSE(Integer label) { this.FALSE.add(label); }
     public void addNEXT(Integer quadLabel, Integer nextLabel) {
         ArrayList<Integer> newList = this.NEXT.get(quadLabel);
         newList.add(nextLabel);
@@ -240,22 +193,13 @@ public class IntermediateCode {
     public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }
     public String getPLACE(Integer key) { return this.PLACE.get(key); }
-//    public void setFALSE(ArrayList<Integer> list) { this.FALSE = list; }
-//    public void setTRUE(ArrayList<Integer> list) { this.TRUE = list; }
-//    public void setNEXT(ArrayList<Integer> list) { this.NEXT = list; }
     public void setNEXT(Integer quadLabel, ArrayList<Integer> list) { this.NEXT.put(quadLabel, list); }
     public void setTRUE(Integer quadLabel, ArrayList<Integer> list) { this.TRUE.put(quadLabel, list); }
     public void setFALSE(Integer quadLabel, ArrayList<Integer> list) { this.FALSE.put(quadLabel, list); }
-//    public ArrayList<Integer> getFALSE() { return this.FALSE; }
-//    public ArrayList<Integer> getTRUE() { return this.TRUE; }
-//    public ArrayList<Integer> getNEXT() { return this.NEXT; }
     public ArrayList<Integer> getNEXT(Integer quadLabel) { return this.NEXT.get(quadLabel); }
     public ArrayList<Integer> getTRUE(Integer quadLabel) { return this.TRUE.get(quadLabel); }
     public ArrayList<Integer> getFALSE(Integer quadLabel) { return this.FALSE.get(quadLabel); }
     public Integer getCurrentLabel() { return this.numOfLabels; }
-//    public void resetNEXT() { this.NEXT = new ArrayList<Integer>(); }
-//    public void resetTRUE() { this.TRUE = new ArrayList<Integer>(); }
-//    public void resetFALSE() { this.FALSE = new ArrayList<Integer>(); }
     public void resetType() { this.typeMap = new HashMap<String, STRecord.Type>(); }
     public void resetPLACE() { this.PLACE = new HashMap<Integer, String>(); }
 

@@ -446,7 +446,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         funcType.printType();
         if (!funcType.getKind().equals("nothing")) {
             String w = this.ir.NEWTEMP(funcType);
-//            this.ir.addPLACE("call", w);
             this.ir.GENQUAD("par", "RET", w, "-");
             this.ir.addPLACE(this.ir.getCurrentLabel(), w);
         }
@@ -584,7 +583,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         int stmtLabel = this.ir.getCurrentLabel();
         this.ir.BACKPATCH(stmtLabel, "NEXT", Q);
         this.ir.GENQUAD("jump", "-", "-", Q.toString());
-//        this.ir.resetNEXT();
         this.ir.setNEXT(stmtLabel, condFALSE);
 
         outAWhileStmt(node);
@@ -695,7 +693,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producting IR
         String str = node.getIntConst().toString().trim().replaceAll("\\s+", " ");
-//        this.tempOperandsStack.push(str);
         String t1 = this.ir.NEWTEMP(temp);
         this.ir.GENQUAD(":=", str, "-", t1);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
@@ -713,7 +710,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         //producing IR
         String str = node.getCharConst().toString().trim().replaceAll("\\s+", " ");
-//        this.tempOperandsStack.push(str);
         String t1 = this.ir.NEWTEMP(temp);
         this.ir.GENQUAD(":=", str, "-", t1);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
@@ -991,10 +987,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-//        String t1 = this.ir.getPLACE(l1);
-//        String t2 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
         this.ir.GENQUAD("not", "-", "-", "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
         this.ir.GENQUAD("jump", "-", "-", "?");
@@ -1014,11 +1007,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-//        String t1 = this.ir.getPLACE(l1);
-//        String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
         this.ir.GENQUAD("and", "-", "-", "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
         this.ir.GENQUAD("jump", "-", "-", "?");
@@ -1069,11 +1058,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-//        String t1 = this.ir.getPLACE(l1);
-//        String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(null);  // because we don't have a "boolean" type, and this condition basically results in what other languages would call "boolean"
         this.ir.GENQUAD("or", "-", "-", "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
         this.ir.GENQUAD("jump", "-", "-", "?");
@@ -1109,11 +1094,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         outAOrCond(node);
 
         // for IR production
-//        ArrayList<ArrayList<Integer>> tempFALSEList = new ArrayList<ArrayList<Integer>>();
-//        tempFALSEList.add(cond1FALSE);
-//        tempFALSEList.add(cond2FALSE);
         Integer condFALSELabel = this.ir.getCurrentLabel();
-//        this.ir.setFALSE(condFALSELabel, this.ir.MERGE(tempFALSEList)); // we probably need to reconsider this
         this.ir.setFALSE(condFALSELabel, cond2FALSE);
         ArrayList<ArrayList<Integer>> tempTRUEList = new ArrayList<ArrayList<Integer>>();
         tempTRUEList.add(cond1TRUE);
@@ -1145,9 +1126,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
-//        String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("=", t2, t1, "?");
-//        this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
