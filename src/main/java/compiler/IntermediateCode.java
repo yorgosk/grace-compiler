@@ -80,6 +80,8 @@ public class IntermediateCode {
     private HashMap<Integer, ArrayList<Integer>> FALSE;
     /* a Java Hash-Map that for each temporary storage or variable/l-value name maps it's type */
     private HashMap<String, STRecord.Type> typeMap;
+    private ArrayList<String> typeStack;//yiannis3
+    private HashMap<String,String> tempMap;//yiannis3
     /* a Java Hash-Map that maps the temporary storage where a, l-value's or r-value's value is stored */
     private HashMap<Integer, String> PLACE;
 
@@ -94,6 +96,8 @@ public class IntermediateCode {
         this.TRUE = new HashMap<Integer, ArrayList<Integer>>();
         this.FALSE = new HashMap<Integer, ArrayList<Integer>>();
         this.typeMap = new HashMap<String, STRecord.Type>();
+        this.typeStack = new ArrayList<String>();//yiannis3
+        this.tempMap = new HashMap<String, String>();//yiannis3
         this.PLACE = new HashMap<Integer, String>();
     }
 
@@ -126,6 +130,7 @@ public class IntermediateCode {
         this.usedTempNames.add(newTemp);
         // map temp's Type
         this.typeMap.put(newTemp, t);
+        this.typeStack.add(newTemp);//yiannis3
         return newTemp;
     }
 
@@ -189,6 +194,22 @@ public class IntermediateCode {
         newList.add(falseLabel);
         this.NEXT.put(quadLabel, newList);
     }
+
+    //yiannis3
+    public  String getLastTemp(){
+        return typeStack.remove(typeStack.size()-1);
+    }
+    public  void pushTemp(String name){
+        typeStack.add(name);
+    }
+    public void newTemp(String name,String temp){
+        this.tempMap.put(name,temp);
+    }
+    public String lookTemp(String name){
+        return this.tempMap.get(name);
+    }
+    //till here
+
     public void addType(String key, STRecord.Type value) { this.typeMap.put(key, value); }
     public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }

@@ -483,6 +483,15 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
 
         // producing IR
+        //System.out.print(this.ir.getLastTemp());
+        //yiannis3
+        String item1 = this.ir.getLastTemp();
+        String item2 = this.ir.getLastTemp();
+        this.ir.pushTemp(item1);
+        //STRecord.Type temp = this.symbolTable.fetchType(item1);
+        //String t1 = this.ir.NEWTEMP(temp);
+        this.ir.GENQUAD(":=",item1,"-",item2);
+        //till here
         this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
     @Override
@@ -638,9 +647,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producing IR
         String str = node.getId().toString().trim().replaceAll("\\s+", " ");
-        String t1 = this.ir.NEWTEMP(temp);
-        this.ir.GENQUAD(":=",  str,"-", t1);
-        this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
+        //modified by yiannis3
+        this.ir.pushTemp(str);
+        /*String t1;
+        if(this.ir.lookTemp(str)!=null){
+            t1 = this.ir.lookTemp(str);
+        }
+        else {
+            t1 = this.ir.NEWTEMP(temp);
+            this.ir.newTemp(str,t1);
+        }*/
+        //that what it was before
+        //t1 = this.ir.NEWTEMP(temp);
+        //this.ir.GENQUAD(":=",  str,"-", t1);
+        //till here
+        this.ir.addPLACE(this.ir.getCurrentLabel(), str);//changed by yiannis3
+        //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);//before modified
         this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
@@ -682,6 +704,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.NEWTEMP(tempExpr);
+    //    //String par1 = "["+t1+"]";                                       // problematic -- FIX IT//commented by yiannis3
+    //    this.ir.GENQUAD("array", t1, "-", t2);      //changed by yiannis3 (array was := and t1 was par1)
         String par1 = "["+t1+"]";                                       // problematic -- FIX IT
         this.ir.GENQUAD(":=", par1, "-", t2);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
@@ -702,9 +726,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producting IR
         String str = node.getIntConst().toString().trim().replaceAll("\\s+", " ");
-        String t1 = this.ir.NEWTEMP(temp);
-        this.ir.GENQUAD(":=", str, "-", t1);
-        this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
+        //String t1 = this.ir.NEWTEMP(temp);//commentd by yiannis3
+        //this.ir.GENQUAD(":=", str, "-", t1);//commented by yiannis3
+        this.ir.pushTemp(str);
+        this.ir.addPLACE(this.ir.getCurrentLabel(), str);//changed by yiannis3
+        //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);//before changed
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -738,12 +764,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t1 = this.ir.getPLACE(l1);
-        String t2 = this.ir.NEWTEMP(temp);
-        String par1 = "["+t1+"]";                                       // problematic -- FIX IT
-        this.ir.GENQUAD(":=", par1, "-", t2);
-        this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+        if(temp.getArray()==true) {     //added by yinnis3
+            String t1 = this.ir.getPLACE(l1);
+            String t2 = this.ir.NEWTEMP(temp);
+            //String par1 = "["+t1+"]";                                       // problematic -- FIX IT//commented by yiannis3
+            this.ir.GENQUAD("array", t1, "-", t2);                      //changed by yiannis3 (array was := and t1 was par1)
+            this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
+            this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+        }
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -817,8 +845,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t1 = this.ir.getPLACE(l1);
-        String t2 = this.ir.getPLACE(l2);
+        //String t1 = this.ir.getPLACE(l1); //this and below line commented by yiannis3
+        //String t2 = this.ir.getPLACE(l2);
+        String t1 = this.ir.getLastTemp();  //this and below line added by yiannis3
+        String t2 = this.ir.getLastTemp();
         String t3 = this.ir.NEWTEMP(temp1);
         this.ir.GENQUAD("-", t2, t1, t3);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
@@ -1231,8 +1261,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        String t1 = this.ir.getPLACE(l1);
-        String t2 = this.ir.getPLACE(l2);
+        //String t1 = this.ir.getPLACE(l1);
+        //String t2 = this.ir.getPLACE(l2);
+        String t1 = this.ir.getLastTemp();
+        String t2 = this.ir.getLastTemp();
         this.ir.GENQUAD("<", t2, t1, "?");
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
