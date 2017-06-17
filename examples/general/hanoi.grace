@@ -1,4 +1,4 @@
-fun solve () : nothing
+fun main () : nothing
       fun hanoi (rings : int; ref source, target, auxiliary : char[]) : nothing
          fun move (ref source, target : char[]) : nothing
          {
