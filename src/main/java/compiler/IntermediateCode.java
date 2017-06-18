@@ -154,7 +154,7 @@ public class IntermediateCode {
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
     public void BACKPATCH(Integer quadLabel, String listName, Integer z) {
-        System.out.printf("BACKPATCH for:");
+        System.out.printf("BACKPATCH \"%s\" for:", listName);
         this.intermediateCode.get(quadLabel-1).printQuad();
         ArrayList<Integer> l = null;
         if (listName.equals("TRUE")) l = this.TRUE.get(quadLabel);

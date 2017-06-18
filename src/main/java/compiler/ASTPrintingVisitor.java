@@ -571,7 +571,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // for IR production
             l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
             this.ir.GENQUAD("jump", "-", "-", "?");
-            // "-1" because there is the jump, -, -, ? in the middle
             this.ir.BACKPATCH(condFALSELabel, "FALSE", this.ir.NEXTQUAD());
 
             List<PStmt> copy = new ArrayList<PStmt>(node.getElseM());
@@ -735,7 +734,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.ir.getLastTemp();  //changed by yiannis3 (it was getPLACE(l1) )
         String t3 = this.ir.getLastTemp();
         String t2 = this.ir.NEWTEMP(tempExpr);
-        String temp=this.ir.getLastTemp();//added by yiannis3
+        String temp = this.ir.getLastTemp();//added by yiannis3
         this.ir.pushTemp("["+temp+"]");//added by yiannis3 it changes last element from $.. to [$..] to pop it after in this format
         //String par1 = "["+t1+"]";                                       // problematic -- FIX IT//commented by yiannis3
         this.ir.GENQUAD("array", t1, t3, t2);      //changed by yiannis3 (array was := and t1 was par1 and t3 was "-")
@@ -1157,7 +1156,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             node.getLeft().apply(this);
         }
 
-        // for IR production
         // for IR production
         Integer cond1TRUELabel = this.ir.getCurrentLabel()-1;
         Integer cond1FALSELabel = this.ir.getCurrentLabel();
