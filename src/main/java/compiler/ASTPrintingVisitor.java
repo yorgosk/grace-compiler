@@ -411,8 +411,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             for(PStmt e : copy)
             {
                 // for IR production
-                if (numOfStmt != 1)
-                    this.ir.BACKPATCH(stmtNEXTLabel, "NEXT", this.ir.NEXTQUAD());
+//                if (numOfStmt != 1)
+//                    this.ir.BACKPATCH(stmtNEXTLabel, "NEXT", this.ir.NEXTQUAD());
                 numOfStmt++;
 
                 e.apply(this);
@@ -424,7 +424,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        this.ir.setNEXT(stmtNEXTLabel, this.ir.EMPTYLIST());
+//        this.ir.setNEXT(stmtNEXTLabel, this.ir.EMPTYLIST());
 
         outABlock(node);
     }
@@ -516,7 +516,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //String t1 = this.ir.NEWTEMP(temp);
         this.ir.GENQUAD(":=",item1,"-",item2);
         //till here
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
     @Override
     public void caseAAssignmentStmt(AAssignmentStmt node)
@@ -537,7 +537,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outABlockStmt(ABlockStmt node) {
         // producing IR
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
     @Override
     public void inAIfStmt(AIfStmt node) {}
@@ -565,7 +565,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             node.getThenM().apply(this);
 
             // for IR production
-            stmt1NEXT = this.ir.getNEXT(this.ir.getCurrentLabel());
+//            stmt1NEXT = this.ir.getNEXT(this.ir.getCurrentLabel());
         }
         {
             // for IR production
@@ -580,15 +580,15 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
 
             // for IR production
-            l2 = this.ir.getNEXT(this.ir.getCurrentLabel());
+//            l2 = this.ir.getNEXT(this.ir.getCurrentLabel());
         }
 
         // for IR production
-        ArrayList<ArrayList<Integer>> param = new ArrayList<ArrayList<Integer>>();
-        param.add(l1);
-        param.add(stmt1NEXT);
-        param.add(l2);
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.MERGE(param));
+//        ArrayList<ArrayList<Integer>> param = new ArrayList<ArrayList<Integer>>();
+//        param.add(l1);
+//        param.add(stmt1NEXT);
+//        param.add(l2);
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.MERGE(param));
 
         outAIfStmt(node);
     }
@@ -602,7 +602,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         inAWhileStmt(node);
 
         // for IR production
-        Integer Q = this.ir.NEXTQUAD();
+//        Integer Q = this.ir.NEXTQUAD();
 
         if(node.getCond() != null)
         {
@@ -612,7 +612,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // for IR production
         int condTRUELabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
         int condFALSELabel = this.ir.getCurrentLabel();
-        ArrayList<Integer> condFALSE = this.ir.getFALSE(condFALSELabel);
+//        ArrayList<Integer> condFALSE = this.ir.getFALSE(condFALSELabel);
         this.ir.BACKPATCH(condTRUELabel, "TRUE", this.ir.NEXTQUAD());
 
         if(node.getStmt() != null)
@@ -622,9 +622,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // for IR production
         int stmtLabel = this.ir.getCurrentLabel();
-        this.ir.BACKPATCH(stmtLabel, "NEXT", Q);
-        this.ir.GENQUAD("jump", "-", "-", Q.toString());
-        this.ir.setNEXT(stmtLabel, condFALSE);
+//        this.ir.BACKPATCH(stmtLabel, "NEXT", Q);
+//        this.ir.GENQUAD("jump", "-", "-", Q.toString());
+        Integer next = this.ir.NEXTQUAD()+1;
+        this.ir.GENQUAD("jump", "-", "-", next.toString());
+        this.ir.BACKPATCH(condFALSELabel, "FALSE", next);
+//        this.ir.setNEXT(stmtLabel, condFALSE);
 
         outAWhileStmt(node);
     }
@@ -633,7 +636,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFunctionStmt(AFunctionStmt node) {
         // producing IR
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
     @Override
     public void inAReturnStmt(AReturnStmt node) {}
@@ -648,7 +651,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
     }
 
     // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
@@ -686,7 +689,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //till here
         this.ir.addPLACE(this.ir.getCurrentLabel(), str);//changed by yiannis3
         //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);//before modified
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -711,7 +714,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //this.ir.GENQUAD(":=", str, "-", t1);
         //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
         //till here
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -741,7 +744,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
    //     String par1 = "["+t1+"]";                                       // problematic -- FIX IT
      //   this.ir.GENQUAD(":=", par1, "-", t2);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
-        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }

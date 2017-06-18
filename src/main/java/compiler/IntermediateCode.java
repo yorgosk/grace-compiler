@@ -162,9 +162,15 @@ public class IntermediateCode {
         else if (listName.equals("NEXT")) l = this.NEXT.get(quadLabel);
         assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
-            assert (this.intermediateCode.get(i).getZ().equals("?"));
-            this.intermediateCode.get(i).setZ(z.toString());
+            int label = l.get(i);
+            assert (this.intermediateCode.get(label-1).getZ().equals("?"));
+            this.intermediateCode.get(label-1).setZ(z.toString());
         }
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        temp.add(z);
+        if (listName.equals("TRUE")) this.setTRUE(quadLabel, temp);
+        else if (listName.equals("FALSE"))  this.setFALSE(quadLabel, temp);
+        else if (listName.equals("NEXT")) this.setNEXT(quadLabel, temp);
     }
 
     /* takes the Type of a parameter and determines the mode under which it is passed */
