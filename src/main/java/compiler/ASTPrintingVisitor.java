@@ -75,12 +75,36 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         this.ir.GENQUAD("endu", this.tempFunctionStack.pop(), "-", "-");
     }
+    @Override
+    public void caseAFuncDef(AFuncDef node)
+    {
+        inAFuncDef(node);
+        if(node.getHeader() != null)
+        {
+            node.getHeader().apply(this);
+        }
+        {
+            List<PLocalDef> copy = new ArrayList<PLocalDef>(node.getLocalDef());
+            for(PLocalDef e : copy)
+            {
+                e.apply(this);
+            }
+        }
+
+        // producing IR
+        if (!this.isDecl) this.ir.GENQUAD("unit", this.tempFunctionStack.peek(), "-", "-");
+        if(node.getBlock() != null)
+        {
+            node.getBlock().apply(this);
+        }
+        outAFuncDef(node);
+    }
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
     public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
         // producing IR
-        if (!this.isDecl) this.ir.GENQUAD("unit", node.getId().toString().trim().replaceAll("\\s+", " "), "-", "-");
+//        if (!this.isDecl) this.ir.GENQUAD("unit", node.getId().toString().trim().replaceAll("\\s+", " "), "-", "-");
     }
     @Override
     public void outAHeader(AHeader node) { indent--;
