@@ -556,9 +556,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         int condTRUELabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
         int condFALSELabel = this.ir.getCurrentLabel();
         this.ir.BACKPATCH(condTRUELabel, "TRUE", this.ir.NEXTQUAD());
-        ArrayList<Integer> l1 = this.ir.getFALSE(this.ir.getCurrentLabel());
-        ArrayList<Integer> l2 = this.ir.EMPTYLIST();
-        ArrayList<Integer> stmt1NEXT = null;
+//        ArrayList<Integer> l1 = this.ir.getFALSE(this.ir.getCurrentLabel());
+//        ArrayList<Integer> l2 = this.ir.EMPTYLIST();
+//        ArrayList<Integer> stmt1NEXT = null;
+        Integer stmtNEXT;
 
         if(node.getThenM() != null)
         {
@@ -569,8 +570,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         {
             // for IR production
-            l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
+//            l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
             this.ir.GENQUAD("jump", "-", "-", "?");
+            stmtNEXT = this.ir.getCurrentLabel();
+            this.ir.setNEXT(stmtNEXT, this.ir.MAKELIST(stmtNEXT));
             this.ir.BACKPATCH(condFALSELabel, "FALSE", this.ir.NEXTQUAD());
 
             List<PStmt> copy = new ArrayList<PStmt>(node.getElseM());
@@ -584,6 +587,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // for IR production
+        this.ir.BACKPATCH(stmtNEXT, "NEXT", this.ir.NEXTQUAD());
 //        ArrayList<ArrayList<Integer>> param = new ArrayList<ArrayList<Integer>>();
 //        param.add(l1);
 //        param.add(stmt1NEXT);
@@ -1094,10 +1098,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        this.ir.GENQUAD("and", "-", "-", "?");
-        this.tempOperandsStack.push(this.ir.getCurrentLabel());
-        this.toPopFromTempOperandsStack++;
-        this.ir.GENQUAD("jump", "-", "-", "?");
+//        this.ir.GENQUAD("and", "-", "-", "?");
+//        this.tempOperandsStack.push(this.ir.getCurrentLabel());
+//        this.toPopFromTempOperandsStack++;
+//        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void caseAAndCond(AAndCond node)
@@ -1145,10 +1149,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        this.ir.GENQUAD("or", "-", "-", "?");
-        this.tempOperandsStack.push(this.ir.getCurrentLabel());
-        this.toPopFromTempOperandsStack++;
-        this.ir.GENQUAD("jump", "-", "-", "?");
+//        this.ir.GENQUAD("or", "-", "-", "?");
+//        this.tempOperandsStack.push(this.ir.getCurrentLabel());
+//        this.toPopFromTempOperandsStack++;
+//        this.ir.GENQUAD("jump", "-", "-", "?");
     }
     @Override
     public void caseAOrCond(AOrCond node)
