@@ -1,5 +1,6 @@
 package compiler;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -62,6 +63,10 @@ public class IntermediateCode {
         public void printQuad() {
             System.out.printf("%s: %s, %s, %s, %s\n", this.label, this.op, this.x, this.y, this.z);
         }
+        /* Quad's class printing function -- print to file, for testing */
+        public void printQuad(PrintWriter writer) {
+            writer.printf("%s: %s, %s, %s, %s\n", this.label, this.op, this.x, this.y, this.z);
+        }
 
     }
     /* we will use a low-level intermediate code (intermediate representation - IR) */
@@ -106,6 +111,12 @@ public class IntermediateCode {
         System.out.printf("\n\t\tLow Level Intermediate Representation:\n");
         for (int i = 0; i < this.intermediateCode.size(); i++)
             this.intermediateCode.get(i).printQuad();
+    }
+    /* our Intermediate Code / Intermediate Representation printing function -- print to file for testing */
+    public void printIR(PrintWriter writer) {
+        writer.printf("\n\t\tLow Level Intermediate Representation:\n");
+        for (int i = 0; i < this.intermediateCode.size(); i++)
+            this.intermediateCode.get(i).printQuad(writer);
     }
 
     /* HELPER FUNCTIONS */

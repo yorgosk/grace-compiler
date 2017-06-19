@@ -3,6 +3,8 @@ package compiler;
 import compiler.analysis.DepthFirstAdapter;
 import compiler.node.*;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -33,6 +35,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private Stack<Integer> tempOperandsStack;
     private Integer toPopFromTempOperandsStack;
 
+    // write to file
+    PrintWriter writer;
+
+    /* exit function, in case of semantic error */
+    private void gracefullyExit() {
+        // close writer
+        writer.close();
+        // exit with "failure" code
+        System.exit(-1);
+    }
+
     // IN A START------------------------------------------------------------
     @Override
     public void inStart(Start node) {
@@ -54,13 +67,27 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         for(int i = 0; i < temp.size(); i++) {
             this.ir.addType(temp.get(i).getName(), temp.get(i).getType());
         }
+
+        // start printing IR to file -- for testing
+        try {
+            writer = new PrintWriter("intermediateRepresentation.txt", "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
     public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++; }
     @Override
-    public void outAProgram(AProgram node) { indent--; System.out.printf("Intermediate Representation:\n"); this.ir.printIR(); }
+    public void outAProgram(AProgram node) { indent--; System.out.printf("Intermediate Representation:\n");
+        // print IR
+        this.ir.printIR();
+        // print IR to file -- for testing
+        this.ir.printIR(writer);
+        // done printing IR to file -- for testing
+        writer.close();
+    }
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
@@ -120,16 +147,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
         if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
             System.err.printf("Error: All Grace programs must have a \"main\" function\n");
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         } else if (node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " ")) && node.getFparDef().size() != 0) {
             System.err.printf("Error: \"main\" function takes no arguments\n");
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         } else if (!this.isDecl && this.hasMain && node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
             System.err.printf("Error: All Grace programs must have only one \"main\" function\n");
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         } else {
             this.hasMain = true;
             tempRec.setName(node.getId().toString().trim().replaceAll("\\s+", " "));
@@ -156,13 +180,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
             else if (result == 1) {
                 System.err.printf("Error: function \"%s\" has already been defined\n", tempRec.getName());
-                // exit with "failure" code
-                System.exit(-1);
+                this.gracefullyExit();
             }
             else {
                 System.err.printf("Error: function \"%s\" already known under a different type\n", tempRec.getName());
-                // exit with "failure" code
-                System.exit(-1);
+                this.gracefullyExit();
             }
         }else {
 //            if (!node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
@@ -184,13 +206,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
             else if (result == 1) {
                 System.err.printf("Error: function \"%s\" has already been defined\n", tempRec.getName());
-                // exit with "failure" code
-                System.exit(-1);
+                this.gracefullyExit();
             }
             else {
                 System.err.printf("Error: function \"%s\" already known under a different type\n", tempRec.getName());
-                // exit with "failure" code
-                System.exit(-1);
+                this.gracefullyExit();
             }
         }
         // for debugging
@@ -337,13 +357,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
              // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
              else if (result == 1) {
                  System.err.printf("Error: function \"%s\" has already been defined\n", temp.getName());
-                 // exit with "failure" code
-                 System.exit(-1);
+                 this.gracefullyExit();
              }
              else {
              System.err.printf("Error: function \"%s\" already known under a different type\n", temp.getName());
-                 // exit with "failure" code
-                 System.exit(-1);
+                 this.gracefullyExit();
              }
 
            // this.symbolTable.insert(temp);	commented by yiannis
@@ -503,8 +521,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if(type!=null){
             if(type.getArray()){
                 System.err.printf("Error: Trying to assign a value to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
-                // exit with "failure" code
-                System.exit(-1);
+                this.gracefullyExit();
             }
         }
        // type.printType();
@@ -516,8 +533,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "assignment")) {
             System.err.printf("Error: In \"assignment\" statement one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
@@ -668,8 +684,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         if(!this.symbolTable.checkRetType(temp)){
             System.err.printf("Error: function has different return type\n");
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -689,8 +704,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.toPopFromTempTypeStack++;
         } else {    // if temp doesn't exist in the current scope, we have an error
             System.err.printf("Error: id \"%s\" unknown in it's scope\n", node.getId().toString().trim().replaceAll("\\s+", " "));
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -749,8 +763,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         if (!tempExpr.getKind().equals("int")) {
             System.err.printf("Error: cannot navigate in l-value using a \"%s\" type\n", tempExpr.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -860,8 +873,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"plus\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
@@ -894,8 +906,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"minus\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
@@ -928,8 +939,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"mult\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
@@ -962,8 +972,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"div\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
@@ -996,8 +1005,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"division\" expression one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
@@ -1030,8 +1038,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "expression")) {
             System.err.printf("Error: In \"mod\" expression one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
@@ -1223,8 +1230,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -1256,8 +1262,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -1289,8 +1294,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -1321,8 +1325,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -1356,8 +1359,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -1389,8 +1391,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
@@ -1422,8 +1423,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (!temp1.isSame(temp2, "condition")) {
             System.err.printf("Error: In condition one member is \"%s\" and the other member is \"%s\"\n",
                     temp1.getKind(), temp2.getKind());
-            // exit with "failure" code
-            System.exit(-1);
+            this.gracefullyExit();
         }
 
         // producing IR
