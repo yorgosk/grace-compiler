@@ -284,6 +284,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAFparType(AFparType node) { makeIndent(); System.out.printf("funcParType :\n"); indent++;
         STRecord.Type temp = new STRecord.Type();
         temp.setKind(node.getDataType().toString().trim().replaceAll("\\s+", " "));
+        System.out.print(node.getLRBrackets());
+        System.out.print(node.getDataType());
         if (node.getLRBrackets() != null) {
             System.out.printf("getLRBrackets\n");
             temp.setArray(true);
@@ -491,6 +493,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAAssignmentStmt(AAssignmentStmt node) {}
     @Override
     public void outAAssignmentStmt(AAssignmentStmt node) {
+       // System.out.print("KKKKKKKKKKKKKKKKKKKKKKK");
+       // System.out.print(node.getExpr());
+       // System.out.print("PPPPPPPPPPPPPPPPPPPPP");
+       // System.out.print(node.getLValue());
+       // System.out.print("LLLLLLLLLLLLLLLLLLLLLLLLLL");
+        STRecord.Type type = new STRecord.Type();
+        type = this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " "));
+        if(type!=null){
+            if(type.getArray()){
+                System.err.printf("Error: Trying to assign a value to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
+                // exit with "failure" code
+                System.exit(-1);
+            }
+        }
+       // type.printType();
+       // System.out.print("GGGGGGGGGGGGG");
         STRecord.Type temp1 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
