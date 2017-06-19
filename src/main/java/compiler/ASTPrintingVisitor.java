@@ -36,12 +36,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private Integer toPopFromTempOperandsStack;
 
     // write to file
-    PrintWriter writer;
+    PrintWriter irWriter;
+    PrintWriter assemblyWriter;
 
     /* exit function, in case of semantic error */
     private void gracefullyExit() {
-        // close writer
-        writer.close();
+        // close writers
+        irWriter.close();
+        assemblyWriter.close();
         // exit with "failure" code
         System.exit(-1);
     }
@@ -70,7 +72,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // start printing IR to file -- for testing
         try {
-            writer = new PrintWriter("intermediateRepresentation.txt", "UTF-8");
+            irWriter = new PrintWriter("intermediateRepresentation.txt", "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // start assembly to file
+        try {
+            assemblyWriter = new PrintWriter("g.s");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,9 +92,32 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // print IR
         this.ir.printIR();
         // print IR to file -- for testing
-        this.ir.printIR(writer);
+        this.ir.printIR(irWriter);
+        // print assembly to file -- for testing
+        assemblyWriter.print(
+                        ".intel_syntax noprefix # Use Intel syntax instead of AT&T\n" +
+                        ".text\n" +
+                        ".global main\n" +
+                        "main:\n" +
+                        "# Prologue (set up the frame & stack pointer)\n" +
+                        "push ebp\n" +
+                        "mov ebp, esp" +
+                        "# Put the argument of printf() on the stack\n" +
+                        "mov eax, OFFSET FLAT:fmt\n" +
+                        "push eax\n" +
+                        "call printf # Calls printf()\n" +
+                        "add esp, 4\n" +
+                        "mov eax, 0 # Set the exit code (0) here\n" +
+                        "# Epilogue (Reset frame and stack pointer)\n" +
+                        "mov esp, ebp\n" +
+                        "pop ebp\n" +
+                        "ret\n" +
+                        ".data\n" +
+                        "fmt: .asciz \"Hello world!\\n\"\n");
         // done printing IR to file -- for testing
-        writer.close();
+        irWriter.close();
+        // done printing assembly to file
+        assemblyWriter.close();
     }
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
