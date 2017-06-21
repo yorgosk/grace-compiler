@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -317,20 +317,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="251" column="86" lean-forward="false" selection-start-line="251" selection-start-column="86" selection-end-line="251" selection-end-column="86" />
+            <state relative-caret-position="610">
+              <caret line="252" column="84" lean-forward="false" selection-start-line="252" selection-start-column="84" selection-end-line="252" selection-end-column="84" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MachineCode.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MachineCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="295">
               <caret line="66" column="51" lean-forward="false" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -419,9 +419,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
       </list>
     </option>
   </component>
@@ -986,7 +986,7 @@
       <workItem from="1497802104312" duration="61000" />
       <workItem from="1497802183340" duration="4926000" />
       <workItem from="1497900421368" duration="2185000" />
-      <workItem from="1498065624525" duration="6764000" />
+      <workItem from="1498065624525" duration="7468000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -1079,11 +1079,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498071686581</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="started formulating assembly, added MachineCode class for that, added various functions... assembly code produced is not functioning yet">
+      <created>1498073968828</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1498073968828</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40539000" />
+    <option name="totallyTimeSpent" value="41243000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -1159,7 +1166,8 @@
     <MESSAGE value="added assembly hello-world" />
     <MESSAGE value="started formulating assembly... assembly code produced is not functioning yet" />
     <MESSAGE value="started formulating assembly, added MachineCode class for that... assembly code produced is not functioning yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="started formulating assembly, added MachineCode class for that... assembly code produced is not functioning yet" />
+    <MESSAGE value="started formulating assembly, added MachineCode class for that, added various functions... assembly code produced is not functioning yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="started formulating assembly, added MachineCode class for that, added various functions... assembly code produced is not functioning yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1639,14 +1647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="251" column="86" lean-forward="false" selection-start-line="251" selection-start-column="86" selection-end-line="251" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -1657,11 +1657,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="295">
           <caret line="66" column="51" lean-forward="false" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="252" column="84" lean-forward="false" selection-start-line="252" selection-start-column="84" selection-end-line="252" selection-end-column="84" />
+          <folding />
         </state>
       </provider>
     </entry>

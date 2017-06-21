@@ -250,5 +250,6 @@ public class IntermediateCode {
     /* various utility functions */
     public ArrayList<String> getAssembly() { return this.assembly.getAssembly(); }
     public String getAssemblyAsString() { return this.assembly.getAssemblyAsString(); }
+    public void addAssemblyCode(String code) { this.assembly.addAssemblyCode(code); }
 
 }
