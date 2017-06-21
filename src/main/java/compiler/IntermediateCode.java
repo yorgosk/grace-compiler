@@ -1,5 +1,6 @@
 package compiler;
 
+import javax.crypto.Mac;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,6 +91,9 @@ public class IntermediateCode {
     /* a Java Hash-Map that maps the temporary storage where a, l-value's or r-value's value is stored */
     private HashMap<Integer, String> PLACE;
 
+    /* the respective Machine Code for our Intermediate Representation */
+    private MachineCode assembly;
+
     /* IntermediateCode's class constructor */
     public IntermediateCode() {
         this.intermediateCode = new ArrayList<Quad>();
@@ -104,6 +108,9 @@ public class IntermediateCode {
         this.typeStack = new ArrayList<String>();//yiannis3
         this.tempMap = new HashMap<String, String>();//yiannis3
         this.PLACE = new HashMap<Integer, String>();
+
+        /* initialize our MachineCode class-member */
+        this.assembly = new MachineCode();
     }
 
     /* our Intermediate Code / Intermediate Representation printing function */
@@ -195,6 +202,21 @@ public class IntermediateCode {
         else return "V";
     }
 
+    //yiannis3
+    public  String getLastTemp(){
+        return typeStack.remove(typeStack.size()-1);
+    }
+    public  void pushTemp(String name){
+        typeStack.add(name);
+    }
+    public void newTemp(String name,String temp){
+        this.tempMap.put(name,temp);
+    }
+    public String lookTemp(String name){
+        return this.tempMap.get(name);
+    }
+    //till here
+
     /* NEXT, TRUE, FALSE manipulation functions */
     public void addNEXT(Integer quadLabel, Integer nextLabel) {
         ArrayList<Integer> newList = this.NEXT.get(quadLabel);
@@ -211,22 +233,6 @@ public class IntermediateCode {
         newList.add(falseLabel);
         this.NEXT.put(quadLabel, newList);
     }
-
-    //yiannis3
-    public  String getLastTemp(){
-        return typeStack.remove(typeStack.size()-1);
-    }
-    public  void pushTemp(String name){
-        typeStack.add(name);
-    }
-    public void newTemp(String name,String temp){
-        this.tempMap.put(name,temp);
-    }
-    public String lookTemp(String name){
-        return this.tempMap.get(name);
-    }
-    //till here
-
     public void addType(String key, STRecord.Type value) { this.typeMap.put(key, value); }
     public void addPLACE(Integer key, String value) { this.PLACE.put(key, value); }
     public STRecord.Type getType(String key) { return this.typeMap.get(key); }
@@ -240,5 +246,9 @@ public class IntermediateCode {
     public Integer getCurrentLabel() { return this.numOfLabels; }
     public void resetType() { this.typeMap = new HashMap<String, STRecord.Type>(); }
     public void resetPLACE() { this.PLACE = new HashMap<Integer, String>(); }
+
+    /* various utility functions */
+    public ArrayList<String> getAssembly() { return this.assembly.getAssembly(); }
+    public String getAssemblyAsString() { return this.assembly.getAssemblyAsString(); }
 
 }

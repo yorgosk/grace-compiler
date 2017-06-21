@@ -121,6 +121,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //                        ".data\n" +
 //                        "fmt: .asciz \"Hello world!\\n\"\n");
         this.assemblyWriter.print(assembly);
+
+        this.assemblyWriter.print(this.ir.getAssemblyAsString());
         // done printing IR to file -- for testing
         this.irWriter.close();
         // done printing assembly to file

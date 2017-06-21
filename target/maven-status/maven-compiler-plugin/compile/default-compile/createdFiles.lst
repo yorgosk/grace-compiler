@@ -125,6 +125,7 @@ compiler/node/TUnequal.class
 compiler/node/TSemicolon.class
 compiler/node/AFunctionStmt.class
 compiler/node/TBlank.class
+compiler/MachineCode.class
 compiler/IntermediateCode$Quad.class
 compiler/IntermediateCode.class
 compiler/node/PStmt.class
