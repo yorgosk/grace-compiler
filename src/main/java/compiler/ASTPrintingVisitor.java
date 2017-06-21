@@ -39,11 +39,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     PrintWriter irWriter;
     PrintWriter assemblyWriter;
 
+    // string of assembly
+    String assembly;
+
     /* exit function, in case of semantic error */
     private void gracefullyExit() {
         // close writers
-        irWriter.close();
-        assemblyWriter.close();
+        this.irWriter.close();
+        this.assemblyWriter.close();
         // exit with "failure" code
         System.exit(-1);
     }
@@ -69,19 +72,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         for(int i = 0; i < temp.size(); i++) {
             this.ir.addType(temp.get(i).getName(), temp.get(i).getType());
         }
-
         // start printing IR to file -- for testing
         try {
-            irWriter = new PrintWriter("intermediateRepresentation.txt", "UTF-8");
+            this.irWriter = new PrintWriter("intermediateRepresentation.txt", "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
         // start assembly to file
         try {
-            assemblyWriter = new PrintWriter("g.s");
+            this.assemblyWriter = new PrintWriter("g.s");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // initialize assembly string as empty string
+        this.assembly = "";
+        this.assembly +=    ".intel_syntax noprefix # Use Intel syntax instead of AT&T\n" +
+                            ".text\n";
     }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
@@ -94,44 +100,52 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // print IR to file -- for testing
         this.ir.printIR(irWriter);
         // print assembly to file -- for testing
-        assemblyWriter.print(
-                        ".intel_syntax noprefix # Use Intel syntax instead of AT&T\n" +
-                        ".text\n" +
-                        ".global main\n" +
-                        "main:\n" +
-                        "# Prologue (set up the frame & stack pointer)\n" +
-                        "push ebp\n" +
-                        "mov ebp, esp" +
-                        "# Put the argument of printf() on the stack\n" +
-                        "mov eax, OFFSET FLAT:fmt\n" +
-                        "push eax\n" +
-                        "call printf # Calls printf()\n" +
-                        "add esp, 4\n" +
-                        "mov eax, 0 # Set the exit code (0) here\n" +
-                        "# Epilogue (Reset frame and stack pointer)\n" +
-                        "mov esp, ebp\n" +
-                        "pop ebp\n" +
-                        "ret\n" +
-                        ".data\n" +
-                        "fmt: .asciz \"Hello world!\\n\"\n");
+//        this.assemblyWriter.print(
+//                        ".intel_syntax noprefix # Use Intel syntax instead of AT&T\n" +
+//                        ".text\n" +
+//                        ".global main\n" +
+//                        "main:\n" +
+//                        "# Prologue (set up the frame & stack pointer)\n" +
+//                        "push ebp\n" +
+//                        "mov ebp, esp" +
+//                        "# Put the argument of printf() on the stack\n" +
+//                        "mov eax, OFFSET FLAT:fmt\n" +
+//                        "push eax\n" +
+//                        "call printf # Calls printf()\n" +
+//                        "add esp, 4\n" +
+//                        "mov eax, 0 # Set the exit code (0) here\n" +
+//                        "# Epilogue (Reset frame and stack pointer)\n" +
+//                        "mov esp, ebp\n" +
+//                        "pop ebp\n" +
+//                        "ret\n" +
+//                        ".data\n" +
+//                        "fmt: .asciz \"Hello world!\\n\"\n");
+        this.assemblyWriter.print(assembly);
         // done printing IR to file -- for testing
-        irWriter.close();
+        this.irWriter.close();
         // done printing assembly to file
-        assemblyWriter.close();
+        this.assemblyWriter.close();
     }
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
     public void inAFuncDef(AFuncDef node) { makeIndent(); System.out.printf("function :\n"); indent++;
         // we are in a function definition, this means that a new namespace-scope is created
-        symbolTable.enter();
+        this.symbolTable.enter();
         // the very next header that we will see, we want to remember that it belongs to a function Definition
         this.isDecl = false;
     }
     @Override
     public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit();
+        String name = this.tempFunctionStack.pop();
         // producing IR
-        this.ir.GENQUAD("endu", this.tempFunctionStack.pop(), "-", "-");
+        this.ir.GENQUAD("endu", name, "-", "-");
+
+        // producing assembly
+        this.assembly +=    "endof("+name+"): mov sp, bp\n"+
+                            "pop bp\n"+
+                            "ret\n"+
+                            "name("+name+") endp\n";
     }
     @Override
     public void caseAFuncDef(AFuncDef node)
@@ -149,8 +163,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
         }
 
-        // producing IR
-        if (!this.isDecl) this.ir.GENQUAD("unit", this.tempFunctionStack.peek(), "-", "-");
+        if (!this.isDecl) {
+            // producing IR
+            this.ir.GENQUAD("unit", this.tempFunctionStack.peek(), "-", "-");
+
+            // producing assembly
+            this.assembly +=    "name("+this.tempFunctionStack.peek()+") proc near\n"+
+                                "push bp\n"+
+                                "mov bp, sp\n"+
+                                "sub sp, size\n";
+        }
         if(node.getBlock() != null)
         {
             node.getBlock().apply(this);
@@ -582,6 +604,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD(":=",item1,"-",item2);
         //till here
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+
+        // producing assembly
+        this.assembly +=    "load(R, "+item1+")\n" +
+                            "store(R, "+item2+")\n";
     }
     @Override
     public void caseAAssignmentStmt(AAssignmentStmt node)
@@ -813,6 +839,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t3+")\n"+
+                            "mov cx, size\n"+
+                            "imul cx\n"+
+                            "loadAddr(cx, "+t1+")\n"+
+                            "add ax, cx\n"+
+                            "store(ax, "+t2+")\n";
     }
 
     // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
@@ -925,6 +959,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "add ax, dx\n"+
+                            "store(ax, "+t3+")\n";
     }
     @Override
     public void inAMinusExpr(AMinusExpr node) {}
@@ -958,6 +998,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "sub ax, dx\n"+
+                            "store(ax, "+t3+")\n";
     }
     @Override
     public void inAMultExpr(AMultExpr node) {}
@@ -991,6 +1037,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(cx, "+t1+")\n"+
+                            "imul cx\n"+
+                            "store(ax, "+t3+")\n";
     }
     @Override
     public void inADivExpr(ADivExpr node) {}
@@ -1057,6 +1109,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "cwd\n"+
+                            "load(cx, "+t1+")\n"+
+                            "idiv cx\n"+
+                            "store(ax, "+t3+")\n";
     }
     @Override
     public void inAModExpr(AModExpr node) {}
@@ -1090,6 +1149,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), t3);
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "cwd\n"+
+                            "load(cx, "+t1+")\n"+
+                            "idiv cx\n"+
+                            "store(dx, "+t3+")\n";
     }
     @Override
     public void inASignedExpr(ASignedExpr node) {}
@@ -1279,6 +1345,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "cmp ax, dx\n"+
+                            "instr label(?)\n";
     }
     @Override
     public void inAHashtagCond(AHashtagCond node) {}
@@ -1311,6 +1383,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "cmp ax, dx\n"+
+                            "instr label(?)\n";
     }
     @Override
     public void inAUnequalCond(AUnequalCond node) {}
@@ -1342,6 +1420,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "cmp ax, dx\n"+
+                            "instr label(?)\n";
     }
     @Override
     public void inALesserCond(ALesserCond node) {}
@@ -1376,6 +1460,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "cmp ax, dx\n"+
+                            "instr label(?)\n";
     }
     @Override
     public void inAGreaterCond(AGreaterCond node) {}
@@ -1408,6 +1498,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "cmp ax, dx\n"+
+                            "instr label(?)\n";
     }
     @Override
     public void inALesseqCond(ALesseqCond node) {}
@@ -1440,6 +1536,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "cmp ax, dx\n"+
+                            "instr label(?)\n";
     }
     @Override
     public void inAGreateqCond(AGreateqCond node) {}
@@ -1472,6 +1574,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.assembly +=    "load(ax, "+t2+")\n"+
+                            "load(dx, "+t1+")\n"+
+                            "cmp ax, dx\n"+
+                            "instr label(?)\n";
     }
 
 }
