@@ -13,12 +13,15 @@ public class MachineCode {
     /* temporary store nesting depths */
     private Integer tempNp;
     private Integer tempNx;
+    /* a Java Hash-Map that maps each data name to it's data type */
+    private HashMap<String, STRecord.Type> typeMap;
 
     /* MachineCode's class (default-)constructor */
     public MachineCode() {
         this.assembly = new ArrayList<String>();
         this.nonLocalOperands = 0;
         this.nonLocalOperandsMap = new HashMap<String, Integer>();
+        this.typeMap = new HashMap<String, STRecord.Type>();
 
         // add the first lines of assembly
         this.assembly.add(".intel_syntax noprefix # Use Intel syntax instead of AT&T\n");
@@ -35,7 +38,10 @@ public class MachineCode {
     public Integer getTempNp() { return this.tempNp; }
     public void setTempNx(Integer tempNx) { this.tempNx = tempNx; }
     public Integer getTempNx() { return this.tempNx; }
+    public void setTypeMapping(String name, STRecord.Type type) { this.typeMap.put(name, type); }
+    public STRecord.Type getTypeMapping(String name) { return this.typeMap.get(name); }
 
+    /* ITERATING THROUGH NAMES */
     /* getAr(a) -- produces the machine code x86 for loading the record address of an
             * activation record which contains the non-local operand "a" to the register "si" */
     // case of AccessLinks
@@ -67,6 +73,41 @@ public class MachineCode {
             this.assembly.add("push word ptr [si+4]");
         }
     }
+
+    /* ASSISTANT-ROUTINES */
+    /* load(R,a) -- produces code for storing data "a" at register "R" */
+    public void load(String R, String a) {
+        if (this.getTypeMapping(a).getKind().equals("int"))
+            this.assembly.add("mov "+R+", "+a+"\n");
+        /* logical constant "true"??? */
+//        this.assembly.add("mov "+R+", 1\n");
+        /* logical constant "false"??? */
+//        this.assembly.add("mov "+R+", 0\n");
+        else if (this.getTypeMapping(a).getKind().equals("char"))
+            this.assembly.add("mov "+R+", ASCII("+a+")\n");
+        /* case of local variable, parameter by value, temporary variable */
+//        this.assembly.add("mov "+R+", size ptr [bp + offset]\n");
+        /* case of parameter by reference */
+        /*
+        * four more cases, see 07-assembly.pdf, page 28/42
+        * */
+    }
+
+    /* loadAddr(R,a) -- produces code for storing the address of the data "a" at register "R"
+    *
+    * //////////////////////////////
+    * CODE
+    * //////////////////////////////
+    *
+    * */
+
+    /* store(R,a) -- produces code for storing the contents of the register "R" at data "a"
+    *
+    * //////////////////////////////
+    * CODE
+    * //////////////////////////////
+    *
+    * */
 
     /* various utility functions */
     public void addAssemblyCode(String aCode) { this.assembly.add(aCode); }
