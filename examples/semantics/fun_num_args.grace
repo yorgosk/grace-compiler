@@ -1,5 +1,5 @@
 fun main () : nothing
-	fun foo(v : int) : nothing
+	fun foo(v : char[10]) : nothing
 	{
 		puti(9);
 	}
@@ -7,7 +7,8 @@ fun main () : nothing
 	{
 		putc('b');
 	}
+		var j:char[10];
 {
-	foo(0);
+	foo("wffew");
 	strcmp("fdsdf","wfwef");
 }

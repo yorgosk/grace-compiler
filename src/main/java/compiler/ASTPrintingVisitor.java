@@ -219,6 +219,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord temp;
         while (this.toPopFromTempRecordStack != 0) {
             temp = this.tempRecordStack.pop();
+            System.out.print("YYYYYYYYYYYYYY");
+            System.out.print(temp.getName());
             this.symbolTable.insert(temp);
             toPopFromTempRecordStack--;
             tempRec.type.addParameter(temp.getType());
@@ -228,6 +230,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if (this.isDecl) {
             if (result == 0) {
                 tempRec.setDefined(false);
+                System.out.print("UUUUUUUUUUU");
+                System.out.print(tempRec.getName());
                 this.symbolTable.insert(tempRec);
 
                 // for IR production
@@ -251,6 +255,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            symbolTable.enter();
 
             if (result == 0) {
+                System.out.print("JJJJJJJJJJ");
+                System.out.print(tempRec.getName());
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.setScopeType(tempRec.getType());
                 this.symbolTable.addKnownFunction(tempRec);
@@ -554,22 +560,28 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 type1.setRef(true);
                 type1.setKind("char");
             }
-            else{
+            else if(n.toCharArray()[0]=='0' || n.toCharArray()[0]=='1' || n.toCharArray()[0]=='2' || n.toCharArray()[0]=='3' || n.toCharArray()[0]=='4' || n.toCharArray()[0]=='5' || n.toCharArray()[0]=='6' || n.toCharArray()[0]=='7' || n.toCharArray()[0]=='8' || n.toCharArray()[0]=='9'){
                 type1 = new STRecord.Type();
                 type1.setArray(false);
                 type1.setRef(false);
                 type1.setKind("int");
             }
+            else{
+                System.err.printf("Error: %s has not been declared\n",n);
+                this.gracefullyExit();
+            }
         }
         STRecord.Type type2;
-        System.out.print("DFGDFGDFGDFGDFG");
-        System.out.print(funName);
-        System.out.print(c);
-        type2 = this.symbolTable.paramType(funName,c+1);//instead of c stack error
+        //System.out.print("DFGDFGDFGDFGDFG");
+        //System.out.print(funName);
+        //System.out.print(c);
+        type2 = this.symbolTable.fetchType(funName).getParameters().get(c);
+        //System.out.print(type2.getKind());
+        //type2 = this.symbolTable.paramType(funName,c+1);//instead of c stack error
         if(type2==null){
             //commented segment to avoid errors
-           // System.err.printf("Error: function %s has not been declared\n",funName);
-           // this.gracefullyExit();
+            System.err.printf("Error: function %s has not been declared\n",funName);
+            this.gracefullyExit();
         }
         else {
 
