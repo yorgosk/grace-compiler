@@ -125,11 +125,22 @@ public class MachineCode {
         /* case of local parameter by value */
         else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef())
             this.assembly.add("lea "+R+", size ptr [bp + offset]\n");
-        /*
-        * ///////////////
-        * 4 MORE
-        * ///////////////
-        * */
+        /* case of parameter by value */
+        else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef())
+            this.assembly.add("mov "+R+", word ptr [bp + offset]\n");
+        /* case of non-local parameter by value */
+        else if (!this.getDataMapping(a).getLocal() && this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef()) {
+            this.getAR(a);
+            this.assembly.add("lea "+R+", size ptr [si + offset]\n");
+        }
+        /* case of non-local parameter by reference */
+        else if (!this.getDataMapping(a).getLocal() && this.getDataMapping(a).getParam() && this.getDataMapping(a).getType().getRef()) {
+            this.getAR(a);
+            this.assembly.add("mov "+R+", size ptr [si + offset]\n");
+        }
+        /* case of dereference */
+        else if (this.getDataMapping(a).getDereference())
+            this.assembly.add("load("+R+", "+a+")\n");
         else
             assert (false); // we don't want to end up here, under any situation
     }
