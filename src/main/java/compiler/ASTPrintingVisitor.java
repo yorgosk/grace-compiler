@@ -711,10 +711,18 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
 	//added by yiannis_sem
         //commented segment to avoid errors
-        //if(temp1.getArray()!=temp2.getArray()){
-         //   System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n",temp1.getKind(),temp2.getKind());
-         //   this.gracefullyExit();
-        //}
+        if(temp1.getArray()!=temp2.getArray()){
+            System.out.print("OOOOOOOOOOOOOOPPPPPPPP");
+            System.out.print(node.getLValue());
+            String[] splitted = node.getLValue().toString().split(" ");
+            if ((this.symbolTable.fetchType(splitted[1])!=null&&this.symbolTable.fetchType(splitted[1]).getKind().equals("int")) || splitted[1].toCharArray()[0] == '0' || splitted[1].toCharArray()[0] == '1' || splitted[1].toCharArray()[0] == '2' || splitted[1].toCharArray()[0] == '3' || splitted[1].toCharArray()[0] == '4' || splitted[1].toCharArray()[0] == '5' || splitted[1].toCharArray()[0] == '6' || splitted[1].toCharArray()[0] == '7' || splitted[1].toCharArray()[0] == '8' || splitted[1].toCharArray()[0] == '9') {
+
+            }
+            else {
+                System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n", temp1.getKind(), temp2.getKind());
+                this.gracefullyExit();
+            }
+        }
         //till here
         if (!temp1.isSame(temp2, "assignment")) {
             System.err.printf("Error: In \"assignment\" statement one member is %s and the other member is %s\n",
@@ -1573,6 +1581,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+        //yainnis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        //if(temp1.getArray()||temp2.getArray()){
+          //  System.err.printf("Error: In condition at least one member is literal or array\n");
+            //this.gracefullyExit();
+        //}
+        //till here
 
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
