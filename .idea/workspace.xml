@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="started formulating assembly, added MachineCode class for that, added various functions (II)... assembly code produced is not functioning yet">
+    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="some assembly related additions">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -62,8 +59,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="988" column="33" lean-forward="false" selection-start-line="982" selection-start-column="10" selection-end-line="988" selection-end-column="33" />
+            <state relative-caret-position="462">
+              <caret line="1363" column="32" lean-forward="false" selection-start-line="1363" selection-start-column="32" selection-end-line="1363" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -139,7 +136,13 @@
       <find>&quot;[&quot;</find>
       <find>&quot;unit&quot;</find>
       <find>&quot;:=&quot;</find>
+      <find>STRecord</find>
       <find>&quot;array&quot;</find>
+      <find>&quot;+&quot;</find>
+      <find>&quot;-&quot;</find>
+      <find>(&quot;-&quot;</find>
+      <find>(&quot;*&quot;</find>
+      <find>(&quot;mod&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -462,7 +465,7 @@
       <workItem from="1498139430407" duration="189000" />
       <workItem from="1498139629042" duration="2000" />
       <workItem from="1498139636550" duration="1000000" />
-      <workItem from="1498158770074" duration="1867000" />
+      <workItem from="1498158770074" duration="3340000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -576,11 +579,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498131363399</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="some assembly related additions">
+      <created>1498160655903</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1498160655903</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1867000" />
+    <option name="totallyTimeSpent" value="3340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -641,7 +651,8 @@
     <MESSAGE value="started formulating assembly, added MachineCode class for that, added various functions... assembly code produced is not functioning yet" />
     <MESSAGE value="started formulating assembly, added MachineCode class for that, added various functions (II)... assembly code produced is not functioning yet" />
     <MESSAGE value="additions to STRecord, Type... have to be added to ASTVisitor" />
-    <option name="LAST_COMMIT_MESSAGE" value="additions to STRecord, Type... have to be added to ASTVisitor" />
+    <MESSAGE value="some assembly related additions" />
+    <option name="LAST_COMMIT_MESSAGE" value="some assembly related additions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -908,8 +919,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="988" column="33" lean-forward="false" selection-start-line="982" selection-start-column="10" selection-end-line="988" selection-end-column="33" />
+        <state relative-caret-position="462">
+          <caret line="1363" column="32" lean-forward="false" selection-start-line="1363" selection-start-column="32" selection-end-line="1363" selection-end-column="32" />
           <folding />
         </state>
       </provider>
