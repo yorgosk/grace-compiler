@@ -171,10 +171,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.ir.GENQUAD("unit", this.tempFunctionStack.peek(), "-", "-");
 
             // producing assembly
-            this.assembly +=    "name("+this.tempFunctionStack.peek()+") proc near\n"+
-                                "push bp\n"+
-                                "mov bp, sp\n"+
-                                "sub sp, size\n";
+            String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getCurrentLabel();
+            this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
+            this.ir.addAssemblyCode("name("+name+") proc near\n");
+            this.ir.addAssemblyCode("push bp\n");
+            this.ir.addAssemblyCode("mov bp, sp\n");
+            this.ir.addAssemblyCode("sub sp, 8\n");
         }
         if(node.getBlock() != null)
         {
@@ -185,10 +187,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
-    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
-        // producing IR
-//        if (!this.isDecl) this.ir.GENQUAD("unit", node.getId().toString().trim().replaceAll("\\s+", " "), "-", "-");
-    }
+    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++; }
     @Override
     public void outAHeader(AHeader node) { indent--;
         // keep the name of the function
@@ -742,8 +741,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
 
         // producing assembly
-        this.assembly +=    "load(R, "+item1+")\n" +
-                            "store(R, "+item2+")\n";
+        STRecord tempRec = new STRecord();
+        tempRec.setType(temp3);
+        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
+        this.ir.setDataMapping(item1, tempRec);
+        this.ir.load("R", item1);
+        this.ir.store("R", item1);
     }
     @Override
     public void caseAAssignmentStmt(AAssignmentStmt node)
@@ -977,6 +980,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
 
         // producing assembly
+//        STRecord tempRecX = this.tempRecordStack.pop();
+//        this.toPopFromTempRecordStack--;
+//        STRecord tempRecY = this.tempRecordStack.pop();
+//        this.toPopFromTempRecordStack--;
+//        tempRecY.setDereference(true);
+//        this.ir.setDataMapping(t3, tempRecY);
+//        this.ir.load("ax", t3);
+//        this.ir.
         this.assembly +=    "load(ax, "+t3+")\n"+
                             "mov cx, size\n"+
                             "imul cx\n"+

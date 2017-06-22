@@ -183,5 +183,8 @@ public class MachineCode {
             ret += this.assembly.get(i);
         return ret;
     }
+    public Integer getTypeSize(STRecord.Type type) {
+        return 4;
+    }
 
 }
