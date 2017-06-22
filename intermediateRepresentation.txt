@@ -1,5 +1,6 @@
 
 		Low Level Intermediate Representation:
+<<<<<<< HEAD
 1: unit, prime, -, -
 2: <, n, 0, 4
 3: jump, -, -, 8
@@ -99,3 +100,30 @@
 97: par, "\n", R, -
 98: call, -, -, puts
 99: endu, main, -, -
+=======
+1: unit, reverse, -, -
+2: par, s, R, -
+3: par, RET, $t1, -
+4: call, -, -, strlen
+5: :=, l, -, $t1
+6: :=, i, -, 0
+7: <, i, l, 9
+8: jump, -, -, 17
+9: -, l, i, $t2
+10: -, $t2, 1, $t3
+11: array, $t3, s, $t4
+12: array, i, r, $t5
+13: :=, [$t5], -, [$t4]
+14: +, i, 1, $t6
+15: :=, i, -, $t6
+16: jump, -, -, 17
+17: array, i, r, $t7
+18: :=, [$t7], -, '\0'
+19: endu, reverse, -, -
+20: unit, main, -, -
+21: par, "\n!dlrow olleH", R, -
+22: call, -, -, reverse
+23: par, r, R, -
+24: call, -, -, puts
+25: endu, main, -, -
+>>>>>>> 131936fc1c64f8f138581500ebaec7e88730f920
