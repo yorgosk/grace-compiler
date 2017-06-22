@@ -562,10 +562,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
         }
         STRecord.Type type2;
-        //System.out.print("DFGDFGDFGDFGDFG");
-        //System.out.print(funName);
-        //System.out.print(c);
-        type2 = this.symbolTable.paramType(funName,c);
+        System.out.print("DFGDFGDFGDFGDFG");
+        System.out.print(funName);
+        System.out.print(c);
+        type2 = this.symbolTable.paramType(funName,c+1);//instead of c stack error
         if(type2==null){
             //commented segment to avoid errors
            // System.err.printf("Error: function %s has not been declared\n",funName);

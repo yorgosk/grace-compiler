@@ -250,7 +250,7 @@ public class SymbolTable {
             }
             //for(int i = 0; i < params.size(); i++) {
             STRecord.Type type1 = new STRecord.Type();
-            type1 = (STRecord.Type) params.get(number);
+            type1 = (STRecord.Type) params.get(number-1);//instead of number stack error
             return type1;
                 //type1.printType();
                 //System.out.print(params.get(i));
