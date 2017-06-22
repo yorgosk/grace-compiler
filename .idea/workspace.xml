@@ -273,13 +273,25 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="561" column="13" lean-forward="true" selection-start-line="561" selection-start-column="13" selection-end-line="561" selection-end-column="13" />
+            <state relative-caret-position="222">
+              <caret line="721" column="49" lean-forward="true" selection-start-line="721" selection-start-column="49" selection-end-line="721" selection-end-column="49" />
               <folding>
-                <marker date="1498154143190" expanded="false" signature="27642:27649" ph="&lt;~&gt;" />
-                <marker date="1498154143190" expanded="false" signature="33450:33457" ph="&lt;~&gt;" />
-                <marker date="1498154143190" expanded="false" signature="59294:59314" ph="&lt;~&gt;" />
-                <marker date="1498154143190" expanded="false" signature="61248:61268" ph="&lt;~&gt;" />
+                <marker date="1498158566610" expanded="false" signature="28667:28674" ph="&lt;~&gt;" />
+                <marker date="1498158566610" expanded="false" signature="34475:34482" ph="&lt;~&gt;" />
+                <marker date="1498158566610" expanded="false" signature="60319:60339" ph="&lt;~&gt;" />
+                <marker date="1498158566610" expanded="false" signature="62273:62293" ph="&lt;~&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AFuncCall.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="127">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <element signature="e#818#819#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -340,7 +352,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
               <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#242#243#0" expanded="false" />
+                <element signature="e#274#275#0" expanded="false" />
+                <element signature="e#946#947#0" expanded="false" />
+                <element signature="e#1013#1014#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -352,6 +369,8 @@
       <find>JJJJJ</find>
       <find>insert</find>
       <find>knownfunctions</find>
+      <find>yiannis_sem</find>
+      <find>has not been declared</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -412,7 +431,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="examples/semantics/fun_num_args.grace" />
+      <option name="PROGRAM_PARAMETERS" value="examples/general/bsort.grace" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -791,7 +810,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68575853" sideWeight="0.53712124" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47293815" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47293815" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.72164947" sideWeight="0.4628788" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -846,7 +865,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/sablecc/parser.grammar">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
@@ -1248,7 +1266,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#242#243#0" expanded="false" />
+            <element signature="e#274#275#0" expanded="false" />
+            <element signature="e#946#947#0" expanded="false" />
+            <element signature="e#1013#1014#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1309,15 +1332,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/node/AFuncCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="e#818#819#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="561" column="13" lean-forward="true" selection-start-line="561" selection-start-column="13" selection-end-line="561" selection-end-column="13" />
+        <state relative-caret-position="222">
+          <caret line="721" column="49" lean-forward="true" selection-start-line="721" selection-start-column="49" selection-end-line="721" selection-end-column="49" />
           <folding>
-            <marker date="1498154143190" expanded="false" signature="27642:27649" ph="&lt;~&gt;" />
-            <marker date="1498154143190" expanded="false" signature="33450:33457" ph="&lt;~&gt;" />
-            <marker date="1498154143190" expanded="false" signature="59294:59314" ph="&lt;~&gt;" />
-            <marker date="1498154143190" expanded="false" signature="61248:61268" ph="&lt;~&gt;" />
+            <marker date="1498158566610" expanded="false" signature="28667:28674" ph="&lt;~&gt;" />
+            <marker date="1498158566610" expanded="false" signature="34475:34482" ph="&lt;~&gt;" />
+            <marker date="1498158566610" expanded="false" signature="60319:60339" ph="&lt;~&gt;" />
+            <marker date="1498158566610" expanded="false" signature="62273:62293" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>

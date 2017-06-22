@@ -9,6 +9,6 @@ fun main () : nothing
 	}
 		var j:char[10];
 {
-	foo("wffew");
+	fool("wffew");
 	strcmp("fdsdf","wfwef");
 }

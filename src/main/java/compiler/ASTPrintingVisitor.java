@@ -521,6 +521,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     String funName = node.getId().toString().trim().replaceAll("\\s+", " ");
     LinkedList paramList = node.getExpr();
     int c=0;int size;
+    if(this.symbolTable.fetchType(funName)==null){
+        System.err.printf("Error: function %s has not been declared\n",funName);
+        this.gracefullyExit();
+    }
     if(this.symbolTable.fetchType(funName).getParameters()!=null){
         size = this.symbolTable.fetchType(funName).getParameters().size();
     }
@@ -536,10 +540,20 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     }
     for(Object i : paramList){
         //System.out.print("::::::::::::");
-        String n=i.toString().trim().replaceAll("\\s+", " ");
+        String n=i.toString().split(" ")[0].trim().replaceAll("\\s+", " ");
+        String[] narr = i.toString().split(" ");
         STRecord.Type type1 = new STRecord.Type();
         type1=this.symbolTable.fetchType(n);
         if(type1!=null){
+            if(type1.getArray()) {//this is woarking wright or causing more problems?????????????
+                //System.out.print("HGHGHGGGGGGGGGGHHHHHHHHHHHHHH");
+                //System.out.print(narr.length);
+                if (narr.length > 1) {
+                    if (this.symbolTable.fetchType(narr[1]).getKind().equals("int") || narr[1].toCharArray()[0] == '0' || narr[1].toCharArray()[0] == '1' || narr[1].toCharArray()[0] == '2' || narr[1].toCharArray()[0] == '3' || narr[1].toCharArray()[0] == '4' || narr[1].toCharArray()[0] == '5' || narr[1].toCharArray()[0] == '6' || narr[1].toCharArray()[0] == '7' || narr[1].toCharArray()[0] == '8' || narr[1].toCharArray()[0] == '9') {
+                        type1.setArray(false);
+                    }
+                }
+            }
             /*System.out.print("TYPE1");
             System.out.print(type1.getKind());
             System.out.print(type1.getArray());
@@ -701,8 +715,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 	//added by yiannis_sem
         //commented segment to avoid errors
         //if(temp1.getArray()!=temp2.getArray()){
-          //  System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n",temp1.getKind(),temp2.getKind());
-           // this.gracefullyExit();
+         //   System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n",temp1.getKind(),temp2.getKind());
+         //   this.gracefullyExit();
         //}
         //till here
         if (!temp1.isSame(temp2, "assignment")) {
