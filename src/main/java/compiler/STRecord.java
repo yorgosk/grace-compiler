@@ -128,6 +128,7 @@ public class STRecord {
     private boolean isParam;
     private boolean isLocal;
     private boolean isDefined;
+    private boolean isDereference;  // to assist us in Machine Code production
     private Integer scopeId;
     private Integer shadowIndex;
 
@@ -138,6 +139,7 @@ public class STRecord {
         this.isParam = false;
         this.isLocal = true;
         this.isDefined = true;
+        this.isDereference = false;
         this.scopeId = -1;
         this.shadowIndex = -1;
     }
@@ -170,6 +172,7 @@ public class STRecord {
     public void setParam(boolean param) { this.isParam = param; }
     public void setLocal(boolean local) { this.isLocal = local; }
     public void setDefined(boolean defined) { this.isDefined = defined; }
+    public void setDereference(boolean dereference) { this.isDereference = dereference; }
     public void setScopeId(Integer scopeId) { this.scopeId = scopeId; }
     public void setShadowIndex(Integer shadowIndex) { this.shadowIndex = shadowIndex; }
     public Type getType() { return this.type; }
@@ -177,13 +180,14 @@ public class STRecord {
     public boolean getParam() { return this.isParam; }
     public boolean getLocal() { return this.isLocal; }
     public boolean getDefined() { return this.isDefined; }
+    public boolean getDereference() { return this.isDereference; }
     public Integer getScopeId() { return this.scopeId; }
     public Integer getShadowIndex() { return this.shadowIndex; }
 
     /* STRecord's class printing function */
     public void printSTRecord() {
-        System.out.printf("STR -> name: %s - isParam: %b - isLocal: %b - isDefined: %b - scopeId: %d - shadowIndex: %d\n",
-                this.name, this.isParam, this.isLocal, this.isDefined, this.scopeId, this.shadowIndex);
+        System.out.printf("STR -> name: %s - isParam: %b - isLocal: %b - isDefined: %b - isDereference: %b - scopeId: %d - shadowIndex: %d\n",
+                this.name, this.isParam, this.isLocal, this.isDefined, this.isDereference, this.scopeId, this.shadowIndex);
         this.type.printType();
     }
 

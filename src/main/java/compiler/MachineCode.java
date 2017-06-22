@@ -14,14 +14,14 @@ public class MachineCode {
     private Integer tempNp;
     private Integer tempNx;
     /* a Java Hash-Map that maps each data name to it's data type */
-    private HashMap<String, STRecord.Type> typeMap;
+    private HashMap<String, STRecord> dataMap;
 
     /* MachineCode's class (default-)constructor */
     public MachineCode() {
         this.assembly = new ArrayList<String>();
         this.nonLocalOperands = 0;
         this.nonLocalOperandsMap = new HashMap<String, Integer>();
-        this.typeMap = new HashMap<String, STRecord.Type>();
+        this.dataMap = new HashMap<String, STRecord>();
 
         // add the first lines of assembly
         this.assembly.add(".intel_syntax noprefix # Use Intel syntax instead of AT&T\n");
@@ -38,14 +38,14 @@ public class MachineCode {
     public Integer getTempNp() { return this.tempNp; }
     public void setTempNx(Integer tempNx) { this.tempNx = tempNx; }
     public Integer getTempNx() { return this.tempNx; }
-    public void setTypeMapping(String name, STRecord.Type type) { this.typeMap.put(name, type); }
-    public STRecord.Type getTypeMapping(String name) { return this.typeMap.get(name); }
+    public void setDataMapping(String name, STRecord info) { this.dataMap.put(name, info); }
+    public STRecord getDataMapping(String name) { return this.dataMap.get(name); }
 
     /* ITERATING THROUGH NAMES */
     /* getAr(a) -- produces the machine code x86 for loading the record address of an
             * activation record which contains the non-local operand "a" to the register "si" */
     // case of AccessLinks
-    public void getAr(String a) {
+    public void getAR(String a) {
         int relPos = this.getNonLocalOperandRelativePosition(a);
         this.assembly.add("mov si, word ptr [bp+4]\n");
         if (relPos > 1)
@@ -53,7 +53,7 @@ public class MachineCode {
                 this.assembly.add("mov si, word ptr [si+4]\n");
     }
     // case of Displays
-    public void getAr(String a, String displayFlag) {
+    public void getAR(String a, String displayFlag) {
         assert (displayFlag.equals("display")); // for debugging
         Integer relPos = this.getNonLocalOperandRelativePosition(a);
         this.assembly.add("mov si, word ptr display[2 * "+relPos.toString()+"]\n");
@@ -77,29 +77,62 @@ public class MachineCode {
     /* ASSISTANT-ROUTINES */
     /* load(R,a) -- produces code for storing data "a" at register "R" */
     public void load(String R, String a) {
-        if (this.getTypeMapping(a).getKind().equals("int"))
+        /* case of numerical constant */
+        if (this.getDataMapping(a).getType().getKind().equals("int"))
             this.assembly.add("mov "+R+", "+a+"\n");
-        /* logical constant "true"??? */
+        /* case of logical constant "true"??? */
 //        this.assembly.add("mov "+R+", 1\n");
-        /* logical constant "false"??? */
+        /* case of logical constant "false"??? */
 //        this.assembly.add("mov "+R+", 0\n");
-        else if (this.getTypeMapping(a).getKind().equals("char"))
+        /* case of character constant */
+        else if (this.getDataMapping(a).getType().getKind().equals("char"))
             this.assembly.add("mov "+R+", ASCII("+a+")\n");
         /* case of local variable, parameter by value, temporary variable */
-//        this.assembly.add("mov "+R+", size ptr [bp + offset]\n");
+        else if (this.getDataMapping(a).getLocal() || !this.getDataMapping(a).getType().getRef())
+            this.assembly.add("mov "+R+", size ptr [bp + offset]\n");
         /* case of parameter by reference */
-        /*
-        * four more cases, see 07-assembly.pdf, page 28/42
-        * */
+        else if (this.getDataMapping(a).getType().getRef()) {
+            this.assembly.add("mov si, word ptr [bp + offset]\n");
+            this.assembly.add("mov "+R+", size ptr [si]\n");
+        }
+        /* case of non-local variable, parameter by value */
+        else if (!this.getDataMapping(a).getLocal() || !this.getDataMapping(a).getType().getRef()) {
+            this.getAR(a);
+            this.assembly.add("mov "+R+", size ptr [si + offset]\n");
+        }
+        /* case of non-local parameter by reference */
+        else if (this.getDataMapping(a).getType().getRef()) {
+            this.getAR(a);
+            this.assembly.add("mov si, word ptr [si + offset]\n");
+            this.assembly.add("mov "+R+", size ptr [si]\n");
+        }
+        /* case of dereference */
+        else if (this.getDataMapping(a).getDereference()) {
+            this.assembly.add("load(di, "+a+")\n");
+            this.assembly.add("mov "+R+", size ptr [di]\n");
+        }
+        /* case of memory address */
+//        this.loadAddr(R,a);
+        else
+            assert (false); // we don't want to end up here, under any situation
     }
 
-    /* loadAddr(R,a) -- produces code for storing the address of the data "a" at register "R"
-    *
-    * //////////////////////////////
-    * CODE
-    * //////////////////////////////
-    *
-    * */
+    /* loadAddr(R,a) -- produces code for storing the address of the data "a" at register "R" */
+    public void loadAddr(String R, String a) {
+        /* case of literal constant */
+        if (this.getDataMapping(a).getType().getKind().equals("char") && this.getDataMapping(a).getType().getArray())
+            this.assembly.add("lea "+R+", byte ptr "+a+"\n");
+        /* case of local parameter by value */
+        else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef())
+            this.assembly.add("lea "+R+", size ptr [bp + offset]\n");
+        /*
+        * ///////////////
+        * 4 MORE
+        * ///////////////
+        * */
+        else
+            assert (false); // we don't want to end up here, under any situation
+    }
 
     /* store(R,a) -- produces code for storing the contents of the register "R" at data "a"
     *
