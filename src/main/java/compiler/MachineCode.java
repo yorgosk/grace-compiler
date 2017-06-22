@@ -145,13 +145,35 @@ public class MachineCode {
             assert (false); // we don't want to end up here, under any situation
     }
 
-    /* store(R,a) -- produces code for storing the contents of the register "R" at data "a"
-    *
-    * //////////////////////////////
-    * CODE
-    * //////////////////////////////
-    *
-    * */
+    /* store(R,a) -- produces code for storing the contents of the register "R" at data "a" */
+    public void store(String R, String a) {
+        /* case of local parameter by value or temporary variable */
+        if (this.getDataMapping(a).getLocal() && !this.getDataMapping(a).getType().getRef())
+            this.assembly.add("mov size ptr [bp+offset], "+R+"\n");
+        /* case of local parameter by reference */
+        else if (this.getDataMapping(a).getLocal() && this.getDataMapping(a).getType().getRef()) {
+            this.assembly.add("mov si, word ptr [bp+offset]\n");
+            this.assembly.add("mov size ptr [si], "+R+"\n");
+        }
+        /* case of non-local parameter by value */
+        else if (!this.getDataMapping(a).getLocal() && !this.getDataMapping(a).getType().getRef()) {
+            this.getAR(a);
+            this.assembly.add("mov size ptr [si+offset], "+R+"\n");
+        }
+        /* case of non-local parameter by reference */
+        else if (!this.getDataMapping(a).getLocal() && this.getDataMapping(a).getType().getRef()) {
+            this.getAR(a);
+            this.assembly.add("mov si, word ptr [si+offset]\n");
+            this.assembly.add("mov size ptr [si], "+R+"\n");
+        }
+        /* case of dereference */
+        else if (this.getDataMapping(a).getDereference()) {
+            this.assembly.add("load(di, "+a+")\n");
+            this.assembly.add("mov size ptr [di], "+R+"\n");
+        }
+        else
+            assert (false); // we don't want to end up here, under any situation
+    }
 
     /* various utility functions */
     public void addAssemblyCode(String aCode) { this.assembly.add(aCode); }
