@@ -6,6 +6,7 @@ import compiler.node.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -507,6 +508,106 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
+	//add by yiannis_sem
+    //System.out.print("PPPPPPPPPPPPPPPPPPP");
+    //System.out.print(node.getExpr());
+    //System.out.print(node.getId().toString().trim().replaceAll("\\s+", " "));
+    String funName = node.getId().toString().trim().replaceAll("\\s+", " ");
+    LinkedList paramList = node.getExpr();
+    int c=0;int size;
+    if(this.symbolTable.fetchType(funName).getParameters()!=null){
+        size = this.symbolTable.fetchType(funName).getParameters().size();
+    }
+    else{
+        size = 0;
+    }
+      //  System.out.print("////////////");
+        //System.out.print(paramList.size());
+        //System.out.print(size);
+    if(paramList.size()!=size){
+        System.err.printf("Error: function %s has %d arguments, %d given\n",funName,size,paramList.size());
+        this.gracefullyExit();
+    }
+    for(Object i : paramList){
+        //System.out.print("::::::::::::");
+        String n=i.toString().trim().replaceAll("\\s+", " ");
+        STRecord.Type type1 = new STRecord.Type();
+        type1=this.symbolTable.fetchType(n);
+        if(type1!=null){
+            /*System.out.print("TYPE1");
+            System.out.print(type1.getKind());
+            System.out.print(type1.getArray());
+            System.out.print(type1.getRef());*/
+        }
+        else{
+            if(n.toCharArray()[0]=='\''){
+                //it is a character
+                //System.out.print("GG");
+                type1 = new STRecord.Type();
+                type1.setArray(false);
+                type1.setRef(false);
+                type1.setKind("char");
+            }
+            else if (n.toCharArray()[0]=='\"'){
+                type1 = new STRecord.Type();
+                type1.setArray(true);
+                type1.setRef(true);
+                type1.setKind("char");
+            }
+            else{
+                type1 = new STRecord.Type();
+                type1.setArray(false);
+                type1.setRef(false);
+                type1.setKind("int");
+            }
+        }
+        STRecord.Type type2;
+        //System.out.print("DFGDFGDFGDFGDFG");
+        //System.out.print(funName);
+        //System.out.print(c);
+        type2 = this.symbolTable.paramType(funName,c);
+        if(type2==null){
+            //commented segment to avoid errors
+           // System.err.printf("Error: function %s has not been declared\n",funName);
+           // this.gracefullyExit();
+        }
+        else {
+
+            c++;
+
+            //System.out.print("TYPE1");
+            //System.out.print(type1.getKind());
+            //System.out.print(type1.getArray());
+            //System.out.print(type1.getRef());
+            //System.out.print("TYPE2");
+            //System.out.print(type2.getKind());
+            //System.out.print(type2.getArray());
+            //System.out.print(type2.getRef());
+            if (!type1.getKind().equals(type2.getKind())) {
+
+                System.err.printf("Error: parameter %d is %s, %s expected\n", c, type1.getKind(), type2.getKind());
+                this.gracefullyExit();
+            }
+            if (type1.getArray() != type2.getArray()) {
+                if (type1.getArray()) {
+                    System.err.printf("Error: parameter %d is %s array, %s expected\n", c, type1.getKind(), type2.getKind());
+                } else {
+                    System.err.printf("Error: parameter %d is %s, %s array expected\n", c, type1.getKind(), type2.getKind());
+                }
+                this.gracefullyExit();
+            }
+
+        }
+    }
+    /*STRecord.Type type2;
+    type2 = this.symbolTable.paramType(funName,0);
+    System.out.print("TYPE2");
+    System.out.print(type2.getKind());
+        System.out.print(type2.getArray());
+        System.out.print(type2.getRef());*/
+    //type.printType();
+    //System.out.print("VVVVVVVVVVVVVVVVV");
+    //till here
 //	    STRecord temp = new STRecord();
 //        temp.setName(node.getId().toString().trim().replaceAll("\\s+", " "));
 //        if(!this.symbolTable.inLibrary(node.getId().toString().trim().replaceAll("\\s+", " ")) || this.symbolTable.searchFunction(temp)!=1) {    //if added by yiannis2
@@ -585,6 +686,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
+	//added by yiannis_sem
+        //commented segment to avoid errors
+        //if(temp1.getArray()!=temp2.getArray()){
+          //  System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n",temp1.getKind(),temp2.getKind());
+           // this.gracefullyExit();
+        //}
+        //till here
         if (!temp1.isSame(temp2, "assignment")) {
             System.err.printf("Error: In \"assignment\" statement one member is %s and the other member is %s\n",
                     temp1.getKind(), temp2.getKind());

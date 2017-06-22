@@ -237,6 +237,27 @@ public class SymbolTable {
      * -- fetchType(): search in the array, same as the lookup(), it only returns Type */
     public STRecord.Type paramType(String name, int number){
         // take the type from any scope (it may not be local)
+	//add by yiannis_sem
+        //System.out.print("OOOOOOOOOOOOOO");
+        if(this.inLibrary(name)){
+            STRecord.Type type = new STRecord.Type();
+            type=this.library.get(this.getLibraryFun(name)).getType();
+            ArrayList params = new ArrayList();
+            params = type.getParameters();
+            //System.out.print(params.size());
+            if(number>params.size()){
+                return null;
+            }
+            //for(int i = 0; i < params.size(); i++) {
+            STRecord.Type type1 = new STRecord.Type();
+            type1 = (STRecord.Type) params.get(number);
+            return type1;
+                //type1.printType();
+                //System.out.print(params.get(i));
+            //}
+        }
+        //System.out.print("OOOOOOOOOOOO");
+        //till here
         if (this.variableMap.containsKey(name)) {
             System.out.printf("Name %s found\n", name);
             int index = this.variableMap.get(name);
@@ -372,5 +393,15 @@ public class SymbolTable {
         }
         return false;   // not found in library
     }
+
+	//add by yiannis_sem
+    public int getLibraryFun(String funcName) {
+        for (int i = 0; i < this.library.size(); i++) {
+            // found in library
+            if (this.library.get(i).getName().equals(funcName)) return i;
+        }
+        return -1;   // not found in library
+    }
+    //till here
 
 }
