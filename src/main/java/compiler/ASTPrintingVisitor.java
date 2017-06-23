@@ -260,16 +260,40 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 System.out.print(node.getFparDef());
                 System.out.print(node.getId());
                 System.out.print(node.getRetType());
-                LinkedList params = node.getFparDef();
+                String[] params = node.getFparDef().toString().split(" ");
+                System.out.print(params.length);
+                System.out.print("LLLLLLLLLLLL");
                 boolean isRef=false;
-                for(Object i: params){
-                    if(i.toString().equals("ref")){
-                        if(isRef){
-                            isRef=false;
+                boolean isArray=false;
+                int count=0;
+                int num=0;
+                int sum=0;
+                for(Object i: params) {System.out.print(params.length);
+                    if (i.toString().equals("ref")) {
+                        isRef = true;
+                    } else if (i.toString().equals("int")) {
+                        for (int k = 0; k < count; k++) {
+                            if (!this.symbolTable.paramType(tempRec.getName(), num).getKind().equals("int")) {
+                                System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                this.gracefullyExit();
+                            }
+                            if (params[num + 1].toString().toCharArray()[0] == '0' || params[num + 1].toString().toCharArray()[0] == '1' || params[num + 1].toString().toCharArray()[0] == '2' || params[num + 1].toString().toCharArray()[0] == '3' || params[num + 1].toString().toCharArray()[0] == '4' || params[num + 1].toString().toCharArray()[0] == '5' || params[num + 1].toString().toCharArray()[0] == '6' || params[num + 1].toString().toCharArray()[0] == '7' || params[num + 1].toString().toCharArray()[0] == '8' || params[num + 1].toString().toCharArray()[0] == '9') {
+                                isArray = true;
+                            }
+                            if (isRef) {
+                                isArray = true;
+                            }
+                            if (this.symbolTable.paramType(node.getId().toString(), num).getArray() != isArray) {
+                                System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                this.gracefullyExit();
+                            }
+                            num++;
                         }
-                        else{
-                            isRef=true;
-                        }
+                    } else if (i.toString().equals("char")) {
+
+                    } else {
+                        count++;
+                        sum++;
                     }
                 }*/
                 //System.out.print(this.symbolTable.paramType(tempRec.getName(),0));
@@ -1621,7 +1645,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
         // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
-        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+        if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
 
@@ -1638,7 +1662,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+        if(this.symbolTable.fetchType(valsr[0])!=null&&this.symbolTable.fetchType(valsr[0]).getArray()){
             if(valsr.length>1) {
                 if (this.symbolTable.fetchType(valsr[1]) != null) {
 
@@ -1712,7 +1736,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
-        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+        if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
 
@@ -1729,7 +1753,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+        if(this.symbolTable.fetchType(valsr[0])!=null&&this.symbolTable.fetchType(valsr[0]).getArray()){
             if(valsr.length>1) {
                 if (this.symbolTable.fetchType(valsr[1]) != null) {
 
@@ -1811,7 +1835,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
         // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
-        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+        if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
 
@@ -1828,7 +1852,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+        if(this.symbolTable.fetchType(valsr[0])!=null&&this.symbolTable.fetchType(valsr[0]).getArray()){
             if(valsr.length>1) {
                 if (this.symbolTable.fetchType(valsr[1]) != null) {
 
@@ -1901,7 +1925,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
         // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
-        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+        if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
 
@@ -1918,7 +1942,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+        if(this.symbolTable.fetchType(valsr[0])!=null&&this.symbolTable.fetchType(valsr[0]).getArray()){
             if(valsr.length>1) {
                 if (this.symbolTable.fetchType(valsr[1]) != null) {
 
@@ -1994,7 +2018,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
         // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
-        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+        if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
 
@@ -2011,7 +2035,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+        if(this.symbolTable.fetchType(valsr[0])!=null&&this.symbolTable.fetchType(valsr[0]).getArray()){
             if(valsr.length>1) {
                 if (this.symbolTable.fetchType(valsr[1]) != null) {
 
@@ -2085,7 +2109,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
         // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
-        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+        if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
 
@@ -2102,7 +2126,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+        if(this.symbolTable.fetchType(valsr[0])!=null&&this.symbolTable.fetchType(valsr[0]).getArray()){
             if(valsr.length>1) {
                 if (this.symbolTable.fetchType(valsr[1]) != null) {
 
@@ -2176,7 +2200,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
         // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
-        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+        if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
 
@@ -2193,7 +2217,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+        if(this.symbolTable.fetchType(valsr[0])!=null&&this.symbolTable.fetchType(valsr[0]).getArray()){
             if(valsr.length>1) {
                 if (this.symbolTable.fetchType(valsr[1]) != null) {
 
