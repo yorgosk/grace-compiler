@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -54,14 +53,9 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
+            <state relative-caret-position="600">
               <caret line="150" column="48" lean-forward="false" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
-              <folding>
-                <element signature="e#6634#6645#0" expanded="true" />
-                <element signature="e#21578#21585#0" expanded="true" />
-                <element signature="e#28748#28755#0" expanded="true" />
-                <element signature="e#35460#35467#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,7 +63,7 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
+            <state relative-caret-position="3285">
               <caret line="224" column="51" lean-forward="false" selection-start-line="224" selection-start-column="37" selection-end-line="224" selection-end-column="51" />
               <folding />
             </state>
@@ -89,7 +83,7 @@
       <file leaf-file-name="MachineCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
+            <state relative-caret-position="2955">
               <caret line="198" column="21" lean-forward="false" selection-start-line="198" selection-start-column="21" selection-end-line="198" selection-end-column="21" />
               <folding />
             </state>
@@ -111,12 +105,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding>
-                <element signature="e#242#243#0" expanded="false" />
-                <element signature="e#274#275#0" expanded="false" />
-                <element signature="e#946#947#0" expanded="false" />
-                <element signature="e#1013#1014#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,7 +159,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="683" />
     <option name="y" value="52" />
-    <option name="width" value="683" />
+    <option name="width" value="673" />
     <option name="height" value="716" />
   </component>
   <component name="ProjectView">
@@ -466,7 +455,8 @@
       <workItem from="1498139636550" duration="1000000" />
       <workItem from="1498158770074" duration="3340000" />
       <workItem from="1498199257905" duration="614000" />
-      <workItem from="1498202353845" duration="1355000" />
+      <workItem from="1498202353845" duration="1391000" />
+      <workItem from="1498208497655" duration="613000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -594,15 +584,22 @@
       <option name="project" value="LOCAL" />
       <updated>1498203237659</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="continued with assembly (II)... assembly code produced is not functioning yet">
+      <created>1498203719159</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1498203719159</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5309000" />
+    <option name="totallyTimeSpent" value="5958000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="683" y="52" width="683" height="716" extended-state="4" />
-    <editor active="true" />
+    <frame x="683" y="52" width="673" height="716" extended-state="4" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -661,7 +658,8 @@
     <MESSAGE value="additions to STRecord, Type... have to be added to ASTVisitor" />
     <MESSAGE value="some assembly related additions" />
     <MESSAGE value="continued with assembly... assembly code produced is not functioning yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="continued with assembly... assembly code produced is not functioning yet" />
+    <MESSAGE value="continued with assembly (II)... assembly code produced is not functioning yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="continued with assembly (II)... assembly code produced is not functioning yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -857,12 +855,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#242#243#0" expanded="false" />
-            <element signature="e#274#275#0" expanded="false" />
-            <element signature="e#946#947#0" expanded="false" />
-            <element signature="e#1013#1014#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -909,7 +902,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
+        <state relative-caret-position="2955">
           <caret line="198" column="21" lean-forward="false" selection-start-line="198" selection-start-column="21" selection-end-line="198" selection-end-column="21" />
           <folding />
         </state>
@@ -917,7 +910,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
+        <state relative-caret-position="3285">
           <caret line="224" column="51" lean-forward="false" selection-start-line="224" selection-start-column="37" selection-end-line="224" selection-end-column="51" />
           <folding />
         </state>
@@ -925,14 +918,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="600">
           <caret line="150" column="48" lean-forward="false" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
-          <folding>
-            <element signature="e#6634#6645#0" expanded="true" />
-            <element signature="e#21578#21585#0" expanded="true" />
-            <element signature="e#28748#28755#0" expanded="true" />
-            <element signature="e#35460#35467#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
