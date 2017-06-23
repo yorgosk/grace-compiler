@@ -254,8 +254,25 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //            symbolTable.enter();
 
             if (result == 0) {
-                System.out.print("JJJJJJJJJJ");
+                //yiannis_sem
+                /*System.out.print("JJJJJJJJJJ");
                 System.out.print(tempRec.getName());
+                System.out.print(node.getFparDef());
+                System.out.print(node.getId());
+                System.out.print(node.getRetType());
+                LinkedList params = node.getFparDef();
+                boolean isRef=false;
+                for(Object i: params){
+                    if(i.toString().equals("ref")){
+                        if(isRef){
+                            isRef=false;
+                        }
+                        else{
+                            isRef=true;
+                        }
+                    }
+                }*/
+                //System.out.print(this.symbolTable.paramType(tempRec.getName(),0));
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.setScopeType(tempRec.getType());
                 this.symbolTable.addKnownFunction(tempRec);
@@ -893,8 +910,20 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
         if(!this.symbolTable.checkRetType(temp)){
-            System.err.printf("Error: function has different return type\n");
-            this.gracefullyExit();
+		//yiannis_sem
+            System.out.print(node.getExpr());
+            String[] arr = node.getExpr().toString().split(" ");
+            if(arr.length>1 && (this.symbolTable.fetchType(arr[1])!=null||arr[1].toCharArray()[0]=='0'||arr[1].toCharArray()[0]=='1'||arr[1].toCharArray()[0]=='2'||arr[1].toCharArray()[0]=='3'||arr[1].toCharArray()[0]=='4'||arr[1].toCharArray()[0]=='5'||arr[1].toCharArray()[0]=='6'||arr[1].toCharArray()[0]=='7'||arr[1].toCharArray()[0]=='8'||arr[1].toCharArray()[0]=='9')){
+
+            }
+            else {
+                System.err.printf("Error: function has different return type\n");
+                this.gracefullyExit();
+            }
+            //till here
+            //before changes:
+            //System.err.printf("Error: function has different return type\n");
+            //this.gracefullyExit();
         }
 
         // producing IR
@@ -1101,6 +1130,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        if(temp1.getKind().equals("char")){
+            System.err.printf("Error: In \"plus\" expression the two members are chars or strings\n");
+            this.gracefullyExit();
+        }
+        //till here
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
@@ -1149,6 +1184,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        if(temp1.getKind().equals("char")){
+            System.err.printf("Error: In \"minus\" expression the two members are chars or strings\n");
+            this.gracefullyExit();
+        }
+        //till here
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
@@ -1197,6 +1238,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        if(temp1.getKind().equals("char")){
+            System.err.printf("Error: In \"mult\" expression the two members are chars or strings\n");
+            this.gracefullyExit();
+        }
+        //till here
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
@@ -1245,6 +1292,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        if(temp1.getKind().equals("char")){
+            System.err.printf("Error: In \"div\" expression the two members are chars or strings\n");
+            this.gracefullyExit();
+        }
+        //till here
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
@@ -1294,6 +1347,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        if(temp1.getKind().equals("char")){
+            System.err.printf("Error: In \"division\" expression the two members are chars or strings\n");
+            this.gracefullyExit();
+        }
+        //till here
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
@@ -1343,6 +1402,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        if(temp1.getKind().equals("char")){
+            System.err.printf("Error: In \"mod\" expression the two members are chars or strings\n");
+            this.gracefullyExit();
+        }
+        //till here
         // if they are of the same type, then the result of the expression between them is going to be of the same type
         STRecord.Type temp3 = new STRecord.Type(temp1);
         this.tempTypeStack.push(temp3);
@@ -1551,6 +1616,51 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        String[] valsl = node.getLeft().toString().split(" ");
+        String[] valsr = node.getRight().toString().split(" ");
+        if(valsl[0].toCharArray()[0]=='"'){
+            System.err.printf("Error: In condition cannot compare literals\n");
+            this.gracefullyExit();
+        }
+        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+            if(valsl.length>1) {
+                if (this.symbolTable.fetchType(valsl[1]) != null) {
+
+                } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+            if(valsr.length>1) {
+                if (this.symbolTable.fetchType(valsr[1]) != null) {
+
+                } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        //till here
 
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
@@ -1595,6 +1705,51 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        String[] valsl = node.getLeft().toString().split(" ");
+        String[] valsr = node.getRight().toString().split(" ");
+        if(valsl[0].toCharArray()[0]=='"'){
+            System.err.printf("Error: In condition cannot compare literals\n");
+            this.gracefullyExit();
+        }
+       // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+            if(valsl.length>1) {
+                if (this.symbolTable.fetchType(valsl[1]) != null) {
+
+                } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                    //System.err.printf("Error: In condition cannot compare arrays\n");
+                    //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+            if(valsr.length>1) {
+                if (this.symbolTable.fetchType(valsr[1]) != null) {
+
+                } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        //till here
         //yainnis_sem
         //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
@@ -1647,6 +1802,51 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        String[] valsl = node.getLeft().toString().split(" ");
+        String[] valsr = node.getRight().toString().split(" ");
+        if(valsl[0].toCharArray()[0]=='"'){
+            System.err.printf("Error: In condition cannot compare literals\n");
+            this.gracefullyExit();
+        }
+        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+            if(valsl.length>1) {
+                if (this.symbolTable.fetchType(valsl[1]) != null) {
+
+                } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+            if(valsr.length>1) {
+                if (this.symbolTable.fetchType(valsr[1]) != null) {
+
+                } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        //till here
 
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
@@ -1690,6 +1890,51 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        String[] valsl = node.getLeft().toString().split(" ");
+        String[] valsr = node.getRight().toString().split(" ");
+        if(valsl[0].toCharArray()[0]=='"'){
+            System.err.printf("Error: In condition cannot compare literals\n");
+            this.gracefullyExit();
+        }
+        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+            if(valsl.length>1) {
+                if (this.symbolTable.fetchType(valsl[1]) != null) {
+
+                } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+            if(valsr.length>1) {
+                if (this.symbolTable.fetchType(valsr[1]) != null) {
+
+                } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        //till here
 
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
@@ -1736,6 +1981,51 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        String[] valsl = node.getLeft().toString().split(" ");
+        String[] valsr = node.getRight().toString().split(" ");
+        if(valsl[0].toCharArray()[0]=='"'){
+            System.err.printf("Error: In condition cannot compare literals\n");
+            this.gracefullyExit();
+        }
+        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+            if(valsl.length>1) {
+                if (this.symbolTable.fetchType(valsl[1]) != null) {
+
+                } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+            if(valsr.length>1) {
+                if (this.symbolTable.fetchType(valsr[1]) != null) {
+
+                } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        //till here
 
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
@@ -1780,6 +2070,51 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        String[] valsl = node.getLeft().toString().split(" ");
+        String[] valsr = node.getRight().toString().split(" ");
+        if(valsl[0].toCharArray()[0]=='"'){
+            System.err.printf("Error: In condition cannot compare literals\n");
+            this.gracefullyExit();
+        }
+        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+            if(valsl.length>1) {
+                if (this.symbolTable.fetchType(valsl[1]) != null) {
+
+                } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+            if(valsr.length>1) {
+                if (this.symbolTable.fetchType(valsr[1]) != null) {
+
+                } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        //till here
 
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
@@ -1824,6 +2159,51 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     temp1.getKind(), temp2.getKind());
             this.gracefullyExit();
         }
+	//yiannis_sem
+        //System.out.print("KLKLKLKLKL");
+        //System.out.print(node.getLeft());
+        String[] valsl = node.getLeft().toString().split(" ");
+        String[] valsr = node.getRight().toString().split(" ");
+        if(valsl[0].toCharArray()[0]=='"'){
+            System.err.printf("Error: In condition cannot compare literals\n");
+            this.gracefullyExit();
+        }
+        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+        if(this.symbolTable.fetchType(valsl[0]).getArray()){
+            if(valsl.length>1) {
+                if (this.symbolTable.fetchType(valsl[1]) != null) {
+
+                } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        if(this.symbolTable.fetchType(valsr[0]).getArray()){
+            if(valsr.length>1) {
+                if (this.symbolTable.fetchType(valsr[1]) != null) {
+
+                } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
+                    System.err.printf("Error: In condition cannot compare arrays\n");
+                    this.gracefullyExit();
+                } //else {
+                //System.err.printf("Error: In condition cannot compare arrays\n");
+                //this.gracefullyExit();
+                //}
+            }
+            else{
+                System.err.printf("Error: In condition cannot compare arrays\n");
+                this.gracefullyExit();
+            }
+        }
+        //till here
 
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
