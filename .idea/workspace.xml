@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="started formulating assembly, added MachineCode class for that, added various functions (II)... assembly code produced is not functioning yet">
+    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -55,13 +54,13 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3695">
-              <caret line="1572" column="37" lean-forward="false" selection-start-line="1572" selection-start-column="37" selection-end-line="1572" selection-end-column="37" />
+            <state relative-caret-position="297">
+              <caret line="150" column="48" lean-forward="false" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
               <folding>
-                <element signature="e#6508#6519#0" expanded="true" />
-                <element signature="e#21461#21468#0" expanded="true" />
-                <element signature="e#28631#28638#0" expanded="true" />
-                <element signature="e#35343#35350#0" expanded="true" />
+                <element signature="e#6634#6645#0" expanded="true" />
+                <element signature="e#21578#21585#0" expanded="true" />
+                <element signature="e#28748#28755#0" expanded="true" />
+                <element signature="e#35460#35467#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -467,7 +466,7 @@
       <workItem from="1498139636550" duration="1000000" />
       <workItem from="1498158770074" duration="3340000" />
       <workItem from="1498199257905" duration="614000" />
-      <workItem from="1498202353845" duration="853000" />
+      <workItem from="1498202353845" duration="1355000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -588,11 +587,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498160655903</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="continued with assembly... assembly code produced is not functioning yet">
+      <created>1498203237659</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1498203237659</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4807000" />
+    <option name="totallyTimeSpent" value="5309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -654,7 +660,8 @@
     <MESSAGE value="started formulating assembly, added MachineCode class for that, added various functions (II)... assembly code produced is not functioning yet" />
     <MESSAGE value="additions to STRecord, Type... have to be added to ASTVisitor" />
     <MESSAGE value="some assembly related additions" />
-    <option name="LAST_COMMIT_MESSAGE" value="some assembly related additions" />
+    <MESSAGE value="continued with assembly... assembly code produced is not functioning yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="continued with assembly... assembly code produced is not functioning yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -918,13 +925,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3695">
-          <caret line="1572" column="37" lean-forward="false" selection-start-line="1572" selection-start-column="37" selection-end-line="1572" selection-end-column="37" />
+        <state relative-caret-position="297">
+          <caret line="150" column="48" lean-forward="false" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
           <folding>
-            <element signature="e#6508#6519#0" expanded="true" />
-            <element signature="e#21461#21468#0" expanded="true" />
-            <element signature="e#28631#28638#0" expanded="true" />
-            <element signature="e#35343#35350#0" expanded="true" />
+            <element signature="e#6634#6645#0" expanded="true" />
+            <element signature="e#21578#21585#0" expanded="true" />
+            <element signature="e#28748#28755#0" expanded="true" />
+            <element signature="e#35460#35467#0" expanded="true" />
           </folding>
         </state>
       </provider>

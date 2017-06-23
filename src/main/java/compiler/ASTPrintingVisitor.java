@@ -143,10 +143,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("endu", name, "-", "-");
 
         // producing assembly
-        this.assembly +=    "endof("+name+"): mov sp, bp\n"+
-                            "pop bp\n"+
-                            "ret\n"+
-                            "name("+name+") endp\n";
+        name = "_"+name+"_"+this.ir.getCurrentLabel();
+        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
+        this.ir.addAssemblyCode(name+": mov sp, bp\n");
+        this.ir.addAssemblyCode("pop bp\n");
+        this.ir.addAssemblyCode("ret\n");
+        this.ir.addAssemblyCode(name+" endp\n");
     }
     @Override
     public void caseAFuncDef(AFuncDef node)
@@ -171,7 +173,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // producing assembly
             String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getCurrentLabel();
             this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
-            this.ir.addAssemblyCode("name("+name+") proc near\n");
+            this.ir.addAssemblyCode(name+" proc near\n");
             this.ir.addAssemblyCode("push bp\n");
             this.ir.addAssemblyCode("mov bp, sp\n");
             this.ir.addAssemblyCode("sub sp, 8\n");
@@ -829,6 +831,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        param.add(stmt1NEXT);
 //        param.add(l2);
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.MERGE(param));
+
+        // for assembly production
+        /*
+        * code for if
+        * */
+        this.ir.addAssemblyCode("jmp ?");
 
         outAIfStmt(node);
     }
