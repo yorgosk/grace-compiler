@@ -256,6 +256,8 @@ public class IntermediateCode {
     public void store(String R, String a) { this.assembly.store(R, a); }
     public void setDataMapping(String name, STRecord info) { this.assembly.setDataMapping(name, info); }
     public STRecord getDataMapping(String name) { return this.assembly.getDataMapping(name); }
+    public void setLabelMapping(Integer irLabel, Integer assemblyLabel) { this.assembly.setLabelMapping(irLabel, assemblyLabel); }
+    public Integer getLabelMapping(Integer irLabel) { return this.assembly.getLabelMapping(irLabel); }
     public Integer getTypeSize(STRecord.Type type) { return this.assembly.getTypeSize(type); }
 
 }

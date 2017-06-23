@@ -15,6 +15,8 @@ public class MachineCode {
     private Integer tempNx;
     /* a Java Hash-Map that maps each data name to it's data type */
     private HashMap<String, STRecord> dataMap;
+    /* a Java Hash-Map that maps each IR's quad with label to a x8086 command with a label */
+    private HashMap<Integer, Integer> labelMap;
     /* how many lines of assembly commands we already have */
     private Integer numberOfCommands;
 
@@ -24,6 +26,7 @@ public class MachineCode {
         this.nonLocalOperands = 0;
         this.nonLocalOperandsMap = new HashMap<String, Integer>();
         this.dataMap = new HashMap<String, STRecord>();
+        this.labelMap = new HashMap<Integer, Integer>();
         this.numberOfCommands = 0;
 
         // add the first lines of assembly
@@ -43,8 +46,11 @@ public class MachineCode {
     public Integer getTempNx() { return this.tempNx; }
     public void setDataMapping(String name, STRecord info) { this.dataMap.put(name, info); }
     public STRecord getDataMapping(String name) { return this.dataMap.get(name); }
+    public void setLabelMapping(Integer irLabel, Integer assemblyLabel) { this.labelMap.put(irLabel, assemblyLabel); }
+    public Integer getLabelMapping(Integer irLabel) { return this.labelMap.get(irLabel); }
     public void setNumberOfCommands(Integer commands) { this.numberOfCommands = commands; }
     public Integer getNumberOfCommands() { return this.numberOfCommands; }
+    public Integer getCurrentCommand() { return this.numberOfCommands; }    // same functionality, different interface
 
     /* ITERATING THROUGH NAMES */
     /* getAr(a) -- produces the machine code x86 for loading the record address of an
