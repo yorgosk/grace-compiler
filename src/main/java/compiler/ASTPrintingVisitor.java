@@ -144,7 +144,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producing assembly
         name = "_"+name+"_"+this.ir.getCurrentLabel();
-        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
+//        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
         this.ir.addAssemblyCode(name+": mov sp, bp\n");
         this.ir.addAssemblyCode("pop bp\n");
         this.ir.addAssemblyCode("ret\n");
@@ -172,7 +172,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
             // producing assembly
             String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getCurrentLabel();
-            this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
+//            this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
             this.ir.addAssemblyCode(name+" proc near\n");
             this.ir.addAssemblyCode("push bp\n");
             this.ir.addAssemblyCode("mov bp, sp\n");
@@ -792,7 +792,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing assembly
         STRecord tempRec = new STRecord();
         tempRec.setType(temp3);
-        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
+//        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
         this.ir.setDataMapping(item1, tempRec);
         this.ir.load("R", item1);
         this.ir.store("R", item1);
@@ -851,7 +851,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // for IR production
 //            l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
             this.ir.GENQUAD("jump", "-", "-", "?");
-            this.ir.syncLabels();   // sync labels of jump statement
+//            this.ir.syncLabels();   // sync labels of jump statement
             stmtNEXT = this.ir.getCurrentLabel();
             this.ir.setNEXT(stmtNEXT, this.ir.MAKELIST(stmtNEXT));
             this.ir.BACKPATCH(condFALSELabel, "FALSE", this.ir.NEXTQUAD());
@@ -1513,11 +1513,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
         this.ir.GENQUAD("not", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
+//        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
+//        this.ir.syncLabels();   // sync labels of jump statement
 
         // for IR production
         ArrayList<Integer> cond1TRUE = this.ir.getTRUE(this.ir.getCurrentLabel()-1);
@@ -1689,7 +1689,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
         this.ir.GENQUAD("=", t2, t1, "?");
-        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
@@ -1697,7 +1696,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
 
         // producing assembly
         STRecord tempRecX = new STRecord();
@@ -1710,6 +1708,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
         this.ir.addAssemblyCode("jz ?");
+        this.ir.syncLabels();   // sync labels of jump statement
     }
     @Override
     public void inAHashtagCond(AHashtagCond node) {}
@@ -1788,7 +1787,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
         this.ir.GENQUAD("#", t2, t1, "?");
-        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
@@ -1796,7 +1794,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
 
         // producing assembly
         STRecord tempRecX = new STRecord();
@@ -1809,6 +1806,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
         this.ir.addAssemblyCode("jnz ?");
+        this.ir.syncLabels();   // sync labels of jump statement
     }
     @Override
     public void inAUnequalCond(AUnequalCond node) {}
@@ -1879,14 +1877,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
         this.ir.GENQUAD("<>", t2, t1, "?");
-        this.ir.syncLabels();   // sync labels of jump statement
         this.toPopFromTempOperandsStack++;
 
         // for later stages of IR production
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
 
         // producing assembly
         STRecord tempRecX = new STRecord();
@@ -1899,6 +1895,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
         this.ir.addAssemblyCode("jnz ?");
+        this.ir.syncLabels();   // sync labels of jump statement
     }
     @Override
     public void inALesserCond(ALesserCond node) {}
@@ -1966,12 +1963,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        //String t1 = this.ir.getPLACE(l1);
-        //String t2 = this.ir.getPLACE(l2);
         String t1 = this.ir.getLastTemp();
         String t2 = this.ir.getLastTemp();
         this.ir.GENQUAD("<", t2, t1, "?");
-        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
@@ -1979,7 +1973,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
 
         // producing assembly
         STRecord tempRecX = new STRecord();
@@ -1992,6 +1985,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
         this.ir.addAssemblyCode("jl ?");
+        this.ir.syncLabels();   // sync labels of jump statement
     }
     @Override
     public void inAGreaterCond(AGreaterCond node) {}
@@ -2062,7 +2056,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
         this.ir.GENQUAD(">", t2, t1, "?");
-        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
@@ -2070,7 +2063,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
 
         // producing assembly
         STRecord tempRecX = new STRecord();
@@ -2083,6 +2075,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
         this.ir.addAssemblyCode("jg ?");
+        this.ir.syncLabels();   // sync labels of jump statement
     }
     @Override
     public void inALesseqCond(ALesseqCond node) {}
@@ -2153,7 +2146,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
         this.ir.GENQUAD("<=", t2, t1, "?");
-        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
@@ -2161,7 +2153,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
 
         // producing assembly
         STRecord tempRecX = new STRecord();
@@ -2174,6 +2165,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
         this.ir.addAssemblyCode("jle ?");
+        this.ir.syncLabels();   // sync labels of jump statement
     }
     @Override
     public void inAGreateqCond(AGreateqCond node) {}
@@ -2244,7 +2236,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String t1 = this.ir.getPLACE(l1);
         String t2 = this.ir.getPLACE(l2);
         this.ir.GENQUAD(">=", t2, t1, "?");
-        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
@@ -2252,7 +2243,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
         this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
         this.ir.GENQUAD("jump", "-", "-", "?");
-        this.ir.syncLabels();   // sync labels of jump statement
 
         // producing assembly
         STRecord tempRecX = new STRecord();
@@ -2265,6 +2255,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
         this.ir.addAssemblyCode("jge ?");
+        this.ir.syncLabels();   // sync labels of jump statement
     }
 
 }

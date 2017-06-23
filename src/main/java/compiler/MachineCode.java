@@ -212,6 +212,7 @@ public class MachineCode {
     public void label(Integer assemblyCommandLabel, Integer assemblyJumpLabel) {
         String newCommand = "";
         String oldCommand = this.assembly.get(assemblyCommandLabel-1);
+        System.out.printf("oldCommand: %s\n", oldCommand);   // for debugging
         String[] tokens = oldCommand.split(" ");
         newCommand += tokens[0]+" "+assemblyJumpLabel.toString()+"\n";
         this.assembly.add(assemblyCommandLabel-1, newCommand);
