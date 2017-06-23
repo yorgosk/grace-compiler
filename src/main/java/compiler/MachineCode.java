@@ -15,6 +15,8 @@ public class MachineCode {
     private Integer tempNx;
     /* a Java Hash-Map that maps each data name to it's data type */
     private HashMap<String, STRecord> dataMap;
+    /* how many lines of assembly commands we already have */
+    private Integer numberOfCommands;
 
     /* MachineCode's class (default-)constructor */
     public MachineCode() {
@@ -22,6 +24,7 @@ public class MachineCode {
         this.nonLocalOperands = 0;
         this.nonLocalOperandsMap = new HashMap<String, Integer>();
         this.dataMap = new HashMap<String, STRecord>();
+        this.numberOfCommands = 0;
 
         // add the first lines of assembly
         this.assembly.add(".intel_syntax noprefix # Use Intel syntax instead of AT&T\n");
@@ -40,6 +43,8 @@ public class MachineCode {
     public Integer getTempNx() { return this.tempNx; }
     public void setDataMapping(String name, STRecord info) { this.dataMap.put(name, info); }
     public STRecord getDataMapping(String name) { return this.dataMap.get(name); }
+    public void setNumberOfCommands(Integer commands) { this.numberOfCommands = commands; }
+    public Integer getNumberOfCommands() { return this.numberOfCommands; }
 
     /* ITERATING THROUGH NAMES */
     /* getAr(a) -- produces the machine code x86 for loading the record address of an
@@ -176,7 +181,10 @@ public class MachineCode {
     }
 
     /* various utility functions */
-    public void addAssemblyCode(String aCode) { this.assembly.add(aCode); }
+    public void addAssemblyCode(String aCode) {
+        this.assembly.add(aCode);
+        this.numberOfCommands++;
+    }
     public String getAssemblyAsString() {
         String ret = "";
         for(int i = 0; i < this.assembly.size(); i++)
@@ -184,7 +192,12 @@ public class MachineCode {
         return ret;
     }
     public Integer getTypeSize(STRecord.Type type) {
-        return 4;
+        if (type.getKind().equals("int")) return 4;
+        else if (type.getKind().equals("char")) return 1;
+        else {
+            assert (type.getKind().equals("nothing"));  // for debugging
+            return 1;
+        }
     }
 
 }

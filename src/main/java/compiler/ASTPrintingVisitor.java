@@ -1561,10 +1561,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("jump", "-", "-", "?");
 
         // producing assembly
-        this.assembly +=    "load(ax, "+t2+")\n"+
-                            "load(dx, "+t1+")\n"+
-                            "cmp ax, dx\n"+
-                            "instr label(?)\n";
+        STRecord tempRecX = new STRecord();
+        tempRecX.setType(temp2);
+        this.ir.setDataMapping(t2, tempRecX);
+        STRecord tempRecY = new STRecord();
+        tempRecY.setType(temp1);
+        this.ir.setDataMapping(t1, tempRecY);
+        this.ir.load("ax", t2);
+        this.ir.load("dx", t1);
+        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.addAssemblyCode("jz ?");
     }
     @Override
     public void inAHashtagCond(AHashtagCond node) {}
@@ -1607,10 +1613,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("jump", "-", "-", "?");
 
         // producing assembly
-        this.assembly +=    "load(ax, "+t2+")\n"+
-                            "load(dx, "+t1+")\n"+
-                            "cmp ax, dx\n"+
-                            "instr label(?)\n";
+        STRecord tempRecX = new STRecord();
+        tempRecX.setType(temp2);
+        this.ir.setDataMapping(t2, tempRecX);
+        STRecord tempRecY = new STRecord();
+        tempRecY.setType(temp1);
+        this.ir.setDataMapping(t1, tempRecY);
+        this.ir.load("ax", t2);
+        this.ir.load("dx", t1);
+        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.addAssemblyCode("jnz ?");
     }
     @Override
     public void inAUnequalCond(AUnequalCond node) {}
@@ -1644,10 +1656,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("jump", "-", "-", "?");
 
         // producing assembly
-        this.assembly +=    "load(ax, "+t2+")\n"+
-                            "load(dx, "+t1+")\n"+
-                            "cmp ax, dx\n"+
-                            "instr label(?)\n";
+        STRecord tempRecX = new STRecord();
+        tempRecX.setType(temp2);
+        this.ir.setDataMapping(t2, tempRecX);
+        STRecord tempRecY = new STRecord();
+        tempRecY.setType(temp1);
+        this.ir.setDataMapping(t1, tempRecY);
+        this.ir.load("ax", t2);
+        this.ir.load("dx", t1);
+        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.addAssemblyCode("jnz ?");
     }
     @Override
     public void inALesserCond(ALesserCond node) {}
@@ -1684,10 +1702,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("jump", "-", "-", "?");
 
         // producing assembly
-        this.assembly +=    "load(ax, "+t2+")\n"+
-                            "load(dx, "+t1+")\n"+
-                            "cmp ax, dx\n"+
-                            "instr label(?)\n";
+        STRecord tempRecX = new STRecord();
+        tempRecX.setType(temp2);
+        this.ir.setDataMapping(t2, tempRecX);
+        STRecord tempRecY = new STRecord();
+        tempRecY.setType(temp1);
+        this.ir.setDataMapping(t1, tempRecY);
+        this.ir.load("ax", t2);
+        this.ir.load("dx", t1);
+        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.addAssemblyCode("jl ?");
     }
     @Override
     public void inAGreaterCond(AGreaterCond node) {}
@@ -1722,10 +1746,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("jump", "-", "-", "?");
 
         // producing assembly
-        this.assembly +=    "load(ax, "+t2+")\n"+
-                            "load(dx, "+t1+")\n"+
-                            "cmp ax, dx\n"+
-                            "instr label(?)\n";
+        STRecord tempRecX = new STRecord();
+        tempRecX.setType(temp2);
+        this.ir.setDataMapping(t2, tempRecX);
+        STRecord tempRecY = new STRecord();
+        tempRecY.setType(temp1);
+        this.ir.setDataMapping(t1, tempRecY);
+        this.ir.load("ax", t2);
+        this.ir.load("dx", t1);
+        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.addAssemblyCode("jg ?");
     }
     @Override
     public void inALesseqCond(ALesseqCond node) {}
@@ -1760,10 +1790,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("jump", "-", "-", "?");
 
         // producing assembly
-        this.assembly +=    "load(ax, "+t2+")\n"+
-                            "load(dx, "+t1+")\n"+
-                            "cmp ax, dx\n"+
-                            "instr label(?)\n";
+        STRecord tempRecX = new STRecord();
+        tempRecX.setType(temp2);
+        this.ir.setDataMapping(t2, tempRecX);
+        STRecord tempRecY = new STRecord();
+        tempRecY.setType(temp1);
+        this.ir.setDataMapping(t1, tempRecY);
+        this.ir.load("ax", t2);
+        this.ir.load("dx", t1);
+        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.addAssemblyCode("jle ?");
     }
     @Override
     public void inAGreateqCond(AGreateqCond node) {}
@@ -1798,10 +1834,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("jump", "-", "-", "?");
 
         // producing assembly
-        this.assembly +=    "load(ax, "+t2+")\n"+
-                            "load(dx, "+t1+")\n"+
-                            "cmp ax, dx\n"+
-                            "instr label(?)\n";
+        STRecord tempRecX = new STRecord();
+        tempRecX.setType(temp2);
+        this.ir.setDataMapping(t2, tempRecX);
+        STRecord tempRecY = new STRecord();
+        tempRecY.setType(temp1);
+        this.ir.setDataMapping(t1, tempRecY);
+        this.ir.load("ax", t2);
+        this.ir.load("dx", t1);
+        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.addAssemblyCode("jge ?");
     }
 
 }
