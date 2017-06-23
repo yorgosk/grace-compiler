@@ -50,7 +50,7 @@ public class MachineCode {
     public Integer getLabelMapping(Integer irLabel) { return this.labelMap.get(irLabel); }
     public void setNumberOfCommands(Integer commands) { this.numberOfCommands = commands; }
     public Integer getNumberOfCommands() { return this.numberOfCommands; }
-    public Integer getCurrentCommand() { return this.numberOfCommands; }    // same functionality, different interface
+    public Integer getCurrentCommand() { return this.numberOfCommands; }    // same functionality with above, different interface
 
     /* ITERATING THROUGH NAMES */
     /* getAr(a) -- produces the machine code x86 for loading the record address of an
@@ -187,16 +187,19 @@ public class MachineCode {
     }
 
     /* various utility functions */
+    /* add an assembly command */
     public void addAssemblyCode(String aCode) {
         this.assembly.add(aCode);
         this.numberOfCommands++;
     }
+    /* get the whole assembly code produced until a certain point as a string */
     public String getAssemblyAsString() {
         String ret = "";
         for(int i = 0; i < this.assembly.size(); i++)
             ret += this.assembly.get(i);
         return ret;
     }
+    /* get the size of a data type in bytes */
     public Integer getTypeSize(STRecord.Type type) {
         if (type.getKind().equals("int")) return 4;
         else if (type.getKind().equals("char")) return 1;
@@ -204,6 +207,14 @@ public class MachineCode {
             assert (type.getKind().equals("nothing"));  // for debugging
             return 1;
         }
+    }
+    /* update a command's label */
+    public void label(Integer assemblyCommandLabel, Integer assemblyJumpLabel) {
+        String newCommand = "";
+        String oldCommand = this.assembly.get(assemblyCommandLabel-1);
+        String[] tokens = oldCommand.split(" ");
+        newCommand += tokens[0]+" "+assemblyJumpLabel.toString()+"\n";
+        this.assembly.add(assemblyCommandLabel-1, newCommand);
     }
 
 }

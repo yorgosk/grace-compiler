@@ -180,9 +180,12 @@ public class IntermediateCode {
         else if (listName.equals("NEXT")) l = this.NEXT.get(quadLabel);
         assert (l != null); // for debugging
         for (int i = 0; i < l.size(); i++) {
-            int label = l.get(i);
-            assert (this.intermediateCode.get(label-1).getZ().equals("?"));
-            this.intermediateCode.get(label-1).setZ(z.toString());
+            int irLabel = l.get(i);
+            assert (this.intermediateCode.get(irLabel-1).getZ().equals("?"));
+            this.intermediateCode.get(irLabel-1).setZ(z.toString());
+
+            // provision to update Machine Code respectively
+//            this.assemblyLabel(irLabel, z);
         }
         ArrayList<Integer> temp = new ArrayList<Integer>();
         temp.add(z);
@@ -247,7 +250,7 @@ public class IntermediateCode {
     public void resetType() { this.typeMap = new HashMap<String, STRecord.Type>(); }
     public void resetPLACE() { this.PLACE = new HashMap<Integer, String>(); }
 
-    /* various utility functions */
+    /* various utility functions, most of them connecting IR with Machine-Code */
     public ArrayList<String> getAssembly() { return this.assembly.getAssembly(); }
     public String getAssemblyAsString() { return this.assembly.getAssemblyAsString(); }
     public void addAssemblyCode(String code) { this.assembly.addAssemblyCode(code); }
@@ -259,5 +262,15 @@ public class IntermediateCode {
     public void setLabelMapping(Integer irLabel, Integer assemblyLabel) { this.assembly.setLabelMapping(irLabel, assemblyLabel); }
     public Integer getLabelMapping(Integer irLabel) { return this.assembly.getLabelMapping(irLabel); }
     public Integer getTypeSize(STRecord.Type type) { return this.assembly.getTypeSize(type); }
+    public Integer getNumberOfAssemblyCommands() { return this.assembly.getNumberOfCommands(); }
+    public Integer getCurrentAssemblyCommand() { return this.assembly.getCurrentCommand(); } // same functionality with above, different interface
+    public void assemblyLabel(Integer irCommandLabel, Integer irJumpLabel) {
+        Integer assemblyCommandLabel = this.getLabelMapping(irCommandLabel);
+        Integer assemblyJumpLabel = this.getLabelMapping(irJumpLabel);
+        this.assembly.label(assemblyCommandLabel, assemblyJumpLabel);
+    }
+    public void syncLabels() {
+//        this.setLabelMapping(this.getCurrentLabel(), this.getCurrentAssemblyCommand());
+    }
 
 }
