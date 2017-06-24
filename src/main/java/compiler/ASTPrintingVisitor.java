@@ -155,7 +155,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producing assembly
         name = "_"+name+"_"+this.ir.getCurrentLabel();
-//        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
         this.ir.addAssemblyCode(name+": mov sp, bp\n");
         this.ir.addAssemblyCode("pop bp\n");
         this.ir.addAssemblyCode("ret\n");
@@ -183,7 +182,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
             // producing assembly
             String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getCurrentLabel();
-//            this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
             this.ir.addAssemblyCode(name+" proc near\n");
             this.ir.addAssemblyCode("push bp\n");
             this.ir.addAssemblyCode("mov bp, sp\n");
@@ -265,13 +263,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }else {
-//            if (!node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
-//                // if this is not the main function, we want to know the function in the previous scope
-//                this.symbolTable.insert(tempRec);
-//            }
-//            // we are in a function definition, this means that a new namespace-scope is created
-//            symbolTable.enter();
-
             if (result == 0) {
                 //yiannis_sem
                 System.out.print("JJJJJJJJJJ");
@@ -628,132 +619,92 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
     public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
-	//add by yiannis_sem
-    //System.out.print("PPPPPPPPPPPPPPPPPPP");
-    //System.out.print(node.getExpr());
-    //System.out.print(node.getId().toString().trim().replaceAll("\\s+", " "));
-    String funName = node.getId().toString().trim().replaceAll("\\s+", " ");
-    LinkedList paramList = node.getExpr();
-    int c=0;int size;
-    if(this.symbolTable.fetchType(funName)==null){
-        System.err.printf("Error: function %s has not been declared\n",funName);
-        this.gracefullyExit();
-    }
-    if(this.symbolTable.fetchType(funName).getParameters()!=null){
-        size = this.symbolTable.fetchType(funName).getParameters().size();
-    }
-    else{
-        size = 0;
-    }
-      //  System.out.print("////////////");
-        //System.out.print(paramList.size());
-        //System.out.print(size);
-    if(paramList.size()!=size){
-        System.err.printf("Error: function %s has %d arguments, %d given\n",funName,size,paramList.size());
-        this.gracefullyExit();
-    }
-    for(Object i : paramList){
-        //System.out.print("::::::::::::");
-        String n=i.toString().split(" ")[0].trim().replaceAll("\\s+", " ");
-        String[] narr = i.toString().split(" ");
-        STRecord.Type type1 = new STRecord.Type();
-        type1=this.symbolTable.fetchType(n);
-        if(type1!=null){
-            if(type1.getArray()) {//this is woarking wright or causing more problems?????????????
-                //System.out.print("HGHGHGGGGGGGGGGHHHHHHHHHHHHHH");
-                //System.out.print(narr.length);
-                if (narr.length > 1) {
-                    if (this.symbolTable.fetchType(narr[1]).getKind().equals("int") || narr[1].toCharArray()[0] == '0' || narr[1].toCharArray()[0] == '1' || narr[1].toCharArray()[0] == '2' || narr[1].toCharArray()[0] == '3' || narr[1].toCharArray()[0] == '4' || narr[1].toCharArray()[0] == '5' || narr[1].toCharArray()[0] == '6' || narr[1].toCharArray()[0] == '7' || narr[1].toCharArray()[0] == '8' || narr[1].toCharArray()[0] == '9') {
-                        type1.setArray(false);
-                    }
-                }
-            }
-            /*System.out.print("TYPE1");
-            System.out.print(type1.getKind());
-            System.out.print(type1.getArray());
-            System.out.print(type1.getRef());*/
-        }
-        else{
-            if(n.toCharArray()[0]=='\''){
-                //it is a character
-                //System.out.print("GG");
-                type1 = new STRecord.Type();
-                type1.setArray(false);
-                type1.setRef(false);
-                type1.setKind("char");
-            }
-            else if (n.toCharArray()[0]=='\"'){
-                type1 = new STRecord.Type();
-                type1.setArray(true);
-                type1.setRef(true);
-                type1.setKind("char");
-            }
-            else if(n.toCharArray()[0]=='0' || n.toCharArray()[0]=='1' || n.toCharArray()[0]=='2' || n.toCharArray()[0]=='3' || n.toCharArray()[0]=='4' || n.toCharArray()[0]=='5' || n.toCharArray()[0]=='6' || n.toCharArray()[0]=='7' || n.toCharArray()[0]=='8' || n.toCharArray()[0]=='9'){
-                type1 = new STRecord.Type();
-                type1.setArray(false);
-                type1.setRef(false);
-                type1.setKind("int");
-            }
-            else{
-                System.err.printf("Error: %s has not been declared\n",n);
-                this.gracefullyExit();
-            }
-        }
-        STRecord.Type type2;
-        //System.out.print("DFGDFGDFGDFGDFG");
-        //System.out.print(funName);
-        //System.out.print(c);
-        type2 = this.symbolTable.fetchType(funName).getParameters().get(c);
-        //System.out.print(type2.getKind());
-        //type2 = this.symbolTable.paramType(funName,c+1);//instead of c stack error
-        if(type2==null){
-            //commented segment to avoid errors
+        //add by yiannis_sem
+        String funName = node.getId().toString().trim().replaceAll("\\s+", " ");
+        LinkedList paramList = node.getExpr();
+        int c=0;int size;
+        if(this.symbolTable.fetchType(funName)==null){
             System.err.printf("Error: function %s has not been declared\n",funName);
             this.gracefullyExit();
         }
-        else {
-
-            c++;
-
-            //System.out.print("TYPE1");
-            //System.out.print(type1.getKind());
-            //System.out.print(type1.getArray());
-            //System.out.print(type1.getRef());
-            //System.out.print("TYPE2");
-            //System.out.print(type2.getKind());
-            //System.out.print(type2.getArray());
-            //System.out.print(type2.getRef());
-            if (!type1.getKind().equals(type2.getKind())) {
-
-                System.err.printf("Error: parameter %d is %s, %s expected\n", c, type1.getKind(), type2.getKind());
-                this.gracefullyExit();
-            }
-            if (type1.getArray() != type2.getArray()) {
-                if (type1.getArray()) {
-                    System.err.printf("Error: parameter %d is %s array, %s expected\n", c, type1.getKind(), type2.getKind());
-                } else {
-                    System.err.printf("Error: parameter %d is %s, %s array expected\n", c, type1.getKind(), type2.getKind());
-                }
-                this.gracefullyExit();
-            }
-
+        if(this.symbolTable.fetchType(funName).getParameters()!=null){
+            size = this.symbolTable.fetchType(funName).getParameters().size();
         }
-    }
-    /*STRecord.Type type2;
-    type2 = this.symbolTable.paramType(funName,0);
-    System.out.print("TYPE2");
-    System.out.print(type2.getKind());
-        System.out.print(type2.getArray());
-        System.out.print(type2.getRef());*/
-    //type.printType();
-    //System.out.print("VVVVVVVVVVVVVVVVV");
-    //till here
-//	    STRecord temp = new STRecord();
-//        temp.setName(node.getId().toString().trim().replaceAll("\\s+", " "));
-//        if(!this.symbolTable.inLibrary(node.getId().toString().trim().replaceAll("\\s+", " ")) || this.symbolTable.searchFunction(temp)!=1) {    //if added by yiannis2
-//            System.err.printf("%s has not been declared\n",node.getId().toString().trim().replaceAll("\\s+", " "));
-//            System.exit(-1);
-//        }
+        else{
+            size = 0;
+        }
+
+        if(paramList.size()!=size){
+            System.err.printf("Error: function %s has %d arguments, %d given\n",funName,size,paramList.size());
+            this.gracefullyExit();
+        }
+
+        for(Object i : paramList){
+            String n=i.toString().split(" ")[0].trim().replaceAll("\\s+", " ");
+            String[] narr = i.toString().split(" ");
+            STRecord.Type type1 = new STRecord.Type();
+            type1=this.symbolTable.fetchType(n);
+            if(type1!=null){
+                if(type1.getArray()) {//this is woarking wright or causing more problems?????????????
+                    if (narr.length > 1) {
+                        if (this.symbolTable.fetchType(narr[1]).getKind().equals("int") || narr[1].toCharArray()[0] == '0' || narr[1].toCharArray()[0] == '1' || narr[1].toCharArray()[0] == '2' || narr[1].toCharArray()[0] == '3' || narr[1].toCharArray()[0] == '4' || narr[1].toCharArray()[0] == '5' || narr[1].toCharArray()[0] == '6' || narr[1].toCharArray()[0] == '7' || narr[1].toCharArray()[0] == '8' || narr[1].toCharArray()[0] == '9') {
+                            type1.setArray(false);
+                        }
+                    }
+                }
+            }
+            else{
+                if(n.toCharArray()[0]=='\''){
+                    //it is a character
+                    type1 = new STRecord.Type();
+                    type1.setArray(false);
+                    type1.setRef(false);
+                    type1.setKind("char");
+                }
+                else if (n.toCharArray()[0]=='\"'){
+                    type1 = new STRecord.Type();
+                    type1.setArray(true);
+                    type1.setRef(true);
+                    type1.setKind("char");
+                }
+                else if(n.toCharArray()[0]=='0' || n.toCharArray()[0]=='1' || n.toCharArray()[0]=='2' || n.toCharArray()[0]=='3' || n.toCharArray()[0]=='4' || n.toCharArray()[0]=='5' || n.toCharArray()[0]=='6' || n.toCharArray()[0]=='7' || n.toCharArray()[0]=='8' || n.toCharArray()[0]=='9'){
+                    type1 = new STRecord.Type();
+                    type1.setArray(false);
+                    type1.setRef(false);
+                    type1.setKind("int");
+                }
+                else{
+                    System.err.printf("Error: %s has not been declared\n",n);
+                    this.gracefullyExit();
+                }
+            }
+            STRecord.Type type2;
+            type2 = this.symbolTable.fetchType(funName).getParameters().get(c);
+
+            if(type2==null){
+                //commented segment to avoid errors
+                System.err.printf("Error: function %s has not been declared\n",funName);
+                this.gracefullyExit();
+            }
+            else {
+                c++;
+
+                if (!type1.getKind().equals(type2.getKind())) {
+
+                    System.err.printf("Error: parameter %d is %s, %s expected\n", c, type1.getKind(), type2.getKind());
+                    this.gracefullyExit();
+                }
+                if (type1.getArray() != type2.getArray()) {
+                    if (type1.getArray()) {
+                        System.err.printf("Error: parameter %d is %s array, %s expected\n", c, type1.getKind(), type2.getKind());
+                    } else {
+                        System.err.printf("Error: parameter %d is %s, %s array expected\n", c, type1.getKind(), type2.getKind());
+                    }
+                    this.gracefullyExit();
+                }
+
+            }
+        }
     }
     @Override
     public void outAFuncCall(AFuncCall node) { indent--; }
@@ -807,11 +758,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAAssignmentStmt(AAssignmentStmt node) {}
     @Override
     public void outAAssignmentStmt(AAssignmentStmt node) {
-       // System.out.print("KKKKKKKKKKKKKKKKKKKKKKK");
-       // System.out.print(node.getExpr());
-       // System.out.print("PPPPPPPPPPPPPPPPPPPPP");
-       // System.out.print(node.getLValue());
-       // System.out.print("LLLLLLLLLLLLLLLLLLLLLLLLLL");
         STRecord.Type type = new STRecord.Type();
         type = this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " "));
         if(type!=null){
@@ -820,8 +766,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
         }
-       // type.printType();
-       // System.out.print("GGGGGGGGGGGGG");
+
         STRecord.Type temp1 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
@@ -866,7 +811,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing assembly
         STRecord tempRec = new STRecord();
         tempRec.setType(temp3);
-//        this.ir.addAssemblyCode("@"+this.ir.getCurrentLabel()+":\n");
         this.ir.setDataMapping(item1, tempRec);
         this.ir.load("R", item1);
         this.ir.store("R", item1);
@@ -1559,6 +1503,18 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
             this.tempOperandsStack.push(this.ir.getCurrentLabel());
             this.toPopFromTempOperandsStack++;
+
+            // producing assembly
+            STRecord tempRecY = new STRecord();
+            tempRecY.setType(temp1);
+            this.ir.setDataMapping(t1, tempRecY);
+            this.ir.load("ax", "0");
+            this.ir.load("dx", t1);
+            this.ir.addAssemblyCode("sub ax, dx\n");
+            STRecord tempRecZ = new STRecord();
+            tempRecZ.setType(temp1);
+            this.ir.setDataMapping(t2, tempRecZ);
+            this.ir.store("ax", t2);
         }
     }
 
@@ -1766,11 +1722,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
-        // for later stages of IR production
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
-        this.ir.GENQUAD("jump", "-", "-", "?");
-
         // producing assembly
         STRecord tempRecX = new STRecord();
         tempRecX.setType(temp2);
@@ -1781,8 +1732,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("ax", t2);
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
-        this.ir.addAssemblyCode("jz ?");
+        this.ir.addAssemblyCode("jz ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
+
+        // for later stages of IR production
+        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.syncLabels();
     }
     @Override
     public void inAHashtagCond(AHashtagCond node) {}
@@ -1864,11 +1824,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
-        // for later stages of IR production
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
-        this.ir.GENQUAD("jump", "-", "-", "?");
-
         // producing assembly
         STRecord tempRecX = new STRecord();
         tempRecX.setType(temp2);
@@ -1879,8 +1834,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("ax", t2);
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
-        this.ir.addAssemblyCode("jnz ?");
+        this.ir.addAssemblyCode("jnz ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
+
+        // for later stages of IR production
+        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.syncLabels();
     }
     @Override
     public void inAUnequalCond(AUnequalCond node) {}
@@ -1953,11 +1917,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("<>", t2, t1, "?");
         this.toPopFromTempOperandsStack++;
 
-        // for later stages of IR production
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
-        this.ir.GENQUAD("jump", "-", "-", "?");
-
         // producing assembly
         STRecord tempRecX = new STRecord();
         tempRecX.setType(temp2);
@@ -1968,8 +1927,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("ax", t2);
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
-        this.ir.addAssemblyCode("jnz ?");
+        this.ir.addAssemblyCode("jnz ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
+
+        // for later stages of IR production
+        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.syncLabels();
     }
     @Override
     public void inALesserCond(ALesserCond node) {}
@@ -2043,11 +2011,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
-        // for later stages of IR production
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
-        this.ir.GENQUAD("jump", "-", "-", "?");
-
         // producing assembly
         STRecord tempRecX = new STRecord();
         tempRecX.setType(temp2);
@@ -2058,8 +2021,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("ax", t2);
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
-        this.ir.addAssemblyCode("jl ?");
+        this.ir.addAssemblyCode("jl ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
+
+        // for later stages of IR production
+        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.syncLabels();
     }
     @Override
     public void inAGreaterCond(AGreaterCond node) {}
@@ -2133,11 +2105,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
-        // for later stages of IR production
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
-        this.ir.GENQUAD("jump", "-", "-", "?");
-
         // producing assembly
         STRecord tempRecX = new STRecord();
         tempRecX.setType(temp2);
@@ -2148,8 +2115,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("ax", t2);
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
-        this.ir.addAssemblyCode("jg ?");
+        this.ir.addAssemblyCode("jg ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
+
+        // for later stages of IR production
+        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.syncLabels();
     }
     @Override
     public void inALesseqCond(ALesseqCond node) {}
@@ -2223,11 +2199,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
-        // for later stages of IR production
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
-        this.ir.GENQUAD("jump", "-", "-", "?");
-
         // producing assembly
         STRecord tempRecX = new STRecord();
         tempRecX.setType(temp2);
@@ -2238,8 +2209,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("ax", t2);
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
-        this.ir.addAssemblyCode("jle ?");
+        this.ir.addAssemblyCode("jle ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
+
+        // for later stages of IR production
+        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.syncLabels();
     }
     @Override
     public void inAGreateqCond(AGreateqCond node) {}
@@ -2313,11 +2293,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
-        // for later stages of IR production
-        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
-        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
-        this.ir.GENQUAD("jump", "-", "-", "?");
-
         // producing assembly
         STRecord tempRecX = new STRecord();
         tempRecX.setType(temp2);
@@ -2328,8 +2303,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.load("ax", t2);
         this.ir.load("dx", t1);
         this.ir.addAssemblyCode("cmp ax, dx\n");
-        this.ir.addAssemblyCode("jge ?");
+        this.ir.addAssemblyCode("jge ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
+
+        // for later stages of IR production
+        this.ir.setTRUE(this.ir.getCurrentLabel(), this.ir.MAKELIST(this.ir.getCurrentLabel()));
+        this.ir.setFALSE(this.ir.getCurrentLabel()+1, this.ir.MAKELIST(this.ir.NEXTQUAD()));
+        this.ir.GENQUAD("jump", "-", "-", "?");
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.syncLabels();
     }
 
 }
