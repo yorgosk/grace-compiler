@@ -838,10 +838,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.err.printf("Error: Trying to assign a value to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
             this.gracefullyExit();
         }
-        else if((dim.length-1)>temp1.getDimension()){
-            System.err.printf("Error: to many indexes to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
+        /*else if((dim.length-1)>temp1.getDimension()){
+            System.err.printf("Error: too many indexes to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
             this.gracefullyExit();
-        }
+        }*/
         //till here
 
 	//added by yiannis_sem
@@ -1133,6 +1133,23 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
     @Override
     public void outAExpressionLValue(AExpressionLValue node) {
+        //yiannis_sem
+        System.out.print("!!!!!!!!!!!!!!!");
+        System.out.print(node.getLValue().toString());
+        System.out.print(node.getExpr());
+        if(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " "))!=null&&this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getArray()){
+            String[] ind = node.getExpr().toString().split(" ");
+            System.out.print("^^^^^^^^^^^^^");
+            System.out.print(ind[0]);
+            for(int i=0;i<this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getDimension();i++){
+                if(this.symbolTable.fetchType(ind[i])!=null&&this.symbolTable.fetchType(ind[i]).getArray()){
+                    System.err.printf("Error: cannot navigate in l-value using array value (%s)\n", ind[i]);
+                    this.gracefullyExit();
+                }
+            }
+        }
+        //till here
+
         // take the <expr>'s type from the <l-value>[<expr>] structure
         STRecord.Type tempExpr = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
