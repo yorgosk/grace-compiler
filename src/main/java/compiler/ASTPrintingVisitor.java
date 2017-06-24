@@ -36,6 +36,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private Stack<Integer> tempOperandsStack;
     private Integer toPopFromTempOperandsStack;
 
+    private  boolean hasReturn; //yiannis_sem : to define when a function has return statement
+
     // write to file
     PrintWriter irWriter;
     PrintWriter assemblyWriter;
@@ -143,6 +145,15 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit();
         String name = this.tempFunctionStack.pop();
+        //yiannis_sem
+        //System.out.print("NNNNNNNNNNNNNNNNNN");
+        //System.out.print(this.hasReturn);
+        if(!this.hasReturn&&!this.symbolTable.fetchType(name).getKind().equals("nothing")){
+            System.err.printf("Error: function \"%s\" has not a return statement\n",name);
+            this.gracefullyExit();
+        }
+        this.hasReturn=false;
+        //till here
         // producing IR
         this.ir.GENQUAD("endu", name, "-", "-");
 
@@ -1042,6 +1053,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAReturnStmt(AReturnStmt node) {
         //yiannis_sem
+        this.hasReturn=true;
         System.out.print("EEEEEEEEEEEEE");
         System.out.print(node.getExpr());
         STRecord.Type temp = new STRecord.Type();
