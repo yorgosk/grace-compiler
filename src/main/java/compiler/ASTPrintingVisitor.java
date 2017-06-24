@@ -848,14 +848,27 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //commented segment to avoid errors
         if(temp1.getArray()!=temp2.getArray()){
             System.out.print("OOOOOOOOOOOOOOPPPPPPPP");
-            System.out.print(node.getLValue());
-            String[] splitted = node.getLValue().toString().split(" ");
-            if ((this.symbolTable.fetchType(splitted[1])!=null&&this.symbolTable.fetchType(splitted[1]).getKind().equals("int")) || splitted[1].toCharArray()[0] == '0' || splitted[1].toCharArray()[0] == '1' || splitted[1].toCharArray()[0] == '2' || splitted[1].toCharArray()[0] == '3' || splitted[1].toCharArray()[0] == '4' || splitted[1].toCharArray()[0] == '5' || splitted[1].toCharArray()[0] == '6' || splitted[1].toCharArray()[0] == '7' || splitted[1].toCharArray()[0] == '8' || splitted[1].toCharArray()[0] == '9') {
+            System.out.print(node.getExpr());
+            String[] splitted = node.getExpr().toString().split(" ");
+            /*if (((this.symbolTable.fetchType(splitted[1]) != null && this.symbolTable.fetchType(splitted[1]).getKind().equals("int")) || splitted[1].toCharArray()[0] == '0' || splitted[1].toCharArray()[0] == '1' || splitted[1].toCharArray()[0] == '2' || splitted[1].toCharArray()[0] == '3' || splitted[1].toCharArray()[0] == '4' || splitted[1].toCharArray()[0] == '5' || splitted[1].toCharArray()[0] == '6' || splitted[1].toCharArray()[0] == '7' || splitted[1].toCharArray()[0] == '8' || splitted[1].toCharArray()[0] == '9')) {
 
-            }
-            else {
+            } else {
                 System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n", temp1.getKind(), temp2.getKind());
                 this.gracefullyExit();
+            }*/
+            if(this.symbolTable.fetchType(splitted[0])!=null&&this.symbolTable.fetchType(splitted[0]).getArray()){
+                if(splitted.length<=1){
+                    System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n", temp1.getKind(), temp2.getKind());
+                    this.gracefullyExit();
+                }
+                else {
+                    if (((this.symbolTable.fetchType(splitted[1]) != null && this.symbolTable.fetchType(splitted[1]).getKind().equals("int")) || splitted[1].toCharArray()[0] == '0' || splitted[1].toCharArray()[0] == '1' || splitted[1].toCharArray()[0] == '2' || splitted[1].toCharArray()[0] == '3' || splitted[1].toCharArray()[0] == '4' || splitted[1].toCharArray()[0] == '5' || splitted[1].toCharArray()[0] == '6' || splitted[1].toCharArray()[0] == '7' || splitted[1].toCharArray()[0] == '8' || splitted[1].toCharArray()[0] == '9')) {
+
+                    } else {
+                        System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n", temp1.getKind(), temp2.getKind());
+                        this.gracefullyExit();
+                    }
+                }
             }
         }
         //till here
