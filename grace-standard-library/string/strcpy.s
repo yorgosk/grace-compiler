@@ -1,32 +1,33 @@
 	.file	"strcpy.c"
+	.intel_syntax noprefix
 	.text
 	.globl	str_cpy
 	.type	str_cpy, @function
 str_cpy:
 .LFB0:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
+	mov	QWORD PTR [rbp-8], rdi
+	mov	QWORD PTR [rbp-16], rsi
 	nop
 .L2:
-	movq	-8(%rbp), %rax
-	leaq	1(%rax), %rdx
-	movq	%rdx, -8(%rbp)
-	movq	-16(%rbp), %rdx
-	leaq	1(%rdx), %rcx
-	movq	%rcx, -16(%rbp)
-	movzbl	(%rdx), %edx
-	movb	%dl, (%rax)
-	movzbl	(%rax), %eax
-	testb	%al, %al
+	mov	rax, QWORD PTR [rbp-8]
+	lea	rdx, [rax+1]
+	mov	QWORD PTR [rbp-8], rdx
+	mov	rdx, QWORD PTR [rbp-16]
+	lea	rcx, [rdx+1]
+	mov	QWORD PTR [rbp-16], rcx
+	movzx	edx, BYTE PTR [rdx]
+	mov	BYTE PTR [rax], dl
+	movzx	eax, BYTE PTR [rax]
+	test	al, al
 	jne	.L2
 	nop
-	popq	%rbp
+	pop	rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc

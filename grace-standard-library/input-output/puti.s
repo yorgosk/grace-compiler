@@ -1,4 +1,5 @@
 	.file	"puti.c"
+	.intel_syntax noprefix
 	.section	.rodata
 .LC0:
 	.string	"%d"
@@ -8,17 +9,17 @@
 put_i:
 .LFB0:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movl	%edi, -4(%rbp)
-	movl	-4(%rbp), %eax
-	movl	%eax, %esi
-	movl	$.LC0, %edi
-	movl	$0, %eax
+	sub	rsp, 16
+	mov	DWORD PTR [rbp-4], edi
+	mov	eax, DWORD PTR [rbp-4]
+	mov	esi, eax
+	mov	edi, OFFSET FLAT:.LC0
+	mov	eax, 0
 	call	printf
 	nop
 	leave

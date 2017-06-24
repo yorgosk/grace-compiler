@@ -1,32 +1,33 @@
 	.file	"strlen.c"
+	.intel_syntax noprefix
 	.text
 	.globl	str_len
 	.type	str_len, @function
 str_len:
 .LFB0:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	movq	%rdi, -24(%rbp)
-	movl	$0, -8(%rbp)
-	movl	$0, -4(%rbp)
+	mov	QWORD PTR [rbp-24], rdi
+	mov	DWORD PTR [rbp-8], 0
+	mov	DWORD PTR [rbp-4], 0
 	jmp	.L2
 .L3:
-	addl	$1, -8(%rbp)
-	addl	$1, -4(%rbp)
+	add	DWORD PTR [rbp-8], 1
+	add	DWORD PTR [rbp-4], 1
 .L2:
-	movl	-4(%rbp), %eax
-	movslq	%eax, %rdx
-	movq	-24(%rbp), %rax
-	addq	%rdx, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
+	mov	eax, DWORD PTR [rbp-4]
+	movsx	rdx, eax
+	mov	rax, QWORD PTR [rbp-24]
+	add	rax, rdx
+	movzx	eax, BYTE PTR [rax]
+	test	al, al
 	jne	.L3
-	movl	-8(%rbp), %eax
-	popq	%rbp
+	mov	eax, DWORD PTR [rbp-8]
+	pop	rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc

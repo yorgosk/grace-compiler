@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/conversion/abs.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/conversion/chr.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/conversion/ord.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/getc.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/geti.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/gets.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/putc.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puti.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puts.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcat.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcmp.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcpy.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grace-standard-library/string/strlen.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/conversion/abs.s" afterPath="$PROJECT_DIR$/grace-standard-library/conversion/abs.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/conversion/chr.s" afterPath="$PROJECT_DIR$/grace-standard-library/conversion/chr.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/conversion/ord.s" afterPath="$PROJECT_DIR$/grace-standard-library/conversion/ord.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/getc.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/getc.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/geti.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/geti.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/gets.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/gets.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/putc.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/putc.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/puti.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puti.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/puts.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puts.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strcat.s" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcat.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strcmp.s" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcmp.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strcpy.s" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcpy.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strlen.s" afterPath="$PROJECT_DIR$/grace-standard-library/string/strlen.s" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -756,7 +756,7 @@
       <workItem from="1498289044492" duration="5143000" />
       <workItem from="1498311949116" duration="1994000" />
       <workItem from="1498329132947" duration="1484000" />
-      <workItem from="1498338119716" duration="752000" />
+      <workItem from="1498338119716" duration="1381000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -947,11 +947,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498339173527</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fixed library c to assembly issues... added assembly files">
+      <created>1498339280242</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1498339280242</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19957000" />
+    <option name="totallyTimeSpent" value="20586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -1019,7 +1026,8 @@
     <MESSAGE value="working towards assembly label mapping (II)" />
     <MESSAGE value="working towards assembly label mapping (III)... many funcs related to x8086 production need to be corrected" />
     <MESSAGE value="fixed library c to assembly issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed library c to assembly issues" />
+    <MESSAGE value="fixed library c to assembly issues... added assembly files" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed library c to assembly issues... added assembly files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

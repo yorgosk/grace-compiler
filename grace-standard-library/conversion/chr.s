@@ -1,18 +1,19 @@
 	.file	"chr.c"
+	.intel_syntax noprefix
 	.text
 	.globl	chr
 	.type	chr, @function
 chr:
 .LFB2:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	movl	%edi, -4(%rbp)
-	movl	-4(%rbp), %eax
-	popq	%rbp
+	mov	DWORD PTR [rbp-4], edi
+	mov	eax, DWORD PTR [rbp-4]
+	pop	rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc

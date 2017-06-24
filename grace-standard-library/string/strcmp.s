@@ -1,45 +1,46 @@
 	.file	"strcmp.c"
+	.intel_syntax noprefix
 	.text
 	.globl	str_cmp
 	.type	str_cmp, @function
 str_cmp:
 .LFB0:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
+	mov	QWORD PTR [rbp-8], rdi
+	mov	QWORD PTR [rbp-16], rsi
 	jmp	.L2
 .L5:
-	movq	-8(%rbp), %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
+	mov	rax, QWORD PTR [rbp-8]
+	movzx	eax, BYTE PTR [rax]
+	test	al, al
 	jne	.L3
-	movl	$0, %eax
+	mov	eax, 0
 	jmp	.L4
 .L3:
-	addq	$1, -8(%rbp)
-	addq	$1, -16(%rbp)
+	add	QWORD PTR [rbp-8], 1
+	add	QWORD PTR [rbp-16], 1
 .L2:
-	movq	-8(%rbp), %rax
-	movzbl	(%rax), %edx
-	movq	-16(%rbp), %rax
-	movzbl	(%rax), %eax
-	cmpb	%al, %dl
+	mov	rax, QWORD PTR [rbp-8]
+	movzx	edx, BYTE PTR [rax]
+	mov	rax, QWORD PTR [rbp-16]
+	movzx	eax, BYTE PTR [rax]
+	cmp	dl, al
 	je	.L5
-	movq	-8(%rbp), %rax
-	movzbl	(%rax), %eax
-	movsbl	%al, %edx
-	movq	-16(%rbp), %rax
-	movzbl	(%rax), %eax
-	movsbl	%al, %eax
-	subl	%eax, %edx
-	movl	%edx, %eax
+	mov	rax, QWORD PTR [rbp-8]
+	movzx	eax, BYTE PTR [rax]
+	movsx	edx, al
+	mov	rax, QWORD PTR [rbp-16]
+	movzx	eax, BYTE PTR [rax]
+	movsx	eax, al
+	sub	edx, eax
+	mov	eax, edx
 .L4:
-	popq	%rbp
+	pop	rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc

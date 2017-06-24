@@ -1,20 +1,21 @@
 	.file	"putc.c"
+	.intel_syntax noprefix
 	.text
 	.globl	put_c
 	.type	put_c, @function
 put_c:
 .LFB0:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movl	%edi, %eax
-	movb	%al, -4(%rbp)
-	movsbl	-4(%rbp), %eax
-	movl	%eax, %edi
+	sub	rsp, 16
+	mov	eax, edi
+	mov	BYTE PTR [rbp-4], al
+	movsx	eax, BYTE PTR [rbp-4]
+	mov	edi, eax
 	call	putchar
 	nop
 	leave
