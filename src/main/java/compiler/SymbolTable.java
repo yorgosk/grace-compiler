@@ -153,6 +153,21 @@ public class SymbolTable {
         return true;
     }
 
+    //add by yiannis_sem for debugging
+    public void printscope(){
+        int curr_scope = this.numberOfScopes;
+        // iterate the array-list in reverse order until you get out of the current-scope
+        int i = this.symbolTable.size()-1;
+        int scope = this.symbolTable.get(i).getScopeId();
+        while(i >= 0 && scope == curr_scope) {
+            System.out.print(this.symbolTable.get(i).getName());
+            i--;
+            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
+        }
+    }
+    //till here
+
+
     /* exit(): destroy the current scope and delete the names that are defined in it
      * -- exit(): remove the head of the current list for each head of the scopen */
     public void exit(){

@@ -37,6 +37,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private Integer toPopFromTempOperandsStack;
 
     private  boolean hasReturn; //yiannis_sem : to define when a function has return statement
+    private String mainName; //yiannis_sem : name of main need to be kept
 
     // write to file
     PrintWriter irWriter;
@@ -153,6 +154,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
         this.hasReturn=false;
+        STRecord rec = new STRecord();
+        for(STRecord f:this.symbolTable.getKnownFunctions()){
+            //System.out.print("????????????????????????????????");
+            //System.out.print(this.mainName);
+            if(f.getName().equals(name)&&!name.equals(this.mainName)){
+                System.out.print("??????????????????????");
+                System.out.print(f.getName());
+                symbolTable.insert(f);
+            }
+        }
         //till here
         // producing IR
         this.ir.GENQUAD("endu", name, "-", "-");
@@ -215,6 +226,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         if(!tempType.getKind().equals("nothing")&&!this.hasMain){
             System.err.printf("Error: main function must return nothing\n");
             this.gracefullyExit();
+        }
+        if(!this.hasMain&&node.getFparDef().size() != 0){
+            System.err.printf("Error: \"main\" function takes no arguments\n");
+            this.gracefullyExit();
+        }
+        if(!this.hasMain){
+            //System.out.print(node.getId().toString().trim().replaceAll("\\s+", " "));
+            this.mainName = node.getId().toString().trim().replaceAll("\\s+", " ");
         }
         //till here
 
@@ -542,7 +561,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.isDecl = false;
     }
     @Override
-    public void outAFuncDefLocalDef(AFuncDefLocalDef node) { indent--; symbolTable.exit();}	//changed by yiannis
+    public void outAFuncDefLocalDef(AFuncDefLocalDef node) { indent--; symbolTable.exit();
+        //yiannis_sem
+
+        STRecord rec = new STRecord();
+        for(STRecord f:this.symbolTable.getKnownFunctions()){
+            System.out.print("????????????????????????????????");
+            System.out.print(node.getFuncDef().toString().split(" ")[0]);
+            //System.out.print(this.mainName);
+            if(f.getName().equals(node.getFuncDef().toString().split(" ")[0])&&!node.getFuncDef().toString().split(" ")[0].equals(this.mainName)){
+                System.out.print("??????????????????????");
+                System.out.print(f.getName());
+                symbolTable.insert(f);
+            }
+        }
+        //till here
+    }	//changed by yiannis
     @Override
     public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) { makeIndent(); System.out.printf("funcDeclLocalDef :\n"); indent++;
         // the very next header that we will see, we want to remember that it belongs to a function Declaration
@@ -665,6 +699,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String funName = node.getId().toString().trim().replaceAll("\\s+", " ");
         LinkedList paramList = node.getExpr();
         int c=0;int size;
+        System.out.print(funName);
+        //System.out.print("********************");
+        //this.symbolTable.printscope();
+        //System.out.print("********************");
+        if(this.symbolTable.lookup(funName)&&!this.symbolTable.inLibrary(funName)){
+            System.err.printf("Error: function %s has not been declared in this scope\n",funName);
+            this.gracefullyExit();
+        }
         if(this.symbolTable.fetchType(funName)==null){
             System.err.printf("Error: function %s has not been declared\n",funName);
             this.gracefullyExit();
