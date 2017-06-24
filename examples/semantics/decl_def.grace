@@ -1,7 +1,8 @@
 fun main () : nothing
-fun foo (c : int) : int;
+fun foo (c : int; v:char) : int;
 
-fun foo (ref c,v : int[10]) : int
+
+fun foo (c: int; v:char) : int
 {
 	return 3;
 }

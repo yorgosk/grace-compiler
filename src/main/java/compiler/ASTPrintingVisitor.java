@@ -96,6 +96,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++; }
     @Override
     public void outAProgram(AProgram node) { indent--; System.out.printf("Intermediate Representation:\n");
+        //yiannis_sem
+        ArrayList<STRecord> KFun = this.symbolTable.getKnownFunctions();
+        for(STRecord rec: KFun){
+            rec.printSTRecord();
+            System.out.print(rec.getName());
+            if(!rec.getDefined()){
+                System.err.printf("Error: function \"%s\" has not been defined, only declared\n", rec.getName());
+                this.gracefullyExit();
+            }
+        }
+        //till here
         // print IR
         this.ir.printIR();
         // print IR to file -- for testing
@@ -227,11 +238,19 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // if we are in a function declaration, check to see if it's definition exists in the current scope, and if it does, do the appropriate Name & Type-checking
         int result = this.symbolTable.searchFunction(tempRec);
         if (this.isDecl) {
+            for(STRecord rec: this.symbolTable.getKnownFunctions()){
+                //System.out.print(rec.getName());
+                if(tempRec.getName().equals(rec.getName())){
+                    System.err.printf("Error: multiple declaration of function \"%s\"\n", tempRec.getName());
+                    this.gracefullyExit();
+                }
+            }
             if (result == 0) {
                 tempRec.setDefined(false);
                 System.out.print("UUUUUUUUUUU");
                 System.out.print(tempRec.getName());
                 this.symbolTable.insert(tempRec);
+                this.symbolTable.addKnownFunction(tempRec);
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
@@ -255,51 +274,106 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
             if (result == 0) {
                 //yiannis_sem
-                /*System.out.print("JJJJJJJJJJ");
-                System.out.print(tempRec.getName());
-                System.out.print(node.getFparDef());
-                System.out.print(node.getId());
-                System.out.print(node.getRetType());
-                String[] params = node.getFparDef().toString().split(" ");
-                System.out.print(params.length);
-                System.out.print("LLLLLLLLLLLL");
-                boolean isRef=false;
-                boolean isArray=false;
-                int count=0;
-                int num=0;
-                int sum=0;
-                for(Object i: params) {System.out.print(params.length);
-                    if (i.toString().equals("ref")) {
-                        isRef = true;
-                    } else if (i.toString().equals("int")) {
-                        for (int k = 0; k < count; k++) {
-                            if (!this.symbolTable.paramType(tempRec.getName(), num).getKind().equals("int")) {
-                                System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
-                                this.gracefullyExit();
-                            }
-                            if (params[num + 1].toString().toCharArray()[0] == '0' || params[num + 1].toString().toCharArray()[0] == '1' || params[num + 1].toString().toCharArray()[0] == '2' || params[num + 1].toString().toCharArray()[0] == '3' || params[num + 1].toString().toCharArray()[0] == '4' || params[num + 1].toString().toCharArray()[0] == '5' || params[num + 1].toString().toCharArray()[0] == '6' || params[num + 1].toString().toCharArray()[0] == '7' || params[num + 1].toString().toCharArray()[0] == '8' || params[num + 1].toString().toCharArray()[0] == '9') {
-                                isArray = true;
-                            }
-                            if (isRef) {
-                                isArray = true;
-                            }
-                            if (this.symbolTable.paramType(node.getId().toString(), num).getArray() != isArray) {
-                                System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
-                                this.gracefullyExit();
-                            }
-                            num++;
-                        }
-                    } else if (i.toString().equals("char")) {
-
-                    } else {
-                        count++;
-                        sum++;
+                System.out.print("JJJJJJJJJJ");
+                System.out.print(this.symbolTable.fetchType(tempRec.getName()));
+                if(this.symbolTable.fetchType(tempRec.getName())!=null) {
+                    if(!this.symbolTable.fetchType(tempRec.getName()).getKind().equals(tempRec.getType().getKind())){
+                        System.err.printf("Error: function \"%s\" has declared in a different type\n", tempRec.getName());
+                        this.gracefullyExit();
                     }
-                }*/
+                    System.out.print(tempRec.getName());
+                    System.out.print(node.getFparDef());
+                    System.out.print(node.getId());
+                    System.out.print(node.getRetType());
+                    String[] params = node.getFparDef().toString().split(" ");
+                    params[0] = params[0].substring(1);
+                    System.out.print(params.length);
+                    System.out.print("LLLLLLLLLLLL");
+                    boolean isRef = false;
+                    boolean isArray = false;
+                    int count = 0;
+                    int num = 0;
+                    int sum = 0;
+                    for (Object i : params) {
+                        System.out.print("PPPPPPP");
+                        System.out.print(i.toString());
+                        if (i.toString().equals("ref")) {
+                            isRef = true;
+                        } else if (i.toString().equals("int")) {
+                            for (int k = 0; k < count; k++) {
+                                if (this.symbolTable.paramType(tempRec.getName(), num + 1) == null) {
+                                    System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                    this.gracefullyExit();
+                                }
+                                if (!this.symbolTable.paramType(tempRec.getName(), num + 1).getKind().equals("int")) {
+                                    System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                    this.gracefullyExit();
+                                }
+                                //System.out.print("BBBBBBBBBBBBBBB");
+                                // System.out.print(count);
+                                if (params[count + 1].toString().toCharArray()[0] == '0' || params[count + 1].toString().toCharArray()[0] == '1' || params[count + 1].toString().toCharArray()[0] == '2' || params[count + 1].toString().toCharArray()[0] == '3' || params[count + 1].toString().toCharArray()[0] == '4' || params[count + 1].toString().toCharArray()[0] == '5' || params[count + 1].toString().toCharArray()[0] == '6' || params[count + 1].toString().toCharArray()[0] == '7' || params[count + 1].toString().toCharArray()[0] == '8' || params[count + 1].toString().toCharArray()[0] == '9') {
+                                    isArray = true;
+                                }
+                                if (isRef) {
+                                    isArray = true;
+                                }
+                                if (this.symbolTable.paramType(tempRec.getName(), num + 1).getArray() != isArray) {
+                                    System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                    this.gracefullyExit();
+                                }
+                                num++;
+                            }
+                        } else if (i.toString().equals("char")) {
+                            for (int k = 0; k < count; k++) {
+
+                                if (this.symbolTable.paramType(tempRec.getName(), num + 1) == null) {
+                                    System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                    this.gracefullyExit();
+                                }
+                                if (!this.symbolTable.paramType(tempRec.getName(), num + 1).getKind().equals("char")) {
+                                    System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                    this.gracefullyExit();
+                                }
+                                if (params[num + 1].toString().toCharArray()[0] == '0' || params[num + 1].toString().toCharArray()[0] == '1' || params[num + 1].toString().toCharArray()[0] == '2' || params[num + 1].toString().toCharArray()[0] == '3' || params[num + 1].toString().toCharArray()[0] == '4' || params[num + 1].toString().toCharArray()[0] == '5' || params[num + 1].toString().toCharArray()[0] == '6' || params[num + 1].toString().toCharArray()[0] == '7' || params[num + 1].toString().toCharArray()[0] == '8' || params[num + 1].toString().toCharArray()[0] == '9') {
+                                    isArray = true;
+                                }
+                                if (isRef) {
+                                    isArray = true;
+                                }
+                                if (this.symbolTable.paramType(tempRec.getName(), num + 1).getArray() != isArray) {
+                                    System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                                    this.gracefullyExit();
+                                }
+                                num++;
+                            }
+
+                        }else if(i.toString().equals(",")){
+                            isRef=false;
+                            isArray=false;
+                            count=0;
+                        } else {
+                            count++;
+                            sum++;
+                        }
+                    }
+                    System.out.print("KLJKJJHHHJK");
+                    System.out.print(count);
+                    if (this.symbolTable.paramType(tempRec.getName(), sum) != null) {
+                        System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                        this.gracefullyExit();
+                    }
+                }
+                for(STRecord rec:this.symbolTable.getKnownFunctions()){
+                    if(rec.getName().equals(tempRec.getName())){
+                        rec.setDefined(true);
+                    }
+                }
+                //System.out.print(this.symbolTable.paramType(tempRec.getName(), count+1).getKind());
+                //till here
                 //System.out.print(this.symbolTable.paramType(tempRec.getName(),0));
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.setScopeType(tempRec.getType());
-                this.symbolTable.addKnownFunction(tempRec);
+                this.symbolTable.addKnownFunction(tempRec);//yiannis_sem???? isws na einai la8os giati exei 3anaginei push i idia sunartisi
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
