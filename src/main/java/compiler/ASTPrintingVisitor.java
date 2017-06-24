@@ -830,6 +830,20 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
+        //yiannis_sem
+        System.out.print("<<<<<<<<,");
+        System.out.print(temp1.getDimension());
+        String[] dim = node.getLValue().toString().split(" ");
+        if((dim.length-1)<temp1.getDimension()){
+            System.err.printf("Error: Trying to assign a value to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
+            this.gracefullyExit();
+        }
+        else if((dim.length-1)>temp1.getDimension()){
+            System.err.printf("Error: to many indexes to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
+            this.gracefullyExit();
+        }
+        //till here
+
 	//added by yiannis_sem
         //commented segment to avoid errors
         if(temp1.getArray()!=temp2.getArray()){
@@ -1010,11 +1024,23 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAReturnStmt(AReturnStmt node) {}
     @Override
     public void outAReturnStmt(AReturnStmt node) {
-        STRecord.Type temp = this.tempTypeStack.pop();
-        this.toPopFromTempTypeStack--;
+        //yiannis_sem
+        System.out.print("EEEEEEEEEEEEE");
+        System.out.print(node.getExpr());
+        STRecord.Type temp = new STRecord.Type();
+        if(node.getExpr().size()==0){
+            temp.setKind("nothing");
+        }
+        else {
+            temp = this.tempTypeStack.pop();
+            this.toPopFromTempTypeStack--;
+        }
+        //till here
+        //before changes
+        //STRecord.Type temp = this.tempTypeStack.pop();
+        //this.toPopFromTempTypeStack--;
         if(!this.symbolTable.checkRetType(temp)){
 		//yiannis_sem
-            System.out.print(node.getExpr());
             String[] arr = node.getExpr().toString().split(" ");
             if(arr.length>1 && (this.symbolTable.fetchType(arr[1])!=null||arr[1].toCharArray()[0]=='0'||arr[1].toCharArray()[0]=='1'||arr[1].toCharArray()[0]=='2'||arr[1].toCharArray()[0]=='3'||arr[1].toCharArray()[0]=='4'||arr[1].toCharArray()[0]=='5'||arr[1].toCharArray()[0]=='6'||arr[1].toCharArray()[0]=='7'||arr[1].toCharArray()[0]=='8'||arr[1].toCharArray()[0]=='9')){
 

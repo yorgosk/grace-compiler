@@ -1,10 +1,10 @@
 fun main () : nothing
 
-fun foo () : int
+fun foo () : nothing
 var h:int[10];
 var x:int;
 {
-	return h[x];
+	return;
 }
 
 {
