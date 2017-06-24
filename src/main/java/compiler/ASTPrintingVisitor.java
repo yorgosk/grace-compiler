@@ -670,7 +670,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 
+        boolean cannotRef=false;
         for(Object i : paramList){
+            cannotRef=false;
             String n=i.toString().split(" ")[0].trim().replaceAll("\\s+", " ");
             String[] narr = i.toString().split(" ");
             STRecord.Type type1 = new STRecord.Type();
@@ -687,6 +689,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             else{
                 if(n.toCharArray()[0]=='\''){
                     //it is a character
+                    cannotRef=true;
                     type1 = new STRecord.Type();
                     type1.setArray(false);
                     type1.setRef(false);
@@ -699,6 +702,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     type1.setKind("char");
                 }
                 else if(n.toCharArray()[0]=='0' || n.toCharArray()[0]=='1' || n.toCharArray()[0]=='2' || n.toCharArray()[0]=='3' || n.toCharArray()[0]=='4' || n.toCharArray()[0]=='5' || n.toCharArray()[0]=='6' || n.toCharArray()[0]=='7' || n.toCharArray()[0]=='8' || n.toCharArray()[0]=='9'){
+                    cannotRef=true;
                     type1 = new STRecord.Type();
                     type1.setArray(false);
                     type1.setRef(false);
@@ -719,6 +723,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
             else {
                 c++;
+
+                if(type2.getRef()&&cannotRef){
+                    System.err.printf("Error: cannot pass reference in %s\n", n);
+                    this.gracefullyExit();
+                }
 
                 if (!type1.getKind().equals(type2.getKind())) {
 
@@ -758,21 +767,23 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 e.apply(this);
 
                 // producing IR
-                Integer t1 = tempOperandsStack.pop();
-                this.toPopFromTempOperandsStack--;
-                System.out.printf("searching param %d of %s", n, node.getId().toString());
-                this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n), "-");
-                n++;
+                if(!tempOperandsStack.empty()) {//this if added by yiannis_sem , it solve problem with stack that crash but may create wrong quads
+                    Integer t1 = tempOperandsStack.pop();
+                    this.toPopFromTempOperandsStack--;
+                    System.out.printf("searching param %d of %s", n, node.getId().toString());
+                    this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n), "-");
+                    n++;
 
-                // producing assembly
-                if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("V")) {
-                    this.ir.load("ax", this.ir.getPLACE(t1));
-                    this.ir.addAssemblyCode("push ax\n");
-                } else if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("R")) {
-                    this.ir.loadAddr("si", this.ir.getPLACE(t1));
-                    this.ir.addAssemblyCode("push si\n");
-                } else {
-                    assert (false); // we don't want to end up here
+                    // producing assembly
+                    if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("V")) {
+                        this.ir.load("ax", this.ir.getPLACE(t1));
+                        this.ir.addAssemblyCode("push ax\n");
+                    } else if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("R")) {
+                        this.ir.loadAddr("si", this.ir.getPLACE(t1));
+                        this.ir.addAssemblyCode("push si\n");
+                    } else {
+                        assert (false); // we don't want to end up here
+                    }
                 }
             }
         }

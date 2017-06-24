@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
     </list>
@@ -57,15 +58,15 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="850" column="43" lean-forward="false" selection-start-line="850" selection-start-column="43" selection-end-line="850" selection-end-column="43" />
+            <state relative-caret-position="175">
+              <caret line="769" column="146" lean-forward="false" selection-start-line="769" selection-start-column="146" selection-end-line="769" selection-end-column="146" />
               <folding>
-                <element signature="e#7002#7013#0" expanded="true" />
-                <element signature="e#31073#31080#0" expanded="true" />
-                <element signature="e#36540#36547#0" expanded="true" />
-                <element signature="e#45886#45893#0" expanded="true" />
-                <element signature="e#78377#78397#0" expanded="true" />
-                <element signature="e#80122#80142#0" expanded="true" />
+                <element signature="e#6741#6752#0" expanded="true" />
+                <element signature="e#30812#30819#0" expanded="true" />
+                <element signature="e#36604#36611#0" expanded="true" />
+                <element signature="e#46175#46182#0" expanded="true" />
+                <element signature="e#78666#78686#0" expanded="true" />
+                <element signature="e#80411#80431#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,8 +98,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="521">
-              <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
-              <folding />
+              <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+              <folding>
+                <marker date="1498328602441" expanded="true" signature="12231:12265" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -264,7 +267,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="examples/semantics/errors/error3.grace" />
+      <option name="PROGRAM_PARAMETERS" value="examples/general/hello.grace" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -717,7 +720,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68575853" sideWeight="0.53712124" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22164948" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22164948" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32686085" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.71907216" sideWeight="0.4628788" order="7" side_tool="false" content_ui="tabs" />
@@ -1010,8 +1013,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
-          <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
-          <folding />
+          <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+          <folding>
+            <marker date="1498328602441" expanded="true" signature="12231:12265" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1049,15 +1054,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="850" column="43" lean-forward="false" selection-start-line="850" selection-start-column="43" selection-end-line="850" selection-end-column="43" />
+        <state relative-caret-position="175">
+          <caret line="769" column="146" lean-forward="false" selection-start-line="769" selection-start-column="146" selection-end-line="769" selection-end-column="146" />
           <folding>
-            <element signature="e#7002#7013#0" expanded="true" />
-            <element signature="e#31073#31080#0" expanded="true" />
-            <element signature="e#36540#36547#0" expanded="true" />
-            <element signature="e#45886#45893#0" expanded="true" />
-            <element signature="e#78377#78397#0" expanded="true" />
-            <element signature="e#80122#80142#0" expanded="true" />
+            <element signature="e#6741#6752#0" expanded="true" />
+            <element signature="e#30812#30819#0" expanded="true" />
+            <element signature="e#36604#36611#0" expanded="true" />
+            <element signature="e#46175#46182#0" expanded="true" />
+            <element signature="e#78666#78686#0" expanded="true" />
+            <element signature="e#80411#80431#0" expanded="true" />
           </folding>
         </state>
       </provider>
