@@ -1,5 +1,5 @@
 #include <stdio.h>
 
-void puti(int i) {
+void put_i(int i) {
 	printf("%d", i);
 }

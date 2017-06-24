@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-char getc() {
+char get_c() {
 	char c;
 	scanf("%c", &c);
 	return c;

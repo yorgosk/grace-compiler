@@ -1,4 +1,4 @@
-void strcat(char *trg, char *src) {
+void str_cat(char *trg, char *src) {
     while (*trg) trg++;
     while (*trg++ = *src++);
 }

@@ -1,5 +1,5 @@
 #include <stdio.h>
 
-void putc(char c) {
+void put_c(char c) {
 	printf("%c", c);
 }

@@ -1,5 +1,3 @@
-void strcpy(char* trg, char* src) {
-	char* temp = trg;
+void str_cpy(char* trg, char* src) {
 	while(*trg++ = *src++);
-	return temp;
 }
