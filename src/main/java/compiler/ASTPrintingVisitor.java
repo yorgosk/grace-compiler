@@ -778,7 +778,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("V")) {
                         this.ir.load("ax", this.ir.getPLACE(t1));
                         this.ir.addAssemblyCode("push ax\n");
-                    } else if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("R")) {
+                    } else if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("R") || this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("RET")) {
                         this.ir.loadAddr("si", this.ir.getPLACE(t1));
                         this.ir.addAssemblyCode("push si\n");
                     } else {
@@ -1026,7 +1026,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.ir.setNEXT(stmtLabel, condFALSE);
 
         // for assembly production
-        this.ir.addAssemblyCode("jmp "+next.toString()+"\n");
+        this.ir.addAssemblyCode("jmp "+next.toString()+"\n");   // PROBLEM -- FIX IT!!!
 
         outAWhileStmt(node);
     }
@@ -1077,7 +1077,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
 
         // producing assembly
-        this.ir.addAssemblyCode("jmp ?\n");
+        this.ir.addAssemblyCode("ret\n");   // IS IT OK THIS WAY?
         /*
         * jump to endof(current)???
         * */
@@ -1195,18 +1195,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing assembly
 //        STRecord tempRecX = this.tempRecordStack.pop();
 //        this.toPopFromTempRecordStack--;
+//        this.ir.setDataMapping(t1, tempRecX);
 //        STRecord tempRecY = this.tempRecordStack.pop();
 //        this.toPopFromTempRecordStack--;
 //        tempRecY.setDereference(true);
 //        this.ir.setDataMapping(t3, tempRecY);
 //        this.ir.load("ax", t3);
-//        this.ir.
-//        this.assembly +=    "load(ax, "+t3+")\n"+
-//                            "mov cx, size\n"+
-//                            "imul cx\n"+
-//                            "loadAddr(cx, "+t1+")\n"+
-//                            "add ax, cx\n"+
-//                            "store(ax, "+t2+")\n";
+//        this.ir.addAssemblyCode("mov cx, 8\n");
+//        this.ir.addAssemblyCode("imul cx\n");
+//        this.ir.loadAddr("cx", t1);
+//        this.ir.addAssemblyCode("add ax, cx\n");
+//        this.ir.store("ax", t2);
     }
 
     // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
@@ -1669,11 +1668,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        this.ir.GENQUAD("not", "-", "-", "?");
+//        this.ir.GENQUAD("not", "-", "-", "?");
 //        this.ir.syncLabels();   // sync labels of jump statement
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
-        this.ir.GENQUAD("jump", "-", "-", "?");
+//        this.ir.GENQUAD("jump", "-", "-", "?");
 //        this.ir.syncLabels();   // sync labels of jump statement
 
         // for IR production

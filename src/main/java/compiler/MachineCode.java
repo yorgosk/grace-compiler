@@ -91,7 +91,7 @@ public class MachineCode {
         if (tempNp < tempNx) {
             this.assembly.add("push bp\n");
             this.numberOfCommands++;
-        } else if (tempNp == tempNp) {
+        } else if (tempNp == tempNx) {
             this.assembly.add("push word ptr [bp+4]\n");
             this.numberOfCommands++;
         } else {
