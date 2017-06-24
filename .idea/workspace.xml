@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/conversion/ord.c" afterPath="$PROJECT_DIR$/grace-standard-library/conversion/ord.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/getc.c" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/getc.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/geti.c" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/geti.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/gets.c" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/gets.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/putc.c" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/putc.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/puti.c" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puti.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/puts.c" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puts.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strcat.c" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcat.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strcmp.c" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcmp.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strcpy.c" afterPath="$PROJECT_DIR$/grace-standard-library/string/strcpy.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/string/strlen.c" afterPath="$PROJECT_DIR$/grace-standard-library/string/strlen.c" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -64,8 +53,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="1055" column="28" lean-forward="false" selection-start-line="1055" selection-start-column="28" selection-end-line="1055" selection-end-column="28" />
+            <state relative-caret-position="301">
+              <caret line="1069" column="40" lean-forward="true" selection-start-line="1069" selection-start-column="40" selection-end-line="1069" selection-end-column="40" />
               <folding>
                 <element signature="e#7231#7242#0" expanded="true" />
                 <element signature="e#31302#31309#0" expanded="true" />
@@ -529,7 +518,7 @@
       <workItem from="1498289044492" duration="5143000" />
       <workItem from="1498311949116" duration="1994000" />
       <workItem from="1498329132947" duration="1484000" />
-      <workItem from="1498338119716" duration="622000" />
+      <workItem from="1498338119716" duration="654000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -706,11 +695,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498294872913</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fixed library c to assembly issues">
+      <created>1498339156991</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1498339156991</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19827000" />
+    <option name="totallyTimeSpent" value="19859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -777,7 +773,8 @@
     <MESSAGE value="working towards assembly label mapping" />
     <MESSAGE value="working towards assembly label mapping (II)" />
     <MESSAGE value="working towards assembly label mapping (III)... many funcs related to x8086 production need to be corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="working towards assembly label mapping (III)... many funcs related to x8086 production need to be corrected" />
+    <MESSAGE value="fixed library c to assembly issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed library c to assembly issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1033,8 +1030,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="1055" column="28" lean-forward="false" selection-start-line="1055" selection-start-column="28" selection-end-line="1055" selection-end-column="28" />
+        <state relative-caret-position="301">
+          <caret line="1069" column="40" lean-forward="true" selection-start-line="1069" selection-start-column="40" selection-end-line="1069" selection-end-column="40" />
           <folding>
             <element signature="e#7231#7242#0" expanded="true" />
             <element signature="e#31302#31309#0" expanded="true" />
