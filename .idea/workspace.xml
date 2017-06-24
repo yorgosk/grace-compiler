@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -56,18 +58,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7140">
-              <caret line="855" column="31" lean-forward="false" selection-start-line="855" selection-start-column="31" selection-end-line="855" selection-end-column="31" />
+            <state relative-caret-position="462">
+              <caret line="1000" column="35" lean-forward="false" selection-start-line="1000" selection-start-column="35" selection-end-line="1000" selection-end-column="35" />
               <folding>
                 <element signature="e#7002#7013#0" expanded="true" />
                 <element signature="e#28621#28628#0" expanded="true" />
                 <element signature="e#34045#34052#0" expanded="true" />
-                <element signature="e#40430#40437#0" expanded="true" />
-                <element signature="e#71430#71450#0" expanded="true" />
-                <element signature="e#73175#73195#0" expanded="true" />
+                <element signature="e#41537#41544#0" expanded="true" />
+                <element signature="e#72693#72713#0" expanded="true" />
+                <element signature="e#74438#74458#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,18 +78,18 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3885">
+            <state relative-caret-position="534">
               <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2970">
-              <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+            <state relative-caret-position="280">
+              <caret line="261" column="5" lean-forward="false" selection-start-line="261" selection-start-column="5" selection-end-line="261" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -96,11 +98,9 @@
       <file leaf-file-name="MachineCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3300">
+            <state relative-caret-position="2694">
               <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,7 +120,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#242#243#0" expanded="false" />
+                <element signature="e#274#275#0" expanded="false" />
+                <element signature="e#946#947#0" expanded="false" />
+                <element signature="e#1013#1014#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,8 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>knownfunctions</find>
-      <find>&quot;[&quot;</find>
       <find>&quot;unit&quot;</find>
       <find>&quot;:=&quot;</find>
       <find>STRecord</find>
@@ -154,11 +157,13 @@
       <find>has not been declared</find>
       <find>header</find>
       <find>AAAAAAAA</find>
-      <find>return</find>
       <find>yiannis_sem</find>
       <find>JJJJJJ</find>
       <find>JJJJJJJJJJ</find>
       <find>JJ</find>
+      <find>&quot;par&quot;</find>
+      <find>&quot;call&quot;</find>
+      <find>return</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,8 +178,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
       </list>
     </option>
   </component>
@@ -564,7 +569,7 @@
       <workItem from="1498238990504" duration="3834000" />
       <workItem from="1498244187013" duration="8000" />
       <workItem from="1498248309356" duration="709000" />
-      <workItem from="1498289044492" duration="2038000" />
+      <workItem from="1498289044492" duration="3605000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -727,11 +732,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498243813936</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="working towards assembly label mapping (II)">
+      <created>1498293280408</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1498293280408</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12622000" />
+    <option name="totallyTimeSpent" value="14189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -796,7 +808,8 @@
     <MESSAGE value="continued with assembly... assembly code produced is not functioning yet" />
     <MESSAGE value="continued with assembly (II)... assembly code produced is not functioning yet" />
     <MESSAGE value="working towards assembly label mapping" />
-    <option name="LAST_COMMIT_MESSAGE" value="working towards assembly label mapping" />
+    <MESSAGE value="working towards assembly label mapping (II)" />
+    <option name="LAST_COMMIT_MESSAGE" value="working towards assembly label mapping (II)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -984,7 +997,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#242#243#0" expanded="false" />
+            <element signature="e#274#275#0" expanded="false" />
+            <element signature="e#946#947#0" expanded="false" />
+            <element signature="e#1013#1014#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1010,32 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3300">
-          <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3885">
-          <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1695">
@@ -1052,18 +1044,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2694">
+          <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7140">
-          <caret line="855" column="31" lean-forward="false" selection-start-line="855" selection-start-column="31" selection-end-line="855" selection-end-column="31" />
+        <state relative-caret-position="462">
+          <caret line="1000" column="35" lean-forward="false" selection-start-line="1000" selection-start-column="35" selection-end-line="1000" selection-end-column="35" />
           <folding>
             <element signature="e#7002#7013#0" expanded="true" />
             <element signature="e#28621#28628#0" expanded="true" />
             <element signature="e#34045#34052#0" expanded="true" />
-            <element signature="e#40430#40437#0" expanded="true" />
-            <element signature="e#71430#71450#0" expanded="true" />
-            <element signature="e#73175#73195#0" expanded="true" />
+            <element signature="e#41537#41544#0" expanded="true" />
+            <element signature="e#72693#72713#0" expanded="true" />
+            <element signature="e#74438#74458#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="261" column="5" lean-forward="false" selection-start-line="261" selection-start-column="5" selection-end-line="261" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -254,8 +254,15 @@ public class IntermediateCode {
     public ArrayList<String> getAssembly() { return this.assembly.getAssembly(); }
     public String getAssemblyAsString() { return this.assembly.getAssemblyAsString(); }
     public void addAssemblyCode(String code) { this.assembly.addAssemblyCode(code); }
-    public void load(String R, String a) { this.assembly.load(R, a); }
-    public void loadAddr(String R, String a) { this.assembly.loadAddr(R, a); }
+    public void updateAL() {
+//        this.assembly.updateAL();
+    }
+    public void load(String R, String a) {
+//        this.assembly.load(R, a);
+    }
+    public void loadAddr(String R, String a) {
+//        this.assembly.loadAddr(R, a);
+    }
     public void store(String R, String a) { this.assembly.store(R, a); }
     public void setDataMapping(String name, STRecord info) { this.assembly.setDataMapping(name, info); }
     public STRecord getDataMapping(String name) { return this.assembly.getDataMapping(name); }

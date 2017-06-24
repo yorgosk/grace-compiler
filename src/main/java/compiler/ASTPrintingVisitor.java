@@ -732,6 +732,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 System.out.printf("searching param %d of %s", n, node.getId().toString());
                 this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n), "-");
                 n++;
+
+                // producing assembly
+                if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("V")) {
+                    this.ir.load("ax", this.ir.getPLACE(t1));
+                    this.ir.addAssemblyCode("push ax\n");
+                } else if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("R")) {
+                    this.ir.loadAddr("si", this.ir.getPLACE(t1));
+                    this.ir.addAssemblyCode("push si\n");
+                } else {
+                    assert (false); // we don't want to end up here
+                }
             }
         }
 
@@ -748,9 +759,19 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             String w = this.ir.NEWTEMP(funcType);
             this.ir.GENQUAD("par", "RET", w, "-");
             this.ir.addPLACE(this.ir.getCurrentLabel(), w);
+
+            // producing assembly
+            this.ir.loadAddr("si", w);
+            this.ir.addAssemblyCode("push si\n");
         }
 
         this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
+
+        // producing assembly
+        this.ir.addAssemblyCode("sub sp, 2\n");
+        this.ir.updateAL();
+        this.ir.addAssemblyCode("call near ptr "+node.getId().toString().trim().replaceAll("\\s+", " ")+"\n");
+        this.ir.addAssemblyCode("add sp, size+4\n");
     }
 
     // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
@@ -869,7 +890,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             // for IR production
 //            l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
             this.ir.GENQUAD("jump", "-", "-", "?");
-//            this.ir.syncLabels();   // sync labels of jump statement
+
+            // for assembly production
+            this.ir.addAssemblyCode("jmp ?\n");
+            this.ir.syncLabels();   // sync labels of jump statement
+
             stmtNEXT = this.ir.getCurrentLabel();
             this.ir.setNEXT(stmtNEXT, this.ir.MAKELIST(stmtNEXT));
             this.ir.BACKPATCH(condFALSELabel, "FALSE", this.ir.NEXTQUAD());
@@ -891,12 +916,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        param.add(stmt1NEXT);
 //        param.add(l2);
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.MERGE(param));
-
-        // for assembly production
-        /*
-        * code for if
-        * */
-        this.ir.addAssemblyCode("jmp ?");
 
         outAIfStmt(node);
     }
@@ -937,6 +956,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.BACKPATCH(condFALSELabel, "FALSE", next);
 //        this.ir.setNEXT(stmtLabel, condFALSE);
 
+        // for assembly production
+        this.ir.addAssemblyCode("jmp "+next.toString()+"\n");
+
         outAWhileStmt(node);
     }
     @Override
@@ -970,7 +992,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
 
         // producing IR
+        this.ir.GENQUAD("ret", "-", "-", "-");
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
+
+        // producing assembly
+        this.ir.addAssemblyCode("jmp ?\n");
+        /*
+        * jump to endof(current)???
+        * */
     }
 
     // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
