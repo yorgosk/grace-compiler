@@ -32,6 +32,7 @@ public class MachineCode {
         // add the first lines of assembly
         this.assembly.add(".intel_syntax noprefix # Use Intel syntax instead of AT&T\n");
         this.assembly.add(".text\n");
+        this.numberOfCommands += 2;
     }
 
     /* MachineCode's class setters and getters */
@@ -59,29 +60,39 @@ public class MachineCode {
     public void getAR(String a) {
         int relPos = this.getNonLocalOperandRelativePosition(a);
         this.assembly.add("mov si, word ptr [bp+4]\n");
+        this.numberOfCommands++;
         if (relPos > 1)
-            for (int i = 2; i <= relPos; i++)
+            for (int i = 2; i <= relPos; i++) {
                 this.assembly.add("mov si, word ptr [si+4]\n");
+                this.numberOfCommands++;
+            }
     }
     // case of Displays
     public void getAR(String a, String displayFlag) {
         assert (displayFlag.equals("display")); // for debugging
         Integer relPos = this.getNonLocalOperandRelativePosition(a);
         this.assembly.add("mov si, word ptr display[2 * "+relPos.toString()+"]\n");
+        this.numberOfCommands++;
     }
 
     /* updateAL() -- contains the code for updating the Access Links */
     public void updateAL() {
-        if (tempNp < tempNx)
+        if (tempNp < tempNx) {
             this.assembly.add("push bp\n");
-        else if (tempNp == tempNp)
+            this.numberOfCommands++;
+        } else if (tempNp == tempNp) {
             this.assembly.add("push word ptr [bp+4]\n");
-        else {
+            this.numberOfCommands++;
+        } else {
             int dif = tempNp-tempNx;
             this.assembly.add("mov si, word ptr [bp+4]\n");
-            for (int i = 1; i <= dif; i++)
+            this.numberOfCommands++;
+            for (int i = 1; i <= dif; i++) {
                 this.assembly.add("mov si, word ptr [si+4]\n");
+                this.numberOfCommands++;
+            }
             this.assembly.add("push word ptr [si+4]");
+            this.numberOfCommands++;
         }
     }
 
@@ -89,38 +100,45 @@ public class MachineCode {
     /* load(R,a) -- produces code for storing data "a" at register "R" */
     public void load(String R, String a) {
         /* case of numerical constant */
-        if (this.getDataMapping(a).getType().getKind().equals("int"))
-            this.assembly.add("mov "+R+", "+a+"\n");
+        if (this.getDataMapping(a).getType().getKind().equals("int")) {
+            this.assembly.add("mov " + R + ", " + a + "\n");
+            this.numberOfCommands++;
         /* case of logical constant "true"??? */
 //        this.assembly.add("mov "+R+", 1\n");
         /* case of logical constant "false"??? */
 //        this.assembly.add("mov "+R+", 0\n");
         /* case of character constant */
-        else if (this.getDataMapping(a).getType().getKind().equals("char"))
-            this.assembly.add("mov "+R+", ASCII("+a+")\n");
+        } else if (this.getDataMapping(a).getType().getKind().equals("char")) {
+            this.assembly.add("mov " + R + ", ASCII(" + a + ")\n");
+            this.numberOfCommands++;
         /* case of local variable, parameter by value, temporary variable */
-        else if (this.getDataMapping(a).getLocal() || !this.getDataMapping(a).getType().getRef())
-            this.assembly.add("mov "+R+", size ptr [bp + offset]\n");
+        } else if (this.getDataMapping(a).getLocal() || !this.getDataMapping(a).getType().getRef()) {
+            this.assembly.add("mov " + R + ", size ptr [bp + offset]\n");
+            this.numberOfCommands++;
         /* case of parameter by reference */
-        else if (this.getDataMapping(a).getType().getRef()) {
+        } else if (this.getDataMapping(a).getType().getRef()) {
             this.assembly.add("mov si, word ptr [bp + offset]\n");
             this.assembly.add("mov "+R+", size ptr [si]\n");
+            this.numberOfCommands += 2;
         }
         /* case of non-local variable, parameter by value */
         else if (!this.getDataMapping(a).getLocal() || !this.getDataMapping(a).getType().getRef()) {
             this.getAR(a);
             this.assembly.add("mov "+R+", size ptr [si + offset]\n");
+            this.numberOfCommands++;
         }
         /* case of non-local parameter by reference */
         else if (this.getDataMapping(a).getType().getRef()) {
             this.getAR(a);
             this.assembly.add("mov si, word ptr [si + offset]\n");
             this.assembly.add("mov "+R+", size ptr [si]\n");
+            this.numberOfCommands += 2;
         }
         /* case of dereference */
         else if (this.getDataMapping(a).getDereference()) {
             this.assembly.add("load(di, "+a+")\n");
             this.assembly.add("mov "+R+", size ptr [di]\n");
+            this.numberOfCommands += 2;
         }
         /* case of memory address */
 //        this.loadAddr(R,a);
@@ -131,56 +149,67 @@ public class MachineCode {
     /* loadAddr(R,a) -- produces code for storing the address of the data "a" at register "R" */
     public void loadAddr(String R, String a) {
         /* case of literal constant */
-        if (this.getDataMapping(a).getType().getKind().equals("char") && this.getDataMapping(a).getType().getArray())
-            this.assembly.add("lea "+R+", byte ptr "+a+"\n");
+        if (this.getDataMapping(a).getType().getKind().equals("char") && this.getDataMapping(a).getType().getArray()) {
+            this.assembly.add("lea " + R + ", byte ptr " + a + "\n");
+            this.numberOfCommands++;
         /* case of local parameter by value */
-        else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef())
-            this.assembly.add("lea "+R+", size ptr [bp + offset]\n");
+        } else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef()) {
+            this.assembly.add("lea " + R + ", size ptr [bp + offset]\n");
+            this.numberOfCommands++;
         /* case of parameter by value */
-        else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef())
-            this.assembly.add("mov "+R+", word ptr [bp + offset]\n");
+        } else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef()) {
+            this.assembly.add("mov " + R + ", word ptr [bp + offset]\n");
+            this.numberOfCommands++;
         /* case of non-local parameter by value */
-        else if (!this.getDataMapping(a).getLocal() && this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef()) {
+        } else if (!this.getDataMapping(a).getLocal() && this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef()) {
             this.getAR(a);
             this.assembly.add("lea "+R+", size ptr [si + offset]\n");
+            this.numberOfCommands++;
         }
         /* case of non-local parameter by reference */
         else if (!this.getDataMapping(a).getLocal() && this.getDataMapping(a).getParam() && this.getDataMapping(a).getType().getRef()) {
             this.getAR(a);
             this.assembly.add("mov "+R+", size ptr [si + offset]\n");
+            this.numberOfCommands++;
         }
         /* case of dereference */
-        else if (this.getDataMapping(a).getDereference())
-            this.assembly.add("load("+R+", "+a+")\n");
-        else
+        else if (this.getDataMapping(a).getDereference()) {
+            this.assembly.add("load(" + R + ", " + a + ")\n");
+            this.numberOfCommands++;
+        } else
             assert (false); // we don't want to end up here, under any situation
     }
 
     /* store(R,a) -- produces code for storing the contents of the register "R" at data "a" */
     public void store(String R, String a) {
         /* case of local parameter by value or temporary variable */
-        if (this.getDataMapping(a).getLocal() && !this.getDataMapping(a).getType().getRef())
-            this.assembly.add("mov size ptr [bp+offset], "+R+"\n");
+        if (this.getDataMapping(a).getLocal() && !this.getDataMapping(a).getType().getRef()) {
+            this.assembly.add("mov size ptr [bp+offset], " + R + "\n");
+            this.numberOfCommands++;
         /* case of local parameter by reference */
-        else if (this.getDataMapping(a).getLocal() && this.getDataMapping(a).getType().getRef()) {
+        } else if (this.getDataMapping(a).getLocal() && this.getDataMapping(a).getType().getRef()) {
             this.assembly.add("mov si, word ptr [bp+offset]\n");
             this.assembly.add("mov size ptr [si], "+R+"\n");
+            this.numberOfCommands += 2;
         }
         /* case of non-local parameter by value */
         else if (!this.getDataMapping(a).getLocal() && !this.getDataMapping(a).getType().getRef()) {
             this.getAR(a);
             this.assembly.add("mov size ptr [si+offset], "+R+"\n");
+            this.numberOfCommands++;
         }
         /* case of non-local parameter by reference */
         else if (!this.getDataMapping(a).getLocal() && this.getDataMapping(a).getType().getRef()) {
             this.getAR(a);
             this.assembly.add("mov si, word ptr [si+offset]\n");
             this.assembly.add("mov size ptr [si], "+R+"\n");
+            this.numberOfCommands += 2;
         }
         /* case of dereference */
         else if (this.getDataMapping(a).getDereference()) {
             this.assembly.add("load(di, "+a+")\n");
             this.assembly.add("mov size ptr [di], "+R+"\n");
+            this.numberOfCommands += 2;
         }
         else
             assert (false); // we don't want to end up here, under any situation

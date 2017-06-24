@@ -184,8 +184,10 @@ public class IntermediateCode {
             assert (this.intermediateCode.get(irLabel-1).getZ().equals("?"));
             this.intermediateCode.get(irLabel-1).setZ(z.toString());
 
-            // provision to update Machine Code respectively
-//            this.assemblyLabel(irLabel, z);
+            if (listName.equals("TRUE") || listName.equals("FALSE")) {
+                // provision to update Machine Code respectively
+//                this.assemblyLabel(irLabel, z);
+            }
         }
         ArrayList<Integer> temp = new ArrayList<Integer>();
         temp.add(z);
@@ -277,7 +279,7 @@ public class IntermediateCode {
         this.assembly.label(assemblyCommandLabel, assemblyJumpLabel);
     }
     public void syncLabels() {
-//        this.setLabelMapping(this.getCurrentLabel(), this.getCurrentAssemblyCommand());
+        this.setLabelMapping(this.getCurrentLabel(), this.getCurrentAssemblyCommand());
     }
 
 }
