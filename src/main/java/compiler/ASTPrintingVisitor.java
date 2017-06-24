@@ -205,14 +205,22 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type tempType = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
         tempRec.type = new STRecord.Type(tempType);
+        //yiannis_sem
+        System.out.print("MAINNNNN");
+        System.out.print(node.getId().toString());
+        if(!tempType.getKind().equals("nothing")&&!this.hasMain){
+            System.err.printf("Error: main function must return nothing\n");
+            this.gracefullyExit();
+        }
+        //till here
 
         tempRec.type.setFunction(true);
         // check for main-function existence
         // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
-        if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
+        /*if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {       //commented by yiannis_sem
             System.err.printf("Error: All Grace programs must have a \"main\" function\n");
             this.gracefullyExit();
-        } else if (node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " ")) && node.getFparDef().size() != 0) {
+        } else */if (node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " ")) && node.getFparDef().size() != 0) {
             System.err.printf("Error: \"main\" function takes no arguments\n");
             this.gracefullyExit();
         } else if (!this.isDecl && this.hasMain && node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
@@ -351,6 +359,36 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     System.out.print(count);
                     if (this.symbolTable.paramType(tempRec.getName(), sum) != null) {
                         System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
+                        this.gracefullyExit();
+                    }
+                }
+                else {
+                    String[] params = node.getFparDef().toString().split(" ");
+                    params[0] = params[0].substring(1);
+                    boolean isRef=false;
+                    boolean isArray=false;
+                    int count=0;
+                    for (Object i : params) {
+                        System.out.print(i.toString());
+                        System.out.print("  ");
+                        if (i.toString().equals("ref")) {
+                            isRef = true;
+                        }else if(i.toString().equals(",")){
+                            if(isArray&&!isRef){
+                                System.err.printf("Error: function \"%s\" has reference to a non array argument\n", tempRec.getName());
+                                this.gracefullyExit();
+                            }
+                            isRef=false;
+                            isArray=false;
+                        }else if (i.toString().equals("int")||i.toString().equals("char")) {
+                            if (params[count + 1].toString().toCharArray()[0] == '[' || params[count + 1].toString().toCharArray()[0] == '0' || params[count + 1].toString().toCharArray()[0] == '1' || params[count + 1].toString().toCharArray()[0] == '2' || params[count + 1].toString().toCharArray()[0] == '3' || params[count + 1].toString().toCharArray()[0] == '4' || params[count + 1].toString().toCharArray()[0] == '5' || params[count + 1].toString().toCharArray()[0] == '6' || params[count + 1].toString().toCharArray()[0] == '7' || params[count + 1].toString().toCharArray()[0] == '8' || params[count + 1].toString().toCharArray()[0] == '9') {
+                                isArray = true;
+                            }
+                        }
+                        count++;
+                    }
+                    if(isArray&&!isRef){
+                        System.err.printf("Error: function \"%s\" has reference to an non array argument\n", tempRec.getName());
                         this.gracefullyExit();
                     }
                 }
@@ -647,7 +685,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             if(type1!=null){
                 if(type1.getArray()) {//this is woarking wright or causing more problems?????????????
                     if (narr.length > 1) {
-                        if (this.symbolTable.fetchType(narr[1]).getKind().equals("int") || narr[1].toCharArray()[0] == '0' || narr[1].toCharArray()[0] == '1' || narr[1].toCharArray()[0] == '2' || narr[1].toCharArray()[0] == '3' || narr[1].toCharArray()[0] == '4' || narr[1].toCharArray()[0] == '5' || narr[1].toCharArray()[0] == '6' || narr[1].toCharArray()[0] == '7' || narr[1].toCharArray()[0] == '8' || narr[1].toCharArray()[0] == '9') {
+                        if (this.symbolTable.fetchType(narr[1])!=null&&this.symbolTable.fetchType(narr[1]).getKind().equals("int") || narr[1].toCharArray()[0] == '0' || narr[1].toCharArray()[0] == '1' || narr[1].toCharArray()[0] == '2' || narr[1].toCharArray()[0] == '3' || narr[1].toCharArray()[0] == '4' || narr[1].toCharArray()[0] == '5' || narr[1].toCharArray()[0] == '6' || narr[1].toCharArray()[0] == '7' || narr[1].toCharArray()[0] == '8' || narr[1].toCharArray()[0] == '9') {
                             type1.setArray(false);
                         }
                     }

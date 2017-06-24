@@ -18,7 +18,8 @@ fun main () : nothing
 
       var NumberOfRings : int;
 {
-  writeString("Rings: ");
+  $writeString("Rings: ");
+  puts("Rings: ");
   NumberOfRings <- geti();
   hanoi(NumberOfRings, "left", "right", "middle");
 }
