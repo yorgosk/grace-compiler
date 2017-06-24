@@ -40,9 +40,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     PrintWriter irWriter;
     PrintWriter assemblyWriter;
 
-    // string of assembly
-    String assembly;
-
     /* exit function, in case of semantic error */
     private void gracefullyExit() {
         // close writers
@@ -85,10 +82,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // initialize assembly string as empty string
-        this.assembly = "";
-        this.assembly +=    ".intel_syntax noprefix # Use Intel syntax instead of AT&T\n" +
-                            ".text\n";
     }
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
@@ -111,6 +104,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.printIR();
         // print IR to file -- for testing
         this.ir.printIR(irWriter);
+        // done printing IR to file -- for testing
+        this.irWriter.close();
         // print assembly to file -- for testing
 //        this.assemblyWriter.print(
 //                        ".intel_syntax noprefix # Use Intel syntax instead of AT&T\n" +
@@ -133,8 +128,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //                        ".data\n" +
 //                        "fmt: .asciz \"Hello world!\\n\"\n");
         this.assemblyWriter.print(this.ir.getAssemblyAsString());
-        // done printing IR to file -- for testing
-        this.irWriter.close();
         // done printing assembly to file
         this.assemblyWriter.close();
     }

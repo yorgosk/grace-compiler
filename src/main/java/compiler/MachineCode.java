@@ -6,6 +6,8 @@ import java.util.HashMap;
 public class MachineCode {
     /* a Java Array-List of Strings where the total of the assembly code is stored */
     private ArrayList<String> assembly;
+    /* a Java Array-List where the data of the assembly code are stored */
+    private ArrayList<String> data;
     /* the number of the non-local operands */
     private Integer nonLocalOperands;
     /* a Java Hash-Map that maps each non-local operand to the relative position in memory where it is stored */
@@ -19,15 +21,20 @@ public class MachineCode {
     private HashMap<Integer, Integer> labelMap;
     /* how many lines of assembly commands we already have */
     private Integer numberOfCommands;
+    /* how many lines of assembly data we already have */
+    private Integer numberOfData;
 
     /* MachineCode's class (default-)constructor */
     public MachineCode() {
         this.assembly = new ArrayList<String>();
+        this.data = new ArrayList<String>();
+        this.data.add(".data\n");
         this.nonLocalOperands = 0;
         this.nonLocalOperandsMap = new HashMap<String, Integer>();
         this.dataMap = new HashMap<String, STRecord>();
         this.labelMap = new HashMap<Integer, Integer>();
         this.numberOfCommands = 0;
+        this.numberOfData = 0;
 
         // add the first lines of assembly
         this.assembly.add(".intel_syntax noprefix # Use Intel syntax instead of AT&T\n");
@@ -37,6 +44,7 @@ public class MachineCode {
 
     /* MachineCode's class setters and getters */
     public ArrayList<String> getAssembly() { return this.assembly; }
+    public ArrayList<String> getData() { return this.data; }
     public void setNonLocalOperands(Integer nonLocalOperands1) { this.nonLocalOperands = nonLocalOperands1; }
     public Integer getNonLocalOperands() { return this.nonLocalOperands; }
     public void setNonLocalOperandRelativePosition(String nonLocalOperandName, Integer nonLocalOperandRelativePosition) { this.nonLocalOperandsMap.put(nonLocalOperandName, nonLocalOperandRelativePosition); }
@@ -52,6 +60,9 @@ public class MachineCode {
     public void setNumberOfCommands(Integer commands) { this.numberOfCommands = commands; }
     public Integer getNumberOfCommands() { return this.numberOfCommands; }
     public Integer getCurrentCommand() { return this.numberOfCommands; }    // same functionality with above, different interface
+    public void setNumberOfData(int data) { this.numberOfData = data; }
+    public Integer getNumberOfData() { return this.numberOfData; }
+    public Integer getCurrentData() { return this.numberOfData; }   // same functionality with above, different interface
 
     /* ITERATING THROUGH NAMES */
     /* getAr(a) -- produces the machine code x86 for loading the record address of an
@@ -221,11 +232,19 @@ public class MachineCode {
         this.assembly.add(aCode);
         this.numberOfCommands++;
     }
+    public void addData(String data) {
+        this.data.add(data);
+        this.numberOfData++;
+    }
     /* get the whole assembly code produced until a certain point as a string */
     public String getAssemblyAsString() {
         String ret = "";
-        for(int i = 0; i < this.assembly.size(); i++)
+        // append with assembly commands
+        for (int i = 0; i < this.assembly.size(); i++)
             ret += this.assembly.get(i);
+        // append with assembly data
+        for (int i = 0; i < this.data.size(); i++)
+            ret += this.data.get(i);
         return ret;
     }
     /* get the size of a data type in bytes */
