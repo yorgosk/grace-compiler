@@ -57,7 +57,10 @@ public class MachineCode {
     public ArrayList<String> getData() { return this.data; }
     public void setNonLocalOperands(Integer nonLocalOperands1) { this.nonLocalOperands = nonLocalOperands1; }
     public Integer getNonLocalOperands() { return this.nonLocalOperands; }
-    public void setNonLocalOperandRelativePosition(String nonLocalOperandName, Integer nonLocalOperandRelativePosition) { this.nonLocalOperandsMap.put(nonLocalOperandName, nonLocalOperandRelativePosition); }
+    public void setNonLocalOperandRelativePosition(String nonLocalOperandName, Integer nonLocalOperandRelativePosition) {
+        this.nonLocalOperandsMap.put(nonLocalOperandName, nonLocalOperandRelativePosition);
+        this.nonLocalOperands++;
+    }
     public Integer getNonLocalOperandRelativePosition(String nonLocalOperandName) { return this.nonLocalOperandsMap.get(nonLocalOperandName); }
     public void setTempNp(Integer tempNp) { this.tempNp = tempNp; }
     public Integer getTempNp() { return this.tempNp; }

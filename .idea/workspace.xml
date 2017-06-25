@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ActivationRecord.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ActivationRecord.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -314,17 +313,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MachineCode.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MachineCode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="895">
-              <caret line="270" column="31" lean-forward="true" selection-start-line="270" selection-start-column="31" selection-end-line="270" selection-end-column="31" />
+            <state relative-caret-position="120">
+              <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivationRecord.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActivationRecord.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ActivationRecord.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1740">
@@ -426,8 +425,8 @@
         <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ActivationRecord.java" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
       </list>
     </option>
   </component>
@@ -1063,7 +1062,7 @@
       <workItem from="1498311949116" duration="1994000" />
       <workItem from="1498329132947" duration="1484000" />
       <workItem from="1498338119716" duration="1381000" />
-      <workItem from="1498375404114" duration="5760000" />
+      <workItem from="1498375404114" duration="6569000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -1268,11 +1267,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498380827035</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added things related to activation record class">
+      <created>1498383204227</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1498383204227</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26346000" />
+    <option name="totallyTimeSpent" value="27155000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -1317,7 +1323,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed some issues" />
     <MESSAGE value="not runnable... needs debugging" />
     <MESSAGE value="not runnable... needs debugging, something is wrong in the NEXT, TRUE, FALSE" />
     <MESSAGE value="runs for primes and reverse... doesn't run for bsort, we need to fix when we set NEXT of a statement" />
@@ -1342,7 +1347,8 @@
     <MESSAGE value="fixed library c to assembly issues" />
     <MESSAGE value="fixed library c to assembly issues... added assembly files" />
     <MESSAGE value="added activation record class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added activation record class" />
+    <MESSAGE value="added things related to activation record class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added things related to activation record class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1847,18 +1853,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="895">
-          <caret line="270" column="31" lean-forward="true" selection-start-line="270" selection-start-column="31" selection-end-line="270" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ActivationRecord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1740">
           <caret line="116" column="42" lean-forward="false" selection-start-line="116" selection-start-column="42" selection-end-line="116" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
           <folding />
         </state>
       </provider>
