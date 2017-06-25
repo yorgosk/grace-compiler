@@ -11,6 +11,7 @@ public class STRecord {
         private Integer dimension;
         private boolean isFunction;
         private ArrayList<Type> parameters;
+        private ArrayList<Integer> dims;//added by yiannis_sem
 
         /* Type's (default-)constructor */
         public Type() {
@@ -20,16 +21,18 @@ public class STRecord {
             this.dimension = 0;
             this.isFunction = false;
             this.parameters = null;
+            this.dims = null;
         }
 
         /* Type's constructor */
-        public Type(String kind, boolean isRef, boolean isArray, Integer dimension, boolean isFunction, ArrayList<Type> parameters) {
+        public Type(String kind, boolean isRef, boolean isArray, Integer dimension, boolean isFunction, ArrayList<Type> parameters,ArrayList<Integer> dims) {
             this.kind = kind;
             this.isRef = isRef;
             this.isArray = isArray;
             this.dimension = dimension;
             this.isFunction = isFunction;
             this.parameters = parameters;
+            this.dims = dims;//added by yiannis_sem
         }
 
         /* Type's copy-constructor */
@@ -40,6 +43,7 @@ public class STRecord {
             this.dimension = temp.dimension;
             this.isFunction = temp.isFunction;
             this.parameters = temp.parameters;
+            this.dims = temp.dims;//added by yiannis_sem
         }
 
         /* Type's class setters and getters */
@@ -49,12 +53,14 @@ public class STRecord {
         public void setDimension(Integer dimension) { this.dimension = dimension; }
         public void setFunction(boolean function) { this.isFunction = function; }
         public void setParameters(ArrayList<Type> parameters) { this.parameters = parameters; }
+        public void setDims(ArrayList<Integer> dims) { this.dims = dims; }//added by yiannis_sem
         public String getKind() { return this.kind; }
         public boolean getRef() { return this.isRef; }
         public boolean getArray() { return this.isArray; }
         public Integer getDimension() { return this.dimension; }
         public boolean getFunction() { return this.isFunction; }
         public ArrayList<Type> getParameters() { return this.parameters; }
+        public ArrayList<Integer> getDims() { return this.dims; }//added by yiannis_sem
 
         /* Type's class various functions */
         // check if two types are equal -- general case
@@ -71,6 +77,15 @@ public class STRecord {
                     if (!this.parameters.get(i).isSame(other.parameters.get(i))) return false;
                 }
             }
+            //added by yiannis_sem
+            if ((this.dims == null && other.dims != null) || (this.dims != null && other.dims == null)) return false;
+            if (this.dims != null && other.dims != null) {
+                if (this.dims.size() != other.dims.size()) return false;
+                for (int i = 0; i < this.dims.size(); i++) {
+                    if (this.dims.get(i)!=other.dims.get(i)) return false;
+                }
+            }
+            //till here
 
             return true;
         }
@@ -107,6 +122,16 @@ public class STRecord {
             }
             this.parameters.add(0, parameter);
         }
+
+        //added by yiannis_sem
+        // add a dimension in the beginning of our Type's parameter list
+        public void addDimension(Integer dimension) {
+            if (this.dims == null) {
+                this.dims = new ArrayList<Integer>();
+            }
+            this.dims.add(0, dimension);
+        }
+        //till here
 
         // get the type of a function's specific parameter
         public Type fetchParamType(int number) {

@@ -320,105 +320,107 @@ public class SymbolTable {
         System.out.println(Arrays.asList(variableMap));
     }
 
+    //yiannis_sem added null in last parameter dim
+    //yiannis_sem added null in last parameter dim
     private void loadGraceLibrary() {
         /* INPUT & OUTPUT FUNCTIONS */
         // add puti
         ArrayList<STRecord.Type> params = new ArrayList<STRecord.Type>();
-        STRecord.Type tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        STRecord.Type tempParamType = new STRecord.Type("int", false, false, 0, false, null,null);
         params.add(tempParamType);
-        STRecord.Type tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        STRecord.Type tempType = new STRecord.Type("nothing", false, false, 0, true, params,null);
         STRecord tempRec = new STRecord(tempType, "puti", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add putc
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char", false, false, 0, false, null);
+        tempParamType = new STRecord.Type("char", false, false, 0, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "putc", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add puts
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "puts", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add geti
         params = null;
-        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempType = new STRecord.Type("int", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "geti", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add getc
         params = null;
-        tempType = new STRecord.Type("char", false, false, 0, true, params);
+        tempType = new STRecord.Type("char", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "getc", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add puts
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        tempParamType = new STRecord.Type("int", false, false, 0, false, null,null);
         params.add(tempParamType);
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "gets", false, false, false, -1, -1);
         this.library.add(tempRec);
 
         /* CONVERTION FUNCTIONS */
         // add abs
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        tempParamType = new STRecord.Type("int", false, false, 0, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempType = new STRecord.Type("int", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "abs", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add ord
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char", false, false, 0, false, null);
+        tempParamType = new STRecord.Type("char", false, false, 0, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempType = new STRecord.Type("int", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "ord", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add chr
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("int", false, false, 0, false, null);
+        tempParamType = new STRecord.Type("int", false, false, 0, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("char", false, false, 0, true, params);
+        tempType = new STRecord.Type("char", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "chr", false, false, false, -1, -1);
         this.library.add(tempRec);
 
         /* STRING MANAGEMENT FUNCTIONS */
         // add strlen
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempType = new STRecord.Type("int", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "strlen", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add strcmp
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("int", false, false, 0, true, params);
+        tempType = new STRecord.Type("int", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "strcmp", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add strcpy
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "strcpy", false, false, false, -1, -1);
         this.library.add(tempRec);
         // add strcat
         params = new ArrayList<STRecord.Type>();
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempParamType = new STRecord.Type("char", true, true, null, false, null);
+        tempParamType = new STRecord.Type("char", true, true, null, false, null,null);
         params.add(tempParamType);
-        tempType = new STRecord.Type("nothing", false, false, 0, true, params);
+        tempType = new STRecord.Type("nothing", false, false, 0, true, params,null);
         tempRec = new STRecord(tempType, "strcat", false, false, false, -1, -1);
         this.library.add(tempRec);
     }

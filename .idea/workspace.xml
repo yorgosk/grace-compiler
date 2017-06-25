@@ -3,11 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/STRecord$Type.class" afterPath="$PROJECT_DIR$/target/classes/compiler/STRecord$Type.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/STRecord.class" afterPath="$PROJECT_DIR$/target/classes/compiler/STRecord.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/semantics/testcases/testcases-semantic/functions_error7.grc" afterPath="$PROJECT_DIR$/examples/semantics/testcases/testcases-semantic/functions_error7.grc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -59,15 +63,15 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="264" column="13" lean-forward="false" selection-start-line="264" selection-start-column="13" selection-end-line="264" selection-end-column="13" />
+            <state relative-caret-position="254">
+              <caret line="773" column="60" lean-forward="false" selection-start-line="773" selection-start-column="60" selection-end-line="773" selection-end-column="60" />
               <folding>
                 <element signature="e#7762#7773#0" expanded="true" />
-                <element signature="e#33078#33085#0" expanded="true" />
-                <element signature="e#39790#39797#0" expanded="true" />
-                <element signature="e#50074#50081#0" expanded="true" />
-                <element signature="e#82642#82662#0" expanded="true" />
-                <element signature="e#84387#84407#0" expanded="true" />
+                <element signature="e#34181#34188#0" expanded="true" />
+                <element signature="e#42118#42125#0" expanded="true" />
+                <element signature="e#52402#52409#0" expanded="true" />
+                <element signature="e#84984#85004#0" expanded="true" />
+                <element signature="e#86729#86749#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,10 +80,10 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="248" column="14" lean-forward="false" selection-start-line="248" selection-start-column="14" selection-end-line="248" selection-end-column="14" />
+            <state relative-caret-position="14">
+              <caret line="241" column="12" lean-forward="false" selection-start-line="241" selection-start-column="7" selection-end-line="241" selection-end-column="12" />
               <folding>
-                <marker date="1498409418309" expanded="false" signature="14425:14440" ph="&lt;~&gt;" />
+                <marker date="1498412968909" expanded="false" signature="14527:14542" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -136,8 +140,8 @@
       <file leaf-file-name="STRecord.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+            <state relative-caret-position="110">
+              <caret line="127" column="27" lean-forward="false" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -164,19 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>JJJJJJJJJJ</find>
-      <find>JJ</find>
-      <find>&quot;par&quot;</find>
-      <find>&quot;call&quot;</find>
-      <find>BACKPATCH</find>
-      <find>.add</find>
-      <find>main</find>
-      <find>MAINNNN</find>
-      <find>MAINN</find>
-      <find>lvalue</find>
-      <find>id</find>
-      <find>setdim</find>
-      <find>setArr</find>
       <find>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</find>
       <find>DDDDDDDDDD</find>
       <find>!!!!!!!!!!!!</find>
@@ -193,7 +184,20 @@
       <find>string[] t</find>
       <find>LLLLLLLLL</find>
       <find>error</find>
+      <find>.insert</find>
+      <find>adddime</find>
+      <find>KKKKKKKK</find>
+      <find>setArray(tr</find>
+      <find>BBBBBB</find>
+      <find>bbbbbbbb</find>
+      <find>bbbbbbb</find>
+      <find>setdimen</find>
+      <find>fetchty</find>
+      <find>fetch</find>
+      <find>IIIIIIIII</find>
       <find>IIIIIIIIII</find>
+      <find>setdim</find>
+      <find>HHHH</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -210,6 +214,7 @@
         <option value="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ActivationRecord.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
       </list>
@@ -347,7 +352,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="examples/semantics/testcases/testcases-semantic/hello.grc" />
+      <option name="PROGRAM_PARAMETERS" value="examples/semantics/testcases/testcases-semantic/functions_error7.grc" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -1144,24 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="248" column="14" lean-forward="false" selection-start-line="248" selection-start-column="14" selection-end-line="248" selection-end-column="14" />
-          <folding>
-            <marker date="1498409418309" expanded="false" signature="14425:14440" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3200">
@@ -1213,17 +1200,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/STRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="127" column="27" lean-forward="false" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="241" column="12" lean-forward="false" selection-start-line="241" selection-start-column="7" selection-end-line="241" selection-end-column="12" />
+          <folding>
+            <marker date="1498412968909" expanded="false" signature="14527:14542" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="264" column="13" lean-forward="false" selection-start-line="264" selection-start-column="13" selection-end-line="264" selection-end-column="13" />
+        <state relative-caret-position="254">
+          <caret line="773" column="60" lean-forward="false" selection-start-line="773" selection-start-column="60" selection-end-line="773" selection-end-column="60" />
           <folding>
             <element signature="e#7762#7773#0" expanded="true" />
-            <element signature="e#33078#33085#0" expanded="true" />
-            <element signature="e#39790#39797#0" expanded="true" />
-            <element signature="e#50074#50081#0" expanded="true" />
-            <element signature="e#82642#82662#0" expanded="true" />
-            <element signature="e#84387#84407#0" expanded="true" />
+            <element signature="e#34181#34188#0" expanded="true" />
+            <element signature="e#42118#42125#0" expanded="true" />
+            <element signature="e#52402#52409#0" expanded="true" />
+            <element signature="e#84984#85004#0" expanded="true" />
+            <element signature="e#86729#86749#0" expanded="true" />
           </folding>
         </state>
       </provider>

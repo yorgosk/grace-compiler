@@ -1,6 +1,18 @@
 
 		Low Level Intermediate Representation:
-1: unit, hello, -, -
-2: par, "Hello world!\n", R, -
-3: call, -, -, puts
-4: endu, hello, -, -
+1: unit, wrong_size, -, -
+2: array, 0, n, $t1
+3: array, 0, [$t1], $t2
+4: +, [$t2], 1, $t3
+5: array, 0, n, $t4
+6: array, 0, [$t4], $t5
+7: :=, [$t5], -, $t3
+8: array, 0, n, $t6
+9: array, 0, [$t6], $t7
+10: ret, -, -, -
+11: endu, wrong_size, -, -
+12: unit, main, -, -
+13: par, arr, R, -
+14: par, RET, $t8, -
+15: call, -, -, wrong_size
+16: endu, main, -, -

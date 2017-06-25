@@ -499,11 +499,18 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void inAType(AType node) { makeIndent(); System.out.printf("type :\n"); indent++; }
     @Override
     public void outAType(AType node) { indent--;
+    System.out.print("IIIIIIIIII");
+    System.out.print(node.getIntConst());
         STRecord.Type temp = new STRecord.Type();
         temp.setKind(node.getDataType().toString().trim().replaceAll("\\s+", " "));
         if(node.getIntConst().size() > 0) {
             temp.setArray(true);
             temp.setDimension(node.getIntConst().size());
+        }
+        if(node.getIntConst().size()>1){
+            for (int i=1;i<node.getIntConst().size();i++){
+                temp.addDimension(Integer.parseInt(node.getIntConst().get(i).toString().trim().replaceAll("\\s+", " ")));
+            }
         }
         this.tempTypeStack.push(temp);
         this.toPopFromTempTypeStack++;
@@ -543,7 +550,23 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         if(node.getIntConst().size() > 0) {
             System.out.printf("getIntconst\n");
+            System.out.print("BBBBBBBBbb");
+            System.out.print(node.getIntConst());
             temp.setArray(true);
+            if(node.getLRBrackets()==null) {
+                if (node.getIntConst().size() > 1) {
+                    for (int i = 1; i < node.getIntConst().size(); i++) {
+                        temp.addDimension(Integer.parseInt(node.getIntConst().get(i).toString().trim().replaceAll("\\s+", " ")));
+                    }
+                }
+            }
+            else{
+                if (node.getIntConst().size() > 0) {
+                    for (int i = 0; i < node.getIntConst().size(); i++) {
+                        temp.addDimension(Integer.parseInt(node.getIntConst().get(i).toString().trim().replaceAll("\\s+", " ")));
+                    }
+                }
+            }
 //            temp.setDimension(node.getIntConst().size());
             int curr_dimension = temp.getDimension();
             temp.setDimension(curr_dimension+node.getIntConst().size());
@@ -737,6 +760,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     if (narr.length > 1) {
                         if (this.symbolTable.fetchType(narr[1])!=null&&this.symbolTable.fetchType(narr[1]).getKind().equals("int") || narr[1].toCharArray()[0] == '0' || narr[1].toCharArray()[0] == '1' || narr[1].toCharArray()[0] == '2' || narr[1].toCharArray()[0] == '3' || narr[1].toCharArray()[0] == '4' || narr[1].toCharArray()[0] == '5' || narr[1].toCharArray()[0] == '6' || narr[1].toCharArray()[0] == '7' || narr[1].toCharArray()[0] == '8' || narr[1].toCharArray()[0] == '9') {
                             type1.setArray(false);
+                            type1.setDimension(0);//may cause errors
                         }
                     }
                 }
@@ -747,6 +771,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     cannotRef=true;
                     type1 = new STRecord.Type();
                     type1.setArray(false);
+                    type1.setDimension(0);//may cause errors
                     type1.setRef(false);
                     type1.setKind("char");
                 }
@@ -788,7 +813,27 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
             else {
                 c++;
-
+                System.out.print(node.getExpr());
+                System.out.print("sdfdfsfsdsdffsd");
+                System.out.print(type1.getDimension());
+                System.out.print(type2.getDimension());
+                if(type1.getDimension()!=null&&type2.getDimension()!=null) {
+                    if (type1.getDimension() > type2.getDimension()) {
+                        System.err.printf("Error: trying to pass array wrong number of dimension %s\n", n);
+                        this.gracefullyExit();
+                    }
+                }
+                if(type1.getDimension()>1){
+                    ArrayList dims1 = type1.getDims();
+                    ArrayList dims2 = type2.getDims();
+                    for(int j=0;j<type1.getDimension()-1;j++){
+                        //System.out.print(dims1.get(j));
+                        if(dims1.get(j)!=dims2.get(j)){
+                            System.err.printf("Error: wrong dimension in array %s\n", n);
+                            this.gracefullyExit();
+                        }
+                    }
+                }
                 if(type2.getRef()&&cannotRef){
                     System.err.printf("Error: cannot pass reference in %s\n", n);
                     this.gracefullyExit();
@@ -1243,7 +1288,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.out.print("^^^^^^^^^^^^^");
             System.out.print(ind[0]);
             for(int i=0;i<this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getDimension();i++){
-                if(this.symbolTable.fetchType(ind[i])!=null&&this.symbolTable.fetchType(ind[i]).getArray()){
+                if(ind.length>i&&this.symbolTable.fetchType(ind[i])!=null&&this.symbolTable.fetchType(ind[i]).getArray()){
                     System.err.printf("Error: cannot navigate in l-value using array value (%s)\n", ind[i]);
                     this.gracefullyExit();
                 }
