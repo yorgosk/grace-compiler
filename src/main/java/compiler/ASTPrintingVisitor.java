@@ -258,9 +258,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord temp;
         while (this.toPopFromTempRecordStack != 0) {
             temp = this.tempRecordStack.pop();
-            System.out.print("YYYYYYYYYYYYYY");
-            System.out.print(temp.getName());
-            this.symbolTable.insert(temp);
+            if(!this.isDecl) {  //if added by yiannis_sem : prevents declarations to push params in scopes and never leave, it seems to work fine but may cause problems  261
+                System.out.print("YYYYYYYYYYYYYY");
+                System.out.print(temp.getName());
+                this.symbolTable.insert(temp);
+            }
             toPopFromTempRecordStack--;
             tempRec.type.addParameter(temp.getType());
         }

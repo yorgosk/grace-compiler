@@ -79,7 +79,8 @@ public class SymbolTable {
     * -- insert(): new record in the beginning of the current list */
     public void insert(STRecord record){
         // look-up
-        boolean success = lookup(record.getName());
+        //boolean success = lookup(record.getName()); //changed by yiannis_sem in the line below
+        boolean success = look(record.getName());
         // if the "record" passed from lookup, add it to the symbol-table
         if(success) {
             // update scopes - namespaces' Stack
@@ -142,6 +143,25 @@ public class SymbolTable {
         // iterate the array-list in reverse order until you get out of the current-scope
         int i = this.symbolTable.size()-1;
         int scope = this.symbolTable.get(i).getScopeId();
+        while(i >= 0/* && scope == curr_scope*/) {      //commented by yiannis_sem : it seems to work fine but may creates problems
+            if(this.symbolTable.get(i).getName().equals(name)) {
+                System.out.printf("Name %s found\n", name);
+                return false;
+            }
+            i--;
+            if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
+        }
+        return true;
+    }
+    //added by yiannis_sem : because lookup changed to can be used in astp i rename it to look to  use it in insert
+    public boolean look(String name){
+        // check if the Symbol-Table's Array-List is empty, if it is there is no point of looking up - we sort of have a "success"
+        if(this.symbolTable.isEmpty()) return true;
+        // take the current scope
+        int curr_scope = this.numberOfScopes;
+        // iterate the array-list in reverse order until you get out of the current-scope
+        int i = this.symbolTable.size()-1;
+        int scope = this.symbolTable.get(i).getScopeId();
         while(i >= 0 && scope == curr_scope) {
             if(this.symbolTable.get(i).getName().equals(name)) {
                 System.out.printf("Name %s found\n", name);
@@ -152,6 +172,7 @@ public class SymbolTable {
         }
         return true;
     }
+    //till here
 
     //add by yiannis_sem for debugging
     public void printscope(){
@@ -159,7 +180,7 @@ public class SymbolTable {
         // iterate the array-list in reverse order until you get out of the current-scope
         int i = this.symbolTable.size()-1;
         int scope = this.symbolTable.get(i).getScopeId();
-        while(i >= 0 && scope == curr_scope) {
+        while(i >= 0 /*&& scope == curr_scope*/) {
             System.out.print(this.symbolTable.get(i).getName());
             i--;
             if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
@@ -225,6 +246,7 @@ public class SymbolTable {
         STRecord.Type temp = null;
         if (this.variableMap.containsKey(name)) {
             System.out.printf("Name %s found\n", name);
+            //System.out.print(this.variableMap.keySet());
             int index = this.variableMap.get(name);
             temp = new STRecord.Type(this.symbolTable.get(index).getType());
         }
