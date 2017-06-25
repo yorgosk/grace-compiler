@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ActivationRecord.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ActivationRecord.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -57,15 +57,15 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="889" column="21" lean-forward="true" selection-start-line="889" selection-start-column="21" selection-end-line="889" selection-end-column="21" />
+            <state relative-caret-position="142">
+              <caret line="943" column="48" lean-forward="false" selection-start-line="943" selection-start-column="48" selection-end-line="943" selection-end-column="48" />
               <folding>
                 <element signature="e#7762#7773#0" expanded="true" />
                 <element signature="e#32878#32885#0" expanded="true" />
-                <element signature="e#39078#39085#0" expanded="true" />
-                <element signature="e#48838#48845#0" expanded="true" />
-                <element signature="e#81363#81383#0" expanded="true" />
-                <element signature="e#83108#83128#0" expanded="true" />
+                <element signature="e#39388#39395#0" expanded="true" />
+                <element signature="e#49502#49509#0" expanded="true" />
+                <element signature="e#82070#82090#0" expanded="true" />
+                <element signature="e#83815#83835#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -172,9 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>has not been declared</find>
-      <find>header</find>
-      <find>AAAAAAAA</find>
       <find>yiannis_sem</find>
       <find>JJJJJJ</find>
       <find>JJJJJJJJJJ</find>
@@ -202,6 +199,9 @@
       <find>return</find>
       <find>hasmain</find>
       <find>look</find>
+      <find>funccall</find>
+      <find>string[] t</find>
+      <find>LLLLLLLLL</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -409,7 +409,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="examples/semantics/testcases/testcases-semantic/arrays_error5.grc" />
+      <option name="PROGRAM_PARAMETERS" value="examples/semantics/testcases/testcases-semantic/hello.grc" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -981,7 +981,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1235,15 +1235,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="889" column="21" lean-forward="true" selection-start-line="889" selection-start-column="21" selection-end-line="889" selection-end-column="21" />
+        <state relative-caret-position="142">
+          <caret line="943" column="48" lean-forward="false" selection-start-line="943" selection-start-column="48" selection-end-line="943" selection-end-column="48" />
           <folding>
             <element signature="e#7762#7773#0" expanded="true" />
             <element signature="e#32878#32885#0" expanded="true" />
-            <element signature="e#39078#39085#0" expanded="true" />
-            <element signature="e#48838#48845#0" expanded="true" />
-            <element signature="e#81363#81383#0" expanded="true" />
-            <element signature="e#83108#83128#0" expanded="true" />
+            <element signature="e#39388#39395#0" expanded="true" />
+            <element signature="e#49502#49509#0" expanded="true" />
+            <element signature="e#82070#82090#0" expanded="true" />
+            <element signature="e#83815#83835#0" expanded="true" />
           </folding>
         </state>
       </provider>

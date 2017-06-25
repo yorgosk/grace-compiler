@@ -751,6 +751,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 else if (n.toCharArray()[0]=='\"'){
                     type1 = new STRecord.Type();
                     type1.setArray(true);
+                    //System.out.print("CCCCCCCCCCCCCCCCCCCC");
+                    //System.out.print(i.toString());
+                    String[] t = i.toString().substring(1).split("\"")[1].split(" ");
+                    if(t.length==2){
+                        type1.setArray(false);
+                    }
                     type1.setRef(true);
                     type1.setKind("char");
                 }
@@ -929,6 +935,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                         this.gracefullyExit();
                     }
                 }
+            }
+        }
+        System.out.print("LLLLLLLLLLLL");
+        System.out.print(node.getExpr());
+        if(temp2.getKind().equals("string")) {
+            String[] t = node.getExpr().toString().substring(1).split("\"")[1].split(" ");
+            if (temp2.getKind().equals("string") && t.length == 2) {
+                temp2.setKind("char");
             }
         }
         //till here
@@ -1210,7 +1224,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //yiannis_sem
         System.out.print("!!!!!!!!!!!!!!!");
         System.out.print(node.getLValue().toString());
+        System.out.print("!!!!!!!!!!!");
         System.out.print(node.getExpr());
+
+
         if(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " "))!=null&&this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getArray()){
             String[] ind = node.getExpr().toString().split(" ");
             System.out.print("^^^^^^^^^^^^^");
