@@ -2,6 +2,7 @@ package compiler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class MachineCode {
     /* a Java Array-List of Strings where the total of the assembly code is stored */
@@ -24,8 +25,14 @@ public class MachineCode {
     /* how many lines of assembly data we already have */
     private Integer numberOfData;
 
+    /* a Java Stack of Activation Records */
+    private Stack<ActivationRecord> ARStack;
+    /* how many Activation Records we have so far */
+    private Integer numberOfActivationRecords;
+
     /* MachineCode's class (default-)constructor */
     public MachineCode() {
+        // regarding Machine Code
         this.assembly = new ArrayList<String>();
         this.data = new ArrayList<String>();
         this.data.add(".data\n");
@@ -35,6 +42,9 @@ public class MachineCode {
         this.labelMap = new HashMap<Integer, Integer>();
         this.numberOfCommands = 0;
         this.numberOfData = 0;
+        // regarding Activation Records
+        this.ARStack = new Stack<ActivationRecord>();
+        this.numberOfActivationRecords = 0;
 
         // add the first lines of assembly
         this.assembly.add(".intel_syntax noprefix # Use Intel syntax instead of AT&T\n");
@@ -63,6 +73,16 @@ public class MachineCode {
     public void setNumberOfData(int data) { this.numberOfData = data; }
     public Integer getNumberOfData() { return this.numberOfData; }
     public Integer getCurrentData() { return this.numberOfData; }   // same functionality with above, different interface
+    public void pushActivationRecord(ActivationRecord ar) {
+        this.ARStack.push(ar);
+        this.numberOfActivationRecords++;
+    }
+    public ActivationRecord popActivationRecord() {
+        this.numberOfActivationRecords--;
+        return this.ARStack.pop();
+    }
+    public void setNumberOfActivationRecords(Integer activationRecords) { this.numberOfActivationRecords = activationRecords; }
+    public Integer getNumberOfActivationRecords() { return this.numberOfActivationRecords; }
 
     /* ITERATING THROUGH NAMES */
     /* getAr(a) -- produces the machine code x86 for loading the record address of an
