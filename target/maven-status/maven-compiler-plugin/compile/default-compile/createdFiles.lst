@@ -37,6 +37,7 @@ compiler/node/AFuncDeclLocalDef.class
 compiler/node/TThen.class
 compiler/node/ANotCond.class
 compiler/node/TMultilineComment.class
+compiler/ActivationRecord.class
 compiler/SymbolTable.class
 compiler/node/PFuncDecl.class
 compiler/node/AMinusExpr.class
