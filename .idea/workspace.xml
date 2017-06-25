@@ -4,8 +4,6 @@
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -57,15 +55,15 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="943" column="48" lean-forward="false" selection-start-line="943" selection-start-column="48" selection-end-line="943" selection-end-column="48" />
+            <state relative-caret-position="110">
+              <caret line="951" column="76" lean-forward="false" selection-start-line="951" selection-start-column="76" selection-end-line="951" selection-end-column="76" />
               <folding>
                 <element signature="e#7762#7773#0" expanded="true" />
                 <element signature="e#32878#32885#0" expanded="true" />
-                <element signature="e#39388#39395#0" expanded="true" />
-                <element signature="e#49502#49509#0" expanded="true" />
-                <element signature="e#82070#82090#0" expanded="true" />
-                <element signature="e#83815#83835#0" expanded="true" />
+                <element signature="e#39590#39597#0" expanded="true" />
+                <element signature="e#49874#49881#0" expanded="true" />
+                <element signature="e#82442#82462#0" expanded="true" />
+                <element signature="e#84187#84207#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1235,15 +1233,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="943" column="48" lean-forward="false" selection-start-line="943" selection-start-column="48" selection-end-line="943" selection-end-column="48" />
+        <state relative-caret-position="110">
+          <caret line="951" column="76" lean-forward="false" selection-start-line="951" selection-start-column="76" selection-end-line="951" selection-end-column="76" />
           <folding>
             <element signature="e#7762#7773#0" expanded="true" />
             <element signature="e#32878#32885#0" expanded="true" />
-            <element signature="e#39388#39395#0" expanded="true" />
-            <element signature="e#49502#49509#0" expanded="true" />
-            <element signature="e#82070#82090#0" expanded="true" />
-            <element signature="e#83815#83835#0" expanded="true" />
+            <element signature="e#39590#39597#0" expanded="true" />
+            <element signature="e#49874#49881#0" expanded="true" />
+            <element signature="e#82442#82462#0" expanded="true" />
+            <element signature="e#84187#84207#0" expanded="true" />
           </folding>
         </state>
       </provider>

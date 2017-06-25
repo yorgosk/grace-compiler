@@ -757,6 +757,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     if(t.length==2){
                         type1.setArray(false);
                     }
+                    else if(t.length > 2){
+                        System.err.printf("Error: more iterators than the dimensions\n");
+                        this.gracefullyExit();
+                    }
                     type1.setRef(true);
                     type1.setKind("char");
                 }
@@ -943,6 +947,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             String[] t = node.getExpr().toString().substring(1).split("\"")[1].split(" ");
             if (temp2.getKind().equals("string") && t.length == 2) {
                 temp2.setKind("char");
+            }
+            else if(t.length > 2){
+                System.err.printf("Error: more iterators than the dimensions\n");
+                this.gracefullyExit();
             }
         }
         //till here
