@@ -1,5 +1,5 @@
 fun main(): nothing
-    var b:char;
+    var b:;
 {
     b <- 'a';
     b <- b * b;

@@ -1,18 +1,27 @@
 
 		Low Level Intermediate Representation:
-1: unit, wrong_size, -, -
-2: array, 0, n, $t1
-3: array, 0, [$t1], $t2
-4: +, [$t2], 1, $t3
-5: array, 0, n, $t4
-6: array, 0, [$t4], $t5
-7: :=, [$t5], -, $t3
-8: array, 0, n, $t6
-9: array, 0, [$t6], $t7
-10: ret, -, -, -
-11: endu, wrong_size, -, -
-12: unit, main, -, -
-13: par, arr, R, -
-14: par, RET, $t8, -
-15: call, -, -, wrong_size
-16: endu, main, -, -
+1: unit, reverse, -, -
+2: par, s, R, -
+3: par, RET, $t1, -
+4: call, -, -, strlen
+5: :=, l, -, $t1
+6: :=, i, -, 0
+7: <, i, l, 9
+8: jump, -, -, 17
+9: -, l, i, $t2
+10: -, $t2, 1, $t3
+11: array, $t3, s, $t4
+12: array, i, r, $t5
+13: :=, [$t5], -, [$t4]
+14: +, i, 1, $t6
+15: :=, i, -, $t6
+16: jump, -, -, 17
+17: array, i, r, $t7
+18: :=, [$t7], -, '\0'
+19: endu, reverse, -, -
+20: unit, main, -, -
+21: par, "\n!dlrow olleH", R, -
+22: call, -, -, reverse
+23: par, r, R, -
+24: call, -, -, puts
+25: endu, main, -, -

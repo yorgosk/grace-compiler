@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/STRecord$Type.class" afterPath="$PROJECT_DIR$/target/classes/compiler/STRecord$Type.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/STRecord.class" afterPath="$PROJECT_DIR$/target/classes/compiler/STRecord.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/semantics/testcases/testcases-semantic/functions_error7.grc" afterPath="$PROJECT_DIR$/examples/semantics/testcases/testcases-semantic/functions_error7.grc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/semantics/testcases/testcases-semantic/expressions_error3.grc" afterPath="$PROJECT_DIR$/examples/semantics/testcases/testcases-semantic/expressions_error3.grc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/STRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
@@ -63,8 +58,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="773" column="60" lean-forward="false" selection-start-line="773" selection-start-column="60" selection-end-line="773" selection-end-column="60" />
+            <state relative-caret-position="299">
+              <caret line="626" column="51" lean-forward="false" selection-start-line="626" selection-start-column="51" selection-end-line="626" selection-end-column="51" />
               <folding>
                 <element signature="e#7762#7773#0" expanded="true" />
                 <element signature="e#34181#34188#0" expanded="true" />
@@ -80,8 +75,8 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="241" column="12" lean-forward="false" selection-start-line="241" selection-start-column="7" selection-end-line="241" selection-end-column="12" />
+            <state relative-caret-position="62">
+              <caret line="155" column="95" lean-forward="false" selection-start-line="155" selection-start-column="90" selection-end-line="155" selection-end-column="95" />
               <folding>
                 <marker date="1498412968909" expanded="false" signature="14527:14542" ph="&lt;~&gt;" />
               </folding>
@@ -168,9 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</find>
-      <find>DDDDDDDDDD</find>
-      <find>!!!!!!!!!!!!</find>
       <find>!!!!!!!!!!!!!!</find>
       <find>!!!!!!!!!</find>
       <find>!!!!</find>
@@ -179,7 +171,6 @@
       <find>GENQUAD</find>
       <find>return</find>
       <find>hasmain</find>
-      <find>look</find>
       <find>funccall</find>
       <find>string[] t</find>
       <find>LLLLLLLLL</find>
@@ -198,6 +189,10 @@
       <find>IIIIIIIIII</find>
       <find>setdim</find>
       <find>HHHH</find>
+      <find>has already been</find>
+      <find>aheader</find>
+      <find>look</find>
+      <find>look</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -352,7 +347,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="examples/semantics/testcases/testcases-semantic/functions_error7.grc" />
+      <option name="PROGRAM_PARAMETERS" value="examples/semantics/testcases/testcases-semantic/reverse.grc" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -1210,8 +1205,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="241" column="12" lean-forward="false" selection-start-line="241" selection-start-column="7" selection-end-line="241" selection-end-column="12" />
+        <state relative-caret-position="62">
+          <caret line="155" column="95" lean-forward="false" selection-start-line="155" selection-start-column="90" selection-end-line="155" selection-end-column="95" />
           <folding>
             <marker date="1498412968909" expanded="false" signature="14527:14542" ph="&lt;~&gt;" />
           </folding>
@@ -1220,8 +1215,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="773" column="60" lean-forward="false" selection-start-line="773" selection-start-column="60" selection-end-line="773" selection-end-column="60" />
+        <state relative-caret-position="299">
+          <caret line="626" column="51" lean-forward="false" selection-start-line="626" selection-start-column="51" selection-end-line="626" selection-end-column="51" />
           <folding>
             <element signature="e#7762#7773#0" expanded="true" />
             <element signature="e#34181#34188#0" expanded="true" />
