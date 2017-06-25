@@ -891,6 +891,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         System.out.print("<<<<<<<<,");
         System.out.print(temp1.getDimension());
         String[] dim = node.getLValue().toString().split(" ");
+        if((dim.length-1)==temp1.getDimension()){
+            temp1.setArray(false);
+        }
         if((dim.length-1)<temp1.getDimension()){
             System.err.printf("Error: Trying to assign a value to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
             this.gracefullyExit();
