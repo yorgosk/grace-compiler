@@ -118,4 +118,18 @@ public class ActivationRecord {
     }
     public String getTemporaryVariable(String name) { return this.temporaryVariables.get(name); }
 
+    /* ActivationRecord's class printing function -- for debugging */
+    public void printAR() {
+        System.out.printf("%d %d %d %d %d %d %d\n",
+                this.returnAddress, this.previousAR, this.accessLink, this.group, this.groupID, this.globalID, this.nestingDepth);
+        System.out.printf("%d\n", this.numberOfFunctionParameters);
+        System.out.print(functionParameters);
+        System.out.printf("%d\n", this.numberOfFunctionResults);
+        System.out.print(functionResults);
+        System.out.printf("%d\n", this.numberOfLocalVariables);
+        System.out.print(localVariables);
+        System.out.printf("%d\n", this.numberOfTemporaryVariables);
+        System.out.print(temporaryVariables);
+    }
+
 }
