@@ -1335,6 +1335,48 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.ir.loadAddr("cx", t1);
 //        this.ir.addAssemblyCode("add ax, cx\n");
 //        this.ir.store("ax", t2);
+
+
+        //added by yiannis_fin
+        // producing assembly
+        //System.out.print(node.getExpr().toString());
+        //System.out.print(node.getLValue().toString());
+        STRecord tempRecX = new STRecord();                     //anti na kanei pop tis metavlites tis dimiourgei me vasi ta stoixeia tou node
+        tempRecX.setName(node.getLValue().toString().trim().replaceAll("\\s+", " "));
+        tempRecX.setType(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")));
+        STRecord tempRecY = new STRecord();
+        tempRecY.setName(node.getExpr().toString().trim().replaceAll("\\s+", " "));
+        //System.out.print("MMMMMMMMMMMMMMMMMMMMM");
+        //System.out.print(node.getExpr().toString().split(" ")[0]);
+        //System.out.print(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0]).getKind());
+        if(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0])!=null) {
+            tempRecY.setType(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0]));
+        }
+        else {
+            tempRecY.getType().setKind("int");          //ousiastika 3eroume oti to deuterou pou einai deiktis 8a einai int alliws 8a eixe stupisei idi error apo to semantic
+        }
+
+//        STRecord tempRecX = this.tempRecordStack.pop();
+//        this.toPopFromTempRecordStack--;
+        this.ir.setDataMapping(t1, tempRecX);
+//        STRecord tempRecY = this.tempRecordStack.pop();
+//        this.toPopFromTempRecordStack--;
+        tempRecY.setDereference(true);
+        this.ir.setDataMapping(t3, tempRecY);
+        this.ir.load("ax", t3);
+        this.ir.addAssemblyCode("mov cx, 8\n");
+        this.ir.addAssemblyCode("imul cx\n");
+        this.ir.loadAddr("cx", t1);
+        this.ir.addAssemblyCode("add ax, cx\n");
+        STRecord tempRecZ = new STRecord();//ftiaxnei mia metavliti na kanei push sto map giati einai kainourgia kai den einai dilwmeni kai skaei otan paei na kanei to store
+        tempRecZ.setName(t2);
+        tempRecZ.setType(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")));//8a einai idiou typou me to array alla xwris na einai array
+        //tempRecZ.setDereference(true);//nomizw oti einai swsto kai xreiaetai
+        tempRecZ.getType().setArray(false);
+        tempRecZ.getType().setDimension(0);
+        this.ir.setDataMapping(t2,tempRecZ);
+        this.ir.store("ax", t2);
+        //till here
     }
 
     // IN AND OUT A EXPRESSION AND ASSISTANT-STATEMENTS------------------------------------------------------------
