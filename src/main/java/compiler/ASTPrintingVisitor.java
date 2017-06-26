@@ -40,8 +40,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     private String mainName; //yiannis_sem : name of main need to be kept
 
     // write to file
-    PrintWriter irWriter;
-    PrintWriter assemblyWriter;
+    private PrintWriter irWriter;
+    private PrintWriter assemblyWriter;
 
     /* exit function, in case of semantic error */
     private void gracefullyExit() {
