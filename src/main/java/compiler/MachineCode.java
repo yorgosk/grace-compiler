@@ -190,8 +190,8 @@ public class MachineCode {
         } else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef()) {
             this.assembly.add("lea " + R + ", size ptr [bp + offset]\n");
             this.numberOfCommands++;
-        /* case of parameter by value */
-        } else if (this.getDataMapping(a).getParam() && !this.getDataMapping(a).getType().getRef()) {
+        /* case of local parameter by reference */
+        } else if (this.getDataMapping(a).getParam() && this.getDataMapping(a).getType().getRef()) {
             this.assembly.add("mov " + R + ", word ptr [bp + offset]\n");
             this.numberOfCommands++;
         /* case of non-local parameter by value */
