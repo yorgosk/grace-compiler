@@ -22,16 +22,12 @@ public class SymbolTable {
     // a Java Array-List where we store the functions that have been defined in outer scopes (e.g. local-def functions)
     private ArrayList<STRecord> knownFunctions;
 
-    /* checkShadowing(record): check if a record shadows another record that is already in the Symbol-Table */
-    private Integer checkShadowing(STRecord record) {
-        int index = 0;
-	    int ret_Value = -1;
-        for(STRecord r : symbolTable) {
-            if(record.getName().equals(r.getName())) ret_Value = index;
-            index++;
-        }
-        return ret_Value;
-    }
+    // a Java Stack of Java Array-Lists of function names, to note the nesting scheme between the functions of a program
+    private Stack<ArrayList<String>> nestingScheme;
+    // how many levels of nesting we have at any time
+    private Integer levelsOfNesting;
+    // an index for the function of the level that we are at any time
+    private Integer currentLevelFunction;
 
     /* SymbolTable's class constructor */
     public SymbolTable() {
@@ -42,21 +38,12 @@ public class SymbolTable {
         this.variableMap = new HashMap<String, Integer>();
         this.library = new ArrayList<STRecord>();
         this.knownFunctions = new ArrayList<STRecord>();
+        // initialize nesting scheme
+        this.nestingScheme = new Stack<ArrayList<String>>();
+        this.levelsOfNesting = 0;
+        this.currentLevelFunction = -1;
         // load Grace's library-functions
         this.loadGraceLibrary();
-    }
-
-    public boolean checkRetType(STRecord.Type other){
-        STRecord.Type temp = this.nameStack.peek().getType();      //function added by yiannis
-        System.out.printf("printing temp type\n");
-        temp.printType();
-        System.out.printf("printed temp type\n");
-        if(temp.isSameRetType(other)){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 
     /* setters and getters */
@@ -66,6 +53,8 @@ public class SymbolTable {
     public void addKnownFunction(STRecord func) { this.knownFunctions.add(func); }
     public ArrayList<STRecord> getLibrary() { return this.library; }
     public ArrayList<STRecord> getKnownFunctions() { return this.knownFunctions; }
+    public void setLevelsOfNesting(Integer levelsOfNesting) { this.levelsOfNesting = levelsOfNesting; }
+    public Integer getLevelsOfNesting() { return this.levelsOfNesting; }
 
     /* enter(): create a new scope - namespace */
     public void enter(){
@@ -100,39 +89,6 @@ public class SymbolTable {
         }
     }
 
-    /*public void insertprev(STRecord record){  //yiannis2 : function to insert the name of a function into the prev scope
-        // look-up                              //not yet working
-        boolean success = lookup(record.getName());
-        // if the "record" passed from lookup, add it to the symbol-table
-        int i=this.symbolTableStackTop;
-        if(i>=0) {
-            int scope = this.symbolTable.get(i).getScopeId();
-            if (success) {
-                while (i >= 0 && scope == numberOfScopes) {
-                    i--;
-                    if (i >= 0) scope = this.symbolTable.get(i).getScopeId();
-                }
-                // update scopes - namespaces' Stack\
-                // ...
-                // update ST-record's info
-                record.setScopeId(numberOfScopes - 1);
-                record.setShadowIndex(this.checkShadowing(record));
-                // update Symbol-Table
-                this.symbolTable.add(i, record);
-                // update variables' Hash-Map so that in any case the name's (key) index (value) will point to it's latest occurrence
-                this.variableMap.put(record.getName(), i);
-            } else {
-            // failure --
-            // act accordingly
-                System.out.printf("Name %s ERROR\n", record.getName());
-            }
-        }
-        else{
-            insert(record);
-        }
-    }*/
-
-
     /* lookup(name): search for a name in the current scope
      * -- lookup(): search in the array */
     public boolean lookup(String name){
@@ -153,6 +109,32 @@ public class SymbolTable {
         }
         return true;
     }
+
+    /* checkShadowing(record): check if a record shadows another record that is already in the Symbol-Table */
+    private Integer checkShadowing(STRecord record) {
+        int index = 0;
+        int ret_Value = -1;
+        for(STRecord r : symbolTable) {
+            if(record.getName().equals(r.getName())) ret_Value = index;
+            index++;
+        }
+        return ret_Value;
+    }
+
+    /* check the returned Type */
+    public boolean checkRetType(STRecord.Type other){
+        STRecord.Type temp = this.nameStack.peek().getType();      //function added by yiannis
+        System.out.printf("printing temp type\n");
+        temp.printType();
+        System.out.printf("printed temp type\n");
+        if(temp.isSameRetType(other)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //added by yiannis_sem : because lookup changed to can be used in astp i rename it to look to  use it in insert
     public boolean look(String name){
         // check if the Symbol-Table's Array-List is empty, if it is there is no point of looking up - we sort of have a "success"
@@ -318,6 +300,35 @@ public class SymbolTable {
         }
         System.out.printf("\nVariables' Hash-Map:\n");
         System.out.println(Arrays.asList(variableMap));
+    }
+
+    /* utility functions for nesting scheme */
+    public void addNestingLevel() {
+        this.nestingScheme.push(new ArrayList<String>());
+        this.levelsOfNesting++;
+    }
+    public ArrayList<String> popCurrentNestingLevel() {
+        return this.nestingScheme.pop();
+    }
+    public void updateCurrentNestingLevel(String funcName) {
+        ArrayList<String> temp = this.popCurrentNestingLevel();
+        String tempFuncName = funcName + this.levelsOfNesting;
+        temp.add(tempFuncName);
+        this.nestingScheme.push(temp);
+        this.currentLevelFunction++;
+    }
+    public void removeNestingLevel() {
+        this.nestingScheme.pop();
+        this.levelsOfNesting--;
+        this.currentLevelFunction = -1; // we want to start over for a potential new level
+    }
+
+    /* print our nesting scheme
+    * -- for debugging */
+    public void printNestingScheme() {
+        System.out.printf("\nProgram's functions nesting scheme (%d levels of nesting):\n", this.levelsOfNesting);
+        System.out.print(this.nestingScheme);
+        System.out.printf("\n");
     }
 
     //yiannis_sem added null in last parameter dim

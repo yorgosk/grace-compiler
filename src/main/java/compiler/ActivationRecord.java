@@ -123,13 +123,13 @@ public class ActivationRecord {
         System.out.printf("%d %d %d %d %d %d %d\n",
                 this.returnAddress, this.previousAR, this.accessLink, this.group, this.groupID, this.globalID, this.nestingDepth);
         System.out.printf("%d\n", this.numberOfFunctionParameters);
-        System.out.print(functionParameters);
+        System.out.print(this.functionParameters);
         System.out.printf("%d\n", this.numberOfFunctionResults);
-        System.out.print(functionResults);
+        System.out.print(this.functionResults);
         System.out.printf("%d\n", this.numberOfLocalVariables);
-        System.out.print(localVariables);
+        System.out.print(this.localVariables);
         System.out.printf("%d\n", this.numberOfTemporaryVariables);
-        System.out.print(temporaryVariables);
+        System.out.print(this.temporaryVariables);
     }
 
 }
