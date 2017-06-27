@@ -312,7 +312,7 @@ public class SymbolTable {
     }
     public void updateCurrentNestingLevel(String funcName) {
         ArrayList<String> temp = this.popCurrentNestingLevel();
-        String tempFuncName = funcName + this.levelsOfNesting;
+        String tempFuncName = funcName + "*" + this.levelsOfNesting;
         temp.add(tempFuncName);
         this.nestingScheme.push(temp);
         this.currentLevelFunction++;
