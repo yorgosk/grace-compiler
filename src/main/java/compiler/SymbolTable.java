@@ -62,6 +62,9 @@ public class SymbolTable {
         this.numberOfScopes++;
         temp.setIndex(-1);
         nameStack.push(temp);
+
+        // noting nesting scheme -- adding a new level
+        this.addNestingLevel();
     }
 
     /* insert(name): create record of a name in the current scope
@@ -87,6 +90,10 @@ public class SymbolTable {
             * act accordingly */
             System.out.printf("Name %s ERROR\n", record.getName());
         }
+
+        // noting nesting scheme -- adding name to current nesting scheme's level
+        this.updateCurrentNestingLevel(record.getName());
+        this.printNestingScheme();  // for debugging
     }
 
     /* lookup(name): search for a name in the current scope
@@ -195,6 +202,9 @@ public class SymbolTable {
         nameStack.pop();
         // we have one less scope
         this.numberOfScopes--;
+
+        // noting nesting scheme -- remove current nesting level
+        this.removeNestingLevel();
     }
 
     /* searchFunction(tempRecord): search to find out whether we have occured a function again in the current scope
@@ -308,12 +318,12 @@ public class SymbolTable {
         this.levelsOfNesting++;
     }
     public ArrayList<String> popCurrentNestingLevel() {
-        return this.nestingScheme.pop();
+        return this.nestingScheme.pop();    // remove current nesting level temporarily, in order to update it
     }
-    public void updateCurrentNestingLevel(String funcName) {
+    public void updateCurrentNestingLevel(String initName) {
         ArrayList<String> temp = this.popCurrentNestingLevel();
-        String tempFuncName = funcName + "*" + this.levelsOfNesting;
-        temp.add(tempFuncName);
+        String tempName = initName + "*" + this.levelsOfNesting;
+        temp.add(tempName);
         this.nestingScheme.push(temp);
         this.currentLevelFunction++;
     }
