@@ -107,27 +107,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.printIR(irWriter);
         // done printing IR to file -- for testing
         this.irWriter.close();
-        // print assembly to file -- for testing
-//        this.assemblyWriter.print(
-//                        ".intel_syntax noprefix # Use Intel syntax instead of AT&T\n" +
-//                        ".text\n" +
-//                        ".global main\n" +
-//                        "main:\n" +
-//                        "# Prologue (set up the frame & stack pointer)\n" +
-//                        "push ebp\n" +
-//                        "mov ebp, esp" +
-//                        "# Put the argument of printf() on the stack\n" +
-//                        "mov eax, OFFSET FLAT:fmt\n" +
-//                        "push eax\n" +
-//                        "call printf # Calls printf()\n" +
-//                        "add esp, 4\n" +
-//                        "mov eax, 0 # Set the exit code (0) here\n" +
-//                        "# Epilogue (Reset frame and stack pointer)\n" +
-//                        "mov esp, ebp\n" +
-//                        "pop ebp\n" +
-//                        "ret\n" +
-//                        ".data\n" +
-//                        "fmt: .asciz \"Hello world!\\n\"\n");
+        // print assembly to file
         this.assemblyWriter.print(this.ir.getAssemblyAsString());
         // done printing assembly to file
         this.assemblyWriter.close();
@@ -167,12 +147,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("endu", name, "-", "-");
 
         // producing assembly
-//        String name1 = "#"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
-//        String name2 = "_"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
-//        this.ir.addAssemblyCode(name1+":\nmov esp, ebp\n");
         this.ir.addAssemblyCode("pop ebp\n");
         this.ir.addAssemblyCode("ret\n");
-//        this.ir.addAssemblyCode(name2+" endp\n");
     }
     @Override
     public void caseAFuncDef(AFuncDef node)
@@ -196,15 +172,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
             // producing assembly
             String name;
-//            if (this.tempFunctionStack.peek().equals("main")) name = this.tempFunctionStack.peek();
             // we want our first function to be our "main"
             if (this.ir.getCurrentLabel() == 1) name = "main";
             else name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getAssemblyLevelsOfNesting();
-//            this.ir.addAssemblyCode(name+" proc near\n");
             this.ir.addAssemblyCode(name+":\n");
             this.ir.addAssemblyCode("push ebp\n");
             this.ir.addAssemblyCode("mov ebp, esp\n");
-//            this.ir.addAssemblyCode("sub esp, 8\n");
         }
         if(node.getBlock() != null)
         {
@@ -246,10 +219,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         tempRec.type.setFunction(true);
         // check for main-function existence
         // source: http://stackoverflow.com/questions/17973964/how-to-compare-two-strings-in-java-without-considering-spaces
-        /*if (!this.hasMain && !node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {       //commented by yiannis_sem
-            System.err.printf("Error: All Grace programs must have a \"main\" function\n");
-            this.gracefullyExit();
-        } else */if (node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " ")) && node.getFparDef().size() != 0) {
+        if (node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " ")) && node.getFparDef().size() != 0) {
             System.err.printf("Error: \"main\" function takes no arguments\n");
             this.gracefullyExit();
         } else if (!this.isDecl && this.hasMain && node.getId().toString().trim().replaceAll("\\s+", " ").equalsIgnoreCase("main".trim().replaceAll("\\s+", " "))) {
@@ -548,12 +518,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp = new STRecord.Type();
         temp.setKind(node.getDataType().toString().trim().replaceAll("\\s+", " "));
         if (node.getLRBrackets() != null) {
-            //System.out.printf("getLRBrackets\n");
             temp.setArray(true);
             temp.setDimension(1);
         }
         if(node.getIntConst().size() > 0) {
-            //System.out.printf("getIntconst\n");
             temp.setArray(true);
             if(node.getLRBrackets()==null) {
                 if (node.getIntConst().size() > 1) {
@@ -569,7 +537,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     }
                 }
             }
-//            temp.setDimension(node.getIntConst().size());
+
             int curr_dimension = temp.getDimension();
             temp.setDimension(curr_dimension+node.getIntConst().size());
         }
@@ -632,7 +600,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                  Integer levelsOfNesting = this.symbolTable.getLevelsOfNesting();
                  this.ir.updateAssemblyLevelsOfNesting(levelsOfNesting);
              }
-             // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
              else if (result == 1) {
                  System.err.printf("Error: variable \"%s\" has already been defined\n", temp.getName());
                  this.gracefullyExit();
@@ -709,8 +676,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             for(PStmt e : copy)
             {
                 // for IR production
-//                if (numOfStmt != 1)
-//                    this.ir.BACKPATCH(stmtNEXTLabel, "NEXT", this.ir.NEXTQUAD());
                 numOfStmt++;
 
                 e.apply(this);
@@ -720,9 +685,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 else if (numOfStmt == 2) stmtNEXTLabel = this.ir.getCurrentLabel();
             }
         }
-
-        // producing IR
-//        this.ir.setNEXT(stmtNEXTLabel, this.ir.EMPTYLIST());
 
         outABlock(node);
     }
@@ -957,22 +919,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.err.printf("Error: Trying to assign a value to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
             this.gracefullyExit();
         }
-        /*else if((dim.length-1)>temp1.getDimension()){
-            System.err.printf("Error: too many indexes to an array: %s\n",node.getLValue().toString().trim().replaceAll("\\s+", " "));
-            this.gracefullyExit();
-        }*/
         //till here
 
 	//added by yiannis_sem
         //commented segment to avoid errors
         if(temp1.getArray()!=temp2.getArray()){
             String[] splitted = node.getExpr().toString().split(" ");
-            /*if (((this.symbolTable.fetchType(splitted[1]) != null && this.symbolTable.fetchType(splitted[1]).getKind().equals("int")) || splitted[1].toCharArray()[0] == '0' || splitted[1].toCharArray()[0] == '1' || splitted[1].toCharArray()[0] == '2' || splitted[1].toCharArray()[0] == '3' || splitted[1].toCharArray()[0] == '4' || splitted[1].toCharArray()[0] == '5' || splitted[1].toCharArray()[0] == '6' || splitted[1].toCharArray()[0] == '7' || splitted[1].toCharArray()[0] == '8' || splitted[1].toCharArray()[0] == '9')) {
 
-            } else {
-                System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n", temp1.getKind(), temp2.getKind());
-                this.gracefullyExit();
-            }*/
             if(this.symbolTable.fetchType(splitted[0])!=null&&this.symbolTable.fetchType(splitted[0]).getArray()){
                 if(splitted.length<=1){
                     System.err.printf("Error: Trying to assign an array : %s to a non array value: %s\n", temp1.getKind(), temp2.getKind());
@@ -1015,11 +968,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String item1 = this.ir.getLastTemp();
         String item2 = this.ir.getLastTemp();
         this.ir.pushTemp(item1);
-        //STRecord.Type temp = this.symbolTable.fetchType(item1);
-        //String t1 = this.ir.NEWTEMP(temp);
         this.ir.GENQUAD(":=",item1,"-",item2);
         //till here
-//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
 
         // producing assembly
         STRecord tempRec = new STRecord();
@@ -1066,21 +1016,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         int condTRUELabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
         int condFALSELabel = this.ir.getCurrentLabel();
         this.ir.BACKPATCH(condTRUELabel, "TRUE", this.ir.NEXTQUAD());
-//        ArrayList<Integer> l1 = this.ir.getFALSE(this.ir.getCurrentLabel());
-//        ArrayList<Integer> l2 = this.ir.EMPTYLIST();
-//        ArrayList<Integer> stmt1NEXT = null;
+
         Integer stmtNEXT;
 
         if(node.getThenM() != null)
         {
             node.getThenM().apply(this);
 
-            // for IR production
-//            stmt1NEXT = this.ir.getNEXT(this.ir.getCurrentLabel());
         }
         {
-            // for IR production
-//            l1 = this.ir.MAKELIST(this.ir.NEXTQUAD());
+
             this.ir.GENQUAD("jump", "-", "-", "?");
 
             // for assembly production
@@ -1097,17 +1042,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 e.apply(this);
             }
 
-            // for IR production
-//            l2 = this.ir.getNEXT(this.ir.getCurrentLabel());
         }
 
         // for IR production
         this.ir.BACKPATCH(stmtNEXT, "NEXT", this.ir.NEXTQUAD());
-//        ArrayList<ArrayList<Integer>> param = new ArrayList<ArrayList<Integer>>();
-//        param.add(l1);
-//        param.add(stmt1NEXT);
-//        param.add(l2);
-//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.MERGE(param));
 
         outAIfStmt(node);
     }
@@ -1120,9 +1058,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     {
         inAWhileStmt(node);
 
-        // for IR production
-//        Integer Q = this.ir.NEXTQUAD();
-
         if(node.getCond() != null)
         {
             node.getCond().apply(this);
@@ -1131,7 +1066,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // for IR production
         int condTRUELabel = this.ir.getCurrentLabel()-1;    // "-1" because there is the jump, -, -, ? in the middle
         int condFALSELabel = this.ir.getCurrentLabel();
-//        ArrayList<Integer> condFALSE = this.ir.getFALSE(condFALSELabel);
+
         this.ir.BACKPATCH(condTRUELabel, "TRUE", this.ir.NEXTQUAD());
 
         if(node.getStmt() != null)
@@ -1141,12 +1076,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // for IR production
         int stmtLabel = this.ir.getCurrentLabel();
-//        this.ir.BACKPATCH(stmtLabel, "NEXT", Q);
-//        this.ir.GENQUAD("jump", "-", "-", Q.toString());
         Integer next = this.ir.NEXTQUAD()+1;
         this.ir.GENQUAD("jump", "-", "-", next.toString());
         this.ir.BACKPATCH(condFALSELabel, "FALSE", next);
-//        this.ir.setNEXT(stmtLabel, condFALSE);
 
         // for assembly production
         this.ir.addAssemblyCode("jmp "+next.toString()+"\n");   // PROBLEM -- FIX IT!!!
@@ -1175,9 +1107,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.toPopFromTempTypeStack--;
         }
         //till here
-        //before changes
-        //STRecord.Type temp = this.tempTypeStack.pop();
-        //this.toPopFromTempTypeStack--;
         if(!this.symbolTable.checkRetType(temp)){
 		//yiannis_sem
             String[] arr = node.getExpr().toString().split(" ");
@@ -1189,19 +1118,15 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.gracefullyExit();
             }
             //till here
-            //before changes:
-            //System.err.printf("Error: function has different return type\n");
-            //this.gracefullyExit();
         }
 
         // producing IR
         this.ir.GENQUAD("ret", "-", "-", "-");
-//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
 
         // producing assembly
         this.ir.addAssemblyCode("ret\n");   // IS IT OK THIS WAY?
         /*
-        * jump to endof(current)???
+        * jump to endof(current)
         * */
     }
 
@@ -1225,21 +1150,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         String str = node.getId().toString().trim().replaceAll("\\s+", " ");
         //modified by yiannis3
         this.ir.pushTemp(str);
-        /*String t1;
-        if(this.ir.lookTemp(str)!=null){
-            t1 = this.ir.lookTemp(str);
-        }
-        else {
-            t1 = this.ir.NEWTEMP(temp);
-            this.ir.newTemp(str,t1);
-        }*/
-        //that what it was before
-        //t1 = this.ir.NEWTEMP(temp);
-        //this.ir.GENQUAD(":=",  str,"-", t1);
+
         //till here
         this.ir.addPLACE(this.ir.getCurrentLabel(), str);//changed by yiannis3
-        //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);//before modified
-//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -1260,11 +1173,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addPLACE(this.ir.getCurrentLabel(), str);
         //till here
         //commented by yiannis3!
-        //String t1 = this.ir.NEWTEMP(temp);
-        //this.ir.GENQUAD(":=", str, "-", t1);
-        //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);
-        //till here
-//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
@@ -1278,8 +1186,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     @Override
     public void outAExpressionLValue(AExpressionLValue node) {
         //yiannis_sem
-
-
         if(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " "))!=null&&this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getArray()){
             String[] ind = node.getExpr().toString().split(" ");
             for(int i=0;i<this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getDimension();i++){
@@ -1309,40 +1215,17 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.pushTemp("["+temp+"]");//added by yiannis3 it changes last element from $.. to [$..] to pop it after in this format
         //String par1 = "["+t1+"]";                                       // problematic -- FIX IT//commented by yiannis3
         this.ir.GENQUAD("array", t1, t3, t2);      //changed by yiannis3 (array was := and t1 was par1 and t3 was "-")
-   //     String par1 = "["+t1+"]";                                       // problematic -- FIX IT
-     //   this.ir.GENQUAD(":=", par1, "-", t2);
         this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
-//        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
 
-        // producing assembly
-//        STRecord tempRecX = this.tempRecordStack.pop();
-//        this.toPopFromTempRecordStack--;
-//        this.ir.setDataMapping(t1, tempRecX);
-//        STRecord tempRecY = this.tempRecordStack.pop();
-//        this.toPopFromTempRecordStack--;
-//        tempRecY.setDereference(true);
-//        this.ir.setDataMapping(t3, tempRecY);
-//        this.ir.load("eax", t3);
-//        this.ir.addAssemblyCode("mov ecx, 8\n");
-//        this.ir.addAssemblyCode("imul ecx\n");
-//        this.ir.loadAddr("ecx", t1);
-//        this.ir.addAssemblyCode("add eax, ecx\n");
-//        this.ir.store("eax", t2);
-
-
         //added by yiannis_fin
         // producing assembly
-        //System.out.print(node.getExpr().toString());
-        //System.out.print(node.getLValue().toString());
         STRecord tempRecX = new STRecord();                     //anti na kanei pop tis metavlites tis dimiourgei me vasi ta stoixeia tou node
         tempRecX.setName(node.getLValue().toString().trim().replaceAll("\\s+", " "));
         tempRecX.setType(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")));
         STRecord tempRecY = new STRecord();
         tempRecY.setName(node.getExpr().toString().trim().replaceAll("\\s+", " "));
-        //System.out.print(node.getExpr().toString().split(" ")[0]);
-        //System.out.print(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0]).getKind());
         if(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0])!=null) {
             tempRecY.setType(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0]));
         }
@@ -1350,11 +1233,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             tempRecY.getType().setKind("int");          //ousiastika 3eroume oti to deuterou pou einai deiktis 8a einai int alliws 8a eixe stupisei idi error apo to semantic
         }
 
-//        STRecord tempRecX = this.tempRecordStack.pop();
-//        this.toPopFromTempRecordStack--;
         this.ir.setDataMapping(t1, tempRecX);
-//        STRecord tempRecY = this.tempRecordStack.pop();
-//        this.toPopFromTempRecordStack--;
         tempRecY.setDereference(true);
         this.ir.setDataMapping(t3, tempRecY);
         this.ir.load("eax", t3);
@@ -1385,11 +1264,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         // producting IR
         String str = node.getIntConst().toString().trim().replaceAll("\\s+", " ");
-        //String t1 = this.ir.NEWTEMP(temp);//commentd by yiannis3
-        //this.ir.GENQUAD(":=", str, "-", t1);//commented by yiannis3
         this.ir.pushTemp(str);//added by yiannis3
         this.ir.addPLACE(this.ir.getCurrentLabel(), str);//changed by yiannis3
-        //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);//before changed
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -1404,11 +1280,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         //producing IR
         String str = node.getCharConst().toString().trim().replaceAll("\\s+", " ");
-       // String t1 = this.ir.NEWTEMP(temp);//commented by yiannis3!
-        //this.ir.GENQUAD(":=", str, "-", t1);//commented by yiannis3!
         this.ir.pushTemp(str);//added by yiannis3!
         this.ir.addPLACE(this.ir.getCurrentLabel(), str);//changed by yiannis3!
-        //this.ir.addPLACE(this.ir.getCurrentLabel(), t1);//before changed by yiannis3!
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -1425,15 +1298,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        /*if(temp.getArray()==true) {     //added by yinnis3
-            String t1 = this.ir.getPLACE(l1);
-            String t3 = this.ir.getLastTemp();//added by yiannis3
-            String t2 = this.ir.NEWTEMP(temp);
-            //String par1 = "["+t1+"]";                                       // problematic -- FIX IT//commented by yiannis3
-            this.ir.GENQUAD("array", t1, t3, t2);                      //changed by yiannis3 (array was := and t1 was par1 and t3 was "-")
-            this.ir.addPLACE(this.ir.getCurrentLabel(), t2);
-            this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
-        }*/
+
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
     }
@@ -1480,8 +1345,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        //String t1 = this.ir.getPLACE(l1);//this amd below line ommented by yiannis3
-        //String t2 = this.ir.getPLACE(l2);
         String t1 = this.ir.getLastTemp();//this amd below line added by yiannis3
         String t2 = this.ir.getLastTemp();
         String t3 = this.ir.NEWTEMP(temp1);
@@ -1534,8 +1397,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        //String t1 = this.ir.getPLACE(l1); //this and below line commented by yiannis3
-        //String t2 = this.ir.getPLACE(l2);
         String t1 = this.ir.getLastTemp();  //this and below line added by yiannis3
         String t2 = this.ir.getLastTemp();
         String t3 = this.ir.NEWTEMP(temp1);
@@ -1588,8 +1449,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        //String t1 = this.ir.getPLACE(l1);//this and below line commented by yiannis3!
-        //String t2 = this.ir.getPLACE(l2);
         String t1 = this.ir.getLastTemp();//this and below line added by yiannis3!
         String t2 = this.ir.getLastTemp();
         String t3 = this.ir.NEWTEMP(temp1);
@@ -1642,8 +1501,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        //String t1 = this.ir.getPLACE(l1);//this and below line commented by yiannis3!
-       // String t2 = this.ir.getPLACE(l2);
         String t1 = this.ir.getLastTemp();//this and below line added by yiannis3!
         String t2 = this.ir.getLastTemp();
         String t3 = this.ir.NEWTEMP(temp1);
@@ -1697,8 +1554,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        //String t1 = this.ir.getPLACE(l1);//this and below line commented by yiannis3!
-        //String t2 = this.ir.getPLACE(l2);
         String t1 = this.ir.getLastTemp();//this and below line added by yiannis3!
         String t2 = this.ir.getLastTemp();
         String t3 = this.ir.NEWTEMP(temp1);
@@ -1752,8 +1607,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack--;
         Integer l2 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-        //String t1 = this.ir.getPLACE(l1);//this and below line commented by yiannis3!
-        //String t2 = this.ir.getPLACE(l2);
         String t1 = this.ir.getLastTemp();//this and below line added by yiannis3!
         String t2 = this.ir.getLastTemp();
         String t3 = this.ir.NEWTEMP(temp1);
@@ -1833,12 +1686,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         Integer l1 = this.tempOperandsStack.pop();
         this.toPopFromTempOperandsStack--;
-//        this.ir.GENQUAD("not", "-", "-", "?");
-//        this.ir.syncLabels();   // sync labels of jump statement
+
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
-//        this.ir.GENQUAD("jump", "-", "-", "?");
-//        this.ir.syncLabels();   // sync labels of jump statement
 
         // for IR production
         ArrayList<Integer> cond1TRUE = this.ir.getTRUE(this.ir.getCurrentLabel()-1);
@@ -1964,7 +1814,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.err.printf("Error: In condition cannot compare literals\n");
             this.gracefullyExit();
         }
-        // STRecord.Type typel =this.symbolTable.fetchType(valsl[0]);
+
         if(this.symbolTable.fetchType(valsl[0])!=null&&this.symbolTable.fetchType(valsl[0]).getArray()){
             if(valsl.length>1) {
                 if (this.symbolTable.fetchType(valsl[1]) != null) {
@@ -1972,10 +1822,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -1989,10 +1836,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2065,10 +1909,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                    //System.err.printf("Error: In condition cannot compare arrays\n");
-                    //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2082,23 +1923,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
                 this.gracefullyExit();
             }
         }
-        //till here
-        //yainnis_sem
-        //System.out.print(node.getLeft());
-        //if(temp1.getArray()||temp2.getArray()){
-          //  System.err.printf("Error: In condition at least one member is literal or array\n");
-            //this.gracefullyExit();
-        //}
         //till here
 
         // producing IR
@@ -2165,10 +1996,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2182,10 +2010,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2257,10 +2082,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2274,10 +2096,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2350,10 +2169,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2367,10 +2183,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2443,10 +2256,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2460,10 +2270,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2536,10 +2343,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsl[1].toCharArray()[0] != '0' && valsl[1].toCharArray()[0] != '1' && valsl[1].toCharArray()[0] != '2' && valsl[1].toCharArray()[0] != '3' && valsl[1].toCharArray()[0] != '4' && valsl[1].toCharArray()[0] != '5' && valsl[1].toCharArray()[0] != '6' && valsl[1].toCharArray()[0] != '7' && valsl[1].toCharArray()[0] != '8' && valsl[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");
@@ -2553,10 +2357,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 } else if (valsr[1].toCharArray()[0] != '0' && valsr[1].toCharArray()[0] != '1' && valsr[1].toCharArray()[0] != '2' && valsr[1].toCharArray()[0] != '3' && valsr[1].toCharArray()[0] != '4' && valsr[1].toCharArray()[0] != '5' && valsr[1].toCharArray()[0] != '6' && valsr[1].toCharArray()[0] != '7' && valsr[1].toCharArray()[0] != '8' && valsr[1].toCharArray()[0] != '9') {
                     System.err.printf("Error: In condition cannot compare arrays\n");
                     this.gracefullyExit();
-                } //else {
-                //System.err.printf("Error: In condition cannot compare arrays\n");
-                //this.gracefullyExit();
-                //}
+                }
             }
             else{
                 System.err.printf("Error: In condition cannot compare arrays\n");

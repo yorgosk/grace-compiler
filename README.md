@@ -40,6 +40,9 @@
   * at ```src/main/java/compiler/ActivationRecord.java``` we have our **ActivationRecord** class, which can be used to
    simulate the Activation Records exchanges that take place in the background while running our program. It has not
    been used in our implementation, but it is a nice utility, so we included it.
+  * with ```grace_compiler.sh <input> [flags]``` our Grace compiler can be used in a variety of ways illustrated at
+   *To use the Grace Compiler* section of this document. **Careful**, a chmod command like ```chmod 777``` may need to
+   be applied on the script to make it runnable to your computer.
 
 # Specifications
 
@@ -75,6 +78,7 @@
    **Just execute up-to Assembly x8086 production (no rebuild)**
    ```./grace_compiler.sh <name of .grace file> --no-rebuild```
    
+   ***RECOMMENDED BASED ON OUR LEVEL OF PROGRESS***
    **Just execute up-to Low Level Intermediate Representation production (no rebuild)**
    ```./grace_compiler.sh <name of .grace file> --no-rebuild --upto-ir```
 
@@ -88,7 +92,8 @@
       
    **Just execute up-to Assembly x8086 production (no rebuild)**
    ```./grace_compiler.sh examples/general/hello.grace --no-rebuild```
-     
+   
+   ***RECOMMENDED BASED ON OUR LEVEL OF PROGRESS***
    **Just execute up-to Low Level Intermediate Representation production (no rebuild)**
    ```./grace_compiler.sh examples/general/hello.grace --no-rebuild --upto-ir```
     
@@ -100,17 +105,15 @@
 ### Output Example (version 2.0)
 
    ```
+   Intermediate Representation:
+   
                    Low Level Intermediate Representation:
-      1: unit, hello, -, -
-      2: par, "Hello world!\n", R, -
-      3: call, -, -, puts
-      4: endu, hello, -, -
-      
-      -----------------------------------------------------
-                      PROGRAM OUTPUT:
-      -----------------------------------------------------
-      Hello world!
-      
+   1: unit, hello, -, -
+   2: par, "Hello world!\n", R, -
+   3: call, -, -, puts
+   4: endu, hello, -, -
+   Hello world!
+   
    ```
 
 ## Feedback

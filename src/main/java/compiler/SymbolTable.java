@@ -82,7 +82,7 @@ public class SymbolTable {
         if(success) {
             // noting nesting scheme -- adding name to current nesting scheme's level
             String tempName = this.updateCurrentNestingLevel(record.getName());
-            this.printNestingScheme();  // for debugging
+//            this.printNestingScheme();  // for debugging
 
             // update scopes - namespaces' Stack
             this.symbolTableStackTop++;
@@ -354,9 +354,9 @@ public class SymbolTable {
     /* print our nesting scheme
     * -- for debugging */
     public void printNestingScheme() {
-        //System.out.printf("\nProgram's functions nesting scheme (%d levels of nesting):\n", this.levelsOfNesting);
-        //System.out.print(this.nestingScheme);
-        //System.out.printf("\n");
+        System.out.printf("\nProgram's functions nesting scheme (%d levels of nesting):\n", this.levelsOfNesting);
+        System.out.print(this.nestingScheme);
+        System.out.printf("\n");
     }
 
     //yiannis_sem added null in last parameter dim
