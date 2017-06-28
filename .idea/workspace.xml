@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="hello.grace produces assembly successfully... with shell script additions">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
+    <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace_compiler.sh" afterPath="$PROJECT_DIR$/grace_compiler.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -770,7 +768,7 @@
       <workItem from="1498552446348" duration="314000" />
       <workItem from="1498562401153" duration="1569000" />
       <workItem from="1498632191302" duration="2575000" />
-      <workItem from="1498636324204" duration="9197000" />
+      <workItem from="1498636324204" duration="9884000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -1066,11 +1064,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498647296944</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="hello.grace produces assembly successfully... with shell script additions (II)">
+      <created>1498648125103</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1498648125103</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49349000" />
+    <option name="totallyTimeSpent" value="50036000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="52" width="683" height="716" extended-state="4" />
@@ -1115,7 +1120,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added assembly hello-world" />
     <MESSAGE value="started formulating assembly... assembly code produced is not functioning yet" />
     <MESSAGE value="started formulating assembly, added MachineCode class for that... assembly code produced is not functioning yet" />
     <MESSAGE value="started formulating assembly, added MachineCode class for that, added various functions... assembly code produced is not functioning yet" />
@@ -1140,7 +1144,8 @@
     <MESSAGE value="additions for the nesting scheme... added nesting scheme's map to the assembly (II)" />
     <MESSAGE value="various assembly fixes, trying to make hello.grace to work" />
     <MESSAGE value="hello.grace produces assembly successfully" />
-    <option name="LAST_COMMIT_MESSAGE" value="hello.grace produces assembly successfully" />
+    <MESSAGE value="hello.grace produces assembly successfully... with shell script additions (II)" />
+    <option name="LAST_COMMIT_MESSAGE" value="hello.grace produces assembly successfully... with shell script additions (II)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
