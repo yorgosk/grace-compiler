@@ -4,24 +4,21 @@
   **Chrysinas Ioannis** and **Kamaras Georgios** as a semester-long group-project for Compilers course.
   The project's development is going to progress in three stages, during the course of the semester:
   1. The first stage _(Parts I and II)_ involves the creation of the compiler's Lexical and Syntactical Analyser.
-  2. The second stage _(Parts II and III -- current stage)_ involves creating the compiler's Semantical Analyser and generating Intermediate Code.
-  3. The third, and final, stage is about Optimization and Program Execution.
+  2. The second stage _(Parts III and IV)_ involves creating the compiler's Semantical Analyser and generating Intermediate Code.
+  3. The third, and final, stage _(Parts V and VI -- current stage)_ is about Optimization and Program Execution.
 
-## Current Version (version 1.5)
+## Current Version (version 2.0)
 
-  ***Stable Version for second stage _(Parts II and III)_ of the project***
-  >Our compiler is currently on the *second stage* of it's development. For now, it has *Lexer and Parser capabilities*.
-  It processes the input's program and, after it decides that it is correct (meaning that it conforms with our grammar's
-  specifications), it prints it's Parsing Tree. If it decides that the program is not correct, it produces some
-  basic error messages to help the user-programmer find what's wrong and correct it. After that, it proceeds in 
-  semantical analysis. If he finds a semantic error it immediately exits with an appropriate code and error message.
-  If it finds the program to be semantically correct, it produces some basic Low Level Intermediate Representation (LLIR)
-  code. This code will be later used to produce machine code.
+  ***Stable Version for second stage _(Parts III and IV)_ of the project***
+  >Our compiler is currently in the beginning of the third stage of it's development. For now, it only has complete
+  *Lexing, Parsing, Semantic Analysing and Intermediate Code production* capabilities. It processes a program, given to
+  it's script (grace_compiler.sh) as a command line argument and produces an accurate Low Level Intermediate
+  Representation which in a large part can easily be transformed to assembly x8086 commands. However, the produced
+  assembly code most of the time is not accurate or complete. (But, works for hello.grace)
   
   **Important Note**
-  Due to time constraints regarding other courses' assignments version 1.5 has not yet been thoroughly tested. However, 
-  we commit have fixed any issues by the time the third stage is complete. We also intend to make many additions and 
-  improvements.
+  Due to time constraints regarding other courses' assignments the produced assembly code most of the time is not 
+  accurate or complete. (But, works for hello.grace)
   
   **Important Files**
   * at ```src/main/java/compiler/Main.java``` we have our **Main class** from which we read the Grace code from a
@@ -38,6 +35,11 @@
   can be found at ```src/main/java/compiler/STRecord.java``` and ```src/main/java/compiler/NSRecord.java```.
   * at ```src/main/java/compiler/IntermediateCode.java``` we have our **IntermediateCode** class, which is the core of our
    LLIR code production infrastructure implementation.
+  * at ```src/main/java/compiler/MachineCode.java``` we have our **MachineCode** class, which is the core of our
+   Assembly x8086 code production infrastructure implementation.
+  * at ```src/main/java/compiler/ActivationRecord.java``` we have our **ActivationRecord** class, which can be used to
+   simulate the Activation Records exchanges that take place in the background while running our program. It has not
+   been used in our implementation, but it is a nice utility, so we included it.
 
 # Specifications
 
@@ -62,64 +64,53 @@
 
    Having ```maven``` and ```java``` installed.
 
-## To compile
+## To use the Grace Compiler
 
-   mvn compile
-
-## To create a packaged JAR file
-
-   mvn package
-
-## To clean
-
-   mvn clean
+   **Build compiler and execute up-to Assembly x8086 production**
+   ```./grace_compiler.sh <name of .grace file>```
    
-## Example Run
+   **Build compiler and execute up-to Low Level Intermediate Representation production**
+   ```./grace_compiler.sh <name of .grace file> --upto-ir```
+   
+   **Just execute up-to Assembly x8086 production (no rebuild)**
+   ```./grace_compiler.sh <name of .grace file> --no-rebuild```
+   
+   **Just execute up-to Low Level Intermediate Representation production (no rebuild)**
+   ```./grace_compiler.sh <name of .grace file> --no-rebuild --upto-ir```
 
 ### Commands Example
 
-   **Build:**
-   
-   ```>mvn clean package```
-   
-   **Execute:**
-   
-   * If compiler takes input from a file:
-   
-   ```>java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main examples/general/hello.grace ```
-   
-   * or, if compiler takes input from stdin *(not recommended for large programs, for practical reasons)*:
-   
-   ```java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main```
+   **Build compiler and execute up-to Assembly x8086 production**
+   ```./grace_compiler.sh examples/general/hello.grace```
+     
+   **Build compiler and execute up-to Low Level Intermediate Representation production**
+   ```./grace_compiler.sh examples/general/hello.grace --upto-ir```
+      
+   **Just execute up-to Assembly x8086 production (no rebuild)**
+   ```./grace_compiler.sh examples/general/hello.grace --no-rebuild```
+     
+   **Just execute up-to Low Level Intermediate Representation production (no rebuild)**
+   ```./grace_compiler.sh examples/general/hello.grace --no-rebuild --upto-ir```
     
    **Important Notes**
-   >For the first execution option, the name (or the path, if not in the same directory) of the file of grace code that
-   we want to compile, must be included in the execution's command, like we do in other compilers, e.g. the gcc. In our
-   example, the grace-code file can be found in the path ```examples/hello.grace```.
-   >For the second execution option, the compiler expects to receive a Ctrl^D signal to start processing the input. This
-   signal should be received **in a line below the last line of the Grace code**.
+   >The name (or the path, if not in the same directory) of the file of grace code that we want to compile, must be 
+   included in the execution's command, like we do in other compilers, e.g. the gcc. In our example, the grace-code file
+   can be found in the path ```examples/general/hello.grace```.
    
-### Output Example (version 1.0)
+### Output Example (version 2.0)
 
    ```
-   >java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main examples/hello.grace 
-   
-   Printing Parsing Tree:
-   
-   program :
-       function :
-           header("hello ") :
-               retType :"nothing"
-           code-block body :
-               matchedStmt :
-                   otherMatched :
-                       funcOtherStmt :
-                           func-call( "puts " ) :
-                               func-args :
-                                   termExpr :
-                                       factorTerm :
-                                           lValueFactor :
-                                               ""Hello world!\n" "
+                   Low Level Intermediate Representation:
+      1: unit, hello, -, -
+      2: par, "Hello world!\n", R, -
+      3: call, -, -, puts
+      4: endu, hello, -, -
+      
+      -----------------------------------------------------
+                      PROGRAM OUTPUT:
+      -----------------------------------------------------
+      Hello world!
+      
    ```
 
 ## Feedback

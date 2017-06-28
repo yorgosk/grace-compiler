@@ -1,5 +1,16 @@
-PROJECT'S CHANGELOG -- Last update 6/04/2017
+PROJECT'S CHANGELOG -- Last update 28/06/2017
 Here we list our most important changes and all of our stable-version releases up to this date.
+
+------------------------------------------------------------------------------------------------------------------------
+28/06/2017 -- version 2.0
+
+***Stable Version for Parts I, II, III and IV of the project***
+
+>   Our compiler is currently in the beginning of the third stage of it's development. For now, it only has complete
+    Lexing, Parsing, Semantic Analysing and Intermediate Code production capabilities. It processes a program, given to
+    it's script (grace_compiler.sh) as a command line argument and produces an accurate Low Level Intermediate
+    Representation which in a large part can easily be transformed to assembly x8086 commands. However, the produced
+    assembly code most of the time is not accurate or complete. (But, works for hello.grace)
 
 ------------------------------------------------------------------------------------------------------------------------
 6/04/2017 -- version 1.0
