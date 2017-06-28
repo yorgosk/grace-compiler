@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deab7fff-40ea-4d72-89f8-40f6e1c66937" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/general/hello.grace" afterPath="$PROJECT_DIR$/examples/general/hello.grace" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -55,8 +59,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="841">
-              <caret line="104" column="157" lean-forward="false" selection-start-line="104" selection-start-column="157" selection-end-line="104" selection-end-column="157" />
+            <state relative-caret-position="262">
+              <caret line="205" column="58" lean-forward="false" selection-start-line="205" selection-start-column="58" selection-end-line="205" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -130,7 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>adddime</find>
       <find>KKKKKKKK</find>
       <find>setArray(tr</find>
       <find>BBBBBB</find>
@@ -147,7 +150,6 @@
       <find>aheader</find>
       <find>look</find>
       <find>insert</find>
-      <find>&quot;unit&quot;</find>
       <find>insert(</find>
       <find>size</find>
       <find>bp</find>
@@ -160,6 +162,8 @@
       <find>dx</find>
       <find>cx</find>
       <find>sub esp, 2</find>
+      <find>&quot;.global</find>
+      <find>&quot;unit&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -766,7 +770,7 @@
       <workItem from="1498552446348" duration="314000" />
       <workItem from="1498562401153" duration="1569000" />
       <workItem from="1498632191302" duration="2575000" />
-      <workItem from="1498636324204" duration="11062000" />
+      <workItem from="1498636324204" duration="11635000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -1083,11 +1087,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498648881948</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="hello.grace produces assembly successfully... with shell script additions (III)">
+      <created>1498650545605</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1498650545605</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51214000" />
+    <option name="totallyTimeSpent" value="51787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
@@ -1420,8 +1431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="104" column="157" lean-forward="false" selection-start-line="104" selection-start-column="157" selection-end-line="104" selection-end-column="157" />
+        <state relative-caret-position="262">
+          <caret line="205" column="58" lean-forward="false" selection-start-line="205" selection-start-column="58" selection-end-line="205" selection-end-column="58" />
           <folding />
         </state>
       </provider>

@@ -202,7 +202,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
             // producing assembly
             String name;
-            if (this.tempFunctionStack.peek().equals("main")) name = this.tempFunctionStack.peek();
+//            if (this.tempFunctionStack.peek().equals("main")) name = this.tempFunctionStack.peek();
+            // we want our first function to be our "main"
+            if (this.ir.getCurrentLabel() == 1) name = "main";
             else name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getAssemblyLevelsOfNesting();
 //            this.ir.addAssemblyCode(name+" proc near\n");
             this.ir.addAssemblyCode(name+":\n");
