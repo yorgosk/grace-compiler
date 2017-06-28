@@ -281,5 +281,7 @@ public class IntermediateCode {
     public void syncLabels() {
         this.setLabelMapping(this.getCurrentLabel(), this.getCurrentAssemblyCommand());
     }
+    /* update our Machine Code's Nesting Scheme, by updating it's Nesting Map */
+    public void updateAssemblyNestingMap(HashMap<String, ArrayList<Integer>> map) { this.assembly.updateNestingMap(map); }
 
 }

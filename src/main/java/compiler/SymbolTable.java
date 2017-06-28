@@ -58,6 +58,8 @@ public class SymbolTable {
     public ArrayList<STRecord> getKnownFunctions() { return this.knownFunctions; }
     public void setLevelsOfNesting(Integer levelsOfNesting) { this.levelsOfNesting = levelsOfNesting; }
     public Integer getLevelsOfNesting() { return this.levelsOfNesting; }
+    public Integer getCurrentLevelFunction() { return this.currentLevelFunction; }
+    public HashMap<String, ArrayList<Integer>> getNestingMap() { return this.nestingMap; }
 
     /* enter(): create a new scope - namespace */
     public void enter(){

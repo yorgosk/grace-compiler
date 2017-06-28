@@ -30,6 +30,9 @@ public class MachineCode {
     /* how many Activation Records we have so far */
     private Integer numberOfActivationRecords;
 
+    /* a Java Hash-Map that for each name stores the levels of nesting in which it has been used, taken regularly from the Symbol Table, through updates */
+    private HashMap<String, ArrayList<Integer>> nestingMap;
+
     /* MachineCode's class (default-)constructor */
     public MachineCode() {
         // regarding Machine Code
@@ -45,6 +48,8 @@ public class MachineCode {
         // regarding Activation Records
         this.ARStack = new Stack<ActivationRecord>();
         this.numberOfActivationRecords = 0;
+        // regarding the Nesting Scheme
+        this.nestingMap = new HashMap<String, ArrayList<Integer>>();
 
         // add the first lines of assembly
         this.assembly.add(".intel_syntax noprefix # Use Intel syntax instead of AT&T\n");
@@ -288,5 +293,7 @@ public class MachineCode {
         newCommand += tokens[0]+" "+assemblyJumpLabel.toString()+"\n";
         this.assembly.add(assemblyCommandLabel-1, newCommand);
     }
+    /* update our Nesting Scheme, by updating our Nesting Map */
+    public void updateNestingMap(HashMap<String, ArrayList<Integer>> map) { this.nestingMap = map; }
 
 }

@@ -5,10 +5,7 @@ import compiler.node.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class ASTPrintingVisitor extends DepthFirstAdapter {
     // for indentation
@@ -161,7 +158,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             if(f.getName().equals(name)&&!name.equals(this.mainName)){
                 System.out.print("??????????????????????");
                 System.out.print(f.getName());
-                symbolTable.insert(f);
+                this.symbolTable.insert(f);
+
+                // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
+                HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
+                this.ir.updateAssemblyNestingMap(tempMap);
             }
         }
         //till here
@@ -262,6 +263,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 System.out.print("YYYYYYYYYYYYYY");
                 System.out.print(temp.getName());
                 this.symbolTable.insert(temp);
+
+                // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
+                HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
+                this.ir.updateAssemblyNestingMap(tempMap);
             }
             toPopFromTempRecordStack--;
             tempRec.type.addParameter(temp.getType());
@@ -282,6 +287,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 System.out.print(tempRec.getName());
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.addKnownFunction(tempRec);
+
+                // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
+                HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
+                this.ir.updateAssemblyNestingMap(tempMap);
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
@@ -428,6 +437,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.setScopeType(tempRec.getType());
                 this.symbolTable.addKnownFunction(tempRec);//yiannis_sem???? isws na einai la8os giati exei 3anaginei push i idia sunartisi
+
+                // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
+                HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
+                this.ir.updateAssemblyNestingMap(tempMap);
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
@@ -597,7 +610,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             if(f.getName().equals(node.getFuncDef().toString().split(" ")[0])&&!node.getFuncDef().toString().split(" ")[0].equals(this.mainName)){
                 System.out.print("??????????????????????");
                 System.out.print(f.getName());
-                symbolTable.insert(f);
+                this.symbolTable.insert(f);
+
+                // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
+                HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
+                this.ir.updateAssemblyNestingMap(tempMap);
             }
         }
         //till here
@@ -621,6 +638,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
              int result = this.symbolTable.searchFunction(temp);
              if (result == 0) {
                  this.symbolTable.insert(temp);
+
+                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
+                 HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
+                 this.ir.updateAssemblyNestingMap(tempMap);
              }
              // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
              else if (result == 1) {
@@ -633,11 +654,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
              }
 
            // this.symbolTable.insert(temp);	commented by yiannis
-            toPopFromTempRecordStack--;
+            this.toPopFromTempRecordStack--;
         }
         // for debugging
 //        this.symbolTable.printSTStructures();
-        assert (toPopFromTempRecordStack == 0);
+        assert (this.toPopFromTempRecordStack == 0);
     }
 
     // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
