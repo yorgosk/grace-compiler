@@ -1,5 +1,4 @@
 	.file	"gets.c"
-	.intel_syntax noprefix
 	.section	.rodata
 .LC0:
 	.string	"%s"
@@ -9,22 +8,23 @@
 get_s:
 .LFB0:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	sub	rsp, 16
-	mov	DWORD PTR [rbp-4], edi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	rdx, QWORD PTR stdin[rip]
-	mov	eax, DWORD PTR [rbp-4]
-	mov	esi, eax
-	mov	edi, OFFSET FLAT:.LC0
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$8, %esp
+	movl	stdin, %eax
+	subl	$4, %esp
+	pushl	%eax
+	pushl	8(%ebp)
+	pushl	$.LC0
 	call	fgets
+	addl	$16, %esp
 	nop
 	leave
-	.cfi_def_cfa 7, 8
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
 .LFE0:

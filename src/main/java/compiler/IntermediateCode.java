@@ -281,7 +281,9 @@ public class IntermediateCode {
     public void syncLabels() {
         this.setLabelMapping(this.getCurrentLabel(), this.getCurrentAssemblyCommand());
     }
-    /* update our Machine Code's Nesting Scheme, by updating it's Nesting Map */
+    public Integer getAssemblyLevelsOfNesting() { return this.assembly.getCurrentLevelsOfNesting(); }
+    /* update our Machine Code's Nesting Scheme, by updating it's Nesting Map and it's current levels of nesting variable */
     public void updateAssemblyNestingMap(HashMap<String, ArrayList<Integer>> map) { this.assembly.updateNestingMap(map); }
+    public void updateAssemblyLevelsOfNesting(Integer levelsOfNesting) { this.assembly.updateLevelsOfNesting(levelsOfNesting); }
 
 }

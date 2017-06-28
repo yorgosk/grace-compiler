@@ -1,5 +1,4 @@
 	.file	"geti.c"
-	.intel_syntax noprefix
 	.section	.rodata
 .LC0:
 	.string	"%d"
@@ -9,28 +8,30 @@
 get_i:
 .LFB0:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	sub	rsp, 16
-	mov	rax, QWORD PTR fs:40
-	mov	QWORD PTR [rbp-8], rax
-	xor	eax, eax
-	lea	rax, [rbp-12]
-	mov	rsi, rax
-	mov	edi, OFFSET FLAT:.LC0
-	mov	eax, 0
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$24, %esp
+	movl	%gs:20, %eax
+	movl	%eax, -12(%ebp)
+	xorl	%eax, %eax
+	subl	$8, %esp
+	leal	-16(%ebp), %eax
+	pushl	%eax
+	pushl	$.LC0
 	call	__isoc99_scanf
-	mov	eax, DWORD PTR [rbp-12]
-	mov	rdx, QWORD PTR [rbp-8]
-	xor	rdx, QWORD PTR fs:40
+	addl	$16, %esp
+	movl	-16(%ebp), %eax
+	movl	-12(%ebp), %edx
+	xorl	%gs:20, %edx
 	je	.L3
 	call	__stack_chk_fail
 .L3:
 	leave
-	.cfi_def_cfa 7, 8
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
 .LFE0:

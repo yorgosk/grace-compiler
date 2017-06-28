@@ -8,8 +8,9 @@ push si
 sub sp, 2
 call near ptr puts
 add sp, size+4
-_hello_4: mov sp, bp
+#hello_1:
+mov sp, bp
 pop bp
 ret
-_hello_4 endp
+_hello_1 endp
 .data

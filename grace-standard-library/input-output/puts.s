@@ -1,5 +1,4 @@
 	.file	"puts.c"
-	.intel_syntax noprefix
 	.section	.rodata
 .LC0:
 	.string	"%s"
@@ -9,21 +8,21 @@
 put_s:
 .LFB0:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	sub	rsp, 16
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
-	mov	rsi, rax
-	mov	edi, OFFSET FLAT:.LC0
-	mov	eax, 0
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$8, %esp
+	subl	$8, %esp
+	pushl	8(%ebp)
+	pushl	$.LC0
 	call	printf
+	addl	$16, %esp
 	nop
 	leave
-	.cfi_def_cfa 7, 8
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
 .LFE0:

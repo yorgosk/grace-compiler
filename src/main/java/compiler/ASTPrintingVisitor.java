@@ -163,6 +163,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
                 HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
                 this.ir.updateAssemblyNestingMap(tempMap);
+                Integer levelsOfNesting = this.symbolTable.getLevelsOfNesting();
+                this.ir.updateAssemblyLevelsOfNesting(levelsOfNesting);
             }
         }
         //till here
@@ -170,11 +172,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("endu", name, "-", "-");
 
         // producing assembly
-        name = "_"+name+"_"+this.ir.getCurrentLabel();
-        this.ir.addAssemblyCode(name+": mov sp, bp\n");
+        String name1 = "#"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
+        String name2 = "_"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
+        this.ir.addAssemblyCode(name1+":\nmov sp, bp\n");
         this.ir.addAssemblyCode("pop bp\n");
         this.ir.addAssemblyCode("ret\n");
-        this.ir.addAssemblyCode(name+" endp\n");
+        this.ir.addAssemblyCode(name2+" endp\n");
     }
     @Override
     public void caseAFuncDef(AFuncDef node)
@@ -197,7 +200,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.ir.GENQUAD("unit", this.tempFunctionStack.peek(), "-", "-");
 
             // producing assembly
-            String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getCurrentLabel();
+            String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getAssemblyLevelsOfNesting();
             this.ir.addAssemblyCode(name+" proc near\n");
             this.ir.addAssemblyCode("push bp\n");
             this.ir.addAssemblyCode("mov bp, sp\n");
@@ -267,6 +270,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
                 HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
                 this.ir.updateAssemblyNestingMap(tempMap);
+                Integer levelsOfNesting = this.symbolTable.getLevelsOfNesting();
+                this.ir.updateAssemblyLevelsOfNesting(levelsOfNesting);
             }
             toPopFromTempRecordStack--;
             tempRec.type.addParameter(temp.getType());
@@ -291,6 +296,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
                 HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
                 this.ir.updateAssemblyNestingMap(tempMap);
+                Integer levelsOfNesting = this.symbolTable.getLevelsOfNesting();
+                this.ir.updateAssemblyLevelsOfNesting(levelsOfNesting);
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
@@ -441,6 +448,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
                 HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
                 this.ir.updateAssemblyNestingMap(tempMap);
+                Integer levelsOfNesting = this.symbolTable.getLevelsOfNesting();
+                this.ir.updateAssemblyLevelsOfNesting(levelsOfNesting);
 
                 // for IR production
                 this.ir.addType(tempRec.getName(), tempRec.getType());
@@ -615,6 +624,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
                 HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
                 this.ir.updateAssemblyNestingMap(tempMap);
+                Integer levelsOfNesting = this.symbolTable.getLevelsOfNesting();
+                this.ir.updateAssemblyLevelsOfNesting(levelsOfNesting);
             }
         }
         //till here
@@ -642,6 +653,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                  // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
                  HashMap<String, ArrayList<Integer>> tempMap = this.symbolTable.getNestingMap();
                  this.ir.updateAssemblyNestingMap(tempMap);
+                 Integer levelsOfNesting = this.symbolTable.getLevelsOfNesting();
+                 this.ir.updateAssemblyLevelsOfNesting(levelsOfNesting);
              }
              // IS THIS AN ERROR???????????????????????????????????????????????????????????????????????????
              else if (result == 1) {

@@ -5,15 +5,18 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" afterPath="$PROJECT_DIR$/target/classes/compiler/ASTPrintingVisitor.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/IntermediateCode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" afterPath="$PROJECT_DIR$/target/classes/compiler/MachineCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" afterPath="$PROJECT_DIR$/target/classes/compiler/SymbolTable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/compiler-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/g.s" afterPath="$PROJECT_DIR$/g.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intermediateRepresentation.txt" afterPath="$PROJECT_DIR$/intermediateRepresentation.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/getc.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/getc.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/geti.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/geti.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/gets.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/gets.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/putc.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/putc.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/puti.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puti.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grace-standard-library/input-output/puts.s" afterPath="$PROJECT_DIR$/grace-standard-library/input-output/puts.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/MachineCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" afterPath="$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
@@ -65,8 +68,8 @@
       <file leaf-file-name="ASTPrintingVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="655" column="38" lean-forward="false" selection-start-line="655" selection-start-column="31" selection-end-line="655" selection-end-column="38" />
+            <state relative-caret-position="472">
+              <caret line="190" column="31" lean-forward="false" selection-start-line="190" selection-start-column="31" selection-end-line="190" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -87,8 +90,8 @@
       <file leaf-file-name="IntermediateCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="284" column="120" lean-forward="false" selection-start-line="284" selection-start-column="120" selection-end-line="284" selection-end-column="120" />
+            <state relative-caret-position="427">
+              <caret line="283" column="100" lean-forward="false" selection-start-line="283" selection-start-column="100" selection-end-line="283" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -97,8 +100,8 @@
       <file leaf-file-name="MachineCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="296" column="100" lean-forward="false" selection-start-line="294" selection-start-column="5" selection-end-line="296" selection-end-column="100" />
+            <state relative-caret-position="517">
+              <caret line="96" column="85" lean-forward="false" selection-start-line="96" selection-start-column="85" selection-end-line="96" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -140,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>!!!!!!!!!</find>
       <find>!!!!</find>
       <find>!!!!!!!</find>
       <find>^^^^^^^</find>
@@ -169,6 +171,7 @@
       <find>aheader</find>
       <find>look</find>
       <find>insert</find>
+      <find>&quot;unit&quot;</find>
       <find>insert(</find>
     </findStrings>
   </component>
@@ -199,9 +202,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
-    <option name="width" value="1366" />
-    <option name="height" value="744" />
+    <option name="x" value="683" />
+    <option name="y" value="52" />
+    <option name="width" value="683" />
+    <option name="height" value="716" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -591,7 +595,7 @@
       <workItem from="1498552446348" duration="314000" />
       <workItem from="1498562401153" duration="1569000" />
       <workItem from="1498632191302" duration="2575000" />
-      <workItem from="1498636324204" duration="772000" />
+      <workItem from="1498636324204" duration="3523000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some issues">
       <created>1497204035586</created>
@@ -859,14 +863,21 @@
       <option name="project" value="LOCAL" />
       <updated>1498634780474</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="additions for the nesting scheme... added nesting scheme's map to the assembly">
+      <created>1498637134686</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1498637134686</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40924000" />
+    <option name="totallyTimeSpent" value="43675000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
+    <frame x="683" y="52" width="683" height="716" extended-state="4" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -875,12 +886,12 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68575853" sideWeight="0.53712124" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.78317153" sideWeight="0.5431711" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31795716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32686085" sideWeight="0.49086577" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47293815" sideWeight="0.48451152" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.75232196" sideWeight="0.4628788" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.78317153" sideWeight="0.4568289" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3500785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -908,7 +919,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed nesting issue in beginning of units' quads" />
     <MESSAGE value="fixed nesting issue in beginning of units' quads... most recent" />
     <MESSAGE value="backpatch-labels fixed for reverse.grace case" />
     <MESSAGE value="provisioned for file-printing" />
@@ -933,7 +943,8 @@
     <MESSAGE value="we will use a special symbol &quot;*&quot; to separate func name and nesting level" />
     <MESSAGE value="started using/testing nesting scheme functions, added to shell script's functionality" />
     <MESSAGE value="additions for the nesting scheme" />
-    <option name="LAST_COMMIT_MESSAGE" value="additions for the nesting scheme" />
+    <MESSAGE value="additions for the nesting scheme... added nesting scheme's map to the assembly" />
+    <option name="LAST_COMMIT_MESSAGE" value="additions for the nesting scheme... added nesting scheme's map to the assembly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1159,16 +1170,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="61" column="60" lean-forward="false" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
-          <folding>
-            <element signature="e#15733#15742#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/generated-sources/sablecc/compiler/analysis/DepthFirstAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1179,24 +1180,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/MachineCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="296" column="100" lean-forward="false" selection-start-line="294" selection-start-column="5" selection-end-line="296" selection-end-column="100" />
+        <state relative-caret-position="517">
+          <caret line="96" column="85" lean-forward="false" selection-start-line="96" selection-start-column="85" selection-end-line="96" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/IntermediateCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="284" column="120" lean-forward="false" selection-start-line="284" selection-start-column="120" selection-end-line="284" selection-end-column="120" />
+        <state relative-caret-position="427">
+          <caret line="283" column="100" lean-forward="false" selection-start-line="283" selection-start-column="100" selection-end-line="283" selection-end-column="100" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/compiler/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="61" column="60" lean-forward="false" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
+          <folding>
+            <element signature="e#15733#15742#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compiler/ASTPrintingVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="655" column="38" lean-forward="false" selection-start-line="655" selection-start-column="31" selection-end-line="655" selection-end-column="38" />
+        <state relative-caret-position="472">
+          <caret line="190" column="31" lean-forward="false" selection-start-line="190" selection-start-column="31" selection-end-line="190" selection-end-column="31" />
           <folding />
         </state>
       </provider>
