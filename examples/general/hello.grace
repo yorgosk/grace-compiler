@@ -1,5 +1,5 @@
 $ one line comment
-fun hello () : nothing
+fun main () : nothing
 {
 	$$
 	true

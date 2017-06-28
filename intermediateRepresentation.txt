@@ -1,6 +1,6 @@
 
 		Low Level Intermediate Representation:
-1: unit, hello, -, -
+1: unit, main, -, -
 2: par, "Hello world!\n", R, -
 3: call, -, -, puts
-4: endu, hello, -, -
+4: endu, main, -, -

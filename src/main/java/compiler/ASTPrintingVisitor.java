@@ -172,9 +172,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("endu", name, "-", "-");
 
         // producing assembly
-        String name1 = "#"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
-        String name2 = "_"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
-        this.ir.addAssemblyCode(name1+":\nmov esp, ebp\n");
+//        String name1 = "#"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
+//        String name2 = "_"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
+//        this.ir.addAssemblyCode(name1+":\nmov esp, ebp\n");
         this.ir.addAssemblyCode("pop ebp\n");
         this.ir.addAssemblyCode("ret\n");
 //        this.ir.addAssemblyCode(name2+" endp\n");
@@ -200,7 +200,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.ir.GENQUAD("unit", this.tempFunctionStack.peek(), "-", "-");
 
             // producing assembly
-            String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getAssemblyLevelsOfNesting();
+            String name;
+            if (this.tempFunctionStack.peek().equals("main")) name = this.tempFunctionStack.peek();
+            else name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getAssemblyLevelsOfNesting();
 //            this.ir.addAssemblyCode(name+" proc near\n");
             this.ir.addAssemblyCode(name+":\n");
             this.ir.addAssemblyCode("push ebp\n");
@@ -257,6 +259,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         } else {
             this.hasMain = true;
             tempRec.setName(node.getId().toString().trim().replaceAll("\\s+", " "));
+
+            // for assembly production
+            this.ir.addAssemblyCode(".global main\n");
         }
 
         // insert the header's names to our Symbol-Table
@@ -924,8 +929,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                         this.ir.load("ax", this.ir.getPLACE(t1));
                         this.ir.addAssemblyCode("push ax\n");
                     } else if (this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("R") || this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n).equals("RET")) {
-                        this.ir.loadAddr("si", this.ir.getPLACE(t1));
-                        this.ir.addAssemblyCode("push si\n");
+//                        this.ir.loadAddr("si", this.ir.getPLACE(t1));
+//                        this.ir.addAssemblyCode("push si\n");
                     } else {
                         assert (false); // we don't want to end up here
                     }
@@ -948,18 +953,19 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.ir.addPLACE(this.ir.getCurrentLabel(), w);
 
             // producing assembly
-            this.ir.loadAddr("si", w);
-            this.ir.addAssemblyCode("push si\n");
+//            this.ir.loadAddr("si", w);
+//            this.ir.addAssemblyCode("push si\n");
         }
 
         this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
 
         // producing assembly
-        this.ir.addAssemblyCode("sub esp, 2\n");
-        this.ir.updateAL();
+//        this.ir.addAssemblyCode("sub esp, 2\n");
+//        this.ir.updateAL();
 //        this.ir.addAssemblyCode("call near ptr "+node.getId().toString().trim().replaceAll("\\s+", " ")+"\n");
         this.ir.addAssemblyCode("call "+node.getId().toString().trim().replaceAll("\\s+", " ")+"\n");
         this.ir.addAssemblyCode("add esp, 4\n");
+        this.ir.addAssemblyCode("mov eax, 0\n");
     }
 
     // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------

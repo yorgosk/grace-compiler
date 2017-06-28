@@ -6,12 +6,9 @@ push ebp
 mov ebp, esp
 mov eax, OFFSET FLAT:fmt
 push eax
-push si
-sub esp, 2
 call puts
 add esp, 4
-#hello_1:
-mov esp, ebp
+mov eax, 0
 pop ebp
 ret
 .data
