@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# example: %>./script.sh examples/general/primes.grace
+# example: %>./script.sh examples/general/primes.grace [--no-rebuil] [--upto-ir]
 
 if [ $# -eq 0 ]		# if no arguments were supplied
   	then
