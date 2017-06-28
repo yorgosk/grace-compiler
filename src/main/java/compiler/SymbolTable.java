@@ -28,6 +28,8 @@ public class SymbolTable {
     private Integer levelsOfNesting;
     // an index for the function of the level that we are at any time
     private Integer currentLevelFunction;
+    // a Java Hash-Map that for each name stores the levels of nesting in which it has been used
+    private HashMap<String, ArrayList<Integer>> nestingMap;
 
     /* SymbolTable's class constructor */
     public SymbolTable() {
@@ -42,6 +44,7 @@ public class SymbolTable {
         this.nestingScheme = new Stack<ArrayList<String>>();
         this.levelsOfNesting = 0;
         this.currentLevelFunction = -1;
+        this.nestingMap = new HashMap<String, ArrayList<Integer>>();
         // load Grace's library-functions
         this.loadGraceLibrary();
     }
@@ -75,6 +78,10 @@ public class SymbolTable {
         boolean success = look(record.getName());
         // if the "record" passed from lookup, add it to the symbol-table
         if(success) {
+            // noting nesting scheme -- adding name to current nesting scheme's level
+            String tempName = this.updateCurrentNestingLevel(record.getName());
+            this.printNestingScheme();  // for debugging
+
             // update scopes - namespaces' Stack
             this.symbolTableStackTop++;
             this.nameStack.peek().setIndex(this.symbolTableStackTop);
@@ -90,10 +97,6 @@ public class SymbolTable {
             * act accordingly */
             System.out.printf("Name %s ERROR\n", record.getName());
         }
-
-        // noting nesting scheme -- adding name to current nesting scheme's level
-        this.updateCurrentNestingLevel(record.getName());
-        this.printNestingScheme();  // for debugging
     }
 
     /* lookup(name): search for a name in the current scope
@@ -320,12 +323,27 @@ public class SymbolTable {
     public ArrayList<String> popCurrentNestingLevel() {
         return this.nestingScheme.pop();    // remove current nesting level temporarily, in order to update it
     }
-    public void updateCurrentNestingLevel(String initName) {
+    public String updateCurrentNestingLevel(String initName) {
         ArrayList<String> temp = this.popCurrentNestingLevel();
+        // the "*" is used as a special character to help us have both <name> and <nesting level> with a tokenization
         String tempName = initName + "*" + this.levelsOfNesting;
         temp.add(tempName);
         this.nestingScheme.push(temp);
         this.currentLevelFunction++;
+        // add name to the Hash Map
+        if (this.nestingMap.containsKey(tempName)) {
+            // if we already have a list for this name, just update this list
+            ArrayList<Integer> tempList = this.nestingMap.get(tempName);
+            tempList.add(this.levelsOfNesting);
+            this.nestingMap.put(tempName, tempList);
+        } else {
+            // if we don't already have a list for this name, then create a list and add it to the Hash Map
+            ArrayList<Integer> tempList = new ArrayList<Integer>();
+            tempList.add(this.levelsOfNesting);
+            this.nestingMap.put(tempName, tempList);
+        }
+
+        return tempName;    // we may want to get it back as well
     }
     public void removeNestingLevel() {
         this.nestingScheme.pop();
