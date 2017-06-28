@@ -1,27 +1,26 @@
 	.file	"abs.c"
-	.intel_syntax noprefix
 	.text
 	.globl	abs
 	.type	abs, @function
 abs:
 .LFB0:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	cmp	DWORD PTR [rbp-4], 0
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	cmpl	$0, 8(%ebp)
 	js	.L2
-	mov	eax, DWORD PTR [rbp-4]
+	movl	8(%ebp), %eax
 	jmp	.L3
 .L2:
-	mov	eax, DWORD PTR [rbp-4]
-	neg	eax
+	movl	8(%ebp), %eax
+	negl	%eax
 .L3:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	popl	%ebp
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
 .LFE0:

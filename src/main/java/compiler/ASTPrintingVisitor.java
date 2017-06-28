@@ -174,10 +174,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing assembly
         String name1 = "#"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
         String name2 = "_"+name+"_"+this.ir.getAssemblyLevelsOfNesting();
-        this.ir.addAssemblyCode(name1+":\nmov sp, bp\n");
-        this.ir.addAssemblyCode("pop bp\n");
+        this.ir.addAssemblyCode(name1+":\nmov esp, ebp\n");
+        this.ir.addAssemblyCode("pop ebp\n");
         this.ir.addAssemblyCode("ret\n");
-        this.ir.addAssemblyCode(name2+" endp\n");
+//        this.ir.addAssemblyCode(name2+" endp\n");
     }
     @Override
     public void caseAFuncDef(AFuncDef node)
@@ -201,10 +201,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
             // producing assembly
             String name = "_"+this.tempFunctionStack.peek()+"_"+this.ir.getAssemblyLevelsOfNesting();
-            this.ir.addAssemblyCode(name+" proc near\n");
-            this.ir.addAssemblyCode("push bp\n");
-            this.ir.addAssemblyCode("mov bp, sp\n");
-            this.ir.addAssemblyCode("sub sp, 8\n");
+//            this.ir.addAssemblyCode(name+" proc near\n");
+            this.ir.addAssemblyCode(name+":\n");
+            this.ir.addAssemblyCode("push ebp\n");
+            this.ir.addAssemblyCode("mov ebp, esp\n");
+//            this.ir.addAssemblyCode("sub esp, 8\n");
         }
         if(node.getBlock() != null)
         {
@@ -954,10 +955,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.GENQUAD("call", "-", "-", node.getId().toString().trim().replaceAll("\\s+", " "));
 
         // producing assembly
-        this.ir.addAssemblyCode("sub sp, 2\n");
+        this.ir.addAssemblyCode("sub esp, 2\n");
         this.ir.updateAL();
-        this.ir.addAssemblyCode("call near ptr "+node.getId().toString().trim().replaceAll("\\s+", " ")+"\n");
-        this.ir.addAssemblyCode("add sp, size+4\n");
+//        this.ir.addAssemblyCode("call near ptr "+node.getId().toString().trim().replaceAll("\\s+", " ")+"\n");
+        this.ir.addAssemblyCode("call "+node.getId().toString().trim().replaceAll("\\s+", " ")+"\n");
+        this.ir.addAssemblyCode("add esp, 4\n");
     }
 
     // IN AND OUT A STATEMENT AND ASSISTANT-STATEMENTS------------------------------------------------------------
@@ -1305,6 +1307,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.ir.setNEXT(this.ir.getCurrentLabel(), this.ir.EMPTYLIST());
         this.tempOperandsStack.push(this.ir.getCurrentLabel());
         this.toPopFromTempOperandsStack++;
+
+        // producing assembly
+        this.ir.addAssemblyCode("mov eax, OFFSET FLAT:fmt\n");
+        this.ir.addAssemblyCode("push eax\n");
+        this.ir.addAssemblyData("fmt: .asciz "+str+"\n");
     }
     @Override
     public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
@@ -1363,12 +1370,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.toPopFromTempRecordStack--;
 //        tempRecY.setDereference(true);
 //        this.ir.setDataMapping(t3, tempRecY);
-//        this.ir.load("ax", t3);
-//        this.ir.addAssemblyCode("mov cx, 8\n");
-//        this.ir.addAssemblyCode("imul cx\n");
-//        this.ir.loadAddr("cx", t1);
-//        this.ir.addAssemblyCode("add ax, cx\n");
-//        this.ir.store("ax", t2);
+//        this.ir.load("eax", t3);
+//        this.ir.addAssemblyCode("mov ecx, 8\n");
+//        this.ir.addAssemblyCode("imul ecx\n");
+//        this.ir.loadAddr("ecx", t1);
+//        this.ir.addAssemblyCode("add eax, ecx\n");
+//        this.ir.store("eax", t2);
 
 
         //added by yiannis_fin
@@ -1397,11 +1404,11 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 //        this.toPopFromTempRecordStack--;
         tempRecY.setDereference(true);
         this.ir.setDataMapping(t3, tempRecY);
-        this.ir.load("ax", t3);
-        this.ir.addAssemblyCode("mov cx, 8\n");
-        this.ir.addAssemblyCode("imul cx\n");
-        this.ir.loadAddr("cx", t1);
-        this.ir.addAssemblyCode("add ax, cx\n");
+        this.ir.load("eax", t3);
+        this.ir.addAssemblyCode("mov ecx, 8\n");
+        this.ir.addAssemblyCode("imul ecx\n");
+        this.ir.loadAddr("ecx", t1);
+        this.ir.addAssemblyCode("add eax, ecx\n");
         STRecord tempRecZ = new STRecord();//ftiaxnei mia metavliti na kanei push sto map giati einai kainourgia kai den einai dilwmeni kai skaei otan paei na kanei to store
         tempRecZ.setName(t2);
         tempRecZ.setType(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")));//8a einai idiou typou me to array alla xwris na einai array
@@ -1409,7 +1416,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         tempRecZ.getType().setArray(false);
         tempRecZ.getType().setDimension(0);
         this.ir.setDataMapping(t2,tempRecZ);
-        this.ir.store("ax", t2);
+        this.ir.store("eax", t2);
         //till here
     }
 
@@ -1537,13 +1544,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("add ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("add eax, edx\n");
         STRecord tempRecZ = new STRecord();
         tempRecZ.setType(temp3);
         this.ir.setDataMapping(t3, tempRecZ);
-        this.ir.store("ax", t3);
+        this.ir.store("eax", t3);
     }
     @Override
     public void inAMinusExpr(AMinusExpr node) {}
@@ -1591,13 +1598,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("sub ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("sub eax, edx\n");
         STRecord tempRecZ = new STRecord();
         tempRecZ.setType(temp3);
         this.ir.setDataMapping(t3, tempRecZ);
-        this.ir.store("ax", t3);
+        this.ir.store("eax", t3);
     }
     @Override
     public void inAMultExpr(AMultExpr node) {}
@@ -1645,13 +1652,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("cx", t1);
-        this.ir.addAssemblyCode("imul cx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("ecx", t1);
+        this.ir.addAssemblyCode("imul ecx\n");
         STRecord tempRecZ = new STRecord();
         tempRecZ.setType(temp3);
         this.ir.setDataMapping(t3, tempRecZ);
-        this.ir.store("ax", t3);
+        this.ir.store("eax", t3);
     }
     @Override
     public void inADivExpr(ADivExpr node) {}
@@ -1699,14 +1706,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
+        this.ir.load("eax", t2);
         this.ir.addAssemblyCode("cwd\n");
-        this.ir.load("cx", t1);
-        this.ir.addAssemblyCode("idiv cx");
+        this.ir.load("ecx", t1);
+        this.ir.addAssemblyCode("idiv ecx");
         STRecord tempRecZ = new STRecord();
         tempRecZ.setType(temp3);
         this.ir.setDataMapping(t3, tempRecZ);
-        this.ir.store("ax", t3);
+        this.ir.store("eax", t3);
     }
     @Override
     public void inADivisionExpr(ADivisionExpr node) {}
@@ -1754,14 +1761,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
+        this.ir.load("eax", t2);
         this.ir.addAssemblyCode("cwd\n");
-        this.ir.load("cx", t1);
-        this.ir.addAssemblyCode("idiv cx");
+        this.ir.load("ecx", t1);
+        this.ir.addAssemblyCode("idiv ecx");
         STRecord tempRecZ = new STRecord();
         tempRecZ.setType(temp3);
         this.ir.setDataMapping(t3, tempRecZ);
-        this.ir.store("ax", t3);
+        this.ir.store("eax", t3);
     }
     @Override
     public void inAModExpr(AModExpr node) {}
@@ -1809,14 +1816,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
+        this.ir.load("eax", t2);
         this.ir.addAssemblyCode("cwd\n");
-        this.ir.load("cx", t1);
-        this.ir.addAssemblyCode("idiv cx");
+        this.ir.load("ecx", t1);
+        this.ir.addAssemblyCode("idiv ecx");
         STRecord tempRecZ = new STRecord();
         tempRecZ.setType(temp3);
         this.ir.setDataMapping(t3, tempRecZ);
-        this.ir.store("dx", t3);
+        this.ir.store("edx", t3);
     }
     @Override
     public void inASignedExpr(ASignedExpr node) {}
@@ -1839,13 +1846,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             STRecord tempRecY = new STRecord();
             tempRecY.setType(temp1);
             this.ir.setDataMapping(t1, tempRecY);
-            this.ir.load("ax", "0");
-            this.ir.load("dx", t1);
-            this.ir.addAssemblyCode("sub ax, dx\n");
+            this.ir.load("eax", "0");
+            this.ir.load("edx", t1);
+            this.ir.addAssemblyCode("sub eax, edx\n");
             STRecord tempRecZ = new STRecord();
             tempRecZ.setType(temp1);
             this.ir.setDataMapping(t2, tempRecZ);
-            this.ir.store("ax", t2);
+            this.ir.store("eax", t2);
         }
     }
 
@@ -2060,9 +2067,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("cmp eax, edx\n");
         this.ir.addAssemblyCode("jz ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
 
@@ -2162,9 +2169,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("cmp eax, dx\n");
         this.ir.addAssemblyCode("jnz ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
 
@@ -2255,9 +2262,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("cmp eax, edx\n");
         this.ir.addAssemblyCode("jnz ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
 
@@ -2349,9 +2356,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("cmp eax, edx\n");
         this.ir.addAssemblyCode("jl ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
 
@@ -2443,9 +2450,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("cmp eax, edx\n");
         this.ir.addAssemblyCode("jg ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
 
@@ -2537,9 +2544,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("cmp eax, edx\n");
         this.ir.addAssemblyCode("jle ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
 
@@ -2631,9 +2638,9 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord tempRecY = new STRecord();
         tempRecY.setType(temp1);
         this.ir.setDataMapping(t1, tempRecY);
-        this.ir.load("ax", t2);
-        this.ir.load("dx", t1);
-        this.ir.addAssemblyCode("cmp ax, dx\n");
+        this.ir.load("eax", t2);
+        this.ir.load("edx", t1);
+        this.ir.addAssemblyCode("cmp eax, edx\n");
         this.ir.addAssemblyCode("jge ?\n");
         this.ir.syncLabels();   // sync labels of jump statement
 

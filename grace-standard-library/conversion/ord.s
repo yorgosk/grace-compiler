@@ -1,21 +1,22 @@
 	.file	"ord.c"
-	.intel_syntax noprefix
 	.text
 	.globl	ord
 	.type	ord, @function
 ord:
 .LFB2:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	eax, edi
-	mov	BYTE PTR [rbp-4], al
-	movsx	eax, BYTE PTR [rbp-4]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$4, %esp
+	movl	8(%ebp), %eax
+	movb	%al, -4(%ebp)
+	movsbl	-4(%ebp), %eax
+	leave
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
 .LFE2:

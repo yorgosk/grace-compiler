@@ -1,16 +1,18 @@
 .intel_syntax noprefix # Use Intel syntax instead of AT&T
 .text
-_hello_1 proc near
-push bp
-mov bp, sp
-sub sp, 8
+.global main
+main:
+push ebp
+mov ebp, esp
+mov eax, OFFSET FLAT:fmt
+push eax
 push si
-sub sp, 2
-call near ptr puts
-add sp, size+4
+sub esp, 2
+call puts
+add esp, 4
 #hello_1:
-mov sp, bp
-pop bp
+mov esp, ebp
+pop ebp
 ret
-_hello_1 endp
 .data
+fmt: .asciz "Hello world!\n"
