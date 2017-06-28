@@ -157,8 +157,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             //System.out.print("????????????????????????????????");
             //System.out.print(this.mainName);
             if(f.getName().equals(name)&&!name.equals(this.mainName)){
-                System.out.print("??????????????????????");
-                System.out.print(f.getName());
+                //System.out.print("??????????????????????");
+                //System.out.print(f.getName());
                 this.symbolTable.insert(f);
 
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
@@ -231,6 +231,10 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack--;
         tempRec.type = new STRecord.Type(tempType);
         //yiannis_sem
+        if(this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "))!=null&&!this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " ")).getFunction()){
+            System.err.printf("Error: a variable has already defined whth this name: %s\n",node.getId().toString().trim().replaceAll("\\s+", " "));
+            this.gracefullyExit();
+        }
         System.out.print("MAINNNNN");
         System.out.print(node.getId().toString());
         if(!tempType.getKind().equals("nothing")&&!this.hasMain){
