@@ -97,7 +97,7 @@ public class SymbolTable {
         } else {
             /* failure --
             * act accordingly */
-            System.out.printf("Name %s ERROR\n", record.getName());
+            //System.out.printf("Name %s ERROR\n", record.getName());
         }
     }
 
@@ -113,7 +113,7 @@ public class SymbolTable {
         int scope = this.symbolTable.get(i).getScopeId();
         while(i >= 0/* && scope == curr_scope*/) {      //commented by yiannis_sem : it seems to work fine but may creates problems
             if(this.symbolTable.get(i).getName().equals(name)) {
-                System.out.printf("Name %s found\n", name);
+                //System.out.printf("Name %s found\n", name);
                 return false;
             }
             i--;
@@ -136,9 +136,9 @@ public class SymbolTable {
     /* check the returned Type */
     public boolean checkRetType(STRecord.Type other){
         STRecord.Type temp = this.nameStack.peek().getType();      //function added by yiannis
-        System.out.printf("printing temp type\n");
+        //System.out.printf("printing temp type\n");
         temp.printType();
-        System.out.printf("printed temp type\n");
+        //System.out.printf("printed temp type\n");
         if(temp.isSameRetType(other)){
             return true;
         }
@@ -158,7 +158,7 @@ public class SymbolTable {
         int scope = this.symbolTable.get(i).getScopeId();
         while(i >= 0 && scope == curr_scope) {
             if(this.symbolTable.get(i).getName().equals(name)) {
-                System.out.printf("Name %s found\n", name);
+                //System.out.printf("Name %s found\n", name);
                 return false;
             }
             i--;
@@ -175,7 +175,7 @@ public class SymbolTable {
         int i = this.symbolTable.size()-1;
         int scope = this.symbolTable.get(i).getScopeId();
         while(i >= 0 /*&& scope == curr_scope*/) {
-            System.out.print(this.symbolTable.get(i).getName());
+            //System.out.print(this.symbolTable.get(i).getName());
             i--;
             if(i >= 0) scope = this.symbolTable.get(i).getScopeId();
         }
@@ -225,7 +225,7 @@ public class SymbolTable {
         while(i >= 0 && scope == curr_scope) {
             if (this.symbolTable.get(i).getName().equals(tempRec.getName())) {
                 if (this.symbolTable.get(i).getType().isSame(tempRec.getType())) {
-                    System.out.printf("Function %s found\n", tempRec.getName());
+                    //System.out.printf("Function %s found\n", tempRec.getName());
                     if (this.symbolTable.get(i).getDefined()) return 1; // we have a "search-success"
                     else return 0;                                      // we have a "search-failure"
                 } else return -1;       // same name, but incompatible types -- we have a "type-error"
@@ -242,7 +242,7 @@ public class SymbolTable {
         // take the type from any scope (it may not be local)
         STRecord.Type temp = null;
         if (this.variableMap.containsKey(name)) {
-            System.out.printf("Name %s found\n", name);
+            //System.out.printf("Name %s found\n", name);
             //System.out.print(this.variableMap.keySet());
             int index = this.variableMap.get(name);
             temp = new STRecord.Type(this.symbolTable.get(index).getType());
@@ -272,7 +272,6 @@ public class SymbolTable {
     public STRecord.Type paramType(String name, int number){
         // take the type from any scope (it may not be local)
 	//add by yiannis_sem
-        //System.out.print("OOOOOOOOOOOOOO");
         if(this.inLibrary(name)){
             STRecord.Type type = new STRecord.Type();
             type=this.library.get(this.getLibraryFun(name)).getType();
@@ -290,10 +289,9 @@ public class SymbolTable {
                 //System.out.print(params.get(i));
             //}
         }
-        //System.out.print("OOOOOOOOOOOO");
         //till here
         if (this.variableMap.containsKey(name)) {
-            System.out.printf("Name %s found\n", name);
+            //System.out.printf("Name %s found\n", name);
             int index = this.variableMap.get(name);
             STRecord.Type temp = new STRecord.Type(this.symbolTable.get(index).getType());
             STRecord.Type tempParam = temp.fetchParamType(number);
@@ -305,16 +303,16 @@ public class SymbolTable {
     /* print our structures
     * -- for debugging */
     public void printSTStructures() {
-        System.out.printf("\nSymbol-Table:\n");
+        //System.out.printf("\nSymbol-Table:\n");
         for (int i = 0; i < this.symbolTable.size(); i++) {
             this.symbolTable.get(i).printSTRecord();
         }
-        System.out.printf("\nScope-Namespace Stack:\n");
+        //System.out.printf("\nScope-Namespace Stack:\n");
         for (int i = 0; i < this.nameStack.size(); i++) {
             this.nameStack.get(i).printNSRecord();
         }
-        System.out.printf("\nVariables' Hash-Map:\n");
-        System.out.println(Arrays.asList(variableMap));
+        //System.out.printf("\nVariables' Hash-Map:\n");
+        //System.out.println(Arrays.asList(variableMap));
     }
 
     /* utility functions for nesting scheme */
@@ -356,9 +354,9 @@ public class SymbolTable {
     /* print our nesting scheme
     * -- for debugging */
     public void printNestingScheme() {
-        System.out.printf("\nProgram's functions nesting scheme (%d levels of nesting):\n", this.levelsOfNesting);
-        System.out.print(this.nestingScheme);
-        System.out.printf("\n");
+        //System.out.printf("\nProgram's functions nesting scheme (%d levels of nesting):\n", this.levelsOfNesting);
+        //System.out.print(this.nestingScheme);
+        //System.out.printf("\n");
     }
 
     //yiannis_sem added null in last parameter dim

@@ -142,8 +142,8 @@ public class STRecord {
 
         /* Type's class printing function */
         public void printType() {
-            System.out.printf("\t|__> TYPE -> kind: %s - isArray: %b - dimension: %d - isFunction: %b\n",
-                    this.kind, this.isArray, this.dimension, this.isFunction);
+            /*System.out.printf("\t|__> TYPE -> kind: %s - isArray: %b - dimension: %d - isFunction: %b\n",
+                    this.kind, this.isArray, this.dimension, this.isFunction);*/
         }
 
     }
@@ -211,8 +211,8 @@ public class STRecord {
 
     /* STRecord's class printing function */
     public void printSTRecord() {
-        System.out.printf("STR -> name: %s - isParam: %b - isLocal: %b - isDefined: %b - isDereference: %b - scopeId: %d - shadowIndex: %d\n",
-                this.name, this.isParam, this.isLocal, this.isDefined, this.isDereference, this.scopeId, this.shadowIndex);
+        /*System.out.printf("STR -> name: %s - isParam: %b - isLocal: %b - isDefined: %b - isDereference: %b - scopeId: %d - shadowIndex: %d\n",
+                this.name, this.isParam, this.isLocal, this.isDefined, this.isDereference, this.scopeId, this.shadowIndex);*/
         this.type.printType();
     }
 

@@ -27,7 +27,7 @@ public class NSRecord {
 
     /* NSRecord's class printing function */
     public void printNSRecord() {
-        System.out.printf("NSR -> index: %d\n", this.index);
+        //System.out.printf("NSR -> index: %d\n", this.index);
     }
 
 }

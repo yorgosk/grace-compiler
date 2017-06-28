@@ -36,7 +36,7 @@ class Main {
 			Start tree = p.parse();
 
 			try {
-				System.out.printf("\nPrinting Abstract Syntax Tree:\n\n");
+				//System.out.printf("\nPrinting Abstract Syntax Tree:\n\n");
 				tree.apply(new ASTPrintingVisitor());
 			} catch (NullPointerException e) {
 				System.err.printf("Null pointer Exception: %s\n", e.getMessage());

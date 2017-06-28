@@ -10,7 +10,7 @@ import java.util.*;
 public class ASTPrintingVisitor extends DepthFirstAdapter {
     // for indentation
     private int indent = 0;
-    private void makeIndent() { for(int i = 0; i < indent; i++) System.out.printf("    "); }
+    private void makeIndent() { /*for(int i = 0; i < indent; i++) System.out.printf("    ");*/ }
 
     // Symbol-Table for Syntactical Analysis
     private SymbolTable symbolTable;
@@ -86,14 +86,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A PROGRAM------------------------------------------------------------
     @Override
-    public void inAProgram(AProgram node) { makeIndent(); System.out.printf("program :\n"); indent++; }
+    public void inAProgram(AProgram node) { makeIndent(); /*System.out.printf("program :\n");*/ indent++; }
     @Override
     public void outAProgram(AProgram node) { indent--; System.out.printf("Intermediate Representation:\n");
         //yiannis_sem
         ArrayList<STRecord> KFun = this.symbolTable.getKnownFunctions();
         for(STRecord rec: KFun){
             rec.printSTRecord();
-            System.out.print(rec.getName());
+            //System.out.print(rec.getName());
             if(!rec.getDefined()){
                 System.err.printf("Error: function \"%s\" has not been defined, only declared\n", rec.getName());
                 this.gracefullyExit();
@@ -102,7 +102,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //till here
         // print IR
         this.ir.printIR();
-        System.out.print("\n-----------------------------------------------------\n\t\tPROGRAM OUTPUT:\n-----------------------------------------------------\n");
+        //System.out.print("\n-----------------------------------------------------\n\t\tPROGRAM OUTPUT:\n-----------------------------------------------------\n");
         // print IR to file -- for testing
         this.ir.printIR(irWriter);
         // done printing IR to file -- for testing
@@ -135,7 +135,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A FUNCTION DEFINITION------------------------------------------------------------
     @Override
-    public void inAFuncDef(AFuncDef node) { makeIndent(); System.out.printf("function :\n"); indent++;
+    public void inAFuncDef(AFuncDef node) { makeIndent(); /*System.out.printf("function :\n");*/ indent++;
         // we are in a function definition, this means that a new namespace-scope is created
         this.symbolTable.enter();
         // the very next header that we will see, we want to remember that it belongs to a function Definition
@@ -145,8 +145,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void outAFuncDef(AFuncDef node) { indent--; symbolTable.exit();
         String name = this.tempFunctionStack.pop();
         //yiannis_sem
-        //System.out.print("NNNNNNNNNNNNNNNNNN");
-        //System.out.print(this.hasReturn);
         if(!this.hasReturn&&!this.symbolTable.fetchType(name).getKind().equals("nothing")){
             System.err.printf("Error: function \"%s\" has not a return statement\n",name);
             this.gracefullyExit();
@@ -154,11 +152,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.hasReturn=false;
         STRecord rec = new STRecord();
         for(STRecord f:this.symbolTable.getKnownFunctions()){
-            //System.out.print("????????????????????????????????");
-            //System.out.print(this.mainName);
             if(f.getName().equals(name)&&!name.equals(this.mainName)){
-                //System.out.print("??????????????????????");
-                //System.out.print(f.getName());
                 this.symbolTable.insert(f);
 
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
@@ -221,7 +215,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A HEADER AND ASSISTANT-PRODUCTIONS------------------------------------------------------------
     @Override
-    public void inAHeader(AHeader node) { makeIndent(); System.out.printf("header(\"%s\") :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++; }
+    public void inAHeader(AHeader node) { makeIndent(); /*System.out.printf("header(\"%s\") :\n", node.getId().toString().trim().replaceAll("\\s+", " "));*/ indent++; }
     @Override
     public void outAHeader(AHeader node) { indent--;
         // keep the name of the function
@@ -235,8 +229,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             System.err.printf("Error: a variable has already defined whth this name: %s\n",node.getId().toString().trim().replaceAll("\\s+", " "));
             this.gracefullyExit();
         }
-        System.out.print("MAINNNNN");
-        System.out.print(node.getId().toString());
         if(!tempType.getKind().equals("nothing")&&!this.hasMain){
             System.err.printf("Error: main function must return nothing\n");
             this.gracefullyExit();
@@ -275,9 +267,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord temp;
         while (this.toPopFromTempRecordStack != 0) {
             temp = this.tempRecordStack.pop();
-            if(!this.isDecl) {  //if added by yiannis_sem : prevents declarations to push params in scopes and never leave, it seems to work fine but may cause problems  261
-                System.out.print("YYYYYYYYYYYYYY");
-                System.out.print(temp.getName());
+            if(!this.isDecl) {  //if added by yiannis_sem : prevents declarations to push params in scopes and never leave, it seems to work fine but may cause problems
                 this.symbolTable.insert(temp);
 
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
@@ -301,8 +291,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
             if (result == 0) {
                 tempRec.setDefined(false);
-                System.out.print("UUUUUUUUUUU");
-                System.out.print(tempRec.getName());
                 this.symbolTable.insert(tempRec);
                 this.symbolTable.addKnownFunction(tempRec);
 
@@ -327,29 +315,19 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }else {
             if (result == 0) {
                 //yiannis_sem
-                System.out.print("JJJJJJJJJJ");
-                System.out.print(this.symbolTable.fetchType(tempRec.getName()));
                 if(this.symbolTable.fetchType(tempRec.getName())!=null) {
                     if(!this.symbolTable.fetchType(tempRec.getName()).getKind().equals(tempRec.getType().getKind())){
                         System.err.printf("Error: function \"%s\" has declared in a different type\n", tempRec.getName());
                         this.gracefullyExit();
                     }
-                    System.out.print(tempRec.getName());
-                    System.out.print(node.getFparDef());
-                    System.out.print(node.getId());
-                    System.out.print(node.getRetType());
                     String[] params = node.getFparDef().toString().split(" ");
                     params[0] = params[0].substring(1);
-                    System.out.print(params.length);
-                    System.out.print("LLLLLLLLLLLL");
                     boolean isRef = false;
                     boolean isArray = false;
                     int count = 0;
                     int num = 0;
                     int sum = 0;
                     for (Object i : params) {
-                        System.out.print("PPPPPPP");
-                        System.out.print(i.toString());
                         if (i.toString().equals("ref")) {
                             isRef = true;
                         } else if (i.toString().equals("int")) {
@@ -362,7 +340,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                                     System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
                                     this.gracefullyExit();
                                 }
-                                //System.out.print("BBBBBBBBBBBBBBB");
                                 // System.out.print(count);
                                 if (params[count + 1].toString().toCharArray()[0] == '0' || params[count + 1].toString().toCharArray()[0] == '1' || params[count + 1].toString().toCharArray()[0] == '2' || params[count + 1].toString().toCharArray()[0] == '3' || params[count + 1].toString().toCharArray()[0] == '4' || params[count + 1].toString().toCharArray()[0] == '5' || params[count + 1].toString().toCharArray()[0] == '6' || params[count + 1].toString().toCharArray()[0] == '7' || params[count + 1].toString().toCharArray()[0] == '8' || params[count + 1].toString().toCharArray()[0] == '9') {
                                     isArray = true;
@@ -409,8 +386,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                             sum++;
                         }
                     }
-                    System.out.print("KLJKJJHHHJK");
-                    System.out.print(count);
                     if (this.symbolTable.paramType(tempRec.getName(), sum) != null) {
                         System.err.printf("Error: function \"%s\" has declared in a different way\n", tempRec.getName());
                         this.gracefullyExit();
@@ -423,8 +398,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                     boolean isArray=false;
                     int count=0;
                     for (Object i : params) {
-                        System.out.print(i.toString());
-                        System.out.print("  ");
                         if (i.toString().equals("ref")) {
                             isRef = true;
                         }else if(i.toString().equals(",")){
@@ -485,7 +458,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A FUNCTION PARAMETERS------------------------------------------------------------
     @Override
-    public void inAFparDef(AFparDef node) { makeIndent(); System.out.printf("fparDef :\n"); indent++; }
+    public void inAFparDef(AFparDef node) { makeIndent(); /*System.out.printf("fparDef :\n");*/ indent++; }
     @Override
     public void outAFparDef(AFparDef node) { indent--;
         // keep whether it is a ref or not
@@ -521,21 +494,19 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A DATA TYPE------------------------------------------------------------
     @Override
-    public void inAIntDataType(AIntDataType node) { makeIndent(); System.out.printf("\"int\"");  }
+    public void inAIntDataType(AIntDataType node) { makeIndent(); /*System.out.printf("\"int\"");*/  }
     @Override
-    public void outAIntDataType(AIntDataType node) { System.out.printf("\n"); }
+    public void outAIntDataType(AIntDataType node) { /*System.out.printf("\n");*/ }
     @Override
-    public void inACharDataType(ACharDataType node) { makeIndent(); System.out.printf("\"char\""); }
+    public void inACharDataType(ACharDataType node) { makeIndent(); /*System.out.printf("\"char\"");*/ }
     @Override
-    public void outACharDataType(ACharDataType node) { System.out.printf("\n"); }
+    public void outACharDataType(ACharDataType node) { /*System.out.printf("\n");*/ }
 
     // IN AND OUT A TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAType(AType node) { makeIndent(); System.out.printf("type :\n"); indent++; }
+    public void inAType(AType node) { makeIndent(); /*System.out.printf("type :\n");*/ indent++; }
     @Override
     public void outAType(AType node) { indent--;
-    System.out.print("IIIIIIIIII");
-    System.out.print(node.getIntConst());
         STRecord.Type temp = new STRecord.Type();
         temp.setKind(node.getDataType().toString().trim().replaceAll("\\s+", " "));
         if(node.getIntConst().size() > 0) {
@@ -553,7 +524,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A RETURN TYPE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inADataTypeRetType(ADataTypeRetType node) { makeIndent(); System.out.printf("retType :\n"); indent++; }
+    public void inADataTypeRetType(ADataTypeRetType node) { makeIndent(); /*System.out.printf("retType :\n");*/ indent++; }
     @Override
     public void outADataTypeRetType(ADataTypeRetType node) { indent--;
         STRecord.Type temp = new STRecord.Type();
@@ -562,7 +533,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempTypeStack++;
     }
     @Override
-    public void inANothingRetType(ANothingRetType node) { makeIndent(); System.out.printf("retType :\"nothing\"\n"); }
+    public void inANothingRetType(ANothingRetType node) { makeIndent(); /*System.out.printf("retType :\"nothing\"\n");*/ }
     @Override
     public void outANothingRetType(ANothingRetType node) {
         STRecord.Type temp = new STRecord.Type();
@@ -573,20 +544,16 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A FUNCTION PARAMETER TYPE AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAFparType(AFparType node) { makeIndent(); System.out.printf("funcParType :\n"); indent++;
+    public void inAFparType(AFparType node) { makeIndent(); /*System.out.printf("funcParType :\n");*/ indent++;
         STRecord.Type temp = new STRecord.Type();
         temp.setKind(node.getDataType().toString().trim().replaceAll("\\s+", " "));
-        System.out.print(node.getLRBrackets());
-        System.out.print(node.getDataType());
         if (node.getLRBrackets() != null) {
-            System.out.printf("getLRBrackets\n");
+            //System.out.printf("getLRBrackets\n");
             temp.setArray(true);
             temp.setDimension(1);
         }
         if(node.getIntConst().size() > 0) {
-            System.out.printf("getIntconst\n");
-            System.out.print("BBBBBBBBbb");
-            System.out.print(node.getIntConst());
+            //System.out.printf("getIntconst\n");
             temp.setArray(true);
             if(node.getLRBrackets()==null) {
                 if (node.getIntConst().size() > 1) {
@@ -614,7 +581,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A LOCAL DEFINITION------------------------------------------------------------
     @Override
-    public void inAFuncDefLocalDef(AFuncDefLocalDef node) { makeIndent(); System.out.printf("funcDefLocalDef :\n"); indent++;
+    public void inAFuncDefLocalDef(AFuncDefLocalDef node) { makeIndent(); /*System.out.printf("funcDefLocalDef :\n");*/ indent++;
         // we are in a function definition, this means that a new namespace-scope is created
         symbolTable.enter();
         // the very next header that we will see, we want to remember that it belongs to a function Definition
@@ -626,12 +593,8 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
         STRecord rec = new STRecord();
         for(STRecord f:this.symbolTable.getKnownFunctions()){
-            System.out.print("????????????????????????????????");
-            System.out.print(node.getFuncDef().toString().split(" ")[0]);
             //System.out.print(this.mainName);
             if(f.getName().equals(node.getFuncDef().toString().split(" ")[0])&&!node.getFuncDef().toString().split(" ")[0].equals(this.mainName)){
-                System.out.print("??????????????????????");
-                System.out.print(f.getName());
                 this.symbolTable.insert(f);
 
                 // pass Symbol Table's Nesting Scheme to the Machine Code's Nesting Scheme
@@ -644,14 +607,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //till here
     }	//changed by yiannis
     @Override
-    public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) { makeIndent(); System.out.printf("funcDeclLocalDef :\n"); indent++;
+    public void inAFuncDeclLocalDef(AFuncDeclLocalDef node) { makeIndent(); /*System.out.printf("funcDeclLocalDef :\n");*/ indent++;
         // the very next header that we will see, we want to remember that it belongs to a function Declaration
         this.isDecl = true;
     }
     @Override
     public void outAFuncDeclLocalDef(AFuncDeclLocalDef node) { indent--; }
     @Override
-    public void inAVarDefLocalDef(AVarDefLocalDef node) { makeIndent(); System.out.printf("varDefLocalDef :\n"); indent++; }
+    public void inAVarDefLocalDef(AVarDefLocalDef node) { makeIndent(); /*System.out.printf("varDefLocalDef :\n");*/ indent++; }
     @Override
     public void outAVarDefLocalDef(AVarDefLocalDef node) { indent--;
         // insert the variables' names to our Symbol-Table
@@ -689,7 +652,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A VARIABLE DEFINITION AND ASSISTANT-STATEMENT------------------------------------------------------------
     @Override
-    public void inAVarDef(AVarDef node) { makeIndent(); System.out.printf("var :\"%s\"\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++; }
+    public void inAVarDef(AVarDef node) { makeIndent();/* System.out.printf("var :\"%s\"\n", node.getId().toString().trim().replaceAll("\\s+", " "));*/ indent++; }
     @Override
     public void outAVarDef(AVarDef node) { indent--;
         // keep the name of the parameters
@@ -723,13 +686,13 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A FUNCTION DECLARATION------------------------------------------------------------
     @Override
-    public void inAFuncDecl(AFuncDecl node) { makeIndent(); System.out.printf("funcDecl :\n"); indent++; }
+    public void inAFuncDecl(AFuncDecl node) { makeIndent(); /*System.out.printf("funcDecl :\n");*/ indent++; }
     @Override
     public void outAFuncDecl(AFuncDecl node) { indent--; }
 
     // IN AND OUT A CODE BLOCK------------------------------------------------------------
     @Override
-    public void inABlock(ABlock node) { makeIndent(); System.out.printf("code-block body :\n"); indent++;}
+    public void inABlock(ABlock node) { makeIndent(); /*System.out.printf("code-block body :\n");*/ indent++;}
     @Override
     public void outABlock(ABlock node) { indent--; }
     @Override
@@ -766,15 +729,12 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A FUNCTION CALL AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inAFuncCall(AFuncCall node) { makeIndent(); System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " ")); indent++;
+    public void inAFuncCall(AFuncCall node) { makeIndent(); /*System.out.printf("func-call( \"%s\" ) :\n", node.getId().toString().trim().replaceAll("\\s+", " "));*/ indent++;
         //add by yiannis_sem
         String funName = node.getId().toString().trim().replaceAll("\\s+", " ");
         LinkedList paramList = node.getExpr();
         int c=0;int size;
-        System.out.print(funName);
-        //System.out.print("********************");
         //this.symbolTable.printscope();
-        //System.out.print("********************");
         if(this.symbolTable.lookup(funName)&&!this.symbolTable.inLibrary(funName)){
             System.err.printf("Error: function %s has not been declared in this scope\n",funName);
             this.gracefullyExit();
@@ -825,7 +785,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 else if (n.toCharArray()[0]=='\"'){
                     type1 = new STRecord.Type();
                     type1.setArray(true);
-                    //System.out.print("CCCCCCCCCCCCCCCCCCCC");
                     //System.out.print(i.toString());
                     String[] t = i.toString().substring(1).split("\"")[1].split(" ");
                     if(t.length==2){
@@ -860,10 +819,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             }
             else {
                 c++;
-                System.out.print(node.getExpr());
-                System.out.print("sdfdfsfsdsdffsd");
-                System.out.print(type1.getDimension());
-                System.out.print(type2.getDimension());
                 if(type1.getDimension()!=null&&type2.getDimension()!=null) {
                     if (type1.getDimension() > type2.getDimension()) {
                         System.err.printf("Error: trying to pass array wrong number of dimension %s\n", n);
@@ -927,7 +882,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 if(!tempOperandsStack.empty()) {//this if added by yiannis_sem , it solve problem with stack that crash but may create wrong quads
                     Integer t1 = tempOperandsStack.pop();
                     this.toPopFromTempOperandsStack--;
-                    System.out.printf("searching param %d of %s", n, node.getId().toString());
+                   // System.out.printf("searching param %d of %s", n, node.getId().toString());
                     this.ir.GENQUAD("par", this.ir.getPLACE(t1), this.ir.PARAMMODE(node.getId().toString().trim().replaceAll("\\s+", " "), n), "-");
                     n++;
 
@@ -950,7 +905,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         // producing IR
         STRecord.Type funcType = this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "));
         assert (funcType != null);
-        System.out.printf("Type:\n");
+        //System.out.printf("Type:\n");
         this.tempTypeStack.push(funcType);
         this.toPopFromTempTypeStack++;
         funcType.printType();
@@ -994,8 +949,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         STRecord.Type temp2 = this.tempTypeStack.pop();
         this.toPopFromTempTypeStack--;
         //yiannis_sem
-        System.out.print("<<<<<<<<,");
-        System.out.print(temp1.getDimension());
         String[] dim = node.getLValue().toString().split(" ");
         if((dim.length-1)==temp1.getDimension()){
             temp1.setArray(false);
@@ -1013,8 +966,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 	//added by yiannis_sem
         //commented segment to avoid errors
         if(temp1.getArray()!=temp2.getArray()){
-            System.out.print("OOOOOOOOOOOOOOPPPPPPPP");
-            System.out.print(node.getExpr());
             String[] splitted = node.getExpr().toString().split(" ");
             /*if (((this.symbolTable.fetchType(splitted[1]) != null && this.symbolTable.fetchType(splitted[1]).getKind().equals("int")) || splitted[1].toCharArray()[0] == '0' || splitted[1].toCharArray()[0] == '1' || splitted[1].toCharArray()[0] == '2' || splitted[1].toCharArray()[0] == '3' || splitted[1].toCharArray()[0] == '4' || splitted[1].toCharArray()[0] == '5' || splitted[1].toCharArray()[0] == '6' || splitted[1].toCharArray()[0] == '7' || splitted[1].toCharArray()[0] == '8' || splitted[1].toCharArray()[0] == '9')) {
 
@@ -1037,8 +988,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
                 }
             }
         }
-        System.out.print("LLLLLLLLLLLL");
-        System.out.print(node.getExpr());
         if(temp2.getKind().equals("string")) {
             String[] t = node.getExpr().toString().substring(1).split("\"")[1].split(" ");
             if (temp2.getKind().equals("string") && t.length == 2) {
@@ -1217,8 +1166,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
     public void outAReturnStmt(AReturnStmt node) {
         //yiannis_sem
         this.hasReturn=true;
-        System.out.print("EEEEEEEEEEEEE");
-        System.out.print(node.getExpr());
         STRecord.Type temp = new STRecord.Type();
         if(node.getExpr().size()==0){
             temp.setKind("nothing");
@@ -1260,7 +1207,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
 
     // IN AND OUT A L-VALUE AND ASSISTANT-STATEMENTS------------------------------------------------------------
     @Override
-    public void inAIdLValue(AIdLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getId().toString().trim().replaceAll("\\s+", " ")); }
+    public void inAIdLValue(AIdLValue node) { makeIndent(); /*System.out.printf("\"%s\"\n", node.getId().toString().trim().replaceAll("\\s+", " "));*/ }
     @Override
     public void outAIdLValue(AIdLValue node) {
         STRecord.Type temp = this.symbolTable.fetchType(node.getId().toString().trim().replaceAll("\\s+", " "));
@@ -1297,7 +1244,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.toPopFromTempOperandsStack++;
     }
     @Override
-    public void inAStringLValue(AStringLValue node) { makeIndent(); System.out.printf("\"%s\"\n", node.getStringLiteral().toString().trim().replaceAll("\\s+", " ")); }
+    public void inAStringLValue(AStringLValue node) { makeIndent(); /*System.out.printf("\"%s\"\n", node.getStringLiteral().toString().trim().replaceAll("\\s+", " "));*/ }
     @Override
     public void outAStringLValue(AStringLValue node) {
 	//yiannis2 : prepei na pairnei to onoma tis metavlitis kai na vlepei an einai ontws pinakas, antistoixa kai sto int
@@ -1327,20 +1274,14 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         this.ir.addAssemblyData("fmt: .asciz "+str+"\n");
     }
     @Override
-    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); System.out.printf("exprLValue :\n"); }
+    public void inAExpressionLValue(AExpressionLValue node) { makeIndent(); /*System.out.printf("exprLValue :\n");*/ }
     @Override
     public void outAExpressionLValue(AExpressionLValue node) {
         //yiannis_sem
-        System.out.print("!!!!!!!!!!!!!!!");
-        System.out.print(node.getLValue().toString());
-        System.out.print("!!!!!!!!!!!");
-        System.out.print(node.getExpr());
 
 
         if(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " "))!=null&&this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getArray()){
             String[] ind = node.getExpr().toString().split(" ");
-            System.out.print("^^^^^^^^^^^^^");
-            System.out.print(ind[0]);
             for(int i=0;i<this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")).getDimension();i++){
                 if(ind.length>i&&this.symbolTable.fetchType(ind[i])!=null&&this.symbolTable.fetchType(ind[i]).getArray()){
                     System.err.printf("Error: cannot navigate in l-value using array value (%s)\n", ind[i]);
@@ -1400,7 +1341,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         tempRecX.setType(this.symbolTable.fetchType(node.getLValue().toString().trim().replaceAll("\\s+", " ")));
         STRecord tempRecY = new STRecord();
         tempRecY.setName(node.getExpr().toString().trim().replaceAll("\\s+", " "));
-        //System.out.print("MMMMMMMMMMMMMMMMMMMMM");
         //System.out.print(node.getExpr().toString().split(" ")[0]);
         //System.out.print(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0]).getKind());
         if(this.symbolTable.fetchType(node.getExpr().toString().split(" ")[0])!=null) {
@@ -2017,7 +1957,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 	//yiannis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         String[] valsl = node.getLeft().toString().split(" ");
         String[] valsr = node.getRight().toString().split(" ");
@@ -2111,7 +2050,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 	//yiannis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         String[] valsl = node.getLeft().toString().split(" ");
         String[] valsr = node.getRight().toString().split(" ");
@@ -2156,7 +2094,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         }
         //till here
         //yainnis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         //if(temp1.getArray()||temp2.getArray()){
           //  System.err.printf("Error: In condition at least one member is literal or array\n");
@@ -2213,7 +2150,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 	//yiannis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         String[] valsl = node.getLeft().toString().split(" ");
         String[] valsr = node.getRight().toString().split(" ");
@@ -2306,7 +2242,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 	//yiannis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         String[] valsl = node.getLeft().toString().split(" ");
         String[] valsr = node.getRight().toString().split(" ");
@@ -2400,7 +2335,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 	//yiannis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         String[] valsl = node.getLeft().toString().split(" ");
         String[] valsr = node.getRight().toString().split(" ");
@@ -2494,7 +2428,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 	//yiannis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         String[] valsl = node.getLeft().toString().split(" ");
         String[] valsr = node.getRight().toString().split(" ");
@@ -2588,7 +2521,6 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
             this.gracefullyExit();
         }
 	//yiannis_sem
-        //System.out.print("KLKLKLKLKL");
         //System.out.print(node.getLeft());
         String[] valsl = node.getLeft().toString().split(" ");
         String[] valsr = node.getRight().toString().split(" ");

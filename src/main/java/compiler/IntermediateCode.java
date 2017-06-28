@@ -172,8 +172,8 @@ public class IntermediateCode {
 
     /* replaces in all the quads that are included in l the unknown the label with z  */
     public void BACKPATCH(Integer quadLabel, String listName, Integer z) {
-        System.out.printf("BACKPATCH \"%s\" for:", listName);
-        this.intermediateCode.get(quadLabel-1).printQuad();
+        //System.out.printf("BACKPATCH \"%s\" for:", listName);
+        //this.intermediateCode.get(quadLabel-1).printQuad();
         ArrayList<Integer> l = null;
         if (listName.equals("TRUE")) l = this.TRUE.get(quadLabel);
         else if (listName.equals("FALSE"))  l = this.FALSE.get(quadLabel);
@@ -198,7 +198,7 @@ public class IntermediateCode {
 
     /* takes the Type of a parameter and determines the mode under which it is passed */
     public String PARAMMODE(String id, Integer number) {
-        System.out.printf("PARAMMODE for %s - %d", id, number);
+        //System.out.printf("PARAMMODE for %s - %d", id, number);
         STRecord.Type temp = this.typeMap.get(id);
         assert (temp != null);
         STRecord.Type tempParam = temp.fetchParamType(number);
