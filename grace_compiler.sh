@@ -10,11 +10,17 @@ elif [ $# -eq 1 ]
 	then
 	mvn clean package
 	java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main $1
+	gcc -m32 -o executable g.s
+	./executable
+	rm executable
 elif [ $# -eq 2 ]
 	then
 	if [ $2 = "--no-rebuild" ]
 		then	
 		java -cp target/compiler-1.0-SNAPSHOT.jar compiler.Main $1
+		gcc -m32 -o executable g.s
+		./executable
+		rm executable
 	else
 		echo "Unsupported second argument!"
 		exit -2

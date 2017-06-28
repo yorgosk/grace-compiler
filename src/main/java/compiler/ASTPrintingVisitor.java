@@ -102,6 +102,7 @@ public class ASTPrintingVisitor extends DepthFirstAdapter {
         //till here
         // print IR
         this.ir.printIR();
+        System.out.print("\n-----------------------------------------------------\n\t\tPROGRAM OUTPUT:\n-----------------------------------------------------\n");
         // print IR to file -- for testing
         this.ir.printIR(irWriter);
         // done printing IR to file -- for testing
